@@ -41,13 +41,35 @@ def santa_tracker(navigation_instructions)
   house_map
 end
 
-def number_of_houses_visited(navigation_instructions)
-  house_map = santa_tracker(navigation_instructions)
-  house_map.keys.count
+def split_navigation_instructions(navigation_instructions)
+  santa_instructions = []
+  robo_instructions  = []
+  navigation_instructions.chars.each_with_index do |char, idx|
+    if idx % 2 == 0
+      santa_instructions << char
+    else
+      robo_instructions << char
+    end
+  end
+  [santa_instructions.join(''), robo_instructions.join('')]
+end
+
+def number_of_houses_visited(navigation_instructions, use_robo_santa=false)
+  if use_robo_santa
+    santa_instructions, robo_instructions = split_navigation_instructions(navigation_instructions)
+    santa_house_map = santa_tracker(santa_instructions)
+    robo_house_map = santa_tracker(robo_instructions)
+
+    (santa_house_map.keys + robo_house_map.keys).uniq.count
+  else
+    house_map = santa_tracker(navigation_instructions)
+    house_map.keys.count
+  end
 end
 
 if __FILE__ == $0
   input = ARGV[0]
-  houses = number_of_houses_visited(input)
+  use_robo = (ARGV[1] || "").downcase == "robo"
+  houses = number_of_houses_visited(input, use_robo)
   puts "Santa visited #{houses} houses"
 end
