@@ -13,11 +13,11 @@ enum Direction: Character {
     case Down = ")"
 }
 
-struct Elevator {
+class Elevator {
     var current_floor = 0
     var transition_to_basement: Int?
 
-    mutating func move(dir: Direction) {
+    func move(dir: Direction) {
         switch dir {
         case .Up:
             self.current_floor = self.current_floor + 1
@@ -26,21 +26,29 @@ struct Elevator {
         }
     }
 
-    mutating func check_for_basement_transition(index: Int) {
+    func check_for_basement_transition(index: Int) {
         if (self.transition_to_basement == nil && self.current_floor < 0) {
             self.transition_to_basement = index + 1
         }
     }
 
-    mutating func operate(instructions: String) {
+    func operate(instructions: String) {
         for (index, instruction) in instructions.characters.enumerate() {
-            move(Direction(rawValue: instruction)!)
+            guard let dir = Direction(rawValue: instruction) else { continue }
+            move(dir)
             check_for_basement_transition(index)
         }
         // _ = instructions.characters.map { move(Direction(rawValue: $0)!) }
     }
 
-    mutating func reset() {
+    func reset() {
         self.current_floor = 0
     }
+}
+
+func advent_day1(input: String) {
+    let elevator = Elevator()
+    elevator.operate(input)
+    print("Elevator ended up on \(elevator.current_floor)")
+    print("Elevator went into basement on \(elevator.transition_to_basement)")
 }
