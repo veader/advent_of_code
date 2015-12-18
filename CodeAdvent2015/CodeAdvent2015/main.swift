@@ -11,6 +11,7 @@ import Foundation
 enum AdventDay: String {
     case Day1 = "1"
     case Day2 = "2"
+    case Day3 = "3"
 }
 
 if Process.arguments.count > 1 {
@@ -25,6 +26,8 @@ if Process.arguments.count > 1 {
         advent_day1(input)
     case .Day2:
         advent_day2(input)
+    case .Day3:
+        advent_day3(input)
     default:
         print("Please specify valid day")
     }
