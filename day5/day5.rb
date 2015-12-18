@@ -19,8 +19,31 @@ def nice_string?(string)
   does_not_have_rejects?(string)
 end
 
+def has_repeated_sequence?(string)
+  chunks = []
+  string.chars.each_cons(2) { |chars| chunks << chars.join }
+  chunks.each_with_index do |chunk, idx|
+    return true if (chunks[idx+2..-1] || []).include?(chunk)
+  end
+  return false
+end
+
+def has_repeating_chars_offset_by_one?(string)
+  string.chars.each_with_index do |char, idx|
+    return true if string[idx+2] == char
+  end
+  return false
+end
+
+def nice_string2?(string)
+  has_repeated_sequence?(string) &&
+  has_repeating_chars_offset_by_one?(string)
+end
+
 if __FILE__ == $0
   input = ARGV[0]
-  nice_strings = input.lines.find_all { |line| nice_string?(line) }
+  use_second_method = (ARGV[1] == "2")
+  method = use_second_method ? :nice_string2? : :nice_string?
+  nice_strings = input.lines.find_all { |line| self.send(method, line) }
   puts "Found #{nice_strings.count} nice strings."
 end
