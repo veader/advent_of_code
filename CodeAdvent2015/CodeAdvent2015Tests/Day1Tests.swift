@@ -52,4 +52,14 @@ class Day1Tests: XCTestCase {
         }
     }
 
+    func testElevatorNeverGoesToBasement() {
+        elevator.operate("()()()")
+        XCTAssertNil(elevator.transition_to_basement)
+    }
+
+    func testElevatorGoesToBasementOnThirdMove() {
+        elevator.operate("())(()()(")
+        XCTAssertEqual(3, elevator.transition_to_basement)
+    }
+
 }
