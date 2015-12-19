@@ -41,7 +41,12 @@ class Decorations
   def set_light_state(starting_coord, ending_coord, state)
     (starting_coord.x).upto(ending_coord.x) do |x|
       (starting_coord.y).upto(ending_coord.y) do |y|
-        @grid[x][y] = state
+        if state == ON
+          @grid[x][y] += 1
+        else # OFF
+          @grid[x][y] -= 1
+          @grid[x][y] = 0 if @grid[x][y] < 0
+        end
       end
     end
   end
@@ -57,25 +62,31 @@ class Decorations
   def toggle_lights(starting_coord, ending_coord)
     (starting_coord.x).upto(ending_coord.x) do |x|
       (starting_coord.y).upto(ending_coord.y) do |y|
-        @grid[x][y] = !@grid[x][y]
+        @grid[x][y] += 2
       end
     end
   end
 
   def setup_grid(size)
-    @grid = Array.new(size, OFF)
-    size.times { |i| @grid[i] = Array.new(size, OFF) }
+    @grid = Array.new(size, 0)
+    size.times { |i| @grid[i] = Array.new(size, 0) }
   end
 
-  def count_lights_on
-    count = 0
-    grid.each { |row| row.each { |cell| count += 1 if cell } }
-    count
+  # def count_lights_on
+  #   count = 0
+  #   grid.each { |row| row.each { |cell| count += 1 if cell } }
+  #   count
+  # end
+  def overall_brightness
+    brightness = 0
+    grid.each { |row| row.each { |cell| brightness += cell } }
+    brightness
   end
 
   def print_grid
     grid.each do |row|
-      p row.map { |cell| cell ? '*' : '.' }.join(' ')
+      # p row.map { |cell| cell ? '*' : '.' }.join(' ')
+      p row.join(' ')
     end
   end
 end
@@ -84,5 +95,6 @@ if __FILE__ == $0
   input = ARGV[0]
   deco = Decorations.new
   deco.parse_instructions(input)
-  p "There are now #{deco.count_lights_on} lights ON."
+  # p "There are now #{deco.count_lights_on} lights ON."
+  p "The overall brightness is now #{deco.overall_brightness}"
 end
