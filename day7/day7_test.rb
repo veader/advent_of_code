@@ -3,7 +3,7 @@
 require_relative 'day7'
 
 circ = Circuit.new
-circ.parse_instructions(
+circ.wire_up(
   "123 -> x
   456 -> y
   x AND y -> d
