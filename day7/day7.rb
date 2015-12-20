@@ -5,7 +5,7 @@ class Circuit
 
   def initialize
     @wires = {}
-    @wire_cache = {}
+    clear_cache!
   end
 
   def wire_up(instructions)
@@ -25,13 +25,17 @@ class Circuit
     end
   end
 
+  def clear_cache!
+    @wire_cache = {}
+  end
+
   def read_wire_value(wire)
     return @wire_cache[wire] unless @wire_cache[wire].nil?
     return wire.to_i if wire.match(/^\d+$/)
 
     # p "READ: #{wire} = #{@wires[wire]}"
     @wire_cache[wire] = \
-      case (value = @wires[wire].strip)
+      case (value = @wires[wire].to_s.strip)
       when /^\d+$/
         value.to_i
       when /AND/
@@ -102,7 +106,10 @@ if __FILE__ == $0
   wire = ARGV[1]
   circ = Circuit.new
   circ.wire_up(input)
-  circ.print
-  p "="*30
+  # circ.print
+  # p "="*30
+  p "#{wire} -> #{circ.read_wire_value(wire)}"
+  circ.wire_up("#{circ.read_wire_value(wire)} -> b")
+  circ.clear_cache!
   p "#{wire} -> #{circ.read_wire_value(wire)}"
 end
