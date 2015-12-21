@@ -9,4 +9,7 @@ strF.read(
 "aaa\"aaa"
 "\x27"')
 
+strF.print_lengths
+
 p strF.overall_length
+p strF.overall_escaped_length
