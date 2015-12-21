@@ -2,49 +2,16 @@
 
 require "pp"
 
-class SantaRoute
-  attr_accessor :locations, :distances
-
-  def initialize(visited_locations)
-    self.locations = [visited_locations].flatten
-    self.distances = []
-  end
-
-  def push(location, distance)
-    self.locations << location
-    self.distances << distance
-  end
-
-  def last_location
-    self.locations.last
-  end
-
-  def has_visited?(location)
-    self.locations.include?(location)
-  end
-
-  def total_distance
-    self.distances.inject(0) { |sum, dist| sum + dist }
-  end
-
-  def print
-    p self.locations.join(" -> ") + " = #{total_distance}"
-  end
-
-  def ==(another_route)
-    self.locations == another_route.locations ||
-    self.locations == another_route.locations.reverse
-  end
-end
-
 class SantaRoutePlanner
-  attr_accessor :location_map, :locations
+  attr_accessor :location_map, :locations, :routes
 
   def initialize
     self.location_map = {}
     self.locations = []
+    self.routes = []
   end
 
+  # ------------------------------------------------------
   def read_map(input)
     input.each_line do |line|
       # http://rubular.com/r/8xYpj5Gvg4
@@ -67,43 +34,71 @@ class SantaRoutePlanner
     end
   end
 
-  def find_routes
-    self.locations.collect do |loc|
-      p "Routes from #{loc}"
-      routes_from(SantaRoute.new(loc))
-    end.flatten
+  def add_location(loc)
+    self.locations << loc unless self.locations.include?(loc)
   end
 
-  def shortest_of_routes(routes)
-    routes.sort_by!(&:total_distance).first
+  # ------------------------------------------------------
+  def find_routes
+    self.locations.each do |loc|
+      p "Routes from #{loc}"
+      routes_from([loc])
+    end
+  end
+
+  def distance_for_route(route)
+    distance = 0
+    last = nil
+    route.each do |loc|
+      if last.nil?
+        last = loc
+        next
+      else
+        distance += self.location_map[last][loc]
+        last = loc
+      end
+    end
+    distance
   end
 
   def routes_from(route)
-    route.print
+    print_route(route)
 
-    routes = []
-    next_locations = self.location_map[route.last_location].keys
-    p "Destinations from #{route.last_location}: #{next_locations.sort}"
+    last_location  = route.last
+    next_locations = self.location_map[last_location].keys
+
     next_locations.each do |next_location|
-      distance = (self.location_map[route.last_location][next_location] || 0)
-      p "XXX #{route.last_location} -> #{next_location} (#{distance})"
-      if route.has_visited?(next_location)
-        routes << route
+      if route.include?(next_location) # don't loop
+        if route_complete?(route) # save this route if we hit all locations
+          self.routes << route unless self.routes.include?(route)
+        end
       else
-        r = route.clone
-        r.push(next_location, distance)
-        routes << routes_from(r)
+        routes_from(route + [next_location])
       end
     end
-    prune_incomplete_routes((routes.flatten || []).compact)
   end
 
-  def prune_incomplete_routes(routes)
-    routes.find_all { |r| r.locations.count == self.locations.count }
+  def route_complete?(route)
+    route.uniq.count == self.locations.count
   end
 
-  def add_location(loc)
-    self.locations << loc unless self.locations.include?(loc)
+  def shortest_route
+    distances = {}
+    self.routes.each { |r| distances[distance_for_route(r)] = r }
+    shortest = distances.keys.sort.first
+    p "SHORTEST:"
+    print_route(distances[shortest])
+    shortest
+  end
+
+  def print_route(route)
+    return if route.nil?
+    p "#{route.join(' -> ')} = #{distance_for_route(route)}"
+  end
+
+  def print_routes
+    p "#{self.routes.count} Routes Found"
+    self.routes.map { |r| print_route(r) }
   end
 end
 
@@ -114,10 +109,10 @@ if __FILE__ == $0
 
   pp planner.locations
   pp planner.location_map
+  planner.find_routes
   p '='*80
-  routes = planner.find_routes
+  planner.print_routes
   p '='*80
-  # pp shortest = planner.shortest_of_routes(routes)
-  # pp "SHORTEST ROUTE: #{shortest.total_distance}"
+  pp shortest = planner.shortest_route
 
 end

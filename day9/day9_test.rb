@@ -10,7 +10,9 @@ planner.read_map(
 
 pp planner.locations
 pp planner.location_map
-pp planner.routes_from(SantaRoute.new(planner.locations.first))
-# pp routes = planner.find_routes
-# pp shortest = planner.shortest_of_routes(routes)
+planner.find_routes
+p '='*80
+planner.print_routes
+p '='*80
+pp shortest = planner.shortest_route
 # pp "SHORTEST ROUTE: #{shortest.total_distance}"
