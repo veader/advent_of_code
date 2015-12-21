@@ -3,12 +3,14 @@
 require "pp"
 
 class SantaRoutePlanner
-  attr_accessor :location_map, :locations, :routes
+  attr_accessor :location_map, :locations, :routes, :distances
 
   def initialize
     self.location_map = {}
     self.locations = []
     self.routes = []
+    self.distances = {}
+    @distances_calulated = false
   end
 
   # ------------------------------------------------------
@@ -46,6 +48,12 @@ class SantaRoutePlanner
     end
   end
 
+  def calculate_distances
+    return if @distances_calulated
+    self.routes.each { |r| self.distances[distance_for_route(r)] = r }
+    @distances_calulated = true
+  end
+
   def distance_for_route(route)
     distance = 0
     last = nil
@@ -65,6 +73,7 @@ class SantaRoutePlanner
     print_route(route)
 
     last_location  = route.last
+    return if self.location_map[last_location].nil?
     next_locations = self.location_map[last_location].keys
 
     next_locations.each do |next_location|
@@ -83,12 +92,17 @@ class SantaRoutePlanner
   end
 
   def shortest_route
-    distances = {}
-    self.routes.each { |r| distances[distance_for_route(r)] = r }
-    shortest = distances.keys.sort.first
+    calculate_distances
     p "SHORTEST:"
-    print_route(distances[shortest])
-    shortest
+    short = distances.keys.sort.first
+    print_route(self.distances[short])
+  end
+
+  def longest_route
+    calculate_distances
+    p "LONGEST:"
+    long = distances.keys.sort.last
+    print_route(self.distances[long])
   end
 
   def print_route(route)
@@ -113,6 +127,8 @@ if __FILE__ == $0
   p '='*80
   planner.print_routes
   p '='*80
-  pp shortest = planner.shortest_route
+  pp planner.shortest_route
+  p '='*80
+  pp planner.longest_route
 
 end
