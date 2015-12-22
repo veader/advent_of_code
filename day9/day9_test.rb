@@ -14,6 +14,6 @@ planner.find_routes
 p '='*80
 planner.print_routes
 p '='*80
-pp shortest = planner.shortest_route
-pp longest = planner.longest_route
+shortest = planner.shortest_route
+longest = planner.longest_route
 # pp "SHORTEST ROUTE: #{shortest.total_distance}"
