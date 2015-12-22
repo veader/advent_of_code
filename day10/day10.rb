@@ -9,6 +9,23 @@ class LookAndSay
     self.sequence = seq
   end
 
+  def split
+    pieces = []
+    tmp = self.sequence.dup
+    until tmp.empty?
+      if match = tmp.match(/^(\d)\1+/)
+        num = match.captures[0]
+        match = tmp.match(/^(#{num}+)/)
+        pieces << match.captures[0]
+        tmp = match.post_match
+      else
+        pieces << tmp[0]
+        tmp = tmp[1..-1]
+      end
+    end
+    pieces
+  end
+
   def parse!
     # break_down = []
     new_sequence = ""
@@ -33,10 +50,10 @@ class LookAndSay
       end
     end
 
-    p "BEFORE: #{self.sequence}"
+    # p "BEFORE: #{self.sequence}"
     # create_new_sequence(break_down)
     self.sequence = new_sequence
-    p "AFTER:  #{self.sequence}"
+    # p "AFTER:  #{self.sequence}"
   end
 
   # def create_new_sequence(break_down)
@@ -48,8 +65,8 @@ if __FILE__ == $0
   input = ARGV[0] || "1321131112"
 
   lns = LookAndSay.new(input)
-  40.times do |i|
-    p "Loop: #{i}"
+  50.times do |i|
+    p "Loop: #{i+1}"
     lns.parse!
     p "Length: #{lns.sequence.length}"
     p "="*80
