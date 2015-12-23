@@ -82,4 +82,6 @@ if __FILE__ == $0
   password = SantaPassword.new(input.dup)
   password.generate_next!
   p "NEXT: #{password.password}"
+  password.generate_next!
+  p "NEXT: #{password.password}"
 end
