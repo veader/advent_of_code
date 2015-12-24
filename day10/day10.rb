@@ -9,25 +9,7 @@ class LookAndSay
     self.sequence = seq
   end
 
-  def split
-    pieces = []
-    tmp = self.sequence.dup
-    until tmp.empty?
-      if match = tmp.match(/^(\d)\1+/)
-        num = match.captures[0]
-        match = tmp.match(/^(#{num}+)/)
-        pieces << match.captures[0]
-        tmp = match.post_match
-      else
-        pieces << tmp[0]
-        tmp = tmp[1..-1]
-      end
-    end
-    pieces
-  end
-
   def parse!
-    # break_down = []
     new_sequence = ""
     current = []
 
@@ -39,26 +21,19 @@ class LookAndSay
         num = match.captures[0]
         match = tmp.match(/^(#{num}+)/)
         s = match.captures[0]
-        # break_down << s
         new_sequence << "#{s.size}#{s[0]}"
         tmp = match.post_match
       else
         # we have a single number
-        # break_down << tmp[0]
         new_sequence << "1#{tmp[0]}"
         tmp = tmp[1..-1]
       end
     end
 
     # p "BEFORE: #{self.sequence}"
-    # create_new_sequence(break_down)
     self.sequence = new_sequence
     # p "AFTER:  #{self.sequence}"
   end
-
-  # def create_new_sequence(break_down)
-  #   self.sequence = break_down.collect { |chunk| "#{chunk.size}#{chunk[0]}" }.join
-  # end
 end
 
 if __FILE__ == $0
