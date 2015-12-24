@@ -11,6 +11,7 @@ class SeatingChart
     self.happiness_deltas = {}
 
     parse(happiness_data)
+    add_self
     find_arrangements
     calculate_happiness
   end
@@ -24,6 +25,17 @@ class SeatingChart
       change = match.captures[2].to_i
       change *= -1 if match.captures[1] == "lose"
       self.happiness_map[match.captures[0]][match.captures[3]] = change
+    end
+  end
+
+  def add_self
+    people = possible_people.dup
+
+    me = "Shawn"
+    self.happiness_map[me] = {}
+    people.each do |person|
+      self.happiness_map[me][person] = 0
+      self.happiness_map[person][me] = 0
     end
   end
 
