@@ -8,3 +8,5 @@ Dancer can fly 16 km/s for 11 seconds, but then must rest for 162 seconds."
 race = ReindeerRace.new(data)
 pp race.reindeers
 race.distance_traveled_in(1000)
+p "="*80
+race.calculate_scores(1000)

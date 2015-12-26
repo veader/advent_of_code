@@ -28,11 +28,12 @@ class Reindeer
 end
 
 class ReindeerRace
-  attr_accessor :reindeers
+  attr_accessor :reindeers, :scores
 
   def initialize(input="")
     self.reindeers = []
     parse(input)
+    self.scores = Hash.new(0)
   end
 
   def parse(input)
@@ -46,6 +47,24 @@ class ReindeerRace
     end
   end
 
+  def calculate_scores(seconds)
+    self.scores = Hash.new(0) # reset
+
+    seconds.times do |secs|
+      tmp_deers = {}
+      self.reindeers.each do |deer|
+        distance = deer.distance_traveled_in(secs+1)
+        tmp_deers[distance] ||= []
+        tmp_deers[distance] << deer
+      end
+      top_distance = tmp_deers.keys.sort.reverse.first
+      tmp_deers[top_distance].each { |deer| self.scores[deer] += 1 }
+    end
+
+    self.scores.each do |deer, score|
+      p "#{deer.name} traveled #{deer.distance_traveled_in(seconds)} km => #{score} points"
+    end
+  end
 
   def distance_traveled_in(seconds)
     self.reindeers.each do |deer|
@@ -61,5 +80,5 @@ if __FILE__ == $0
   race = ReindeerRace.new(input)
   pp race.reindeers
   p "="*80
-  race.distance_traveled_in(seconds)
+  race.calculate_scores(seconds)
 end
