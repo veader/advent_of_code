@@ -27,7 +27,16 @@ class AuntSue
     score = 0
     # get one point for each attrib that matches
     attribs.each do |attrib, value|
-      score += 1 if self.attributes[attrib] == value
+      next if self.attributes[attrib].nil?
+      score +=
+        case attrib
+        when "cats", "trees"
+          (self.attributes[attrib] > value) ? 1 : 0
+        when "pomeranians", "goldfish"
+          (self.attributes[attrib] < value) ? 1 : 0
+        else
+          (self.attributes[attrib] == value) ? 1 : 0
+        end
     end
     score
   end
