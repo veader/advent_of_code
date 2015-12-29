@@ -21,11 +21,12 @@ class CookieIngredient
 end
 
 class CookieRecipe
-  attr_accessor :ingredients, :tablespoons
+  attr_accessor :ingredients, :tablespoons, :calories
 
-  def initialize(input="", tbsp=100)
+  def initialize(input="", tbsp=100, max_calories=-1)
     self.ingredients = []
     self.tablespoons = tbsp
+    self.calories = max_calories
     parse(input)
   end
 
@@ -56,7 +57,6 @@ class CookieRecipe
     min = max if remainder.empty?
 
     max.downto(min) do |tbsp|
-      # TODO: don't do work if ingredient sizes don't equal total needed
       score, ratio = determine_optimal_mix(fixed_ratio.merge({ next_ingredient.name => tbsp }), remainder)
       scores[score] ||= []
       scores[score] << ratio
@@ -78,6 +78,11 @@ class CookieRecipe
     ratio_used_tbsp = ratios.collect { |name, tbsp| tbsp }.reduce(0, :+)
     return 0 if ratio_used_tbsp < self.tablespoons # don't bother unless ratio is legit
 
+    if self.calories != -1 # check calories first
+      cals = ingredients.collect { |i| i.calories * ratios[i.name] }.reduce(0, :+)
+      return 0 unless cals == self.calories # must have proper ammount
+    end
+
     scores = \
       params.collect do |param|
         values = \
@@ -94,7 +99,7 @@ end
 
 if __FILE__ == $0
   input = ARGV[0]
-  recipe = CookieRecipe.new(input)
+  recipe = CookieRecipe.new(input, 100, 500)
   pp recipe.ingredients
   p "="*80
   pp recipe.determine_optimal_mix
