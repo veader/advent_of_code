@@ -33,6 +33,18 @@ class Eggnog
     container_mixes
   end
 
+  def find_smallest_combos
+    combos = find_container_combinations
+    combos_by_size = {}
+    combos.each do |c|
+      size = c.size
+      combos_by_size[size] ||= []
+      combos_by_size[size] << c
+    end
+    smallest = combos_by_size.keys.sort.first
+    combos_by_size[smallest]
+  end
+
   def can_use_container?(used_volume, container)
     remaining = (self.volume - used_volume)
     remaining >= container
@@ -51,7 +63,8 @@ if __FILE__ == $0
   input = ARGV[0]
   input_volume = (ARGV[1] || 150).to_i
   nog = Eggnog.new(parse_input(input), input_volume)
-  combos = nog.find_container_combinations
+
+  combos = nog.find_smallest_combos
   pp combos
-  p "Found #{combos.size} different combos"
+  p "Found #{combos.size} different combos (smallest)"
 end
