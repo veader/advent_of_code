@@ -45,7 +45,7 @@ class LightDisplay
         after_grid[x][y] = lights_new_state(x,y)
       end
     end
-    self.grid = after_grid
+    self.grid = force_corners_on(after_grid)
   end
 
   def lights_new_state(x,y)
@@ -85,6 +85,14 @@ class LightDisplay
   def new_grid
     grid = Array.new(self.size, OFF)
     size.times { |i| grid[i] = Array.new(self.size, OFF) }
+    force_corners_on(grid)
+  end
+
+  def force_corners_on(grid)
+    grid[0][0] = ON
+    grid[0][self.size-1] = ON
+    grid[self.size-1][0] = ON
+    grid[self.size-1][self.size-1] = ON
     grid
   end
 

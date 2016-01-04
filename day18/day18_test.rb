@@ -24,16 +24,34 @@ require_relative "day18"
 #   pp lights.neighbors(i,i)
 # end
 
+# ---------------------------------------------------------------
+# # FIRST STAR
+# data = \
+# ".#.#.#
+# ...##.
+# #....#
+# ..#...
+# #.#..#
+# ####.."
+#
+# lights = LightDisplay.new(data, 6)
+# lights.print
+# p "--------"
+# lights.animate(4)
+# lights.print
+
+# ---------------------------------------------------------------
+# # SECOND STAR
 data = \
-".#.#.#
+"##.#.#
 ...##.
 #....#
 ..#...
 #.#..#
-####.."
+####.#"
 
 lights = LightDisplay.new(data, 6)
 lights.print
 p "--------"
-lights.animate(4)
+lights.animate(5)
 lights.print
