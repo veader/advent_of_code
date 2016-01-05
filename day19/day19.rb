@@ -18,21 +18,30 @@ class Replacement
     self.substitution = match.captures[1]
   end
 
+  def expanding_substitutions_of(input="")
+    substitutions_of(true, input)
+  end
+
+  def reducing_substitutions_of(input="")
+    substitutions_of(false, input)
+  end
+
   # return a list of possible substitutions for this replacement
-  def substitutions_of(input="")
-    # p "** #{self.initial} => #{self.substitution}"
+  def substitutions_of(expanding, input="")
+    original = (expanding ? self.initial : self.substitution)
+    replacement = (expanding ? self.substitution : self.initial)
+    regex = /#{original}/
+
     subs = []
     the_prev = ""
     the_rest = input
     until the_rest.empty?
-      # p "PREV: #{the_prev}: REST #{the_rest}"
-      match = the_rest.match(/#{self.initial}/)
+      match = the_rest.match(regex)
       break if match.nil?
       the_rest = match.post_match
-      subs << "#{the_prev}#{match.pre_match}#{substitution}#{the_rest}"
-      the_prev += (match.pre_match + self.initial)
+      subs << "#{the_prev}#{match.pre_match}#{replacement}#{the_rest}"
+      the_prev += (match.pre_match + original)
     end
-    # pp subs
     subs
   end
 
@@ -42,7 +51,7 @@ class Replacement
 end
 
 class Medicine
-  attr_accessor :replacements, :molecule
+  attr_accessor :replacements, :final_formula
 
   def initialize(input="")
     self.replacements = []
@@ -55,21 +64,38 @@ class Medicine
       if Replacement.match?(line)
         self.replacements << Replacement.new(line)
       else
-        self.molecule = line.chomp.strip
+        self.final_formula = line.chomp.strip
       end
     end
   end
 
-  def find_new_molecules
+  def shortest_path_to_med(depth=0, current_depth=["e"])
+    p "#{Time.now} Depth: #{depth} | Num: #{current_depth.size} | Sample Length: #{(current_depth.first || '').length} | Final: #{self.final_formula.length}"
+
+    # find the next layer of the stack
+    next_depth = []
+    current_depth.each do |molecule|
+      next_batch = find_new_molecules(molecule)
+      return [self.final_formula] if next_batch.include?(self.final_formula)
+      next_depth += next_batch
+    end
+
+    # go deeper into the stack
+    results = shortest_path_to_med(depth+1, next_depth)
+    # return our depth plus deeper depths
+    [current_depth] + results
+  end
+
+  def find_new_molecules(m=self.final_formula)
     subs = []
     self.replacements.each do |rep|
-      subs += rep.substitutions_of(self.molecule)
+      subs += rep.expanding_substitutions_of(m)
     end
     subs
   end
 
   def print
-    p "Molecule: #{self.molecule}"
+    p "Molecule: #{self.final_formula}"
     p "Replacements:"
     pp self.replacements
   end
@@ -78,8 +104,10 @@ end
 if __FILE__ == $0
   input = ARGV[0]
   med = Medicine.new(input)
-  med.print
-  p "="*80
-  molecules = med.find_new_molecules
-  p "Found #{molecules.size} new molecules. #{molecules.uniq.size} unique ones."
+  # med.print
+  # p "="*80
+  # molecules = med.find_new_molecules
+  # p "Found #{molecules.size} new molecules. #{molecules.uniq.size} unique ones."
+  solutions = med.shortest_path_to_med
+  p "Found solution in #{solutions.size} steps"
 end
