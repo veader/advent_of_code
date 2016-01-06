@@ -2,6 +2,9 @@
 
 require "pp"
 
+EXPAND=true
+REDUCE=false
+
 class Replacement
   attr_accessor :initial, :substitution
 
@@ -19,15 +22,15 @@ class Replacement
   end
 
   def expanding_substitutions_of(input="")
-    substitutions_of(true, input)
+    substitutions_of(EXPAND, input)
   end
 
   def reducing_substitutions_of(input="")
-    substitutions_of(false, input)
+    substitutions_of(REDUCE, input)
   end
 
   # return a list of possible substitutions for this replacement
-  def substitutions_of(expanding, input="")
+  def substitutions_of(expanding=EXPAND, input="")
     original = (expanding ? self.initial : self.substitution)
     replacement = (expanding ? self.substitution : self.initial)
     regex = /#{original}/
@@ -69,27 +72,43 @@ class Medicine
     end
   end
 
-  def shortest_path_to_med(depth=0, current_depth=["e"])
-    p "#{Time.now} Depth: #{depth} | Num: #{current_depth.size} | Sample Length: #{(current_depth.first || '').length} | Final: #{self.final_formula.length}"
+  def shortest_path_to_med(answer, depth=0, current_depth=[self.final_formula])
+    p "#{Time.now} Depth: #{depth} | Num: #{current_depth.size}"
 
     # find the next layer of the stack
     next_depth = []
     current_depth.each do |molecule|
-      next_batch = find_new_molecules(molecule)
-      return [self.final_formula] if next_batch.include?(self.final_formula)
-      next_depth += next_batch
+      next_batch = find_new_molecules(molecule, REDUCE)
+      if next_batch.include?(answer)
+        p "Found solution in #{depth+1} steps"
+        return
+      else
+        next_depth += next_batch
+      end
     end
 
+    next_depth = next_depth.sort_by { |m| m.size }
+    p "Sizes:"
+    sizes = next_depth.collect(&:size).uniq
+    pp sizes
+    shortest = sizes.first
+    # find only the shortest ones
+    shortest_next_steps = next_depth.find_all { |m| m.size == shortest }
+
     # go deeper into the stack
-    results = shortest_path_to_med(depth+1, next_depth)
-    # return our depth plus deeper depths
-    [current_depth] + results
+    results = shortest_path_to_med(answer, depth+1, shortest_next_steps)
+    # # return our depth plus deeper depths
+    # [current_depth] + results
   end
 
-  def find_new_molecules(m=self.final_formula)
+  def find_new_molecules(m=self.final_formula, expand=EXPAND)
     subs = []
     self.replacements.each do |rep|
-      subs += rep.expanding_substitutions_of(m)
+      if expand
+        subs += rep.expanding_substitutions_of(m)
+      else
+        subs += rep.reducing_substitutions_of(m)
+      end
     end
     subs
   end
@@ -108,6 +127,5 @@ if __FILE__ == $0
   # p "="*80
   # molecules = med.find_new_molecules
   # p "Found #{molecules.size} new molecules. #{molecules.uniq.size} unique ones."
-  solutions = med.shortest_path_to_med
-  p "Found solution in #{solutions.size} steps"
+  med.shortest_path_to_med("e")
 end

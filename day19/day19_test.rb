@@ -27,6 +27,4 @@ O => HH
 HOHOHO"
 
 med = Medicine.new(data)
-solutions = med.shortest_path_to_med
-p "Found solution in #{solutions.size} steps ->"
-pp solutions
+med.shortest_path_to_med("e")
