@@ -18,9 +18,9 @@ class House
     self.presents_delivered = 0
 
     (self.number).downto(1) do |i|
-      if (self.number % i) == 0
+      if (self.number % i) == 0 && (self.number / i) < 51
         # self.elves_that_visit << i
-        self.presents_delivered += (i * 10)
+        self.presents_delivered += (i * 11)
       end
     end
 
