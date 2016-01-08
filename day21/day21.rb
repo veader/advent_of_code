@@ -3,6 +3,7 @@
 require "pp"
 
 DEBUG=false
+WINNING=false # true for *, false for **
 
 # ============================================================================
 class StoreItem
@@ -170,9 +171,15 @@ class Game
     end
 
     puts ""
-    cheapest = costs.keys.compact.sort.first
-    p "Cheapest Combo => $#{cheapest}"
-    pp costs[cheapest].uniq
+    if WINNING
+      cheapest = costs.keys.compact.sort.first
+      p "Cheapest Combo => $#{cheapest}"
+      pp costs[cheapest].uniq
+    else
+      most_expensive = costs.keys.compact.sort.last
+      p "Most Expensive Combo => $#{most_expensive}"
+      pp costs[most_expensive].uniq
+    end
   end
 
   def test_combinations(armor_count=0, ring_count=0)
@@ -222,7 +229,7 @@ class Game
 
     winner = play!
     self.player.reset!
-    winner == self.player
+    (winner == self.player) == WINNING
   end
 
   # returns winner
