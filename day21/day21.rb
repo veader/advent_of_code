@@ -2,6 +2,8 @@
 
 require "pp"
 
+DEBUG=false
+
 # ============================================================================
 class StoreItem
   attr_accessor :name, :cost, :defense, :attack
@@ -88,8 +90,8 @@ class Player
     damage_taken = 1 if damage_taken < 1
     self.hitpoints -= damage_taken
     self.hitpoints = 0 if self.hitpoints < 0
-    # p "The #{player.name} deals #{player.attack}-#{self.defense}=#{damage_taken} damage;" + \
-    #  " the #{self.name} goes down to #{self.hitpoints} hit points."
+    p "The #{player.name} deals #{player.attack}-#{self.defense}=#{damage_taken} damage;" + \
+     " the #{self.name} goes down to #{self.hitpoints} hit points." if DEBUG
   end
 
   def dead_yet?
@@ -139,7 +141,7 @@ class Player
 
   def print
     p "#{self.name} HP: #{self.hitpoints} ATTACK: #{self.attack} DEFENSE: #{self.defense}"
-    output = "     "
+    output = "Equipped: "
     output += "WEAPON: #{self.weapon.as_string}" if self.weapon
     output += "ARMOR: #{self.armor.as_string}" if self.armor
     output += "RINGS: [#{self.rings.collect(&:as_string).join(',')}]" unless self.rings.empty?
@@ -160,21 +162,20 @@ class Game
   def optimize_gear_purchases_for_win
     costs = {}
 
-    0.upto(1) do |weapon_count|
-      0.upto(1) do |armor_count|
-        0.upto(2) do |ring_count|
-          results = test_combinations(weapon_count, armor_count, ring_count)
-          costs.merge!(results)
-        end
+    0.upto(1) do |armor_count|
+      0.upto(2) do |ring_count|
+        results = test_combinations(armor_count, ring_count)
+        costs.merge!(results)
       end
     end
 
+    puts ""
     cheapest = costs.keys.compact.sort.first
     p "Cheapest Combo => $#{cheapest}"
-    pp costs[cheapest]
+    pp costs[cheapest].uniq
   end
 
-  def test_combinations(weapon_count=0, armor_count=0, ring_count=0)
+  def test_combinations(armor_count=0, ring_count=0)
     costs = {}
 
     use_weapon = nil
@@ -182,8 +183,7 @@ class Game
     use_rings  = []
 
     self.store.weapons.each do |weapon|
-      # use each weapon, if we are equipping a weapon
-      use_weapon = weapon if weapon_count != 0
+      use_weapon = weapon # must use a weapon
 
       self.store.armor.each do |armor|
         # use each piece of armor, if we are equipping armor
@@ -202,7 +202,7 @@ class Game
               items = ([use_weapon, use_armor] + use_rings).compact
               cost = items.collect(&:cost).reduce(:+)
               costs[cost] ||= []
-              costs[cost] << items
+              costs[cost] << items unless costs[cost].include?(items)
             end
 
             use_rings.delete(ring2)
@@ -238,7 +238,11 @@ class Game
       attacker.attack!(defender)
     end
 
-    p "#{attacker.name.capitalize} wins! (and still has #{attacker.hitpoints} HP)"
+    if DEBUG
+      p "#{attacker.name.capitalize} wins! (and still has #{attacker.hitpoints} HP)"
+    else
+      print "."
+    end
     attacker
   end
 
