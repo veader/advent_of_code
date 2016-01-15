@@ -33,5 +33,13 @@ game.boss.base_damage = 8
 # game.play!(["Poison", "Magic Missile"])
 
 ## EXAMPLE 2
-game.boss.original_hitpoints = 14
-game.play!(["Recharge", "Shield", "Drain", "Poison", "Magic Missile"])
+# game.boss.original_hitpoints = 14
+# game.play!(["Recharge", "Shield", "Drain", "Poison", "Magic Missile"])
+
+# pp game.spell_combos(2)
+# pp game.player.spells.collect(&:name).permutation.to_a
+
+DEBUG=true
+game2 = Game.new
+winner, mana_used = game2.play!(["Shield", "Drain", "Recharge", "Poison", "Poison", "Recharge", "Poison", "Poison"])
+p "Won by #{winner} and used #{mana_used} mana"

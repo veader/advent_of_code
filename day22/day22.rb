@@ -2,7 +2,7 @@
 
 require "pp"
 
-DEBUG=true
+DEBUG=false
 
 class Spell
   attr_accessor :name, :cost, :instant_damage, :instant_healing
@@ -199,6 +199,8 @@ class Player
 
   def remove_active_spell(spell)
     self.active_spells.delete(spell)
+    # we need to remove any armor buff
+    add_armor!(0) if spell.effect_type == :armor
   end
 
   def handle_active_spells(player)
@@ -228,19 +230,24 @@ end
 
 class Game
   attr_accessor :player, :boss
+  attr_accessor :solutions
 
   def initialize
     self.player = Player.new("player", 50, 500) # use defaults
     self.boss   = Player.new("boss", 71, 0, 10) # from puzzle input
+    self.solutions = {} # hash to hold mana used and possible solutions
   end
 
-  # returns winner
+  # returns winner and amount of mana used
   def play!(spells_to_cast=[])
+    orig_spells_cast = spells_to_cast.dup
     attacker = self.boss
     defender = self.player
 
     attacker.reset!
     defender.reset!
+    original_mana = self.player.mana
+    spell_cost = 0
 
     until defender.dead_yet?
       attacker, defender = defender, attacker # switch roles
@@ -252,22 +259,65 @@ class Game
       spell = nil
       if attacker == self.player && self.player.can_cast_spell?(spells_to_cast.first)
         spell = self.player.find_spell(spells_to_cast.shift)
+        spell_cost += spell.cost
       end
       defender.handle_active_spells(attacker)
       attacker.attack!(defender, spell)
-      p ""
+      p "" if DEBUG
     end
 
-    if DEBUG
-      p "#{attacker.name.capitalize} wins! (and still has #{attacker.hitpoints} HP)"
+    winner = attacker
+    if DEBUG || winner == self.player
+      p ""
+      p "#{winner.name.capitalize} wins! (and still has #{winner.hitpoints} HP) " + \
+        "Player used #{spell_cost} mana " + \
+        "> #{orig_spells_cast}"
     else
       print "."
     end
-    attacker
+
+    [winner, spell_cost]
   end
+
+  # attempt to find
+  def find_possible_solutions(number_of_spells_to_cast=spells.count)
+    self.solutions = {}
+
+    # 1.upto(number_of_spells_to_cast) do |num_spells|
+      num_spells = number_of_spells_to_cast
+      spell_combos(num_spells).each do |combo|
+        p "=" * 80 if DEBUG
+        winner, mana_used = play!(combo.dup)
+        if winner == self.player
+          solutions[mana_used] ||= []
+          solutions[mana_used] << combo
+        end
+      end
+    # end
+
+    p ""
+    p "Possible Solutions"
+    pp solutions
+  end
+
+  # return array of all combinations of spells
+  def spell_combos(num_spells, combo=[])
+    return [combo] if num_spells == 0
+
+    spells = self.player.spells.collect(&:name)
+
+    final_combos = []
+    spells.each do |spell|
+      final_combos += spell_combos(num_spells-1, combo+[spell])
+    end
+    final_combos
+  end
+
 end
 
 # ============================================================================
 if __FILE__ == $0
+  spell_count = (ARGV[0] || 5).to_i
   game = Game.new
+  game.find_possible_solutions(spell_count)
 end
