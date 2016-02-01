@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- saved from url=(0030)http://adventofcode.com/day/14 -->
+<html lang="en-us" data-ember-extension="1"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Day 14 - Advent of Code</title>
+<!--[if lt IE 9]><script src="/static/html5.js"></script><![endif]-->
+<link href="./css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="./style.css">
+<link rel="shortcut icon" href="http://adventofcode.com/favicon.ico?2">
+</head><!--
+
+
+
+
+Oh, hello!  Funny seeing you here.
+
+I appreciate your enthusiasm, but you aren't going to find much down here.
+There certainly aren't clues to any of the puzzles.  You do risk spoiling a few
+surprises for yourself, though.  Best to play the normal way and discover
+everything as it was intended, I think.  The best surprises don't even appear
+in the source until you unlock them for real.
+
+Please be careful with automated requests; I'm not Google, and I can only take
+so much traffic.  Please be considerate so that everyone gets to play.
+
+If you're curious about how Advent of Code works, it's running on some custom
+Perl code. Other than a few integrations (auth, analytics, ads, social media),
+I built the whole thing myself, including the design, animations, prose, and
+all of the puzzles.
+
+The puzzles probably took the longest; the easiest ones were around 45 minutes
+each, but the harder ones took 2-3 hours, some even longer than that. A lot of
+effort went into building this thing - I hope you're enjoying playing it as
+much as I enjoyed making it for you!
+
+If you'd like to hang out, I'm @ericwastl on Twitter.
+
+- Eric Wastl
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-->
+<body>
+<header><h1><a href="http://adventofcode.com/">Advent of Code</a></h1><div class="user">veader <span class="star-count">41*</span></div><nav><ul><li><a href="http://adventofcode.com/about">[About]</a></li><li><a href="http://adventofcode.com/stats">[Stats]</a></li><li><a href="http://adventofcode.com/leaderboard">[Leaderboard]</a></li><li><a href="http://adventofcode.com/settings">[Settings]</a></li><li><a href="http://adventofcode.com/auth/logout">[Log out]</a></li></ul></nav></header>
+
+<div id="ad">
+<script async="" src="./Day14_files/analytics.js"></script><script async="" src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Advent of Code Wide Skyscraper -->
+<ins class="adsbygoogle" style="display:inline-block;width:160px;height:600px" data-ad-client="ca-pub-9420604735624631" data-ad-slot="8014013294"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div><!--/ad-->
+
+<main>
+<article class="day-desc"><h2>--- Day 14: Reindeer Olympics ---</h2><p>This year is the Reindeer Olympics!  Reindeer can fly at high speeds, but must rest occasionally to recover their energy.  Santa would like to know which of his reindeer is fastest, and so he has them race.</p>
+<p>Reindeer can only either be <em>flying</em> (always at their top speed) or <em>resting</em> (not moving at all), and always spend whole seconds in either state.</p>
+<p>For example, suppose you have the following Reindeer:</p>
+<ul>
+<li>Comet can fly <em>14 km/s for 10 seconds</em>, but then must rest for <em>127 seconds</em>.</li>
+<li>Dancer can fly <em>16 km/s for 11 seconds</em>, but then must rest for <em>162 seconds</em>.</li>
+</ul>
+<p>After one second, Comet has gone 14 km, while Dancer has gone 16 km.  After ten seconds, Comet has gone 140 km, while Dancer has gone 160 km.  On the eleventh second, Comet begins resting (staying at 140 km), and Dancer continues on for a total distance of 176 km.  On the 12th second, both reindeer are resting.  They continue to rest until the 138th second, when Comet flies for another ten seconds.  On the 174th second, Dancer flies for another 11 seconds.</p>
+<p>In this example, after the 1000th second, both reindeer are resting, and Comet is in the lead at <em><code>1120</code></em> km (poor Dancer has only gotten <code>1056</code> km by that point).  So, in this situation, Comet would win (if the race ended at 1000 seconds).</p>
+<p>Given the descriptions of each reindeer (in your puzzle input), after exactly <code>2503</code> seconds, <em>what distance has the winning reindeer traveled</em>?</p>
+</article>
+<p>Your puzzle answer was <code>2655</code>.</p><article class="day-desc"><h2>--- Part Two ---</h2><p>Seeing how reindeer move in bursts, Santa decides he's not pleased with the old scoring system.</p>
+<p>Instead, at the end of each second, he awards one point to the reindeer currently in the lead.  (If there are multiple reindeer tied for the lead, they each get one point.)  He keeps the traditional 2503 second time limit, of course, as doing otherwise would be <span title="It also risks choosing a duration that isn&#39;t coprime with the cycle times of each reindeer.">entirely ridiculous</span>.</p>
+<p>Given the example reindeer from above, after the first second, Dancer is in the lead and gets one point.  He stays in the lead until several seconds into Comet's second burst: after the 140th second, Comet pulls into the lead and gets his first point.  Of course, since Dancer had been in the lead for the 139 seconds before that, he has accumulated 139 points by the 140th second.</p>
+<p>After the 1000th second, Dancer has accumulated <em><code>689</code></em> points, while poor Comet, our old champion, only has <code>312</code>.  So, with the new scoring system, Dancer would win (if the race ended at 1000 seconds).</p>
+<p>Again given the descriptions of each reindeer (in your puzzle input), after exactly <code>2503</code> seconds, <em>how many points does the winning reindeer have</em>?</p>
+</article>
+<p>Your puzzle answer was <code>1059</code>.</p><p class="day-success">Both parts of this puzzle are complete! They provide two gold stars: **</p>
+<p>At this point, you should <a href="http://adventofcode.com/">return to your advent calendar</a> and try another puzzle.</p>
+<p>If you still want to see it, you can <a href="http://adventofcode.com/day/14/input" target="_blank">get your puzzle input</a>.</p>
+<p>You can also <span class="share">[Share<span class="share-content">on
+  <a href="https://twitter.com/intent/tweet?text=I%27ve+completed+%22Reindeer+Olympics%22+%2D+Day+14+%2D+Advent+of+Code&amp;url=http%3A%2F%2Fadventofcode%2Ecom%2Fday%2F14&amp;related=ericwastl&amp;hashtags=AdventOfCode" target="_blank">Twitter</a>
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Fadventofcode%2Ecom%2Fday%2F14" target="_blank">Google+</a>
+  <a href="http://www.reddit.com/submit?url=http%3A%2F%2Fadventofcode%2Ecom%2Fday%2F14&amp;title=I%27ve+completed+%22Reindeer+Olympics%22+%2D+Day+14+%2D+Advent+of+Code" target="_blank">Reddit</a></span>]</span>
+ this puzzle.</p>
+</main>
+
+
+</body></html>
