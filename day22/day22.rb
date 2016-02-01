@@ -230,12 +230,14 @@ end
 
 class Game
   attr_accessor :player, :boss
-  attr_accessor :solutions
+  attr_accessor :solutions, :spell_names
 
   def initialize
     self.player = Player.new("player", 50, 500) # use defaults
     self.boss   = Player.new("boss", 71, 0, 10) # from puzzle input
+
     self.solutions = {} # hash to hold mana used and possible solutions
+    self.spell_names = self.player.spells.collect(&:name)
   end
 
   # returns winner and amount of mana used
@@ -279,38 +281,33 @@ class Game
     [winner, spell_cost]
   end
 
-  # attempt to find
-  def find_possible_solutions(number_of_spells_to_cast=spells.count)
+  # attempt to find solutions for every combination of number of spells to cast
+  def find_possible_solutions(number_of_spells_to_cast)
     self.solutions = {}
 
-    # 1.upto(number_of_spells_to_cast) do |num_spells|
-      num_spells = number_of_spells_to_cast
-      spell_combos(num_spells).each do |combo|
-        p "=" * 80 if DEBUG
-        winner, mana_used = play!(combo.dup)
-        if winner == self.player
-          solutions[mana_used] ||= []
-          solutions[mana_used] << combo
-        end
-      end
-    # end
+    start_time = Time.now
+    test_spell_combos(number_of_spells_to_cast)
+    end_time = Time.now
 
     p ""
+    p "Start: #{start_time}"
+    p "End:   #{end_time}"
     p "Possible Solutions"
-    pp solutions
+    pp self.solutions
   end
 
-  # return array of all combinations of spells
-  def spell_combos(num_spells, combo=[])
-    return [combo] if num_spells == 0
-
-    spells = self.player.spells.collect(&:name)
-
-    final_combos = []
-    spells.each do |spell|
-      final_combos += spell_combos(num_spells-1, combo+[spell])
+  def test_spell_combos(num_spells, combo=[])
+    # we've got a full set, test them
+    if num_spells == 0
+      p "=" * 80 if DEBUG
+      winner, mana_used = play!(combo.dup)
+      if winner == self.player
+        self.solutions[mana_used] ||= []
+        self.solutions[mana_used] << combo
+      end
+    else # otherwise, keep digging
+      self.spell_names.each { |s| test_spell_combos(num_spells-1, combo+[s]) }
     end
-    final_combos
   end
 
 end
