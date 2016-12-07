@@ -33,5 +33,3 @@ For example, if your instructions are R8, R4, R4, R8, the first location you vis
 How many blocks away is the **first location you visit twice?**
 
 Your puzzle answer was `131`.
-
-_Both parts of this puzzle are complete! They provide two gold stars: **_
