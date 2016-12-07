@@ -16,3 +16,5 @@ A room is real (not a decoy) if the checksum is the five most common letters in 
 Of the real rooms from the list above, the sum of their sector IDs is `1514`.
 
 What is the `sum of the sector IDs of the real rooms`?
+
+Your puzzle answer was `361724`.

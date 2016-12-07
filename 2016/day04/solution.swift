@@ -102,17 +102,15 @@ struct Room {
             // value is our count
             if $0.value > $1.value {
                 return true
-            } else if $0.value > $1.value {
+            } else if $0.value < $1.value {
                 return false
             } else { // ==
                 return $0.key < $1.key
             }
         }
 
-        let calculatedChecksum = sortedLetters.map { $0.key }.joined()
-
-        print(calculatedChecksum)
-        print(sortedLetters)
+        let fullChecksum = sortedLetters.map { $0.key }.joined()
+        let calculatedChecksum = fullChecksum.substring(to: fullChecksum.index(fullChecksum.startIndex, offsetBy: 5))
 
         return calculatedChecksum == checksum
     }
@@ -147,17 +145,12 @@ func readInputData() -> [String] {
 // ------------------------------------------------------------------
 // MARK: - "MAIN()"
 
-//let lines = readInputData()
-// let rooms = lines.map { Room(name: $0) }
+let lines = readInputData()
+let rooms = lines.map { Room(name: $0) }
 
-let testOne = "aaaaa-bbb-z-y-x-123[abxyz]"
-let testTwo = "totally-real-room-200[decoy]"
-let room = Room( name: testTwo )
-print("ROOM ----")
-print(room)
-print("\n LETTERS ----")
-print(room.letters())
-print("\n HISTOGRAM ----")
-print(room.histogram())
-print("\n VALID ----")
-print(room.valid())
+let validRooms = rooms.filter { $0.valid() }
+print("Valid Rooms: \(validRooms.count)")
+let roomSectors = validRooms.flatMap { $0.sector() }
+let sectorSum = roomSectors.reduce(0, { $0 + $1 })
+
+print("Sector Sum: \(sectorSum)")
