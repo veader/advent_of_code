@@ -34,4 +34,4 @@ How many blocks away is the **first location you visit twice?**
 
 Your puzzle answer was `131`.
 
-Both parts of this puzzle are complete! They provide two gold stars: **
+_Both parts of this puzzle are complete! They provide two gold stars: **_
