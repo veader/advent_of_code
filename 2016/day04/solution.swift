@@ -44,14 +44,28 @@ struct Room {
     let encryptedNamePattern = "([a-z0-9\\-]+)\\-([0-9]+)\\[([a-z]+)\\]"
 
     let encryptedName: String
-    var decryptedName: String?
 
     init(name: String) {
         encryptedName = name
     }
 
-    func decrypt(name: String) -> String {
-        return ""
+    func decrypt() -> String? {
+        guard let name = name() else { return nil }
+        guard let sector = sector() else { return nil }
+
+        let decryptedText = name.utf16.map { char in
+          if char == 45 {
+              return " " // "-" turns into a space
+          } else {
+              // a == 97
+              let decryptedValue = (((Int(char) - 97) + sector) % 26) + 97
+              return String(Character(UnicodeScalar(decryptedValue)!))
+          }
+        }.joined()
+
+        print("Encrypted: \(name) | Decrypted: \(decryptedText) | Sector: \(sector)")
+
+        return decryptedText
     }
 
     func letters() -> [String] {
@@ -64,19 +78,19 @@ struct Room {
         return letters
     }
 
-    func histogram() -> [String: Int] {
-        var histogram = [String: Int]()
+    private func histogram(_ input: String? = nil) -> [String: Int] {
+        var histogramData = [String: Int]()
 
-        if let name = name() {
-            _ = name.characters.map { String($0) }
+        if let data = input ?? name() {
+            _ = data.characters.map { String($0) }
                                .filter { $0 != "-"}
                                .map { letter in
-                let count = histogram[letter] ?? 0
-                histogram[letter] = count + 1
+                let count = histogramData[letter] ?? 0
+                histogramData[letter] = count + 1
             }
         }
 
-        return histogram
+        return histogramData
     }
 
     func name() -> String? {
@@ -94,31 +108,36 @@ struct Room {
         return match.captures.last
     }
 
+    func calculatedChecksum(_ input: String? = nil) -> String? {
+      let hist = histogram(input)
+      let sortedLetters = hist.sorted {
+          // value is our count
+          if $0.value > $1.value {
+              return true
+          } else if $0.value < $1.value {
+              return false
+          } else { // ==
+              return $0.key < $1.key
+          }
+      }
+
+      let fullChecksum = sortedLetters.map { $0.key }.joined()
+      let endingIndex = fullChecksum.index(fullChecksum.startIndex, offsetBy: 5)
+      let checksum = fullChecksum.substring(to: endingIndex)
+      return checksum
+    }
+
     func valid() -> Bool {
         guard let checksum = checksum() else { return false }
 
-        let hist = histogram()
-        let sortedLetters = hist.sorted {
-            // value is our count
-            if $0.value > $1.value {
-                return true
-            } else if $0.value < $1.value {
-                return false
-            } else { // ==
-                return $0.key < $1.key
-            }
-        }
-
-        let fullChecksum = sortedLetters.map { $0.key }.joined()
-        let calculatedChecksum = fullChecksum.substring(to: fullChecksum.index(fullChecksum.startIndex, offsetBy: 5))
-
-        return calculatedChecksum == checksum
+        let calculated = calculatedChecksum()
+        return calculated == checksum
     }
 }
 
 extension Room: CustomDebugStringConvertible {
     var debugDescription: String {
-        return "Room( encrypted: '\(encryptedName)', decrypted: '\(decryptedName ?? "")', valid: \(valid())) )"
+        return "Room( encrypted: '\(encryptedName)', valid: \(valid())) )"
     }
 }
 
@@ -150,7 +169,9 @@ let rooms = lines.map { Room(name: $0) }
 
 let validRooms = rooms.filter { $0.valid() }
 print("Valid Rooms: \(validRooms.count)")
+
 let roomSectors = validRooms.flatMap { $0.sector() }
 let sectorSum = roomSectors.reduce(0, { $0 + $1 })
-
 print("Sector Sum: \(sectorSum)")
+
+_ = validRooms.map { $0.decrypt() }
