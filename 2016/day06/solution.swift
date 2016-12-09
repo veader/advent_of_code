@@ -63,9 +63,15 @@ let columns = (0..<passwordLength).map { indexOffset in
     }.joined()
 }
 
-let password = columns.flatMap { column in
+let password1 = columns.flatMap { column in
     guard let maxChar = column.histogram().first else { return nil }
     return maxChar.key
 }.joined()
 
-print("Password: \(password)")
+let password2 = columns.flatMap { column in
+    guard let minChar = column.histogram().last else { return nil }
+    return minChar.key
+}.joined()
+
+print("Password  (*): \(password1)")
+print("Password (**): \(password2)")
