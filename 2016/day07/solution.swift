@@ -45,6 +45,7 @@ extension String {
     }
 }
 
+// MARK: - Address
 struct Address {
     var nonHypernetSequences: [String]?
     var hypernetSequences: [String]?
@@ -79,26 +80,16 @@ struct Address {
         // abba is an ABBA
         // aaaa is NOT an ABBA
         // abcd is NOT an ABBA
-
         var abba: String?
 
-        // jump through the string in 4 char chunks
-        for index in (0...str.characters.count-4) {
-            let lowerIndex = str.index(str.startIndex, offsetBy: index)
-            let upperIndex = str.index(lowerIndex, offsetBy: 4)
-            let sub = str.substring(with: (lowerIndex..<upperIndex))
-
-            var s = sub
-            let firstChar = s.characters.popFirst()
-            let secondChar = s.characters.popFirst()
-            let thirdChar = s.characters.popFirst()
-            let lastChar = s.characters.popLast()
-
-            if  firstChar == lastChar &&
-                firstChar != secondChar &&
-                secondChar == thirdChar
-            {
-                abba = sub
+        // http://rubular.com/r/vnleSZmZzJ
+        let abbaRegExPattern = "([a-z])([^\\1])\\2\\1"
+        if let matches = str.matches(regex: abbaRegExPattern) {
+            _ = matches.map { match -> Void in
+                guard let captures = match.captures else { return }
+                if captures[0] != captures[1] { // prevent aaaa from matching
+                    abba = match.match
+                }
             }
         }
 
