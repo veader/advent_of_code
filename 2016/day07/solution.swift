@@ -47,26 +47,26 @@ extension String {
 
 // MARK: - Address
 struct Address {
-    var nonHypernetSequences: [String]?
+    var supernetSequences: [String]?
     var hypernetSequences: [String]?
     let input: String
 
     init(_ theInput: String) {
         input = theInput
-        nonHypernetSequences = [String]()
+        supernetSequences = [String]()
         hypernetSequences = [String]()
 
         let parsedResults = parseInput(theInput)
-        nonHypernetSequences = parsedResults.nonBrackets
+        supernetSequences = parsedResults.nonBrackets
         hypernetSequences = parsedResults.brackets
     }
 
     func supportsTLS() -> Bool {
-        guard let sequences = nonHypernetSequences else { return false }
-        let abbas = sequences.flatMap { findAbba($0) }
+        guard let sequences = supernetSequences else { return false }
+        let abbas = sequences.flatMap { findABBA($0) }
 
         if let _ = hypernetSequences {
-            let abbasInHypernetSequenes = hypernetSequences!.flatMap { findAbba($0) }
+            let abbasInHypernetSequenes = hypernetSequences!.flatMap { findABBA($0) }
 
             if abbasInHypernetSequenes.count > 0 {
                 return false
@@ -76,7 +76,7 @@ struct Address {
         return abbas.count > 0
     }
 
-    func findAbba(_ str: String) -> String? {
+    func findABBA(_ str: String) -> String? {
         // abba is an ABBA
         // aaaa is NOT an ABBA
         // abcd is NOT an ABBA
@@ -94,6 +94,75 @@ struct Address {
         }
 
         return abba
+    }
+
+    func supportsSSL() -> Bool {
+        guard let superSequences = supernetSequences else { return false }
+        var sslSupport = false
+
+        // find all ABA's in the supernet sequences
+        var ABAs = [ABA]()
+        _ = superSequences.map { ABAs.append(contentsOf: findABA($0)) }
+
+        // only one ABA needs to have a corresponding BAB in the hypernet sequences
+        _ = ABAs.map { aba -> Void in
+            if sslSupport { return }
+
+            if hasBAB(for: aba.bab) {
+                sslSupport = true
+            }
+        }
+
+        return sslSupport
+    }
+
+    struct ABA {
+        let value: String
+        let firstLetter: String
+        let secondLetter: String
+
+        var bab: String {
+            return "\(secondLetter)\(firstLetter)\(secondLetter)"
+        }
+    }
+
+    // find all ABA sequences
+    func findABA(_ str: String) -> [ABA] {
+        // aba is an ABA
+        // aaa is NOT an ABA
+        // abc is NOT an ABA
+        var abas = [ABA]()
+
+        // http://rubular.com/r/AME7RKDfRy
+        let abaRegExPattern = "([a-z])([^\\1])\\1"
+        _ = (0..<str.characters.count).map { offset in
+            // grab substring, this allows us to capture ABA that share a char
+            //    example: zazbz -> zaz & zbz
+            let index = str.index(str.startIndex, offsetBy: offset)
+            let subString = str.substring(from: index)
+
+            if let matches = subString.matches(regex: abaRegExPattern) {
+                _ = matches.map { match -> Void in
+                    guard let captures = match.captures else { return }
+                    if captures[0] != captures[1] { // prevent aaa from matching
+                        let aba = ABA.init(value: match.match, firstLetter: captures[0], secondLetter: captures[1])
+                        abas.append(aba)
+                    }
+                }
+            }
+        }
+
+        return abas
+    }
+
+    func hasBAB(for aba: String) -> Bool {
+        guard let hyperSequences = hypernetSequences else { return false }
+        let match = hyperSequences.first( where: { $0.contains(aba) } )
+        return match != nil
+    }
+
+    func hasMatchingBAB(_ bab: String) -> Bool {
+        return false
     }
 
     private func parseInput(_ theInput: String) -> (nonBrackets: [String]?, brackets: [String]?) {
@@ -160,15 +229,8 @@ func readInputData() -> [String] {
 
 let lines = readInputData()
 
-// // test Data
-// let lines = [ "abba[mnop]qrst",
-//               "abcd[bddb]xyyx",
-//               "aaaa[qwer]tyui",
-//               "ioxxoj[asdfgh]zxcvbn",
-//             ]
-
 let addresses = lines.map { Address.init($0) }
-let nonTLSAddress = addresses.flatMap { addr -> Address? in
+let nonTLSAddresses = addresses.flatMap { addr -> Address? in
     if addr.supportsTLS() {
         return addr
     } else {
@@ -176,4 +238,13 @@ let nonTLSAddress = addresses.flatMap { addr -> Address? in
     }
 }
 
-print("Found \(nonTLSAddress.count) Address that support TLS")
+let sslAddresses = addresses.flatMap { addr -> Address? in
+    if addr.supportsSSL() {
+        return addr
+    } else {
+        return nil
+    }
+}
+
+print("Found \(nonTLSAddresses.count) Addresses that support TLS")
+print("Found \(sslAddresses.count) Addresses that support SSL")
