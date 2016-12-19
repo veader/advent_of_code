@@ -3,22 +3,57 @@
 import Foundation
 
 extension String {
-    func decompressed() -> String {
+    func decompressed(writeToFile: Bool = true) -> String {
+        var file: FileHandle?
+
+        if writeToFile {
+            guard let currentDir = ProcessInfo.processInfo.environment["PWD"] else { print("No current directory."); return "" }
+            let outputPath = "\(currentDir)/output.txt"
+            guard let fileHandle = FileHandle(forWritingAtPath: outputPath) else { print("Can't open file for output"); return "" }
+            file = fileHandle
+        }
+
+        let chunks = splitCompressedChunks(String.init(self))
+        let expandedChunks = chunks.flatMap { chunk -> String? in
+            if let expanded = processCompressedChunk(chunk) {
+                if writeToFile {
+                    if let data = expanded.data(using: .utf8) {
+                        file?.write(data)
+                    }
+                    return nil // don't collect and grow memory footprint
+                }
+
+                return expanded
+            }
+
+            return nil
+        }
+
+        file?.closeFile()
+        return expandedChunks.joined()
+    }
+
+    struct RepeatChunk {
+        let charCount: Int
+        let repeatCount: Int
+        let text: String
+
+        var isValid: Bool {
+            return text.characters.count == charCount
+        }
+    }
+
+    private func splitCompressedChunks(_ input: String) -> [RepeatChunk] {
         // http://rubular.com/r/k6XJd3VR3R
         let repeatInstructionRegex = "^(.*?)\\((\\d+)x(\\d+)\\)"
 
-        guard let currentDir = ProcessInfo.processInfo.environment["PWD"] else { print("No current directory."); return "" }
-        let outputPath = "\(currentDir)/output.txt"
-        guard let file = FileHandle(forWritingAtPath: outputPath) else { print("Can't open file for output"); return "" }
-
-        var processingText: String! = String.init(self)
-        var data: Data!
+        var chunks = [RepeatChunk]()
+        var processingText = input
 
         while let matches = processingText.matches(regex: repeatInstructionRegex) {
             guard let match = matches.first else { print("MATCH?!?"); break }
 
             let matchedString = match.match
-            let prefixString: String! = match.captures[0]
 
             // ABC(3x2)DEFGHIJK(2x1)
             //  ^  ^ ^ ^  ^
@@ -27,8 +62,11 @@ extension String {
             //  |  | +------ repeatCount
             //  |  +-------- charCount
             //  +----------- prefixString
-            data = prefixString.data(using: .utf8)
-            file.write(data)
+
+            let prefixString: String! = match.captures[0]
+            if !prefixString.isEmpty {
+                chunks.append(RepeatChunk(charCount:prefixString.characters.count, repeatCount:1, text: prefixString))
+            }
 
             let charCount: Int! = Int.init(match.captures[1])
             let repeatCount: Int! = Int.init(match.captures[2])
@@ -36,34 +74,39 @@ extension String {
             let startIndex = processingText.index(processingText.startIndex, offsetBy: matchedString.characters.count)
             let endIndex = processingText.index(startIndex, offsetBy: charCount)
             let compressedString = processingText.substring(with: startIndex..<endIndex)
-            let restOfString = processingText.substring(from: endIndex)
 
-            processingText = compressedString.repeated(times: repeatCount)
-            processingText.append(restOfString)
+            let chunk = RepeatChunk(charCount: charCount, repeatCount: repeatCount, text: compressedString)
+            chunks.append(chunk)
+
+            processingText = processingText.substring(from: endIndex)
         }
 
-        data = processingText.data(using: .utf8)
-        file.write(data)
+        if !processingText.isEmpty {
+            chunks.append(RepeatChunk(charCount:processingText.characters.count, repeatCount:1, text: processingText))
+        }
 
-        file.closeFile()
+        return chunks
+    }
 
-        return ""
+    private func processCompressedChunk(_ chunk: RepeatChunk) -> String? {
+        guard chunk.isValid else { print("Invalid Chunk: \(chunk)"); return nil }
+
+        if !chunk.text.contains("(") {
+            // we've reached the bottom
+            return chunk.text.repeated(times: chunk.repeatCount)
+        }
+
+        let subChunks = splitCompressedChunks(chunk.text)
+        let uncompressedChunks = subChunks.flatMap {
+            return processCompressedChunk($0)
+        }
+
+        return uncompressedChunks.joined().repeated(times: chunk.repeatCount)
     }
 
     func repeated(times: Int) -> String {
         let pieces = Array.init(repeating: self, count: times)
         return pieces.joined()
-    }
-
-    private func expandString(_ str: String, count: Int, times: Int) -> String {
-        guard count >= str.characters.count  else { print("\(str) \(count) \(times)"); return "" }
-        let index = str.index(str.startIndex, offsetBy: count)
-        let repeatable = str.substring(to: index)
-        let suffix = str.substring(from: index)
-
-        var expanded = repeatable.repeated(times: times)
-        expanded.append(suffix)
-        return expanded
     }
 }
 
@@ -132,13 +175,8 @@ func readInputData() -> [String] {
 
 // ------------------------------------------------------------------
 // MARK: - "MAIN()"
-
 let lines = readInputData()
 guard let line = lines.first else { print("NO INPUT"); exit(3) }
 
-// let line = "X(8x2)(3x3)ABCY"
-// XABCABCABCABCABCABCY <- from solution
-// XABCABCABCABCABCABCY <- from example
-
-_ = line.decompressed()
-// wc -c output.txt for final answer
+let output = line.decompressed()
+print("Use: 'wc -c output.txt' for final answer")
