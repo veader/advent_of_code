@@ -200,3 +200,14 @@ let lines = readInputData()
 var botNet = BotNet()
 botNet.setup(lines)
 botNet.run()
+
+/*
+print("\n")
+// print(botNet.outputs)
+let outZero = botNet.outputs["0"]
+let outOne = botNet.outputs["1"]
+let outTwo = botNet.outputs["2"]
+print(outZero)
+print(outOne)
+print(outTwo)
+*/
