@@ -4,74 +4,100 @@ import Foundation
 
 struct Computer {
     var registers: [String: Int]
+    var instructions: [ComputerInstruction]
 
     init() {
-        registers = [ "a": 0, "b": 0, "c": 0, "d": 0 ]
+        registers = [ "a": 0, "b": 0, "c": 1, "d": 0 ]
+        instructions = [ComputerInstruction]()
     }
 
-    mutating func parse(instructions: [String]) {
-        var parsingIndex = 0
-        while parsingIndex < instructions.count {
-            print(registers)
-            print("\n")
-            let input = instructions[parsingIndex]
-
+    mutating func parse(instructions inputLines: [String]) {
+        inputLines.forEach { input in
             if let instruction = CopyInstruction(input) {
-                print("COPY: \(input)")
+                instructions.append(instruction)
+            } else if let instruction = JumpInstruction(input) {
+                instructions.append(instruction)
+            } else if let instruction = IncrementInstruction(input) {
+                instructions.append(instruction)
+            } else {
+                print("WAT: \(input)")
+            }
+        }
+    }
+
+    mutating func run() {
+        var runIndex = 0
+        var linesRun = 0
+
+        while runIndex < instructions.count {
+            if linesRun >= 10000 {
+                linesRun = 0
+                sleep(2)
+            }
+
+            print(registers)
+            let instruction = instructions[runIndex]
+
+            switch instruction {
+            case let copy as CopyInstruction:
+                // print("COPY: \(input)")
 
                 var fromValue: Int
-                if let value = instruction.fromValue {
+                if let value = copy.fromValue {
                     fromValue = value
-                } else if let register = instruction.fromRegister {
+                } else if let register = copy.fromRegister {
                     fromValue = registers[register]!
                 } else {
                     print("UH OH"); exit(1)
                 }
 
-                registers[instruction.toRegister] = fromValue
-            } else if let instruction = JumpInstruction(input) {
-                print("JUMP: \(input)")
+                registers[copy.toRegister] = fromValue
+            case let jump as JumpInstruction:
+                // print("JUMP: \(input)")
 
                 var fromValue = 0
-                if let value = instruction.fromValue {
+                if let value = jump.fromValue {
                     fromValue = value
-                } else if let register = instruction.fromRegister {
+                } else if let register = jump.fromRegister {
                     fromValue = registers[register]!
                 } else {
                     print("UH OH"); exit(1)
                 }
 
                 if fromValue != 0 {
-                    print("Jumping from \(parsingIndex) to \(parsingIndex + instruction.jumpValue)")
-                    parsingIndex = parsingIndex + instruction.jumpValue
+                    // print("Jumping from \(parsingIndex) to \(parsingIndex + instruction.jumpValue)")
+                    runIndex = runIndex + jump.jumpValue
                     continue // skip the increment below
                 } else {
-                    print("Not JUMPing")
+                    // print("Not JUMPing")
                 }
-            } else if let instruction = IncrementInstruction(input) {
-                print("INCREMENT: \(input)")
-                let currentValue = registers[instruction.register]!
+            case let increment as IncrementInstruction:
+                // print("INCREMENT: \(input)")
+                let currentValue = registers[increment.register]!
                 var newValue = currentValue
 
-                switch instruction.direction {
+                switch increment.direction {
                 case .up:
                     newValue = newValue + 1
                 case .down:
                     newValue = newValue - 1
                 }
 
-                print("REGISTER[\(instruction.register)] - from: \(currentValue) to: \(newValue)")
-                registers[instruction.register] = newValue
-            } else {
-                print("WAT: \(input)")
+                // print("REGISTER[\(instruction.register)] - from: \(currentValue) to: \(newValue)")
+                registers[increment.register] = newValue
+            default:
+                print("WAT")
             }
 
-            parsingIndex = parsingIndex + 1
+            runIndex = runIndex + 1
+            // linesRun = linesRun + 1
         }
     }
 }
 
-struct CopyInstruction {
+protocol ComputerInstruction { /* empty */ }
+
+struct CopyInstruction : ComputerInstruction {
     var fromRegister: String?
     var fromValue: Int?
     let toRegister: String
@@ -94,7 +120,7 @@ struct CopyInstruction {
     }
 }
 
-struct JumpInstruction {
+struct JumpInstruction : ComputerInstruction {
     var fromRegister: String?
     var fromValue: Int?
     let jumpValue: Int
@@ -116,7 +142,7 @@ struct JumpInstruction {
     }
 }
 
-struct IncrementInstruction {
+struct IncrementInstruction : ComputerInstruction {
     enum IncrementDirection: String {
         case up = "inc"
         case down = "dec"
@@ -207,6 +233,15 @@ func readInputData() -> [String] {
 let lines = readInputData()
 
 var computer = Computer()
+
 print(computer)
+print("\n")
 computer.parse(instructions: lines)
-print(computer)
+computer.run()
+
+print("Final ----------")
+print(computer.registers)
+
+
+// Part 1: ["b": 196418,  "a": 318007,  "d": 0, "c": 0]
+// Part 2: ["b": 5702887, "a": 9227661, "d": 0, "c": 0]
