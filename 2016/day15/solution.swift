@@ -123,15 +123,9 @@ func readInputData() -> [String] {
 // MARK: - "MAIN()"
 let lines = readInputData()
 
-/*
-let lines = [
-    "Disc #1 has 5 positions; at time=0, it is at position 4.",
-    "Disc #2 has 2 positions; at time=0, it is at position 1.",
-]
-*/
-
 var sculpt = Sculpture()
 sculpt.setup(lines)
+sculpt.discs.append(Disc.init(name: "11", positions: 11, offset: 0)) // for part 2
 
 var falls = false
 var time = 0
