@@ -4,7 +4,7 @@ require 'digest/md5'
 
 MD5_HASHES = []
 SALT = 'ahsbgdzn'
-STRETCH_REPEAT = 1
+STRETCH_REPEAT = 2017 # part 1 = 1
 
 found_keys = []
 index = 1
