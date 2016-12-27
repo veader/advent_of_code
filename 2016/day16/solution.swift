@@ -34,7 +34,7 @@ extension String {
 
 // ----------------------------------------------------------------------------
 let startingVector = "11101000110010100"
-let diskSize = 272
+let diskSize = 35651584 // part 1: 272
 
 // ----------------------------------------------------------------------------
 print("Input: \(startingVector)")
@@ -50,7 +50,9 @@ if diskFiller.characters.count > diskSize {
     diskFiller = diskFiller.substring(to: endIndex)
 }
 
-print("We have \(diskFiller.characters.count) characters in: \(diskFiller)\n")
+if (diskSize < 1024) {
+    print("We have \(diskFiller.characters.count) characters in: \(diskFiller)\n")
+}
 
 var fillerChecksum = diskFiller.checksum()
 while fillerChecksum.characters.count % 2 == 0 {
