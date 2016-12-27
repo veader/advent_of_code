@@ -1,7 +1,5 @@
 # Day 3: Squares With Three Sides
 
----
-
 Now that you can think clearly, you move deeper into the labyrinth of hallways and office furniture that makes up this part of Easter Bunny HQ. This must be a graphic design department; the walls are covered in specifications for triangles.
 
 Or are they?
@@ -15,10 +13,6 @@ In your puzzle input, *how many* of the listed triangles are *possible*?
 Your puzzle answer was `1032`.
 
 ## Part Two
-
----
-
---- Part Two ---
 
 Now that you've helpfully marked up their design documents, it occurs to you that triangles are specified in groups of three *vertically*. Each set of three numbers in a column specifies a triangle. Rows are unrelated.
 
