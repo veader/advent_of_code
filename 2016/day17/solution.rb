@@ -3,7 +3,7 @@
 require 'digest/md5'
 
 class Grid
-    attr_accessor :grid, :location, :passcode, :path, :solutions
+    attr_accessor :grid, :location, :passcode, :path, :solutions, :find_longest
 
     def initialize()
         @grid = Array.new(4) { |i| Array.new(4) }
@@ -11,11 +11,12 @@ class Grid
         @passcode = 'njfxhljp'
         @path = '' # haven't gone anywhere yet
         @solutions = []
+        @find_longest = false
     end
 
     def navigate(x=0, y=0, current_route='')
-        # stop if we have a shorter route
-        if solutions.count > 0
+        if !find_longest && solutions.count > 0
+            # stop if we have a shorter route
             shortest = solutions.min { |a,b| a.length <=> b.length }
             if current_route.length > shortest.length
                 puts "@ #{x},#{y} - [#{current_route}] LONGER than #{shortest} - *ABORT*"
@@ -203,7 +204,10 @@ class Grid
 end
 
 grid = Grid.new
+# grid.find_longest = true
 grid.navigate
 
 puts "Solutions:"
-puts grid.solutions.sort { |a,b| a.length <=> b.length }
+grid.solutions.sort { |a,b| a.length <=> b.length }.each do |solution|
+    puts "#{solution} (#{solution.length})"
+end
