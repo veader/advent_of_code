@@ -50,32 +50,42 @@ var ranges = lines.map { (line: String) -> ClosedRange<UInt32> in
 }
 
 var currentIPInt: UInt32 = 1
-var lowestIPInt: UInt32 = 0
-while lowestIPInt == 0 {
-    var foundInRanges = false
+var allowedIPInts = [UInt32]()
+
+while currentIPInt < UInt32.max {
+    var blockedIP = false
     var nextRange: ClosedRange<UInt32>? = nil
 
     ranges.forEach { range in
         if range.contains(currentIPInt) {
-            foundInRanges = true
+            blockedIP = true
             if nextRange == nil {
                 nextRange = range
             }
         }
     }
 
-    if foundInRanges == false {
-        lowestIPInt = currentIPInt
+    if blockedIP == false {
+        allowedIPInts.append(currentIPInt)
     }
 
     // skip past this matching range
     if let range = nextRange {
-        currentIPInt = range.upperBound + 1
+        if range.upperBound < UInt32.max {
+            currentIPInt = range.upperBound + 1
+        } else {
+            currentIPInt = UInt32.max
+        }
     } else {
-        currentIPInt += 1
+        currentIPInt = min(currentIPInt + 1, UInt32.max)
     }
 }
 
+print("Allowed IP Addresses:")
+allowedIPInts.forEach { print("\($0.dotDecimalNotation()) [\($0)]")}
+print("Number of allowed IP addresses: \(allowedIPInts.count)")
+print("")
+let lowestIPInt = allowedIPInts.first!
 print("Lowest IP: \(lowestIPInt) \(lowestIPInt.dotDecimalNotation())")
 
 // let exampleInt: UInt32 = 0b10101100000100001111111000000001
