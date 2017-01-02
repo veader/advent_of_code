@@ -1,0 +1,29 @@
+ecabd
+rotate right based on e
+e at position 0 so (1 + 0) = 1 rotations
+decab
+* how to undo? rotate left 1
+
+ecabd
+rotate right based on c
+c at position 1 so (1 + 1) = 2 rotations
+bdeca
+* how to undo? rotate left 2
+
+ecabd
+rotate right based on a
+a at position 2 so (1 + 2) = 3 rotations
+abdec
+* how to undo? rotate left 3
+
+ecabd
+rotate right based on b
+b at position 3 so (1 + 3) = 4 rotations
+cabde
+* how to undo? rotate left 4
+
+ecabd
+rotate right based on d
+d at position 4 so (1 + 4 + 1) = 6 rotations
+result is decab
+* how to undo? rotate left 1

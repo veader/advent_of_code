@@ -46,7 +46,6 @@ extension String {
     }
 
     func scrambled(with instructions: [String]) -> String {
-
         var copy = self
         instructions.forEach { instruction in
             if let inst = SwapPositionInstruction(instruction) {
@@ -68,9 +67,36 @@ extension String {
         return copy
     }
 
+    func unscrambled(with instructions: [String]) -> String {
+        var copy = self
+        instructions.forEach { instruction in
+            if let inst = SwapPositionInstruction(instruction) {
+                copy = inst.undoInstruction().swap(with: copy)
+            } else if let inst = SwapLetterInstruction(instruction) {
+                copy = inst.undoInstruction().swap(with: copy)
+            } else if let inst = RotatePositionsInstruction(instruction) {
+                copy = inst.undoInstruction().rotate(with: copy)
+            } else if let inst = RotateByLetterInstruction(instruction) {
+                copy = inst.undoInstruction(with: copy).rotate(with: copy)
+            } else if let inst = ReverseInstruction(instruction) {
+                copy = inst.reverse(with: copy) // this should be the same?
+            } else if let inst = MoveInstruction(instruction) {
+                copy = inst.undoInstruction().move(with: copy)
+            } else {
+                print("HUH!?! \(instruction)")
+            }
+        }
+        return copy
+    }
+
     struct SwapPositionInstruction {
         let from: Int
         let to: Int
+
+        init(from fromNum: Int, to toNum: Int) {
+            from = fromNum
+            to = toNum
+        }
 
         init?(_ input: String) {
             // http://rubular.com/r/9Npp2UpH8G
@@ -80,6 +106,10 @@ extension String {
 
             from = Int.init(match.captures[0])!
             to = Int.init(match.captures[1])!
+        }
+
+        func undoInstruction() -> SwapPositionInstruction {
+            return SwapPositionInstruction(from: self.to, to: self.from)
         }
 
         func swap(with input: String) -> String {
@@ -103,6 +133,11 @@ extension String {
         let fromLetter: String
         let toLetter: String
 
+        init(fromLetter theFrom: String, toLetter theTo: String) {
+            fromLetter = theFrom
+            toLetter = theTo
+        }
+
         init?(_ input: String) {
             // http://rubular.com/r/LhjQbPOydF
             let swapLetterRegex = "swap letter ([a-z]) with letter ([a-z])"
@@ -111,6 +146,10 @@ extension String {
 
             fromLetter = match.captures[0]
             toLetter = match.captures[1]
+        }
+
+        func undoInstruction() -> SwapLetterInstruction {
+            return SwapLetterInstruction(fromLetter: self.toLetter, toLetter: self.fromLetter)
         }
 
         func swap(with input: String) -> String {
@@ -133,6 +172,11 @@ extension String {
         let direction: RotateDirection
         let steps: Int
 
+        init(direction theDirection: RotateDirection, steps theSteps: Int) {
+            direction = theDirection
+            steps = theSteps
+        }
+
         init?(_ input: String) {
             // http://rubular.com/r/yrdhwHg57r
             let rotatePositionsRegex = "rotate (left|right) (\\d+) step"
@@ -141,6 +185,14 @@ extension String {
 
             direction = RotateDirection(rawValue: match.captures[0])!
             steps = Int.init(match.captures[1])!
+        }
+
+        func undoInstruction() -> RotatePositionsInstruction {
+            return RotatePositionsInstruction(direction: self.oppositeDirection(), steps: self.steps)
+        }
+
+        func oppositeDirection() -> RotateDirection {
+            return direction == .left ? .right : .left
         }
 
         func rotate(with input: String) -> String {
@@ -172,18 +224,17 @@ extension String {
             letter = match.captures[0]
         }
 
+        func undoInstruction(with input: String) -> RotatePositionsInstruction {
+            // we need the input to be able to determine position of the letter
+            guard let numSteps = steps(with: input) else { exit(1) }
+            return RotatePositionsInstruction(direction: .left, steps: numSteps)
+        }
+
         func rotate(with input: String) -> String {
             var output = ""
 
-            if let letterIndex = input.characters.index(of: letter.characters.first!) {
-                let letterDistance = input.distance(from:input.startIndex, to: letterIndex)
-                var steps = 1 + letterDistance
-                if letterDistance >= 4 {
-                    steps += 1
-                }
-                steps = steps % input.characters.count
-
-                let splitIndex = input.index(input.startIndex, offsetBy: input.characters.count - steps)
+            if let numSteps = steps(with: input) {
+                let splitIndex = input.index(input.startIndex, offsetBy: input.characters.count - numSteps)
                 output = input.substring(from: splitIndex) + input.substring(to: splitIndex)
 
                 print("Rotate Letter: \(letter)->\(steps) \(input) -> \(output)")
@@ -192,6 +243,20 @@ extension String {
             }
 
             return output
+        }
+
+        func steps(with input: String) -> Int? {
+            if let letterIndex = input.characters.index(of: letter.characters.first!) {
+                let letterDistance = input.distance(from:input.startIndex, to: letterIndex)
+                var steps = 1 + letterDistance
+                if letterDistance >= 4 {
+                    steps += 1
+                }
+                steps = steps % input.characters.count
+                return steps
+            } else {
+                return nil
+            }
         }
     }
 
@@ -226,6 +291,11 @@ extension String {
         let from: Int
         let to: Int
 
+        init(from theFrom: Int, to theTo: Int) {
+            from = theFrom
+            to = theTo
+        }
+
         init?(_ input: String) {
             // http://rubular.com/r/QUgJ1cQ5ab
             let moveRegex = "move position (\\d+) to position (\\d+)"
@@ -234,6 +304,10 @@ extension String {
 
             from = Int.init(match.captures[0])!
             to = Int.init(match.captures[1])!
+        }
+
+        func undoInstruction() -> MoveInstruction {
+            return MoveInstruction(from: self.to, to: self.from)
         }
 
         func move(with input: String) -> String {
@@ -275,6 +349,12 @@ func readInputData() -> [String] {
 // MARK: - "MAIN()"
 let instructions = readInputData()
 
-let password  = "abcdefgh"
-let scrambled = password.scrambled(with: instructions)
-print(scrambled)
+// let password  = "abcdefgh"
+// let scrambled = password.scrambled(with: instructions)
+// print(scrambled)
+
+// let thePassword = "fbgdceah"
+let thePassword = "dgfaehcb" // answer to step 1
+let backwardInstructions = Array(instructions.reversed())
+let unscrambled = thePassword.unscrambled(with: backwardInstructions)
+print(unscrambled)
