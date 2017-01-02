@@ -5,7 +5,15 @@ import Foundation
 // ----------------------------------------------------------------------------
 struct Elf {
     let index: Int
-    var presentCount: Int
+    let presentCount: Int
+
+    func elfByAddingPresents(_ count: Int) -> Elf {
+        return Elf.init(index: self.index, presentCount: self.presentCount + count)
+    }
+
+    func elfWithZeroPresents() -> Elf {
+        return Elf.init(index: self.index, presentCount: 0)
+    }
 }
 
 extension Elf: Comparable { }
@@ -35,12 +43,7 @@ struct ElfCircle {
         // if count is odd, the last one will take from 1
         if count % 2 != 0 {
             if let lastElf = elves.last, let firstElf = elves.first {
-                // var theLast = lastElf
-                let presents = firstElf.presentCount + 1
-                // theLast.presentCount = presents
-
-                // elves[elves.endIndex - 1] = theLast
-                elves[elves.endIndex - 1] = Elf.init(index: lastElf.index, presentCount: presents)
+                elves[elves.endIndex - 1] = lastElf.elfByAddingPresents(firstElf.presentCount + 1)
                 elves.removeFirst() // first index now has 0
             }
         }
@@ -53,29 +56,24 @@ struct ElfCircle {
         while elves.count > 1 {
             print("\(elves.count) Elves Remaining")
             (0..<elves.count).forEach { idx in
-                var thisElf = elves[idx]
+                let thisElf = elves[idx]
                 if thisElf.presentCount == 0 { return }
 
-                var leftElf = nextElf(after: idx)
-                if leftElf == nil { return }
+                guard let leftElf = nextElf(after: idx) else { print("Couldn't find left elf"); return }
+                if leftElf.index == thisElf.index { return }
 
-                if leftElf!.index == thisElf.index { return }
+                let presentsToTake = leftElf.presentCount
+                // print("Elf \(thisElf.index + 1) taking \(presentsToTake) presents from Elf \(leftElf!.index + 1)")
 
-                let presents = leftElf!.presentCount
-                // print("Elf \(thisElf.index + 1) taking \(presents) presents from Elf \(leftElf!.index + 1)")
-
-                thisElf.presentCount += presents
-                leftElf!.presentCount = 0
-
-                // save back to the array
-                elves[idx] = thisElf
-                if let leftIndex = elves.index(where: { $0.index == leftElf!.index }) {
-                    elves[leftIndex] = leftElf!
+                // set in the array
+                elves[idx] = thisElf.elfByAddingPresents(presentsToTake)
+                if let leftIndex = elves.index(where: { $0.index == leftElf.index }) {
+                    elves[leftIndex] = leftElf.elfWithZeroPresents()
                 }
             }
 
             let elvesWithPresents = elves.filter { $0.presentCount > 0 }
-            elves = elvesWithPresents.sorted()
+            elves = elvesWithPresents
         }
     }
 
@@ -99,8 +97,9 @@ extension ElfCircle: CustomDebugStringConvertible {
         return desc
     }
 }
+
 // ----------------------------------------------------------------------------
-let elfCount = 11119 //3014387
+let elfCount = 3014387
 print("Starting with \(elfCount) Elves")
 var circle = ElfCircle.init(count: elfCount)
 // print(circle)
