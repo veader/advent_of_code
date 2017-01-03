@@ -2,6 +2,7 @@
 
 import Foundation
 
+// ----------------------------------------------------------------------------
 struct GridNode {
     let x: Int
     let y: Int
@@ -41,6 +42,56 @@ struct GridNode {
 extension GridNode: CustomDebugStringConvertible {
     var debugDescription: String {
         return "GridNode(\(x),\(y) S:\(size)T U:\(used)T A:\(available)T)"
+    }
+}
+
+// ----------------------------------------------------------------------------
+struct Grid {
+    let maxX: Int
+    let maxY: Int
+    var nodes: [GridNode]
+
+    init(_ input: [String]) {
+        nodes = input.flatMap { GridNode($0) }
+
+        let maxXNode: GridNode! = nodes.max { a, b in a.x < b.x }
+        maxX = maxXNode.x
+        let maxYNode: GridNode! = nodes.max { a, b in a.y < b.y }
+        maxY = maxYNode.y
+    }
+
+    func node(x: Int, y: Int) -> GridNode? {
+        return nodes.first(where: { $0.x == x && $0.y == y})
+    }
+
+    func viablePairs() -> [[GridNode]] {
+        var pairs = [[GridNode]]()
+        nodes.forEach { nodeA in
+            nodes.forEach { nodeB in
+                if nodeA.willFit(within: nodeB) {
+                    // print("Node \(nodeA) will fit into Node \(nodeB)")
+                    pairs.append([nodeA, nodeB])
+                }
+            }
+        }
+
+        return pairs
+    }
+}
+
+extension Grid: CustomDebugStringConvertible {
+    var debugDescription: String {
+        var desc = "Grid(maxX:\(maxX), maxY:\(maxY) nodes:\(nodes.count))\n"
+        let rows = (0...maxY).map { y in
+            return (0...maxX).flatMap { x in
+                guard let node = self.node(x: x, y: y) else { return nil }
+                return "\(node.usedPercentage)".padding(toLength: 3, withPad: " ", startingAt:0)
+            }.joined(separator: "| ")
+        }.joined(separator: "\n")
+
+        // pad to 3
+        desc += "\(rows)"
+        return desc
     }
 }
 
@@ -110,19 +161,10 @@ func readInputData() -> [String] {
 
 // ----------------------------------------------------------------------------
 // MARK: - "MAIN()"
-
 let lines = readInputData()
-let nodes = lines.flatMap { GridNode($0) }
-print("Found \(nodes.count) nodes")
-// nodes.forEach { print($0) }
+var grid = Grid(lines)
+print(grid)
+print("Found \(grid.nodes.count) nodes")
 
-var pairs = [[GridNode]]()
-nodes.forEach { nodeA in
-    nodes.forEach { nodeB in
-        if nodeA.willFit(within: nodeB) {
-            // print("Node \(nodeA) will fit into Node \(nodeB)")
-            pairs.append([nodeA, nodeB])
-        }
-    }
-}
-print("Found \(pairs.count) valid pairs")
+// var pairs = grid.viablePairs()
+// print("Found \(pairs.count) valid pairs")
