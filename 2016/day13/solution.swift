@@ -68,8 +68,6 @@ struct Map {
             }
         }
 
-        let coords = available.map { "\($0.x),\($0.y)" }
-        print("Openings from \(from.x),\(from.y): \(coords)")
         return available
     }
 
@@ -94,26 +92,24 @@ struct Map {
 
         // have we made it to the destination?
         if currentCoordinate.x == destination.x && currentCoordinate.y == destination.y {
-            print(pathAsText(current))
-            print("Current: \(current.count) Existing: \(solution.count)")
+            // print(pathAsText(current))
+            // print("Current: \(current.count) Existing: \(solution.count)")
             if solution.count == 0 || current.count < solution.count {
+                // print("First OR Shorter Solution")
                 solution = current
-            } else {
-                print("Alternate Solution: \(current)")
+            // } else {
+            //     print("Alternate Solution")
             }
             return
         }
 
         let openCoordinates = open(from: currentCoordinate)
-        if openCoordinates.count > 0 {
-            var previousCoordinate: Coordinate?
-            if current.count > 1 {
-                let previousIndex = current.index(current.endIndex, offsetBy: -2)
-                previousCoordinate = current[previousIndex]
-            }
 
+        // print(representation(path: current, goal: destination))
+
+        if openCoordinates.count > 0 {
             for coord in openCoordinates {
-                if coord != previousCoordinate { // make sure we're not going backward
+                if !current.contains(coord) {
                     var newPath: [Coordinate] = current
                     newPath.append(coord)
                     navigate(to: destination, path: newPath)
@@ -121,10 +117,8 @@ struct Map {
             }
         }
     }
-}
 
-extension Map: CustomDebugStringConvertible {
-    var debugDescription: String {
+    func representation(path: [Coordinate], goal: (x:Int, y:Int)? = nil) -> String {
         var gridDisplay = ""
 
         let xIndex = (0..<width).map { String($0 % 10) }.joined()
@@ -132,7 +126,9 @@ extension Map: CustomDebugStringConvertible {
 
         (0..<height).forEach { y in
             let rowChars = row(y).map { c in
-                if solution.contains(c) {
+                if goal != nil && goal!.x == c.x && goal!.y == c.y {
+                    return "G"
+                } else if path.contains(c) {
                     return "O"
                 } else {
                     return c.debugDescription
@@ -143,6 +139,12 @@ extension Map: CustomDebugStringConvertible {
         }
 
         return gridDisplay
+    }
+}
+
+extension Map: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return representation(path: solution)
     }
 }
 
@@ -179,11 +181,13 @@ extension Coordinate: CustomDebugStringConvertible {
 }
 
 // ----------------------------------------------------------------------------
-let favorite = 1350  // 10
-let width  = 40 // 10
-let height = 40 // 10
+let favorite = 1350 // 10
+let width  = 41 // 10
+let height = 42 // 10
 
 var map = Map.init(w: width, h: height, favorite: favorite)
 print(map)
-// map.navigate(to: (31, 39)) // 7,4
-// print(map)
+map.navigate(to: (31, 39)) // 7,4
+print(map)
+
+print("Shortest path: \(map.solution.count - 1) steps") // remove 1 since 1,1 is in the list
