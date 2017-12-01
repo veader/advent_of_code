@@ -1,7 +1,8 @@
 # Advent of Code
 http://adventofcode.com/
 
-Fun problems to noodle over the break. Solving in `Ruby` and maybe some in `Swift` (as time allows).
+Saving Christmas since...
 
-- 2015
-- 2016
+- 2015 (`Ruby & Go`)
+- 2016 (`Swift & Ruby`)
+- 2017 (`Swift`)
