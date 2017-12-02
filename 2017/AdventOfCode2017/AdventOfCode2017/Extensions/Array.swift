@@ -20,4 +20,15 @@ extension Array where Element == Int {
             return (element, self[offset+1])
         }
     }
+
+    /// Create pairs of elements with distance to second element being index/2.
+    func halfDistancePairs() -> [(Int, Int)]? {
+        // array *must* have even number of elements
+        guard self.count % 2 == 0 else { return nil }
+
+        return enumerated().map { offset, element -> (Int, Int) in
+            let halfOffset = (offset + (self.count / 2)) % self.count
+            return (element, self[halfOffset])
+        }
+    }
 }

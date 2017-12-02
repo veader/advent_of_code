@@ -9,5 +9,7 @@
 import Foundation
 
 // TODO: Parse input for which day and load proper file
+// TODO: Trigger tests
 
+DayOne().runTests()
 DayOne().run()

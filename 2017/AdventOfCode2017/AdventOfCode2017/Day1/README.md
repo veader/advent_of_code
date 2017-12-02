@@ -56,4 +56,5 @@ For example:
 
 _What is the solution_ to your new captcha?
 
-Your puzzle answer was ``.
+Your puzzle answer was `1156`.
+
