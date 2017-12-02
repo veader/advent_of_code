@@ -31,4 +31,16 @@ extension Array where Element == Int {
             return (element, self[halfOffset])
         }
     }
+
+    func dividablePair() -> (Int, Int)? {
+        for (idx, x) in enumerated() {
+            let cdr = suffix(from: idx + 1)
+            guard let evenlyDiv = cdr.first(where: { Swift.max(x, $0) % Swift.min(x, $0) == 0})
+                  else { continue }
+
+            return (Swift.max(x, evenlyDiv), Swift.min(x, evenlyDiv))
+        }
+
+        return nil
+    }
 }
