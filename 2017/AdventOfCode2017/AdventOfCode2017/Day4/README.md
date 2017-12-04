@@ -17,3 +17,4 @@ For example:
 The system's full passphrase list is available as your puzzle input.
 _How many passphrases are valid?_
 
+Your puzzle answer was `451`.

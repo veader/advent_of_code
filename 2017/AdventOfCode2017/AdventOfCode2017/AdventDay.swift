@@ -6,6 +6,8 @@
 //  Copyright © 2017 v8logic. All rights reserved.
 //
 
+import Foundation
+
 protocol AdventDay {
     /// Run the necessary steps to calculate solution for this Advent Day
     func run(_ input: String?)
@@ -20,6 +22,24 @@ protocol Testable: AdventDay {
 }
 
 extension AdventDay {
+    /// Read the contents of the file at the given path
+//    func readData(from path: String) -> String? {
+//        guard let file = FileHandle(forReadingAtPath: path) else { return nil }
+//        defer { file.closeFile() }
+//
+//        if let contents = file.readDataToEndOfFile(),
+//            let dataAsString =
+//    }
+
+    func dataPath() -> String {
+        guard let dir = ProcessInfo.processInfo.environment["PROJECT_DIR"] else {
+            print("Day 4: 💥 NO PROJECT DIR")
+            exit(11)
+        }
+
+        return "\(dir)/AdventOfCode2017/data"
+    }
+
     @discardableResult
     func testValue(_ value1: Any?, equals value2: Any?) -> Bool {
         var matches = false

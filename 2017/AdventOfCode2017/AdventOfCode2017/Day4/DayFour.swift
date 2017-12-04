@@ -9,11 +9,24 @@
 import Foundation
 
 struct DayFour: AdventDay {
+    struct Passphrase {
+        let value: String
+
+        init(_ str: String) {
+            value = str
+        }
+
+        func isValid() -> Bool {
+            let words = value.split(separator: " ").map(String.init)
+            return Set(words).count == words.count
+        }
+    }
 
     // MARK: -
 
     func defaultInput() -> String? {
-        return ""
+        let path = "\(dataPath())/day4input.txt"
+        return try? String(contentsOfFile: path, encoding: .utf8)
     }
 
     func run(_ input: String? = nil) {
@@ -22,7 +35,9 @@ struct DayFour: AdventDay {
             exit(10)
         }
 
-        let thing = partOne(input: runInput)
+        let passphrases = runInput.split(separator: "\n").map(String.init)
+
+        let thing = partOne(input: passphrases)
         guard let answer = thing else {
             print("Day 4: (Part 1) 💥 Unable to calculate answer.")
             exit(1)
@@ -34,11 +49,13 @@ struct DayFour: AdventDay {
 
     // MARK: -
 
-    func partOne(input: String) -> Int? {
-        return nil
+    func partOne(input: [String]) -> Int? {
+        let passphrases = input.map(Passphrase.init)
+        let validPhrases = passphrases.filter { $0.isValid() }
+        return validPhrases.count
     }
 
-    func partTwo(input: String) -> Int? {
+    func partTwo(input: [String]) -> Int? {
         return nil
     }
 }
