@@ -35,6 +35,8 @@ Your puzzle input is `368078`.
 
 Your puzzle answer was `371`.
 
+---
+
 ### Part Two
 
 As a stress test on the system, the programs here clear the grid and then store the value
