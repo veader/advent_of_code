@@ -122,6 +122,5 @@ extension DayTwo: Testable {
             }
 
         print("Done with tests... all pass")
-
     }
 }
