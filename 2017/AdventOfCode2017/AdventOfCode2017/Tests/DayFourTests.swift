@@ -21,7 +21,18 @@ extension DayFour: Testable {
             else {
                 print("Part 1 Tests Failed!")
                 return
-        }
+            }
+
+        guard Passphrase("abcde fghij").isValid(blockAnnagrams: true),
+              !Passphrase("abcde xyz ecdab").isValid(blockAnnagrams: true),
+              Passphrase("a ab abc abd abf abj").isValid(blockAnnagrams: true),
+              Passphrase("iiii oiii ooii oooi oooo").isValid(blockAnnagrams: true),
+              !Passphrase("oiii ioii iioi iiio").isValid(blockAnnagrams: true),
+              true
+            else {
+                print("Part 2 Tests Failed!")
+                return
+            }
 
         print("Done with tests... all pass")
     }
