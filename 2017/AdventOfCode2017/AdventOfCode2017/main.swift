@@ -11,5 +11,6 @@ import Foundation
 // TODO: Parse input for which day and load proper file
 // TODO: Trigger tests
 
-DayFour().runTests()
-DayFour().run()
+DayFive().runTests()
+DayFive().run()
+
