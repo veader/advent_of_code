@@ -20,6 +20,9 @@ struct DayFive: AdventDay {
         /// Number of steps executed during a run
         var steps = 0
 
+        /// Called to adjust the previous instruction after a jump is made
+        var adjustmentBlock: (_ offset: Int, _ value: Int) -> Int = { $1 + 1 }
+
         init(_ input: [Int]) {
             instructions = input
         }
@@ -31,7 +34,7 @@ struct DayFive: AdventDay {
             steps = 0 // reset step count
 
             while instructionRange.contains(currentIndex) {
-                print(self)
+                // print(self)
                 step()
             }
 
@@ -40,12 +43,13 @@ struct DayFive: AdventDay {
 
         private mutating func step() {
             let oldIndex = currentIndex
+            let offset = instructions[currentIndex]
 
-            // move our index by the value of the current instruction
-            currentIndex += instructions[currentIndex]
+            // move our index by the value of the current instruction (offset)
+            currentIndex += offset
 
             // increment previous jump instruction
-            instructions[oldIndex] += 1
+            instructions[oldIndex] = adjustmentBlock(offset, instructions[oldIndex])
 
             // count the step
             steps += 1
@@ -86,14 +90,19 @@ struct DayFive: AdventDay {
 
         let steps = runInput.split(separator: "\n").flatMap { Int(String($0)) }
 
-        let thing = partOne(input: steps)
-        guard let answer = thing else {
+        let stepCount = partOne(input: steps)
+        guard let answer = stepCount else {
             print("Day 5: (Part 1) 💥 Unable to calculate answer.")
             exit(1)
         }
         print("Day 5: (Part 1) Answer ", answer)
 
-        // ...
+        let stepCount2 = partTwo(input: steps)
+        guard let answer2 = stepCount2 else {
+            print("Day 5: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 5: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -104,8 +113,13 @@ struct DayFive: AdventDay {
         return steps
     }
 
-    func partTwo(input: String) -> Int? {
-        return nil
+    func partTwo(input: [Int]) -> Int? {
+        var instructions = JumpInstructions(input)
+        instructions.adjustmentBlock = { (offset, value) -> Int in
+            return (offset >= 3) ? value - 1 : value + 1
+        }
+        let steps = instructions.run()
+        return steps
     }
 }
 
