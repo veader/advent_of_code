@@ -26,6 +26,8 @@ struct DaySix: AdventDay {
         }
 
         mutating func redistrubute() -> Int {
+            previousConfigurations = [[Int]]() // clear any previous configs
+
             // loop until we find our current configuration has been seen before
             while !previousConfigurations.contains(where: { $0 == banks }) {
                 // print(banks)
@@ -95,7 +97,12 @@ struct DaySix: AdventDay {
         }
         print("Day 6: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: initialMemory)
+        guard let answer2 = thing2 else {
+            print("Day 6: (Part 1) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 6: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -106,7 +113,9 @@ struct DaySix: AdventDay {
     }
 
     func partTwo(input: [Int]) -> Int? {
-        return nil
+        var memory = Memory(input)
+        _ = memory.redistrubute() // finds the end of the loop
+        return memory.redistrubute() // find the length of the loop by going again till we hit the start
     }
 }
 

@@ -16,10 +16,10 @@ extension DaySix: Testable {
             return
         }
 
-//        guard testValue(10, equals: partTwo(input: data)) else {
-//            print("Part 2 Tests Failed!")
-//            return
-//        }
+        guard testValue(4, equals: partTwo(input: memory)) else {
+            print("Part 2 Tests Failed!")
+            return
+        }
 
         print("Done with tests... all pass")
     }
