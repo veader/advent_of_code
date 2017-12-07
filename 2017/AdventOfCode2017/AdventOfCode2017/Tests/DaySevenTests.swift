@@ -34,6 +34,13 @@ extension DaySeven: Testable {
                 return
         }
 
+        guard
+            testValue(60, equals: partTwo(input: data)),
+            true
+            else {
+                print("Part 1 Tests Failed!")
+                return
+        }
         print("Done with tests... all pass")
     }
 }
