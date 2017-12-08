@@ -38,9 +38,10 @@ extension DaySeven: Testable {
             testValue(60, equals: partTwo(input: data)),
             true
             else {
-                print("Part 1 Tests Failed!")
+                print("Part 2 Tests Failed!")
                 return
         }
+        
         print("Done with tests... all pass")
     }
 }
