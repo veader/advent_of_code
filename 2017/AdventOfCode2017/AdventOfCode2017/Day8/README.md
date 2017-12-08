@@ -33,3 +33,14 @@ you to determine.
 _What is the largest value in any register_ after completing the instructions in your puzzle input?
 
 Your puzzle answer was `6061`.
+
+---
+
+### Part Two
+
+To be safe, the CPU also needs to know the _highest value held in any register during this
+process_ so that it can decide how much memory to allocate to these operations. For example,
+in the above instructions, the highest value ever held was `10` (in register `c` after the third instruction
+was evaluated).
+
+Your puzzle answer was `6696`.

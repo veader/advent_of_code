@@ -25,13 +25,13 @@ extension DayEight: Testable {
                 return
         }
 
-//        guard
-//            testValue(60, equals: partTwo(input: data)),
-//            true
-//            else {
-//                print("Part 2 Tests Failed!")
-//                return
-//        }
+        guard
+            testValue(10, equals: partTwo(input: data)),
+            true
+            else {
+                print("Part 2 Tests Failed!")
+                return
+        }
 
         print("Done with tests... all pass")
     }

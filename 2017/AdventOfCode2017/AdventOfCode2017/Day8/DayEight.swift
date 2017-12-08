@@ -57,6 +57,7 @@ struct DayEight: AdventDay {
 
         var registers = [String: Int]()
         let instructions: [Instruction]
+        var maxValue: Int?
 
         init?(_ text: String) {
             let lines = text.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
@@ -73,6 +74,8 @@ struct DayEight: AdventDay {
                     // print("TEST PASS!")
                     write(register: instruction.writeRegister, change: instruction.changeAmount)
                 }
+
+                maxValue = max(maxValue ?? 0, maxRegisterValue() ?? 0)
             }
         }
 
@@ -130,7 +133,12 @@ struct DayEight: AdventDay {
         }
         print("Day 8: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 8: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 8: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -143,6 +151,9 @@ struct DayEight: AdventDay {
     }
 
     func partTwo(input: String) -> Int? {
-        return nil
+        guard var cpu = CPU(input) else { return nil }
+        cpu.execute()
+        print(cpu.registers)
+        return cpu.maxValue
     }
 }
