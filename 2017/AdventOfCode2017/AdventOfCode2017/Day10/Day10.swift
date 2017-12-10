@@ -16,12 +16,36 @@ struct DayTen: AdventDay {
         var currentIndex = 0
         var skipSize = 0
 
-        init?(_ input: String, length stringLength: Int = 256) {
+        init?(_ input: String, length stringLength: Int = 256, useASCII: Bool = false) {
             string = Array(0..<stringLength)
-            lengths = input.split(separator: ",")
-                           .map(String.init)
-                           .map { $0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
-                           .flatMap(Int.init)
+
+            if useASCII {
+                let salt = [17, 31, 73, 47, 23]
+                lengths = input.unicodeScalars.map { Int($0.value) } + salt
+            } else {
+                lengths = input.replacingOccurrences(of: " ", with: "")
+                               .split(separator: ",")
+                               .map(String.init)
+                               .flatMap(Int.init)
+            }
+        }
+
+        mutating func run(rounds: Int = 64) -> String {
+            for _ in 0..<rounds {
+                hash()
+            }
+
+            let denseHash = calculateDenseHash()
+            let hashValue = denseHash.map { value -> String in
+                var hexed = String(value, radix: 16)
+                while hexed.count < 2 {
+                    hexed = "0" + hexed
+                } // pad with 0 prefixs
+
+                return hexed
+            }.joined()
+
+            return hashValue
         }
 
         mutating func hash() {
@@ -65,6 +89,21 @@ struct DayTen: AdventDay {
             }
         }
 
+        private func calculateDenseHash() -> [Int] {
+            let sliceSize = 16
+            let sliceCount = string.count / sliceSize
+            var slices = [[Int]]()
+
+            for sliceNum in 0..<sliceCount {
+                let sliceIndex = sliceNum * sliceSize
+                let sliceEndIndex = min(sliceIndex + sliceSize, string.count)
+                let slice = Array(string[sliceIndex..<sliceEndIndex])
+                slices.append(slice)
+            }
+
+            return slices.map { $0.reduce(0, ^) }
+        }
+
         func printState(length: Int) {
             let output = string.enumerated().map { idx, value -> String in
                 var out = ""
@@ -105,7 +144,12 @@ struct DayTen: AdventDay {
         }
         print("Day 10: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 10: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 10: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -117,7 +161,8 @@ struct DayTen: AdventDay {
         return (hash.string[0]) * (hash.string[1])
     }
 
-    func partTwo(input: String) -> Int? {
-        return nil
+    func partTwo(input: String, count: Int = 256) -> String? {
+        guard var hash = KnotHash(input, length: count, useASCII: true) else { return nil }
+        return hash.run(rounds: 64)
     }
 }
