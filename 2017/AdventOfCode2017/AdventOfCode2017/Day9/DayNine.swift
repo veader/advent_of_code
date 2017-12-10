@@ -12,12 +12,14 @@ struct DayNine: AdventDay {
 
     struct Garbage: CustomDebugStringConvertible {
         let content: String
+        let notCanceled: String
 
         /// Parse input finding "garbage" data. eg: <...>
         static func parse(_ input: String) -> (Garbage?, Int?) {
             guard input.first == "<" else { return (nil, nil) }
 
             var content = ""
+            var notCanceled = ""
             var notStatus = true // status based on number of ! found
 
             for (idx, char) in input.enumerated() {
@@ -28,17 +30,20 @@ struct DayNine: AdventDay {
                 case ">":
                     if notStatus == true {
                         // found the end of the garbage
-                        return (Garbage(content: content), idx)
+                        return (Garbage(content: content, notCanceled: notCanceled), idx)
                     } else {
-                        notStatus = true // reset
                         content.append(char)
+                        notStatus = true // reset
                     }
                 case "!":
                     notStatus = !notStatus // invert not status
                     content.append(char)
                 default:
-                    notStatus = true // any non-! char resets
                     content.append(char)
+                    if notStatus == true {
+                        notCanceled.append(char)
+                    }
+                    notStatus = true // any non-! char resets
                 }
             }
 
@@ -59,6 +64,14 @@ struct DayNine: AdventDay {
         var score: Int {
             return level + subGroups.reduce(0, { result, group in
                 result + group.score
+            })
+        }
+
+        var removedCount: Int {
+            return garbagePiles.reduce(0, { result, garbage in
+                result + garbage.notCanceled.count
+            }) + subGroups.reduce(0, { result, group in
+                result + group.removedCount
             })
         }
 
@@ -158,7 +171,12 @@ struct DayNine: AdventDay {
         }
         print("Day 9: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 9: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 9: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -166,12 +184,13 @@ struct DayNine: AdventDay {
     func partOne(input: String) -> Int? {
         let (group, _) = Group.parse(input)
         guard let theGroup = group else { return nil }
-
         return theGroup.score
     }
 
     func partTwo(input: String) -> Int? {
-        return nil
+        let (group, _) = Group.parse(input)
+        guard let theGroup = group else { return nil }
+        return theGroup.removedCount
     }
 }
 

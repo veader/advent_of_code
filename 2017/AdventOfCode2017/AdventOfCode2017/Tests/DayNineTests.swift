@@ -25,6 +25,20 @@ extension DayNine: Testable {
             }
 
         guard
+            testValue("", equals: Garbage.parse("<>").0?.notCanceled),
+            testValue("random characters", equals: Garbage.parse("<random characters>").0?.notCanceled),
+            testValue("<<<", equals: Garbage.parse("<<<<>").0?.notCanceled),
+            testValue("{}", equals: Garbage.parse("<{!>}>").0?.notCanceled),
+            testValue("", equals: Garbage.parse("<!!>").0?.notCanceled),
+            testValue("", equals: Garbage.parse("<!!!>>").0?.notCanceled),
+            testValue("{o\"i,<{i<a", equals: Garbage.parse("<{o\"i!a,<{i<a>").0?.notCanceled),
+            true
+            else {
+                print("Garbage Parsing (Canceled) Tests Failed!")
+                return
+        }
+
+        guard
             testValue(1, equals: partOne(input: "{}")),
             testValue(6, equals: partOne(input: "{{{}}}")),
             testValue(5, equals: partOne(input: "{{},{}}")),
