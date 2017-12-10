@@ -16,6 +16,8 @@
 		DC90FD281FD81EBA0032BE0A /* DaySixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC90FD271FD81EBA0032BE0A /* DaySixTests.swift */; };
 		DC985BDB1FDC4C0D001F769F /* DayNine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC985BDA1FDC4C0D001F769F /* DayNine.swift */; };
 		DC985BDE1FDC4C1B001F769F /* DayNineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC985BDD1FDC4C1B001F769F /* DayNineTests.swift */; };
+		DC985BE21FDD6691001F769F /* Day10.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC985BE11FDD6691001F769F /* Day10.swift */; };
+		DC985BE51FDD66A1001F769F /* DayTenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC985BE41FDD66A1001F769F /* DayTenTests.swift */; };
 		DC985F341FD97F5700601BF8 /* DaySeven.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC985F331FD97F5700601BF8 /* DaySeven.swift */; };
 		DC985F371FD97F6800601BF8 /* DaySevenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC985F361FD97F6800601BF8 /* DaySevenTests.swift */; };
 		DCB4C2691FD203D100B1F75C /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4C2681FD203D100B1F75C /* Array.swift */; };
@@ -60,6 +62,9 @@
 		DC985BDC1FDC4C14001F769F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC985BDD1FDC4C1B001F769F /* DayNineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineTests.swift; sourceTree = "<group>"; };
 		DC985BDF1FDC4C25001F769F /* day9input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day9input.txt; sourceTree = "<group>"; };
+		DC985BE11FDD6691001F769F /* Day10.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day10.swift; sourceTree = "<group>"; };
+		DC985BE31FDD6698001F769F /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DC985BE41FDD66A1001F769F /* DayTenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTenTests.swift; sourceTree = "<group>"; };
 		DC985F331FD97F5700601BF8 /* DaySeven.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeven.swift; sourceTree = "<group>"; };
 		DC985F351FD97F5E00601BF8 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC985F361FD97F6800601BF8 /* DaySevenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySevenTests.swift; sourceTree = "<group>"; };
@@ -130,6 +135,15 @@
 			path = Day9;
 			sourceTree = "<group>";
 		};
+		DC985BE01FDD6678001F769F /* Day10 */ = {
+			isa = PBXGroup;
+			children = (
+				DC985BE11FDD6691001F769F /* Day10.swift */,
+				DC985BE31FDD6698001F769F /* README.md */,
+			);
+			path = Day10;
+			sourceTree = "<group>";
+		};
 		DC985F321FD97F4600601BF8 /* Day7 */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +212,7 @@
 				DC985F361FD97F6800601BF8 /* DaySevenTests.swift */,
 				DC10173D1FDAB9A70001F8C5 /* DayEightTests.swift */,
 				DC985BDD1FDC4C1B001F769F /* DayNineTests.swift */,
+				DC985BE41FDD66A1001F769F /* DayTenTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -232,6 +247,7 @@
 				DC985F321FD97F4600601BF8 /* Day7 */,
 				DC1017391FDAB97E0001F8C5 /* Day8 */,
 				DC985BD91FDC4BFD001F769F /* Day9 */,
+				DC985BE01FDD6678001F769F /* Day10 */,
 				DCB4C27B1FD5746600B1F75C /* Tests */,
 				DCD107881FD2029600FBC9D7 /* main.swift */,
 				DCB4C26B1FD234BB00B1F75C /* AdventDay.swift */,
@@ -323,9 +339,11 @@
 				DC90FD201FD6E9540032BE0A /* DayFiveTests.swift in Sources */,
 				DCB4C2821FD5749800B1F75C /* DayTwoTests.swift in Sources */,
 				DC1017401FDABBFA0001F8C5 /* EmptyDay.swift in Sources */,
+				DC985BE21FDD6691001F769F /* Day10.swift in Sources */,
 				DC985BDE1FDC4C1B001F769F /* DayNineTests.swift in Sources */,
 				DCB4C2841FD574A300B1F75C /* DayOneTests.swift in Sources */,
 				DCB4C26C1FD234BB00B1F75C /* AdventDay.swift in Sources */,
+				DC985BE51FDD66A1001F769F /* DayTenTests.swift in Sources */,
 				DCB4C2771FD5105500B1F75C /* DayFour.swift in Sources */,
 				DCD107911FD202B900FBC9D7 /* DayOne.swift in Sources */,
 				DCB4C2741FD468E300B1F75C /* DayThree.swift in Sources */,
