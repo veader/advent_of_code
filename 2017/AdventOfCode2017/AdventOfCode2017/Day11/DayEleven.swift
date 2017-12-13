@@ -23,19 +23,16 @@ struct DayEleven: AdventDay {
         struct Coordinate: CustomDebugStringConvertible {
             let x: Int
             let y: Int
-
-            var z: Int {
-                // in the coordinate system x + y + z = 0
-                return 0 - x - y
-            }
+            let z: Int
 
             var debugDescription: String {
                 return "<\(x), \(y), \(z)>"
             }
 
-            init(_ x: Int, _ y: Int) {
+            init(_ x: Int, _ y: Int, _ z: Int) {
                 self.x = x
                 self.y = y
+                self.z = z
             }
 
             func move(_ direction: Direction?) -> Coordinate {
@@ -43,22 +40,22 @@ struct DayEleven: AdventDay {
 
                 switch direction {
                 case .north:
-                    return Coordinate(x, y + 1)
+                    return Coordinate(x, y + 1, z)
                 case .northeast:
-                    return Coordinate(x + 1, y)
+                    return Coordinate(x + 1, y, z)
                 case .southeast:
-                    return Coordinate(x + 1, y - 1)
+                    return Coordinate(x, y, z - 1)
                 case .south:
-                    return Coordinate(x, y - 1)
+                    return Coordinate(x, y - 1, z)
                 case .southwest:
-                    return Coordinate(x - 1, y)
+                    return Coordinate(x - 1, y, z)
                 case .northwest:
-                    return Coordinate(x - 1, y + 1)
+                    return Coordinate(x, y, z + 1)
                 }
             }
         }
 
-        var currentLocation = Coordinate(0,0)
+        var currentLocation = Coordinate(0,0,0)
 
         mutating func follow(path: String) {
             let steps = path.split(separator: ",").map(String.init)
