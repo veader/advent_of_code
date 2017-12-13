@@ -23,16 +23,20 @@ struct DayEleven: AdventDay {
         struct Coordinate: CustomDebugStringConvertible {
             let x: Int
             let y: Int
-            let z: Int
+
+            var z: Int {
+                // in the coordinate system x + y + z = 0
+                return 0 - x - y
+            }
 
             var debugDescription: String {
                 return "<\(x), \(y), \(z)>"
             }
 
-            init(_ x: Int, _ y: Int, _ z: Int) {
+
+            init(_ x: Int, _ y: Int) {
                 self.x = x
                 self.y = y
-                self.z = z
             }
 
             func move(_ direction: Direction?) -> Coordinate {
@@ -40,38 +44,38 @@ struct DayEleven: AdventDay {
 
                 switch direction {
                 case .north:
-                    return Coordinate(x, y + 1, z)
+                    return Coordinate(x, y + 1)
                 case .northeast:
-                    return Coordinate(x + 1, y, z)
+                    return Coordinate(x + 1, y)
                 case .southeast:
-                    return Coordinate(x, y, z - 1)
+                    return Coordinate(x + 1, y - 1)
                 case .south:
-                    return Coordinate(x, y - 1, z)
+                    return Coordinate(x, y - 1)
                 case .southwest:
-                    return Coordinate(x - 1, y, z)
+                    return Coordinate(x - 1, y)
                 case .northwest:
-                    return Coordinate(x, y, z + 1)
+                    return Coordinate(x - 1, y + 1)
                 }
             }
         }
 
-        var currentLocation = Coordinate(0,0,0)
+        var currentLocation = Coordinate(0,0)
 
         mutating func follow(path: String) {
-            let steps = path.split(separator: ",").map(String.init)
+            let steps = path.split(separator: ",").map { String($0).trimmed() }
 
             for step in steps {
                 let direction = Direction(rawValue: step)
-                // print("At \(currentLocation) moving \(direction)")
+                // let prevLocation = currentLocation
                 currentLocation = currentLocation.move(direction)
+                // print("Moved \"\(step)\" from \(prevLocation) to \(currentLocation)")
             }
-
-            // print("Ended up at \(currentLocation)")
         }
 
         /// Number of steps to get from origin (0,0) to current location
         func distance() -> Int {
-            print("Distance from \(currentLocation) to 0,0,0")
+            // let origin = Coordinate(0,0)
+            // print("Distance from \(currentLocation) to \(origin)")
             return max(abs(currentLocation.x),
                        abs(currentLocation.y),
                        abs(currentLocation.z))
