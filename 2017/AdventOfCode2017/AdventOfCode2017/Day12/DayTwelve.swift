@@ -59,7 +59,21 @@ struct DayTwelve: AdventDay {
                 }
             }
 
-            return Array(Set(connectedTo)) // unique them
+            return Array(Set(connectedTo)).sorted() // unique them
+        }
+
+        func groups() -> [[Int]] {
+            var connectedGroups = [[Int]]()
+
+            for program in programs.keys {
+                // if we do not already have a group that contains this program, find it's group
+                if !connectedGroups.contains(where: { $0.contains(program) }) {
+                    let group = connected(to: program)
+                    connectedGroups.append(group)
+                }
+            }
+
+            return connectedGroups
         }
     }
 
@@ -83,7 +97,12 @@ struct DayTwelve: AdventDay {
         }
         print("Day 12: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 12: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 12: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -95,6 +114,8 @@ struct DayTwelve: AdventDay {
     }
 
     func partTwo(input: String) -> Int? {
-        return nil
+        let village = Village(input)
+        let groups = village.groups()
+        return groups.count
     }
 }

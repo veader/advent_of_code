@@ -32,11 +32,18 @@ extension DayTwelve: Testable {
         5 <-> 6
         6 <-> 4, 5
         """
+
         guard
-            testValue(6, equals: partOne(input: data)),
-            true
+            testValue(6, equals: partOne(input: data))
             else {
                 print("Part 1 Tests Failed!")
+                return
+        }
+
+        guard
+            testValue(2, equals: partTwo(input: data))
+            else {
+                print("Part 2 Tests Failed!")
                 return
         }
 
