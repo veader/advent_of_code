@@ -11,6 +11,6 @@ import Foundation
 // TODO: Parse input for which day and load proper file
 // TODO: Trigger tests
 
-DayEleven().runTests()
-DayEleven().run()
-
+let day = DayTwelve()
+day.runTests()
+day.run()

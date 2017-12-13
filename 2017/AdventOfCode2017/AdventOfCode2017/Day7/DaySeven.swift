@@ -137,7 +137,7 @@ struct DaySeven: AdventDay {
                 let subTowersText = text.suffix(from: arrowIndex.upperBound)
                 subTowers = subTowersText.split(separator: ",")
                                          .map(String.init)
-                                         .map { $0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
+                                         .map { $0.trimmed() }
             } else {
                 subTowers = [String]() // no subtowers
             }

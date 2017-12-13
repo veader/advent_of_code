@@ -60,7 +60,7 @@ struct DayEight: AdventDay {
         var maxValue: Int?
 
         init?(_ text: String) {
-            let lines = text.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) }
+            let lines = text.split(separator: "\n").map(String.init).map { $0.trimmed() }
             instructions = lines.flatMap(Instruction.init)
         }
 
