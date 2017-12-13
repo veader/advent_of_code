@@ -59,6 +59,16 @@ struct DayEleven: AdventDay {
             }
         }
 
+        /// Number of steps to get from origin (0,0) to current location
+        var distance: Int {
+            return max(abs(currentLocation.x),
+                       abs(currentLocation.y),
+                       abs(currentLocation.z))
+        }
+
+        /// Maximum distance achieved in during our travels.
+        var maxDistance: Int = 0
+
         var currentLocation = Coordinate(0,0)
 
         mutating func follow(path: String) {
@@ -66,19 +76,10 @@ struct DayEleven: AdventDay {
 
             for step in steps {
                 let direction = Direction(rawValue: step)
-                // let prevLocation = currentLocation
                 currentLocation = currentLocation.move(direction)
-                // print("Moved \"\(step)\" from \(prevLocation) to \(currentLocation)")
-            }
-        }
 
-        /// Number of steps to get from origin (0,0) to current location
-        func distance() -> Int {
-            // let origin = Coordinate(0,0)
-            // print("Distance from \(currentLocation) to \(origin)")
-            return max(abs(currentLocation.x),
-                       abs(currentLocation.y),
-                       abs(currentLocation.z))
+                maxDistance = max(maxDistance, distance)
+            }
         }
     }
 
@@ -102,7 +103,12 @@ struct DayEleven: AdventDay {
         }
         print("Day 11: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 11: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 11: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -110,10 +116,12 @@ struct DayEleven: AdventDay {
     func partOne(input: String) -> Int? {
         var board = HexBoard()
         board.follow(path: input)
-        return board.distance()
+        return board.distance
     }
 
     func partTwo(input: String) -> Int? {
-        return nil
+        var board = HexBoard()
+        board.follow(path: input)
+        return board.maxDistance
     }
 }

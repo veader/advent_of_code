@@ -34,3 +34,11 @@ For example:
 - `se,sw,se,sw,sw` is `3` steps away (`s,s,sw`).
 
 Your puzzle answer was `808`.
+
+---
+
+### Part Two
+
+_How many steps away_ is the _furthest_ he ever got from his starting position?
+
+Your puzzle answer was `1556`.
