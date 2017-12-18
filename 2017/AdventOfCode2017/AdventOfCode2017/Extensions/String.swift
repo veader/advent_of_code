@@ -29,4 +29,23 @@ extension String {
 
         return centeredString
     }
+
+    /// Assumes contents of string are hex values. Return binary representation.
+    func hexAsBinary() -> String? {
+        return self.map(String.init).flatMap { hexChar -> String? in
+            guard let hex = Int(hexChar, radix: 16) else { return nil }
+
+            return String(hex, radix: 2).padded(with: "0", length: 4)
+        }.joined()
+    }
+
+    func padded(with padding: String, length: Int) -> String {
+        var copy = self
+
+        while copy.count < length {
+            copy = padding + copy
+        }
+
+        return copy
+    }
 }

@@ -14,11 +14,10 @@ struct KnotHash {
     var currentIndex = 0
     var skipSize = 0
 
-    init?(_ input: String, length stringLength: Int = 256, useASCII: Bool = false) {
+    init?(_ input: String, length stringLength: Int = 256, useASCII: Bool = false, salt: [Int] = [17, 31, 73, 47, 23]) {
         string = Array(0..<stringLength)
 
         if useASCII {
-            let salt = [17, 31, 73, 47, 23]
             lengths = input.unicodeScalars.map { Int($0.value) } + salt
         } else {
             lengths = input.replacingOccurrences(of: " ", with: "")

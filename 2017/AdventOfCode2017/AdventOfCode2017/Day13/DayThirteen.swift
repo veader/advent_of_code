@@ -262,7 +262,7 @@ struct DayThirteen: AdventDay {
         firewall.avoidCaptures = true
 
         var penalty = 1_000_000 // go through loop at least once
-        var delay = 82_500 // 0
+        var delay = 0 // made it up to 82_500 with no match
 
         repeat {
             delay += 1
