@@ -37,6 +37,23 @@ struct DayThirteen: AdventDay {
                 self.range = theRange
             }
 
+            func reset(delay: Int? = nil) {
+                currentLocation = 0
+                direction = .forward
+
+                if let delay = delay {
+                    // a whole trip down/back for sentry (will be at 0 index)
+                    let wholeTrip = (range - 1) * 2
+
+                    // figure out how many ticks to do after the last full trip
+                    let tickCount = delay % wholeTrip
+
+                    for _ in (0..<tickCount) {
+                        tick()
+                    }
+                }
+            }
+
             // for each "tick", move currnet location within range
             func tick() {
                 switch direction {
@@ -62,8 +79,8 @@ struct DayThirteen: AdventDay {
         var location: Int = -1 // start outside firewall
         let maxLayerIndex: Int
         let maxDepth: Int
-        var picoSecondsElapsed: Int = 0
         var shouldPrint: Bool = false
+        var avoidCaptures: Bool = false
 
         init(_ input: String) {
             let lines = input.split(separator: "\n").map { String($0).trimmed() }
@@ -78,31 +95,59 @@ struct DayThirteen: AdventDay {
         }
 
         /// Run the firewall for a given amount of picoseconds. Returns whole trip penalty
-        func run(time: Int? = nil) -> Int {
-            if shouldPrint { print("Initial state:") }
-            printState()
-
-            let runTime = time ?? maxLayerIndex
-
-            var tripSeverity = 0
-
-            for picosecond in (0..<runTime) {
-                guard location < maxLayerIndex else { break }
-
-                if shouldPrint { print("Picosecond \(picosecond):") }
-                tripSeverity += move()
-
-                // detect capture?
-
-                // tick
-                for layer in layers.values {
-                    layer.tick()
+        func run(delay: Int = 0, time: Int? = nil) -> Int {
+            if delay > 0 {
+                for _ in (0..<delay) {
+                    tick()
                 }
 
+                if shouldPrint {
+                    print("State after delaying \(delay):")
+                    printState()
+                }
+            } else {
+                if shouldPrint {
+                    print("Initial state:")
+                    printState()
+                }
+            }
+
+            var tripSeverity = 0
+            var picosecond = delay
+
+            while location < maxLayerIndex {
+                if let time = time {
+                    guard picosecond < time else { print("Out of time!"); break }
+                }
+
+                if shouldPrint { print("Picosecond \(picosecond):") }
+
+                let penalty = move()
+                tripSeverity += penalty
+
+                if avoidCaptures && penalty > 0 {
+                    // if we are captured and should be avoiding break out to save time
+                    print(".", separator: "", terminator: "")
+                    if delay % 500 == 0 {
+                        print("\n\(delay)")
+                    }
+                    // print("Caught after \(delay) picosecond delay after \(picosecond - delay) more.")
+                    break
+                }
+
+                tick()
                 printState()
+                picosecond += 1
             }
 
             return tripSeverity
+        }
+
+        /// Tick a picosecond by and move sentries in layers of the firewall
+        func tick() {
+            for layer in layers.values {
+                layer.tick()
+            }
         }
 
         /// Move within the layers of the firewall, returns penalty value for getting caught
@@ -113,10 +158,23 @@ struct DayThirteen: AdventDay {
             guard let layer = layers[location] else { return 0 }
             if layer.currentLocation == 0 {
                 if shouldPrint { print("Caught! \(layer.index) * \(layer.range)") }
-                return layer.index * layer.range
+
+                // add some extra to the penalty if we are avoiding getting caught so
+                //  that getting caught in the 0 layer still reports a penalty
+                let extraPenalty = avoidCaptures ? 100 : 0
+                return (layer.index * layer.range) + extraPenalty
             }
 
             return 0
+        }
+
+        /// Reset the state of the firewall to the beginning
+        func reset(delay: Int? = nil) {
+            location = -1
+
+            for layer in layers.values {
+                layer.reset(delay: delay)
+            }
         }
 
         func printState() {
@@ -183,7 +241,12 @@ struct DayThirteen: AdventDay {
         }
         print("Day 13: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 13: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 13: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -195,7 +258,19 @@ struct DayThirteen: AdventDay {
     }
 
     func partTwo(input: String) -> Int? {
-        return nil
+        let firewall = Firewall(input)
+        firewall.avoidCaptures = true
+
+        var penalty = 1_000_000 // go through loop at least once
+        var delay = 82_500 // 0
+
+        repeat {
+            delay += 1
+            firewall.reset()
+            penalty = firewall.run(delay: delay)
+        } while penalty > 0
+
+        return delay
     }
 }
 

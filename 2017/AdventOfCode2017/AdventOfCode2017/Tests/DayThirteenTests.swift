@@ -39,11 +39,34 @@ extension DayThirteen: Testable {
             }
 
 //        guard
-//            testValue(2, equals: partOne(input: data))
+//            testValue(10, equals: partTwo(input: data))
 //            else {
-//                print("Part 1 Tests Failed!")
+//                print("Part 2 Tests Failed!")
 //                return
 //        }
+
+        firewall.shouldPrint = true
+        print("-------------------------- 0")
+        firewall.reset(delay: 0)
+        firewall.printState()
+        print("-------------------------- 1")
+        firewall.reset(delay: 1)
+        firewall.printState()
+        print("-------------------------- 2")
+        firewall.reset(delay: 2)
+        firewall.printState()
+        print("-------------------------- 3")
+        firewall.reset(delay: 3)
+        firewall.printState()
+        print("-------------------------- 4")
+        firewall.reset(delay: 4)
+        firewall.printState()
+        print("-------------------------- 5")
+        firewall.reset(delay: 5)
+        firewall.printState()
+        print("-------------------------- 6")
+        firewall.reset(delay: 6)
+        firewall.printState()
 
         print("Done with tests... all pass")
     }
