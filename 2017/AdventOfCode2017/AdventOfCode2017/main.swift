@@ -12,5 +12,5 @@ import Foundation
 // TODO: Trigger tests
 
 let day = DayFourteen()
-day.runTests()
+// day.runTests()
 day.run()
