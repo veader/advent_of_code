@@ -13,16 +13,15 @@ extension String {
         return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 
-    func centered(width: Int) -> String {
+    func centered(width: Int, filler: String = " ") -> String {
         var centeredString = self
         var isLeft = true // are we inserting the space on the left or right?
-        let space = " "
 
         while centeredString.count < width {
             if isLeft {
-                centeredString = space + centeredString
+                centeredString = filler + centeredString
             } else {
-                centeredString.append(space)
+                centeredString.append(filler)
             }
             isLeft = !isLeft
         }
