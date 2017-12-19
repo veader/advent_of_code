@@ -15,9 +15,18 @@ struct DayFifteen: AdventDay {
         let divisor = 2147483647
 
         var previous: Int
+        let multiple: Int
 
         mutating func nextValue() -> Int {
-            let value = (previous * factor) % divisor
+            var value: Int
+            var tmpPrevious: Int
+
+            tmpPrevious = previous
+            repeat {
+                value = (tmpPrevious * factor) % divisor
+                tmpPrevious = value
+            } while (value % multiple) != 0
+
             previous = value
             return value
         }
@@ -27,9 +36,14 @@ struct DayFifteen: AdventDay {
         var genA: Generator
         var genB: Generator
 
-        init(a: Int, b: Int) {
-            genA = Generator(factor: 16807, previous: a)
-            genB = Generator(factor: 48271, previous: b)
+        init(a: Int, b: Int, useMultiples: Bool = false) {
+            if useMultiples {
+                genA = Generator(factor: 16807, previous: a, multiple: 4)
+                genB = Generator(factor: 48271, previous: b, multiple: 8)
+            } else {
+                genA = Generator(factor: 16807, previous: a, multiple: 1)
+                genB = Generator(factor: 48271, previous: b, multiple: 1)
+            }
         }
 
         mutating func compare(cycles: Int = 10, printing: Bool = false) -> Int {
@@ -43,7 +57,11 @@ struct DayFifteen: AdventDay {
                 print("\(a) \(b)")
             }
 
-            for _ in (0..<cycles) {
+            for cycleCount in (0..<cycles) {
+                if printing {
+                    print("\t\t\t\t\t\tCycle \(cycleCount): \(Date())")
+                }
+
                 // generate next values for each generator
                 let a = genA.nextValue()
                 let b = genB.nextValue()
@@ -94,7 +112,12 @@ struct DayFifteen: AdventDay {
         }
         print("Day 15: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: numbers)
+        guard let answer2 = thing2 else {
+            print("Day 15: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 15: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -108,7 +131,9 @@ struct DayFifteen: AdventDay {
 
     func partTwo(input: [Int]) -> Int? {
         guard input.count > 1 else { return nil }
-        return nil
+        var judge = Judge(a: input[0], b: input[1], useMultiples: true)
+        let matches = judge.compare(cycles: 5_000_000)
+        return matches
     }
 }
 
