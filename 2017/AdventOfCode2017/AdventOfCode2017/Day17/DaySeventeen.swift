@@ -13,6 +13,11 @@ struct DaySeventeen: AdventDay {
     struct SpinLock {
         var buffer: [Int] = [0]
         var currentIndex: Int = 0
+        let spinSize: Int
+
+        init(size: Int) {
+            spinSize = size
+        }
 
         var printableState: String {
             return buffer.enumerated().map { (idx, value) -> String in
@@ -23,8 +28,8 @@ struct DaySeventeen: AdventDay {
         mutating func spin(count: Int, printing: Bool = false) {
             if printing { printState() }
             
-            for nextValue in (1..<2018) {
-                let nextIndex = ((currentIndex + count) % buffer.count) + 1
+            for nextValue in (1...count) {
+                let nextIndex = ((currentIndex + spinSize) % buffer.count) + 1
                 buffer.insert(nextValue, at: nextIndex)
                 currentIndex = nextIndex
 
@@ -61,20 +66,30 @@ struct DaySeventeen: AdventDay {
         }
         print("Day 17: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: spinCount)
+        guard let answer2 = thing2 else {
+            print("Day 17: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 17: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
 
     func partOne(input: Int) -> Int? {
-        var spinlock = SpinLock()
-        spinlock.spin(count: input)
+        var spinlock = SpinLock(size: input)
+        spinlock.spin(count: 2017)
         guard let thisIndex = spinlock.buffer.index(of: 2017) else { return nil }
         return spinlock.buffer[thisIndex.advanced(by: 1)]
     }
 
     func partTwo(input: Int) -> Int? {
-        return nil
+        print(Date())
+        var spinlock = SpinLock(size: input)
+        spinlock.spin(count: 50_000_000)
+        guard let thisIndex = spinlock.buffer.index(of: 0) else { return nil }
+        print(Date())
+        return spinlock.buffer[thisIndex.advanced(by: 1)]
     }
 }
 
