@@ -14,6 +14,8 @@
 		DC41B3521FE7F9E700A31667 /* DayFifteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41B3511FE7F9E700A31667 /* DayFifteenTests.swift */; };
 		DC41B3551FE8510A00A31667 /* DaySixteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41B3541FE8510A00A31667 /* DaySixteen.swift */; };
 		DC41B3581FE8511700A31667 /* DaySixteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41B3571FE8511700A31667 /* DaySixteenTests.swift */; };
+		DC41B35C1FEA1EF300A31667 /* DaySeventeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41B35B1FEA1EF300A31667 /* DaySeventeen.swift */; };
+		DC41B35F1FEA1F0500A31667 /* DaySeventeenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC41B35E1FEA1F0500A31667 /* DaySeventeenTests.swift */; };
 		DC5713BF1FDEFD0100B94653 /* DayEleven.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5713BE1FDEFD0100B94653 /* DayEleven.swift */; };
 		DC5713C21FDEFD1100B94653 /* DayElevenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5713C11FDEFD1100B94653 /* DayElevenTests.swift */; };
 		DC5713C61FE0CD5000B94653 /* DayTwelve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5713C51FE0CD5000B94653 /* DayTwelve.swift */; };
@@ -72,6 +74,9 @@
 		DC41B3561FE8511000A31667 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC41B3571FE8511700A31667 /* DaySixteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySixteenTests.swift; sourceTree = "<group>"; };
 		DC41B3591FE93F3E00A31667 /* day16input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day16input.txt; sourceTree = "<group>"; };
+		DC41B35B1FEA1EF300A31667 /* DaySeventeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeen.swift; sourceTree = "<group>"; };
+		DC41B35D1FEA1EFB00A31667 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DC41B35E1FEA1F0500A31667 /* DaySeventeenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeenTests.swift; sourceTree = "<group>"; };
 		DC5713BE1FDEFD0100B94653 /* DayEleven.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEleven.swift; sourceTree = "<group>"; };
 		DC5713C01FDEFD0700B94653 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC5713C11FDEFD1100B94653 /* DayElevenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayElevenTests.swift; sourceTree = "<group>"; };
@@ -162,6 +167,15 @@
 				DC41B3561FE8511000A31667 /* README.md */,
 			);
 			path = Day16;
+			sourceTree = "<group>";
+		};
+		DC41B35A1FEA1EDD00A31667 /* Day17 */ = {
+			isa = PBXGroup;
+			children = (
+				DC41B35B1FEA1EF300A31667 /* DaySeventeen.swift */,
+				DC41B35D1FEA1EFB00A31667 /* README.md */,
+			);
+			path = Day17;
 			sourceTree = "<group>";
 		};
 		DC5713BD1FDEFCE700B94653 /* Day11 */ = {
@@ -324,6 +338,7 @@
 				DC5713D71FE3FB7300B94653 /* DayFourteenTests.swift */,
 				DC41B3511FE7F9E700A31667 /* DayFifteenTests.swift */,
 				DC41B3571FE8511700A31667 /* DaySixteenTests.swift */,
+				DC41B35E1FEA1F0500A31667 /* DaySeventeenTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -366,6 +381,7 @@
 				DC5713D41FE3FB5500B94653 /* Day14 */,
 				DC41B34D1FE7F9B300A31667 /* Day15 */,
 				DC41B3531FE850F600A31667 /* Day16 */,
+				DC41B35A1FEA1EDD00A31667 /* Day17 */,
 				DCB4C27B1FD5746600B1F75C /* Tests */,
 				DCD107881FD2029600FBC9D7 /* main.swift */,
 				DCB4C26B1FD234BB00B1F75C /* AdventDay.swift */,
@@ -457,6 +473,7 @@
 				DC5713D81FE3FB7300B94653 /* DayFourteenTests.swift in Sources */,
 				DC10173B1FDAB9960001F8C5 /* DayEight.swift in Sources */,
 				DCB4C27D1FD5747D00B1F75C /* DayFourTests.swift in Sources */,
+				DC41B35F1FEA1F0500A31667 /* DaySeventeenTests.swift in Sources */,
 				DC41B3521FE7F9E700A31667 /* DayFifteenTests.swift in Sources */,
 				DC90FD1E1FD6E9300032BE0A /* DayFive.swift in Sources */,
 				DCD107891FD2029600FBC9D7 /* main.swift in Sources */,
@@ -479,6 +496,7 @@
 				DC5713BF1FDEFD0100B94653 /* DayEleven.swift in Sources */,
 				DC5713C21FDEFD1100B94653 /* DayElevenTests.swift in Sources */,
 				DC5713CF1FE16ABF00B94653 /* DayThirteen.swift in Sources */,
+				DC41B35C1FEA1EF300A31667 /* DaySeventeen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

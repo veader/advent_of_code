@@ -25,3 +25,24 @@ You watch the dance for a while and record their dance moves (your puzzle input)
 order are the programs standing_ after their dance?
 
 Your puzzle answer was `bkgcdefiholnpmja`.
+
+---
+
+### Part Two
+
+Now that you're starting to get a feel for the dance moves, you turn your attention to _the dance
+as a whole_.
+
+Keeping the positions they ended up in from their previous dance, the programs perform it again
+and again: including the first dance, a total of _one billion_ (`1000000000`) times.
+
+In the example above, their second dance would begin with the order baedc, and use the same
+dance moves:
+
+- `s1`, a spin of size `1`: `cbaed`.
+- `x3/4`, swapping the last two programs: `cbade`.
+- `pe/b`, swapping programs `e` and `b`: `ceadb`.
+
+In _what order are the programs standing_ after their billion dances?
+
+Incorrect, attempted answer `pacdefghijbknlom`

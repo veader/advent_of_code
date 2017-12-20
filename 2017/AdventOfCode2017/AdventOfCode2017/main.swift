@@ -13,4 +13,5 @@ import Foundation
 
 let day = DaySixteen()
 day.runTests()
-day.run()
+// day.run()
+
