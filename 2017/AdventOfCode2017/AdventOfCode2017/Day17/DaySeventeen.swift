@@ -14,23 +14,26 @@ struct DaySeventeen: AdventDay {
         var buffer: [Int] = [0]
         var currentIndex: Int = 0
 
-        mutating func spin(count: Int) {
-            printState()
+        var printableState: String {
+            return buffer.enumerated().map { (idx, value) -> String in
+                return idx == currentIndex ? "(\(value))" : "\(value)"
+            }.joined(separator: " ")
+        }
+
+        mutating func spin(count: Int, printing: Bool = false) {
+            if printing { printState() }
             
             for nextValue in (1..<2018) {
                 let nextIndex = ((currentIndex + count) % buffer.count) + 1
                 buffer.insert(nextValue, at: nextIndex)
                 currentIndex = nextIndex
 
-                printState()
+                if printing { printState() }
             }
         }
 
         func printState() {
-            let output = buffer.enumerated().map { (idx, value) -> String in
-                return idx == currentIndex ? "(\(value))" : "\(value)"
-            }.joined(separator: " ")
-            print(output)
+            print(printableState)
         }
     }
 
@@ -64,7 +67,10 @@ struct DaySeventeen: AdventDay {
     // MARK: -
 
     func partOne(input: Int) -> Int? {
-        return nil
+        var spinlock = SpinLock()
+        spinlock.spin(count: input)
+        guard let thisIndex = spinlock.buffer.index(of: 2017) else { return nil }
+        return spinlock.buffer[thisIndex.advanced(by: 1)]
     }
 
     func partTwo(input: Int) -> Int? {

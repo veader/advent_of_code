@@ -48,3 +48,5 @@ short-circuit the spinlock. In this example, that would be `638`.
 _What is the value after `2017`_ in your completed circular buffer?
 
 Your puzzle input is `344`.
+
+Your puzzle answer was `996`.
