@@ -29,6 +29,10 @@ struct DaySeventeen: AdventDay {
             if printing { printState() }
             
             for nextValue in (1...count) {
+                if (nextValue % 10_000) == 0 {
+                    print("\(nextValue) \(Date())")
+                }
+
                 let nextIndex = ((currentIndex + spinSize) % buffer.count) + 1
                 buffer.insert(nextValue, at: nextIndex)
                 currentIndex = nextIndex
