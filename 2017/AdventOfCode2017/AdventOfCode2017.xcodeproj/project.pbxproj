@@ -47,6 +47,8 @@
 		DCB4C27F1FD5748500B1F75C /* DayThreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4C27E1FD5748500B1F75C /* DayThreeTests.swift */; };
 		DCB4C2821FD5749800B1F75C /* DayTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4C2811FD5749800B1F75C /* DayTwoTests.swift */; };
 		DCB4C2841FD574A300B1F75C /* DayOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB4C2831FD574A300B1F75C /* DayOneTests.swift */; };
+		DCCA5E6E1FECD41F00FE2749 /* DayNineteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCA5E6D1FECD41F00FE2749 /* DayNineteen.swift */; };
+		DCCA5E701FECD42A00FE2749 /* DayNineteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCCA5E6F1FECD42A00FE2749 /* DayNineteenTests.swift */; };
 		DCD107891FD2029600FBC9D7 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD107881FD2029600FBC9D7 /* main.swift */; };
 		DCD107911FD202B900FBC9D7 /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD107901FD202B900FBC9D7 /* DayOne.swift */; };
 /* End PBXBuildFile section */
@@ -132,6 +134,10 @@
 		DCB4C27E1FD5748500B1F75C /* DayThreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThreeTests.swift; sourceTree = "<group>"; };
 		DCB4C2811FD5749800B1F75C /* DayTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwoTests.swift; sourceTree = "<group>"; };
 		DCB4C2831FD574A300B1F75C /* DayOneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOneTests.swift; sourceTree = "<group>"; };
+		DCCA5E6D1FECD41F00FE2749 /* DayNineteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineteen.swift; sourceTree = "<group>"; };
+		DCCA5E6F1FECD42A00FE2749 /* DayNineteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineteenTests.swift; sourceTree = "<group>"; };
+		DCCA5E711FECD42F00FE2749 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCCA5E731FED4CB700FE2749 /* day19input.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = day19input.txt; sourceTree = "<group>"; };
 		DCD107851FD2029600FBC9D7 /* AdventOfCode2017 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdventOfCode2017; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCD107881FD2029600FBC9D7 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		DCD107901FD202B900FBC9D7 /* DayOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOne.swift; sourceTree = "<group>"; };
@@ -331,6 +337,7 @@
 				DC5713D31FE16AE000B94653 /* day13input.txt */,
 				DC41B3591FE93F3E00A31667 /* day16input.txt */,
 				DCAE412C1FEB6EC900B2140F /* day18input.txt */,
+				DCCA5E731FED4CB700FE2749 /* day19input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -356,8 +363,18 @@
 				DC41B3571FE8511700A31667 /* DaySixteenTests.swift */,
 				DC41B35E1FEA1F0500A31667 /* DaySeventeenTests.swift */,
 				DCAE41291FEB6CC600B2140F /* DayEighteenTests.swift */,
+				DCCA5E6F1FECD42A00FE2749 /* DayNineteenTests.swift */,
 			);
 			path = Tests;
+			sourceTree = "<group>";
+		};
+		DCCA5E6C1FECD40500FE2749 /* Day19 */ = {
+			isa = PBXGroup;
+			children = (
+				DCCA5E6D1FECD41F00FE2749 /* DayNineteen.swift */,
+				DCCA5E711FECD42F00FE2749 /* README.md */,
+			);
+			path = Day19;
 			sourceTree = "<group>";
 		};
 		DCD1077C1FD2029600FBC9D7 = {
@@ -400,6 +417,7 @@
 				DC41B3531FE850F600A31667 /* Day16 */,
 				DC41B35A1FEA1EDD00A31667 /* Day17 */,
 				DCAE41261FEB6CAB00B2140F /* Day18 */,
+				DCCA5E6C1FECD40500FE2749 /* Day19 */,
 				DCB4C27B1FD5746600B1F75C /* Tests */,
 				DCD107881FD2029600FBC9D7 /* main.swift */,
 				DCB4C26B1FD234BB00B1F75C /* AdventDay.swift */,
@@ -475,6 +493,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCCA5E701FECD42A00FE2749 /* DayNineteenTests.swift in Sources */,
 				DC5713CC1FE0D1DA00B94653 /* String.swift in Sources */,
 				DCB4C26F1FD2D41C00B1F75C /* DayTwo.swift in Sources */,
 				DC90FD261FD81EB30032BE0A /* DaySix.swift in Sources */,
@@ -498,6 +517,7 @@
 				DC985F341FD97F5700601BF8 /* DaySeven.swift in Sources */,
 				DC90FD201FD6E9540032BE0A /* DayFiveTests.swift in Sources */,
 				DCB4C2821FD5749800B1F75C /* DayTwoTests.swift in Sources */,
+				DCCA5E6E1FECD41F00FE2749 /* DayNineteen.swift in Sources */,
 				DCAE412A1FEB6CC600B2140F /* DayEighteenTests.swift in Sources */,
 				DC1017401FDABBFA0001F8C5 /* EmptyDay.swift in Sources */,
 				DC5713D61FE3FB6900B94653 /* DayFourteen.swift in Sources */,
