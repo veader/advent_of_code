@@ -26,12 +26,12 @@ extension DayNineteen: Testable {
                 return
             }
 
-//        guard
-//            testValue("foo", equals: partTwo(input: input))
-//            else {
-//                print("Part 2 Tests Failed!")
-//                return
-//            }
+        guard
+            testValue(38, equals: partTwo(input: input))
+            else {
+                print("Part 2 Tests Failed!")
+                return
+            }
 
         print("Done with tests... all pass")
     }

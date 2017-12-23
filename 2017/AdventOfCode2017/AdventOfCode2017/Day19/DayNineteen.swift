@@ -21,9 +21,13 @@ struct DayNineteen: AdventDay {
         typealias Location = (x: Int, y: Int)
 
         let map: [String]
+
         var currentDirection: Direction = .north
         var currentLocation: Location = (0,0)
+
         var foundLetters: [String] = [String]()
+        var stepCount: Int = 0
+
         var printing: Bool = false
 
         init(_ input: String) {
@@ -89,6 +93,7 @@ struct DayNineteen: AdventDay {
 
             // move to the next location
             currentLocation = nextLocation()
+            stepCount += 1
             return true
         }
 
@@ -148,7 +153,12 @@ struct DayNineteen: AdventDay {
         }
         print("Day 19: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 19: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 19: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -158,8 +168,10 @@ struct DayNineteen: AdventDay {
         return maze.navigate()
     }
 
-    func partTwo(input: String) -> String? {
-        return nil
+    func partTwo(input: String) -> Int? {
+        var maze = Maze(input)
+        _ = maze.navigate()
+        return maze.stepCount
     }
 }
 
