@@ -115,6 +115,14 @@ Finally, the squares are joined into a new grid:
 
 Thus, after `2` iterations, the grid contains `12` pixels that are _on_.
 
-_How many pixels stay on_ after 5 iterations?
+_How many pixels stay on_ after `5` iterations?
 
 Your puzzle answer was `179`.
+
+---
+
+### Part Two
+
+_How many pixels stay on_ after `18` iterations?
+
+Your puzzle answer was `2766750`.

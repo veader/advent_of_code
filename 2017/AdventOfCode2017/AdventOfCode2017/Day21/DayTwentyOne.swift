@@ -236,7 +236,7 @@ struct DayTwentyOne: AdventDay {
 
     func partOne(input: String) -> Int? {
         var art = Art(input)
-        art.run(iterations: 5)
+        art.run(iterations: 18)
         return art.grid.pixels(on: true)
     }
 
