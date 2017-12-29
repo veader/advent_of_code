@@ -137,7 +137,7 @@ struct DayTwenty: AdventDay {
                     // print("Cycle \(cycle): Unable to find closest particle.")
                 }
 
-                let closestParticle = particles[closestIndex]
+                // let closestParticle = particles[closestIndex]
                 // print("Cycle \(cycle+1): Closests Particle: \(closestParticle)")
             }
 
