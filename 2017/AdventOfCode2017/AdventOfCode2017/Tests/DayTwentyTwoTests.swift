@@ -23,12 +23,12 @@ extension DayTwentyTwo: Testable {
                 return
         }
 
-//        guard
-//            testValue(0, equals: partTwo(input: input))
-//            else {
-//                print("Part 2 Tests Failed!")
-//                return
-//        }
+        guard
+            testValue(2511944, equals: partTwo(input: input))
+            else {
+                print("Part 2 Tests Failed!")
+                return
+        }
 
         print("Done with tests... all pass")
     }

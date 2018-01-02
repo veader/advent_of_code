@@ -42,11 +42,28 @@ struct DayTwentyTwo: AdventDay {
                     return .up
                 }
             }
+
+            func reverse() -> Direction {
+                switch self {
+                case .up:
+                    return .down
+                case .left:
+                    return .right
+                case .down:
+                    return .up
+                case .right:
+                    return .left
+                }
+            }
         }
 
-        struct Location: Equatable {
+        struct Location: Hashable {
             let x: Int
             let y: Int
+
+            var hashValue: Int {
+                return x.hashValue ^ y.hashValue &* 16777619
+            }
 
             init(_ x: Int, _ y: Int) {
                 self.x = x
@@ -76,14 +93,15 @@ struct DayTwentyTwo: AdventDay {
             var direction: Direction
         }
 
-        var infectedNodes: [Location] = [Location]()
+        var infectedNodes: [Location: Bool] = [Location: Bool]()
+        var weakenedNodes: [Location: Bool] = [Location: Bool]()
+        var flaggedNodes: [Location: Bool] = [Location: Bool]()
+
         var cycleCount: Int = 0
         var infectingCycles: Int = 0
-        var cleaningCycles: Int = 0
+
         var virus: Virus
         var gridSize: Int = 9 // odd size helps keep center easier
-
-        // var grid: [[Int]]
 
         init(_ input: String) {
             let rows = input.split(separator: "\n").map { String($0).trimmed() }
@@ -98,7 +116,7 @@ struct DayTwentyTwo: AdventDay {
                     switch char {
                     case "#": // infected
                         let location = Location(x,y)
-                        infectedNodes.append(location)
+                        infectedNodes[location] = true
                     case ".": // clean
                         continue
                     default:
@@ -110,16 +128,17 @@ struct DayTwentyTwo: AdventDay {
             virus = Virus(location: Location(0,0), direction: .up)
         }
 
-        mutating func run(cycles: Int = 10) {
+        mutating func run(cycles: Int = 10, evolving: Bool = false) {
             for _ in 0..<cycles {
-                burst()
+                burst(evolving)
                 cycleCount += 1
+
                 // printGrid()
             }
         }
 
-        mutating func burst() {
-            var currentLocation = virus.location
+        mutating func burst(_ evolving: Bool = false) {
+            let currentLocation = virus.location
 
             // expand our grid size if we are on the edge
             if  abs(currentLocation.x) == gridSize / 2 ||
@@ -127,14 +146,35 @@ struct DayTwentyTwo: AdventDay {
                 gridSize += 2
             }
 
-            if let infectedIndex = infectedNodes.index(of: currentLocation) {
+            if infectedNodes[currentLocation] ?? false {
+                // infected node
                 virus.direction = virus.direction.rotateRight()
-                infectedNodes.remove(at: infectedIndex) // clean node
-                cleaningCycles += 1
-            } else {
-                virus.direction = virus.direction.rotateLeft()
-                infectedNodes.append(currentLocation) // infect node
+                if evolving {
+                    infectedNodes[currentLocation] = false
+                    flaggedNodes[currentLocation] = true // flag node
+                } else {
+                    infectedNodes[currentLocation] = false // clean node
+                }
+            } else if evolving, weakenedNodes[currentLocation] ?? false {
+                // weakened node
+                // do not change direction
+                weakenedNodes[currentLocation] = false
+                infectedNodes[currentLocation] = true // infect node
                 infectingCycles += 1
+            } else if evolving, flaggedNodes[currentLocation] ?? false {
+                // flagged node
+                virus.direction = virus.direction.reverse()
+                flaggedNodes[currentLocation] = false // clean node
+            } else {
+                // clean node
+                virus.direction = virus.direction.rotateLeft()
+
+                if evolving {
+                    weakenedNodes[currentLocation] = true // weaken node
+                } else {
+                    infectedNodes[currentLocation] = true // infect node
+                    infectingCycles += 1
+                }
             }
 
             // move
@@ -169,8 +209,12 @@ struct DayTwentyTwo: AdventDay {
                         prefix = "]"
                     }
 
-                    if infectedNodes.contains(location) {
+                    if infectedNodes[location] ?? false {
                         row += "\(prefix)#"
+                    } else if weakenedNodes[location] ?? false {
+                        row += "\(prefix)W"
+                    } else if flaggedNodes[location] ?? false {
+                        row += "\(prefix)F"
                     } else {
                         row += "\(prefix)."
                     }
@@ -202,21 +246,30 @@ struct DayTwentyTwo: AdventDay {
         }
         print("Day 22: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 22: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 22: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
 
     func partOne(input: String) -> Int? {
         var cluster = ComputingCluster(input)
-        cluster.printGrid()
+        // cluster.printGrid()
         cluster.run(cycles: 10_000)
-        cluster.printGrid()
+        // cluster.printGrid()
         return cluster.infectingCycles
     }
 
     func partTwo(input: String) -> Int? {
-        return nil
+        var cluster = ComputingCluster(input)
+        // cluster.printGrid()
+        cluster.run(cycles: 10_000_000, evolving: true) // 10_000_000
+        cluster.printGrid()
+        return cluster.infectingCycles
     }
 }
 
