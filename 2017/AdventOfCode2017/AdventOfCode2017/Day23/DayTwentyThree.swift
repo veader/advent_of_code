@@ -100,9 +100,8 @@ struct DayTwentyThree: AdventDay {
                             break
                     }
 
-                    if printing { print("JUMP \(value) -> \(intValue) : offset \(offsetValue) -> \(offset)") }
-
                     if intValue != 0 {
+                        if printing { print("JUMP \(value) -> \(intValue) : offset \(offsetValue) -> \(offset)") }
                         currentIndex += offset
                         currentIndex -= 1 // because defer will add one
                     }
@@ -123,6 +122,7 @@ struct DayTwentyThree: AdventDay {
         }
 
         func printState() {
+            print("Current Index: \(currentIndex)")
             print("Registers: \(registers)")
         }
     }
@@ -148,7 +148,12 @@ struct DayTwentyThree: AdventDay {
         }
         print("Day 23: (Part 1) Answer ", answer)
 
-        // ...
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 23: (Part 2) 💥 Unable to calculate answer.")
+            exit(1)
+        }
+        print("Day 23: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -160,6 +165,9 @@ struct DayTwentyThree: AdventDay {
     }
 
     func partTwo(input: String) -> Int? {
+        var coproc = CoProcessor(input)
+        coproc.registers["a"] = 1 // set debug flag
+        coproc.play(printing: true)
         return nil
     }
 }
