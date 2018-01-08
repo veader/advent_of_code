@@ -120,7 +120,7 @@ struct DayTwenty: AdventDay {
         mutating func run(cycles: Int = 100) -> Int {
             var closestIndex: Int = 0
 
-            for cycle in (0..<cycles) {
+            for _ in (0..<cycles) {
                 for idx in (0..<particles.count) {
                     particles[idx].update()
                 }
@@ -145,7 +145,7 @@ struct DayTwenty: AdventDay {
         }
 
         mutating func detectCollisions(cycles: Int = 100) -> Int {
-            for cycle in (0..<cycles) {
+            for _ in (0..<cycles) {
                 for idx in (0..<particles.count) {
                     particles[idx].update()
                 }
