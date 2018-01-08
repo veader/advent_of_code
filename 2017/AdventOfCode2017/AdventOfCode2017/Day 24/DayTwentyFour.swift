@@ -55,6 +55,10 @@ struct DayTwentyFour: AdventDay {
                 return components.map { String(describing: $0) }.joined(separator: "--") + " End: \(endPort) | Strength: \(strength)"
             }
 
+            var length: Int {
+                return components.count
+            }
+
             var strength: Int {
                 return components.reduce(0, { (result, component) -> Int in
                     return result + component.strength
@@ -70,11 +74,11 @@ struct DayTwentyFour: AdventDay {
                               .flatMap { Component($0) }
         }
 
-        func strongestBridge() -> Bridge? {
-            return strongestBridge(available: components)
-        }
+        func strongestBridge(starting: Bridge? = nil, available: [Component]? = nil) -> Bridge? {
+            guard let available = available else {
+                return strongestBridge(available: components)
+            }
 
-        private func strongestBridge(starting: Bridge? = nil, available: [Component]) -> Bridge? {
             guard available.count > 0 else { return starting }
 
             var strongestYet = starting
@@ -118,6 +122,65 @@ struct DayTwentyFour: AdventDay {
 
             return strongestYet
         }
+
+        func longestBridges(starting: Bridge? = nil, available: [Component]? = nil) -> [Bridge]? {
+            guard let available = available else {
+                return longestBridges(available: components)
+            }
+
+            guard available.count > 0 else {
+                guard let starting = starting else { return nil }
+                return [starting]
+            }
+
+            var longBridges = [Bridge]()
+            if let starting = starting {
+                longBridges.append(starting)
+            }
+
+            // if we have no starting bridge, we need a 0 port
+            let startingPort = starting?.endPort ?? 0
+
+            // look for available components with ports matching starting port
+            let nextComponents = available.filter { $0.has(port: startingPort) }
+
+            for component in nextComponents {
+                // build a new bridge by adding this new component
+                let endPort = component.otherSide(port: startingPort)
+                var newComponents = starting?.components ?? [Component]()
+                newComponents.append(component)
+
+                let bridge = Bridge(components: newComponents, endPort: endPort)
+                // print(bridge)
+
+                guard available.count > 1 else {
+                    if (starting?.length ?? 0) < bridge.length {
+                        longBridges.append(bridge)
+                    }
+
+                    continue
+                }
+
+                var newAvailable = available
+
+                // remove this used component from the list of available components for nested calls
+                if let componentIndex = available.index(of: component) {
+                    newAvailable.remove(at: componentIndex)
+                }
+
+                assert(newAvailable.count < available.count) // make sure that worked
+
+                // build possibly longer bridges based on this new starting bridge
+                if let possiblyLonger = longestBridges(starting: bridge, available: newAvailable) {
+                    longBridges.append(contentsOf: possiblyLonger)
+                }
+            }
+
+            guard let longestBridge = longBridges.max(by: { a, b in a.length < b.length }) else { return nil }
+            longBridges = longBridges.filter { $0.length == longestBridge.length }
+
+            return longBridges
+        }
     }
 
 
@@ -134,14 +197,19 @@ struct DayTwentyFour: AdventDay {
             exit(10)
         }
 
-        let thing = partOne(input: runInput)
-        guard let answer = thing else {
-            print("Day 24: (Part 1) 💥 Unable to calculate answer.")
+//        let thing = partOne(input: runInput)
+//        guard let answer = thing else {
+//            print("Day 24: (Part 1) 💥 Unable to calculate answer.")
+//            exit(1)
+//        }
+//        print("Day 24: (Part 1) Answer ", answer)
+
+        let thing2 = partTwo(input: runInput)
+        guard let answer2 = thing2 else {
+            print("Day 24: (Part 2) 💥 Unable to calculate answer.")
             exit(1)
         }
-        print("Day 24: (Part 1) Answer ", answer)
-
-        // ...
+        print("Day 24: (Part 2) Answer ", answer2)
     }
 
     // MARK: -
@@ -153,6 +221,13 @@ struct DayTwentyFour: AdventDay {
     }
 
     func partTwo(input: String) -> Int? {
-        return nil
+        let builder = BridgeBuilder(input)
+        let bridges = builder.longestBridges()
+//        print("Found \(bridges?.count ?? 0) bridges")
+
+        let longestStrongestBridge = bridges?.max(by: { a, b in a.strength < b.strength })
+//        print(longestStrongestBridge)
+
+        return longestStrongestBridge?.strength
     }
 }
