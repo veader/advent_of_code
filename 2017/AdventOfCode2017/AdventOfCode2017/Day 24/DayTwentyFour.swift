@@ -71,16 +71,13 @@ struct DayTwentyFour: AdventDay {
         }
 
         func strongestBridge() -> Bridge? {
-            let bridges = possibleBridges(available: components)
-            return bridges.max { (bridgeA, bridgeB) -> Bool in
-                return bridgeA.strength < bridgeB.strength
-            }
+            return strongestBridge(available: components)
         }
 
-        func possibleBridges(starting: Bridge? = nil, available: [Component]) -> [Bridge] {
-            guard available.count > 0 else { return [Bridge]() }
+        private func strongestBridge(starting: Bridge? = nil, available: [Component]) -> Bridge? {
+            guard available.count > 0 else { return starting }
 
-            var bridges = [Bridge]()
+            var strongestYet = starting
 
             // if we have no starting bridge, we need a 0 port
             let startingPort = starting?.endPort ?? 0
@@ -95,8 +92,11 @@ struct DayTwentyFour: AdventDay {
                 newComponents.append(component)
 
                 let bridge = Bridge(components: newComponents, endPort: endPort)
-                bridges.append(bridge) // single segment is a valid bridge
-                print(bridge)
+                // print(bridge)
+
+                if bridge.strength > (strongestYet?.strength ?? 0) {
+                    strongestYet = bridge
+                }
 
                 guard available.count > 1 else { continue }
 
@@ -107,15 +107,16 @@ struct DayTwentyFour: AdventDay {
                     newAvailable.remove(at: componentIndex)
                 }
 
-//                let newAvailable = Array(available.drop(while: { $0 == component }))
-                assert(newAvailable.count < available.count)
+                assert(newAvailable.count < available.count) // make sure that worked
 
-                // build possible bridges based on this new starting bridge
-                let bridgesBuilt = possibleBridges(starting: bridge, available: newAvailable)
-                bridges.append(contentsOf: bridgesBuilt)
+                // build possibly strong bridges based on this new starting bridge
+                let possiblyStronger = strongestBridge(starting: bridge, available: newAvailable)
+                if (possiblyStronger?.strength ?? 0) > (strongestYet?.strength ?? 0) {
+                    strongestYet = possiblyStronger
+                }
             }
 
-            return bridges
+            return strongestYet
         }
     }
 

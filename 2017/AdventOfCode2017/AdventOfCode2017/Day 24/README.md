@@ -56,3 +56,5 @@ you may only use each port on a component once.)
 Of these bridges, the _strongest_ one is `0/1--10/1--9/10`; it has a strength of `0+1 + 1+10 + 10+9 = _31_`.
 
 _What is the strength of the strongest bridge you can make_ with the components you have available?
+
+Your puzzle answer was `1695`.
