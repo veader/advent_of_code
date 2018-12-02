@@ -6,3 +6,5 @@ Saving Christmas since...
 - 2015 (`Ruby & Go`)
 - 2016 (`Swift & Ruby`)
 - 2017 (`Swift`)
+- 2018 (`Swift`)
+
