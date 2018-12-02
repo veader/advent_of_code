@@ -12,6 +12,8 @@
 		7631394821B45CC70082309E /* DayOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394721B45CC70082309E /* DayOneTests.swift */; };
 		7631394B21B45E700082309E /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394A21B45E700082309E /* AdventDay.swift */; };
 		7631394D21B45FFD0082309E /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394C21B45FFD0082309E /* DayOne.swift */; };
+		7631394F21B46A3C0082309E /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394C21B45FFD0082309E /* DayOne.swift */; };
+		7631395021B46A3E0082309E /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394A21B45E700082309E /* AdventDay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -213,6 +215,8 @@
 			files = (
 				7631394221B45CAC0082309E /* Test.swift in Sources */,
 				7631394821B45CC70082309E /* DayOneTests.swift in Sources */,
+				7631395021B46A3E0082309E /* AdventDay.swift in Sources */,
+				7631394F21B46A3C0082309E /* DayOne.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

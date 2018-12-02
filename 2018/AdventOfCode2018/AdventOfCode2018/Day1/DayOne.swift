@@ -12,12 +12,26 @@ struct DayOne: AdventDay {
 
     var dayNumber: Int = 1
 
-    func run(_ input: String? = nil) {
+    @discardableResult func run(_ input: String? = nil, _ part: Int? = 1) -> Any {
         guard let input = input ?? defaultInput else {
             print("Day \(dayNumber): NO INPUT")
             exit(10)
         }
 
+        var freq: Int = Int.min
+
+        if part == 1 {
+            freq = partOne(input: input)
+        } else {
+            freq = partTwo(input: input)
+        }
+
+        print("Day \(dayNumber) Part \(part!): Final Answer \(freq)")
+
+        return freq
+    }
+
+    func partOne(input: String) -> Int {
         let freqShifts = input.split(separator: "\n").compactMap { Int($0) }
 
         var freq = 0
@@ -26,6 +40,11 @@ struct DayOne: AdventDay {
             freq += freqShift
         }
 
-        print("Day \(dayNumber): Final Answer \(freq)")
+        return freq
+    }
+
+    func partTwo(input: String) -> Int {
+        return Int.min
     }
 }
+

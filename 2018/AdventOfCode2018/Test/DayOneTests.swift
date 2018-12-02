@@ -10,24 +10,20 @@ import XCTest
 
 class DayOneTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    func testPartOne() {
+        let day = DayOne()
 
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+        var testInput = "+1,-2,+3,+1".split(separator: ",").map(String.init).joined(separator: "\n")
+        XCTAssertEqual(3, day.run(testInput) as? Int)
 
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        testInput = "+1,+1,+1".split(separator: ",").map(String.init).joined(separator: "\n")
+        XCTAssertEqual(3, day.run(testInput) as? Int)
 
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+        testInput = "+1,+1,-2".split(separator: ",").map(String.init).joined(separator: "\n")
+        XCTAssertEqual(0, day.run(testInput) as? Int)
+
+        testInput = "-1,-2,-3".split(separator: ",").map(String.init).joined(separator: "\n")
+        XCTAssertEqual(-6, day.run(testInput) as? Int)
     }
 
 }
