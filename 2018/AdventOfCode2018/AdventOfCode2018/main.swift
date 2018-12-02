@@ -13,3 +13,4 @@ import Foundation
 
 let day = DayOne()
 day.run()
+day.run(nil, 2)

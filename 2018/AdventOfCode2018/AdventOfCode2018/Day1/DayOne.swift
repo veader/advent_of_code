@@ -38,7 +38,28 @@ struct DayOne: AdventDay {
     }
 
     func partTwo(input: String) -> Int {
-        return Int.min
+        let freqShifts = input.split(separator: "\n").compactMap { Int($0) }
+
+        var freq = 0
+        var seenFreqs: Set<Int> = [0]
+
+        var loopCount = 0
+
+        while true {
+            for freqShift in freqShifts {
+                let shiftedFreq = freq + freqShift
+
+                // make sure we haven't seen this freq before
+                guard !seenFreqs.contains(shiftedFreq) else { return shiftedFreq }
+
+                freq = shiftedFreq
+                seenFreqs.insert(shiftedFreq)
+            }
+
+            loopCount += 1 // debugging
+        }
+
+        return freq
     }
 }
 
