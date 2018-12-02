@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		7631393321B45C0C0082309E /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631393221B45C0C0082309E /* main.swift */; };
-		7631394221B45CAC0082309E /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394121B45CAC0082309E /* Test.swift */; };
 		7631394821B45CC70082309E /* DayOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394721B45CC70082309E /* DayOneTests.swift */; };
 		7631394B21B45E700082309E /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394A21B45E700082309E /* AdventDay.swift */; };
 		7631394D21B45FFD0082309E /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7631394C21B45FFD0082309E /* DayOne.swift */; };
@@ -32,7 +31,6 @@
 		7631392F21B45C0C0082309E /* AdventOfCode2018 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = AdventOfCode2018; sourceTree = BUILT_PRODUCTS_DIR; };
 		7631393221B45C0C0082309E /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		7631393F21B45CAC0082309E /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7631394121B45CAC0082309E /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
 		7631394321B45CAC0082309E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7631394721B45CC70082309E /* DayOneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOneTests.swift; sourceTree = "<group>"; };
 		7631394921B45CDF0082309E /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -108,7 +106,6 @@
 		7631394021B45CAC0082309E /* Test */ = {
 			isa = PBXGroup;
 			children = (
-				7631394121B45CAC0082309E /* Test.swift */,
 				7631394321B45CAC0082309E /* Info.plist */,
 				7631394721B45CC70082309E /* DayOneTests.swift */,
 			);
@@ -213,7 +210,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7631394221B45CAC0082309E /* Test.swift in Sources */,
 				7631394821B45CC70082309E /* DayOneTests.swift in Sources */,
 				7631395021B46A3E0082309E /* AdventDay.swift in Sources */,
 				7631394F21B46A3C0082309E /* DayOne.swift in Sources */,

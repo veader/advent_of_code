@@ -34,13 +34,7 @@ struct DayOne: AdventDay {
     func partOne(input: String) -> Int {
         let freqShifts = input.split(separator: "\n").compactMap { Int($0) }
 
-        var freq = 0
-
-        for freqShift in freqShifts {
-            freq += freqShift
-        }
-
-        return freq
+        return freqShifts.reduce(0, +)
     }
 
     func partTwo(input: String) -> Int {
