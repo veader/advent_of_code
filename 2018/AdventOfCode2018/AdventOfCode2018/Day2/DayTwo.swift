@@ -45,6 +45,17 @@ extension String {
     func hasCharacterRepeating(times: Int) -> Bool {
         return charactersRepeating(times: times).count > 0
     }
+
+    /// Return the substring occurring after the provided prefix
+    func substring(after thePrefix: String, offset additionalOffset: Int = 0) -> String? {
+        guard hasPrefix(thePrefix) else { return nil }
+
+        guard let nextIndex = index(startIndex, offsetBy: thePrefix.count + additionalOffset, limitedBy: endIndex) else {
+            return nil
+        }
+
+        return String(self[nextIndex...])
+    }
 }
 
 struct DayTwo: AdventDay {
@@ -57,17 +68,15 @@ struct DayTwo: AdventDay {
             exit(10)
         }
 
-        var checksum: Int = Int.min
-
         if part == 1 {
-            checksum = partOne(input: input)
+            let checksum = partOne(input: input)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(checksum)")
+            return checksum
         } else {
-            checksum = partTwo(input: input)
+            let matchingChars = partTwo(input: input)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(matchingChars)")
+            return matchingChars
         }
-
-        print("Day \(dayNumber) Part \(part!): Final Answer \(checksum)")
-
-        return checksum
     }
 
     func partOne(input: String) -> Int {
@@ -92,7 +101,41 @@ struct DayTwo: AdventDay {
         return twoCharCount * threeCharCount // "checksum"
     }
 
-    func partTwo(input: String) -> Int {
-        return 0
+    func partTwo(input: String) -> String {
+        let boxIDs = input.split(separator: "\n").map(String.init)
+
+        var closeIDs: Set<String> = Set() // avoid duplicates
+
+        var currentIdx = boxIDs.startIndex
+        while currentIdx < boxIDs.endIndex {
+            let boxID = boxIDs[currentIdx]
+
+            for otherBoxID in boxIDs[currentIdx...] {
+                let prefix = otherBoxID.commonPrefix(with: boxID)
+
+                if  let originalRemainder = boxID.substring(after: prefix, offset: 1),
+                    let thisRemainder = otherBoxID.substring(after: prefix, offset: 1) {
+
+                    if originalRemainder == thisRemainder {
+                        closeIDs.insert(boxID)
+                        closeIDs.insert(otherBoxID)
+                    }
+                }
+            }
+
+            currentIdx = boxIDs.index(after: currentIdx)
+        }
+
+        guard closeIDs.count == 2 else { return "" }
+
+        let closeIDsArray = [String](closeIDs) // force into array for easy access
+        if let first = closeIDsArray.first, let second = closeIDsArray.last {
+            let prefix = second.commonPrefix(with: first)
+            let suffix = first.substring(after: prefix, offset: 1) ?? ""
+
+            return "\(prefix)\(suffix)"
+        }
+
+        return ""
     }
 }
