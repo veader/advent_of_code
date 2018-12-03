@@ -16,6 +16,9 @@
 		76E6F2CB21B49B7800917EF4 /* DayTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E6F2CA21B49B7800917EF4 /* DayTwo.swift */; };
 		76E6F2CD21B49B8500917EF4 /* DayTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E6F2CC21B49B8500917EF4 /* DayTwoTests.swift */; };
 		76E6F2CF21B4C27800917EF4 /* DayTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E6F2CA21B49B7800917EF4 /* DayTwo.swift */; };
+		DC57F2F921B5B68C0001F336 /* DayThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57F2F821B5B68C0001F336 /* DayThree.swift */; };
+		DC57F2FB21B5B6970001F336 /* DayThreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57F2FA21B5B6970001F336 /* DayThreeTests.swift */; };
+		DC57F2FC21B5BED90001F336 /* DayThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC57F2F821B5B68C0001F336 /* DayThree.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -44,6 +47,10 @@
 		76E6F2CA21B49B7800917EF4 /* DayTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwo.swift; sourceTree = "<group>"; };
 		76E6F2CC21B49B8500917EF4 /* DayTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwoTests.swift; sourceTree = "<group>"; };
 		76E6F2CE21B49C8700917EF4 /* day2input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day2input.txt; sourceTree = "<group>"; };
+		DC57F2F721B5B6850001F336 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DC57F2F821B5B68C0001F336 /* DayThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThree.swift; sourceTree = "<group>"; };
+		DC57F2FA21B5B6970001F336 /* DayThreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThreeTests.swift; sourceTree = "<group>"; };
+		DC57F2FD21B5C9C80001F336 /* day3input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day3input.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +95,7 @@
 				7631393A21B45C2E0082309E /* data */,
 				7631393921B45C230082309E /* Day1 */,
 				76E6F2C821B49B4500917EF4 /* Day2 */,
+				DC57F2F621B5B6710001F336 /* Day3 */,
 				7631393221B45C0C0082309E /* main.swift */,
 				7631394A21B45E700082309E /* AdventDay.swift */,
 			);
@@ -108,6 +116,7 @@
 			children = (
 				7631394E21B461410082309E /* day1input.txt */,
 				76E6F2CE21B49C8700917EF4 /* day2input.txt */,
+				DC57F2FD21B5C9C80001F336 /* day3input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -118,6 +127,7 @@
 				7631394321B45CAC0082309E /* Info.plist */,
 				7631394721B45CC70082309E /* DayOneTests.swift */,
 				76E6F2CC21B49B8500917EF4 /* DayTwoTests.swift */,
+				DC57F2FA21B5B6970001F336 /* DayThreeTests.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -129,6 +139,15 @@
 				76E6F2CA21B49B7800917EF4 /* DayTwo.swift */,
 			);
 			path = Day2;
+			sourceTree = "<group>";
+		};
+		DC57F2F621B5B6710001F336 /* Day3 */ = {
+			isa = PBXGroup;
+			children = (
+				DC57F2F721B5B6850001F336 /* README.md */,
+				DC57F2F821B5B68C0001F336 /* DayThree.swift */,
+			);
+			path = Day3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +242,7 @@
 				7631393321B45C0C0082309E /* main.swift in Sources */,
 				7631394D21B45FFD0082309E /* DayOne.swift in Sources */,
 				76E6F2CB21B49B7800917EF4 /* DayTwo.swift in Sources */,
+				DC57F2F921B5B68C0001F336 /* DayThree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +251,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E6F2CF21B4C27800917EF4 /* DayTwo.swift in Sources */,
+				DC57F2FB21B5B6970001F336 /* DayThreeTests.swift in Sources */,
+				DC57F2FC21B5BED90001F336 /* DayThree.swift in Sources */,
 				7631394821B45CC70082309E /* DayOneTests.swift in Sources */,
 				7631395021B46A3E0082309E /* AdventDay.swift in Sources */,
 				7631394F21B46A3C0082309E /* DayOne.swift in Sources */,
