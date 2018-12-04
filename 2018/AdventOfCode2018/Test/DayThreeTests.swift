@@ -104,4 +104,16 @@ class DayThreeTests: XCTestCase {
         let day = DayThree()
         XCTAssertEqual(4, day.run(input, 1) as? Int)
     }
+
+    func testPartTwo() {
+        let input = """
+                    #1 @ 1,3: 4x4
+                    #2 @ 3,1: 4x4
+                    #3 @ 5,5: 2x2
+                    """
+
+        let day = DayThree()
+        XCTAssertEqual(3, day.run(input, 2) as? Int)
+    }
+
 }

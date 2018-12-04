@@ -22,6 +22,18 @@ struct DayThree: AdventDay {
 
         var claimedSquares = [Coordinate: String]()
 
+        var collisions: Int {
+            var count = 0
+
+            for square in claimedSquares {
+                if square.value == "X" {
+                    count += 1
+                }
+            }
+
+            return count
+        }
+
         init() {
             width = 1000
             height = 1000
@@ -48,22 +60,23 @@ struct DayThree: AdventDay {
             }
         }
 
-        mutating func markClaim(to claim: SuitClothClaim) {
-            let yRange = claim.coordinate.y..<(claim.coordinate.y + claim.height)
-            let xRange = claim.coordinate.x..<(claim.coordinate.x + claim.width)
-            for y in yRange {
-                for x in xRange {
-                    let c = Coordinate(x: x, y: y)
-                    switch self[c] {
-                    case "o": // already claimed by just one
-                        self[c] = "X" // mark collision
-                    case "X": // already claimed by multiple
-                        break // do nothing
-                    default:  // not claimed, mark the first
-                        self[c] = "o"
-                    }
+        @discardableResult
+        mutating func markClaim(to claim: SuitClothClaim) -> Bool {
+            var collided = false
+
+            for c in claim.claimedCoordinates {
+                switch self[c] {
+                case "o": // already claimed by just one
+                    collided = true
+                    self[c] = "X" // mark collision
+                case "X": // already claimed by multiple
+                    collided = true
+                default:  // not claimed, mark the first
+                    self[c] = "o"
                 }
             }
+
+            return collided
         }
 
         var debugDescription: String {
@@ -79,12 +92,26 @@ struct DayThree: AdventDay {
         }
     }
 
-    public struct SuitClothClaim {
+    public struct SuitClothClaim: Hashable {
         let stringRepresentation: String
         let claimID: Int
         let coordinate: Coordinate
         let width: Int
         let height: Int
+
+        var claimedCoordinates: Set<Coordinate> {
+            var coordinates = [Coordinate]()
+
+            let yRange = coordinate.y..<(coordinate.y + height)
+            let xRange = coordinate.x..<(coordinate.x + width)
+
+            for y in yRange {
+                let row = xRange.map { Coordinate(x: $0, y: y) }
+                coordinates.append(contentsOf: row)
+            }
+
+            return Set(coordinates)
+        }
 
         init?(input: String) {
             // input should be of the following format: #1 @ 1,3: 4x4
@@ -129,16 +156,14 @@ struct DayThree: AdventDay {
         }
 
         if part == 1 {
-            let checksum = partOne(input: input)
-            print("Day \(dayNumber) Part \(part!): Final Answer \(checksum)")
-            return checksum
-//        } else {
-//            let matchingChars = partTwo(input: input)
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(matchingChars)")
-//            return matchingChars
+            let collisions = partOne(input: input)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(collisions)")
+            return collisions
+        } else {
+            let claimID = partTwo(input: input)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(claimID)")
+            return claimID
         }
-
-        return ""
     }
 
     func partOne(input: String) -> Int {
@@ -152,19 +177,29 @@ struct DayThree: AdventDay {
             cloth.markClaim(to: claim)
         }
 
-        // find all collision areas
-        var count = 0
-        for square in cloth.claimedSquares {
-            if square.value == "X" {
-                count += 1
-            }
-        }
-        
-        return count
+        return cloth.collisions
     }
 
-    func partTwo(input: String) -> String {
-        // let boxIDs = input.split(separator: "\n").map(String.init)
-        return ""
+    func partTwo(input: String) -> Int {
+        let claims = input.split(separator: "\n")
+            .map(String.init)
+            .compactMap { SuitClothClaim(input: $0) }
+
+        var cloth = SuitCloth()
+
+        // find items that didn't collide on initial insert
+        let nonColliding = claims.filter { !cloth.markClaim(to: $0) }
+
+        // filter out any that now overlap
+        let doubleChecked = nonColliding.filter { claim in
+            !(claim.claimedCoordinates.map { cloth[$0] }.contains("X"))
+        }
+
+        guard
+            doubleChecked.count == 1,
+            let found = doubleChecked.first
+            else { return Int.min }
+
+        return found.claimID
     }
 }
