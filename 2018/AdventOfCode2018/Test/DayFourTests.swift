@@ -52,6 +52,7 @@ class DayFourTests: XCTestCase {
             print("Min \($0.key): \($0.value)")
         }
         XCTAssertEqual(24, theGuard.sleepiestMinute)
+        XCTAssertEqual(2, theGuard.largestSleepCount)
     }
 
 }

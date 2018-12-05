@@ -169,6 +169,10 @@ struct DayFour: AdventDay {
             return sleepMap.max(by: { $0.value < $1.value })?.key
         }
 
+        var largestSleepCount: Int {
+            return sleepMap.max(by: { $0.value < $1.value })?.value ?? 0
+        }
+
         var debugDescription: String {
             return "Guard #\(guardID): Shifts \(shifts.count) Total Min: \(totalMinutesAsleep) Sleepiest: \(String(describing: sleepiestMinute))"
         }
@@ -184,45 +188,33 @@ struct DayFour: AdventDay {
         }
 
         let shifts = process(input: input)
+        let guards = process(shifts: shifts)
 
         if part == 1 {
-            let answer = partOne(shifts: shifts)
+            let answer = partOne(guards: guards)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            print("In part \(part!)")
-//            let claimID = partTwo(input: input)
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(claimID)")
-//            return claimID
+            let answer = partTwo(guards: guards)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
         }
-
-        return 0
     }
 
-    func partOne(shifts: [Shift]) -> Int {
-        var guardMap = [Int:[Shift]]()
-        for shift in shifts {
-            if var guardShifts = guardMap[shift.guardID] {
-                guardShifts.append(shift)
-                guardMap[shift.guardID] = guardShifts
-            } else {
-                guardMap[shift.guardID] = [shift]
-            }
-        }
-
-        let guards: [Guard] = guardMap.map { Guard(guardID: $0, shifts: $1) }
-
-//        print("Found \(guards.count) guards ")
-//        guards.sorted(by: { $0.guardID < $1.guardID }).forEach { print($0.debugDescription) }
-//        print("----------------------")
-
+    func partOne(guards: [Guard]) -> Int {
         if let sleepiestGuard = guards.max(by: { $0.totalMinutesAsleep < $1.totalMinutesAsleep }),
             let sleepiestMinute = sleepiestGuard.sleepiestMinute {
 
-//            print("Sleepiest Guard: \(sleepiestGuard.guardID)")
-//            print("Minutes asleep: \(sleepiestGuard.totalMinutesAsleep)")
-//            print("Sleepiest Minute: \(sleepiestMinute)")
-//            return sleepiestGuard.totalMinutesAsleep * sleepiestMinute
+            return sleepiestGuard.guardID * sleepiestMinute
+        }
+
+        return Int.min
+    }
+
+    func partTwo(guards: [Guard]) -> Int {
+        if let sleepiestGuard = guards.max(by: { $0.largestSleepCount < $1.largestSleepCount }),
+            let sleepiestMinute = sleepiestGuard.sleepiestMinute {
+
             return sleepiestGuard.guardID * sleepiestMinute
         }
 
@@ -274,5 +266,23 @@ struct DayFour: AdventDay {
 //        print(shifts.map { $0.debugDescription }.joined(separator: "\n"))
 
         return shifts
+    }
+
+    func process(shifts: [Shift]) -> [Guard] {
+        var guardMap = [Int:[Shift]]()
+        for shift in shifts {
+            if var guardShifts = guardMap[shift.guardID] {
+                guardShifts.append(shift)
+                guardMap[shift.guardID] = guardShifts
+            } else {
+                guardMap[shift.guardID] = [shift]
+            }
+        }
+
+//        print("Found \(guards.count) guards ")
+//        guards.sorted(by: { $0.guardID < $1.guardID }).forEach { print($0.debugDescription) }
+//        print("----------------------")
+
+        return guardMap.map { Guard(guardID: $0, shifts: $1) }
     }
 }
