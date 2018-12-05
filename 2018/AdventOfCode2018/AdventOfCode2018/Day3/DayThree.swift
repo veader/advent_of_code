@@ -115,29 +115,22 @@ struct DayThree: AdventDay {
 
         init?(input: String) {
             // input should be of the following format: #1 @ 1,3: 4x4
-            guard let regex = try? NSRegularExpression(pattern: "\\#([0-9]+) \\@ ([0-9]+),([0-9]+)\\: ([0-9]+)x([0-9]+)", options: .caseInsensitive)
+            let pattern = "\\#([0-9]+) \\@ ([0-9]+),([0-9]+)\\: ([0-9]+)x([0-9]+)"
+
+            guard
+                let regexResponse = input.matching(regex: pattern),
+                regexResponse.captures.count == 5
                 else { return nil }
 
-            let matches = regex.matches(in: input, options: [], range: NSRange(location: 0, length: input.count))
-            guard let match = matches.first else { return nil }
-
-            var captures = [String]()
-
-            for index in 0..<match.numberOfRanges {
-                let range = match.range(at: index)
-                captures.append((input as NSString).substring(with: range))
-            }
-
-            guard captures.count == 6 else { return nil }
-
+            let captures = regexResponse.captures
             stringRepresentation = input
-            // the 0 index is the whole string that matches
+
             guard
-                let theID = Int(captures[1]),
-                let x = Int(captures[2]),
-                let y = Int(captures[3]),
-                let theWidth = Int(captures[4]),
-                let theHeight = Int(captures[5])
+                let theID = Int(captures[0]),
+                let x = Int(captures[1]),
+                let y = Int(captures[2]),
+                let theWidth = Int(captures[3]),
+                let theHeight = Int(captures[4])
                 else { return nil }
 
             claimID = theID
