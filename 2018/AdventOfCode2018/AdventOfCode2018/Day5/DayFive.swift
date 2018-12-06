@@ -20,16 +20,37 @@ struct DayFive: AdventDay {
 
          if part == 1 {
             let answerText = partOne(input: input)
-            print(answerText)
+//            print(answerText)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answerText.count)")
             return answerText.count
          } else {
-            return 0
+            let answer = partTwo(input: input)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
          }
     }
 
     func partOne(input: String) -> String {
-        var before = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        return fullyProcess(polymer: input)
+    }
+
+    func partTwo(input: String) -> Int {
+        var mapping = [String: Int]()
+
+        let alphabet = "abcdefghijklmnopqrstuvwzyz"
+        for letter in alphabet {
+            let unit = String(letter)
+            let alteredPolymer = remove(unit: unit, from: input)
+            let finalPolymer = fullyProcess(polymer: alteredPolymer)
+            // print("Removing \(unit) -> \(finalPolymer.count)")
+            mapping[unit] = finalPolymer.count
+        }
+
+        return mapping.min(by: { $0.value < $1.value })?.value ?? Int.min
+    }
+
+    func fullyProcess(polymer: String) -> String {
+        var before = polymer.trimmingCharacters(in: .whitespacesAndNewlines)
         var after = parseReactions(input: before)
 
         while before != after {
@@ -38,6 +59,11 @@ struct DayFive: AdventDay {
         }
 
         return after
+    }
+
+    /// Remove a given unit (aka: letter) from the polymer
+    func remove(unit: String, from polymer: String) -> String {
+        return polymer.replacingOccurrences(of: unit, with: "", options: .caseInsensitive)
     }
 
     /// Make a single pass over the input (polymer) and parse for reactions.
