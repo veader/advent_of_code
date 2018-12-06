@@ -19,13 +19,18 @@ struct DaySix: AdventDay {
         let maxY: Int
 
         // Grid of each coordinate and the location it is
-        //  closest to based on Manhattan distances.
+        //      closest to based on Manhattan distances.
         var grid: [Coordinate: Coordinate]
+
+        /// Grid of each coordinate and the distance to the
+        ///     sum distances to each location.
+        var sumsGrid: [Coordinate: Int]
 
         init(coordinates: [Coordinate], overage: Int = 20) {
             self.locations = coordinates.enumerated().map { Coordinate(coordinate: $1, name: "\($0)") }
 
             grid = [Coordinate: Coordinate]()
+            sumsGrid = [Coordinate: Int]()
 
             minX = (coordinates.map { $0.x }.min() ?? 0) - overage
             maxX = (coordinates.map { $0.x }.max() ?? 0) + overage
@@ -52,6 +57,19 @@ struct DaySix: AdventDay {
                             grid[coordinate] = minDistance.coordinate
                         }
                     }
+                }
+            }
+        }
+
+        mutating func calculateDistanceSums() {
+            for y in minY..<maxY+1 {
+                for x in minX..<maxX+1 {
+                    let coordinate = Coordinate(x: x, y: y)
+
+                    let sum = locations.map { coordinate.distance(to: $0) }
+                                       .reduce(0, +)
+
+                    sumsGrid[coordinate] = sum
                 }
             }
         }
@@ -100,8 +118,36 @@ struct DaySix: AdventDay {
             return output
         }
 
+        func printSumGrid(lessThan: Int) -> String {
+            var output = ""
+
+            for y in minY..<maxY+1 {
+                var rowText = ""
+                for x in minX..<maxX+1 {
+                    let coordinate = Coordinate(x: x, y: y)
+                    if locations.contains(coordinate) {
+                        rowText.append("X")
+                    } else {
+                        if let sum = sumsGrid[coordinate], sum < lessThan {
+                            rowText.append("#")
+                        } else {
+                            rowText.append(".")
+                        }
+                    }
+                }
+                output.append("\(rowText)\n")
+            }
+
+            return output
+        }
+
+
         func area(of location: Coordinate) -> Int {
             return grid.filter { $1 == location }.count
+        }
+
+        func area(lessThan: Int) -> Int {
+            return sumsGrid.filter { $1 < lessThan }.count
         }
 
         /// Determine the location with the largest area (based on distance)
@@ -132,24 +178,25 @@ struct DaySix: AdventDay {
 
         if part == 1 {
             let answer = partOne(grid: grid)
-            //            print(answerText)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
-            /*
         } else {
-            let answer = partTwo(input: input)
+            let answer = partTwo(grid: grid)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
-             */
         }
-
-        return 0
     }
 
     func partOne(grid: Grid) -> Int {
         var theGrid = grid
         theGrid.calculateDistances()
         return theGrid.largestArea()
+    }
+
+    func partTwo(grid: Grid) -> Int {
+        var theGrid = grid
+        theGrid.calculateDistanceSums()
+        return theGrid.area(lessThan: 10000)
     }
 
     func process(input: String) -> [Coordinate] {

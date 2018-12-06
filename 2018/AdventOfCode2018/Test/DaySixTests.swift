@@ -50,6 +50,15 @@ class DaySixTests: XCTestCase {
         XCTAssertEqual(output, response)
     }
 
+    func testGridSumPrinting() {
+        let day = DaySix()
+        let coordinates = day.process(input: input)
+        var grid = DaySix.Grid(coordinates: coordinates, overage: 1)
+        grid.calculateDistanceSums()
+        let response = grid.printSumGrid(lessThan: 32)
+        print(response)
+    }
+
     func testGridDistancePrinting() {
         let output = """
                      00000.2222
@@ -82,6 +91,14 @@ class DaySixTests: XCTestCase {
 
         XCTAssertEqual(9, grid.area(of: Coordinate(x: 3, y: 4)))
         XCTAssertEqual(17, grid.area(of: Coordinate(x: 5, y: 5)))
+    }
+
+    func testGridSumAreaCalculations() {
+        let day = DaySix()
+        let coordinates = day.process(input: input)
+        var grid = DaySix.Grid(coordinates: coordinates, overage: 1)
+        grid.calculateDistanceSums()
+        XCTAssertEqual(16, grid.area(lessThan: 32))
     }
 
     func testRunPartOne() {
