@@ -26,20 +26,20 @@ class DayThreeTests: XCTestCase {
 
                      """
         var cloth = DayThree.SuitCloth(width: 4, height: 3)
-        cloth[DayThree.Coordinate(x: 1, y: 1)] = "X"
+        cloth[Coordinate(x: 1, y: 1)] = "X"
         XCTAssertEqual(marked, cloth.debugDescription)
     }
 
     func testSuitClothClaim() {
         let claim = DayThree.SuitClothClaim(input: "#123 @ 3,2: 5x4")
         XCTAssertEqual(123, claim?.claimID)
-        XCTAssertEqual(DayThree.Coordinate(x: 3, y: 2), claim?.coordinate)
+        XCTAssertEqual(Coordinate(x: 3, y: 2), claim?.coordinate)
         XCTAssertEqual(5, claim?.width)
         XCTAssertEqual(4, claim?.height)
 
         let otherClaim = DayThree.SuitClothClaim(input: "#2 @ 3,1: 4x4")
         XCTAssertEqual(2, otherClaim?.claimID)
-        XCTAssertEqual(DayThree.Coordinate(x: 3, y: 1), otherClaim?.coordinate)
+        XCTAssertEqual(Coordinate(x: 3, y: 1), otherClaim?.coordinate)
         XCTAssertEqual(4, otherClaim?.width)
         XCTAssertEqual(4, otherClaim?.height)
     }

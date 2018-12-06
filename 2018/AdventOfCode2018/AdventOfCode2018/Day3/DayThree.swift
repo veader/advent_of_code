@@ -10,11 +10,6 @@ import Foundation
 
 struct DayThree: AdventDay {
 
-    public struct Coordinate: Hashable {
-        let x: Int
-        let y: Int
-    }
-
     public struct SuitCloth: CustomDebugStringConvertible {
 
         var width: Int = 1000
