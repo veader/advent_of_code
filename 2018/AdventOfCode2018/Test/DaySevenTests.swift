@@ -59,4 +59,25 @@ class DaySevenTests: XCTestCase {
         let steps = day.run(input, 1) as? String
         XCTAssertEqual("CABDFE", steps)
     }
+
+    func testRunTwo() {
+        let day = DaySeven()
+        let steps = day.run(input, 2) as? Int
+        XCTAssertEqual(253, steps)
+    }
+
+    func testWorkLogic() {
+        let day = DaySeven()
+        let instructions = day.parse(input: input)
+
+        let answer = day.work(instructions: instructions, workers: 2, offset: 0) as? Int
+        XCTAssertEqual(15, answer)
+    }
+
+    func testLetters() {
+        let a = 65
+        let z = 65+25
+        XCTAssertEqual("A", Character(UnicodeScalar(a)!))
+        XCTAssertEqual("Z", Character(UnicodeScalar(z)!))
+    }
 }

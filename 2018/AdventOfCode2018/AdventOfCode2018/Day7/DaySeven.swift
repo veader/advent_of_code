@@ -13,6 +13,19 @@ struct DaySeven: AdventDay {
 
     typealias Instructions = [String: Instruction]
 
+    let asciiMap: [String: Int] = {
+        var map = [String: Int]()
+        let aValue = 65 // A
+
+        for i in (0..<26) {
+            let asciiValue = aValue + i
+            let char = Character(UnicodeScalar(asciiValue)!)
+            map["\(char)"] = i + 1
+        }
+
+        return map
+    }()
+
     struct Instruction {
         let name: String
         let prereqs: [String]
@@ -46,17 +59,15 @@ struct DaySeven: AdventDay {
         }
 
         let instructions = parse(input: input)
-//        instructions.values.forEach { print($0) }
 
         if part == 1 {
             let answer = partOne(instructions: instructions)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            return 0
-//            let answer = partTwo(grid: grid)
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-//            return answer
+            let answer = partTwo(instructions: instructions)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
         }
     }
 
@@ -92,6 +103,112 @@ struct DaySeven: AdventDay {
         }
 
         return steps
+    }
+
+    func partTwo(instructions: Instructions) -> Int {
+        return work(instructions: instructions, workers: 5, offset: 60)
+    }
+
+    /// Work the instructions with the given number of parallel workers and an offset of number of seconds
+    func work(instructions: Instructions, workers workerCount: Int = 1, offset: Int = 0) -> Int {
+        // count the number of seconds taken doing work
+        var timeTaken = 0
+
+        // list of steps that have been processed (so nothing is repeated)
+        var takenSteps = [String]()
+
+        // represent the workers with an array indicating how many seconds
+        //      each worker has left until they are not busy
+        var busyWorkers = Array(repeating: 0, count: workerCount)
+
+        // represent the steps being worked by each worker
+        var busyWorkSteps = Array(repeating: "", count: workerCount)
+
+        let beginnings = findBeginnings(instructions: instructions)
+        var choices = Set(beginnings)
+
+        while !choices.isEmpty {
+            // tick off a second for everyone's time
+            busyWorkers = busyWorkers.map { max($0 - 1, 0) }
+
+            // determine how many workers we have available, if all are busy
+            //      tick off a second and loop (brute force up front)
+            let availableWorkers = busyWorkers.filter { $0 == 0 }.count
+
+            if availableWorkers == 0 {
+                // all workers are busy...
+            } else {
+                // we have some available workers
+
+                // remove steps that have been completed
+                for (idx, workTimer) in busyWorkers.enumerated() {
+                    if workTimer == 0 {
+                        takenSteps.append(busyWorkSteps[idx])
+                        busyWorkSteps[idx] = ""
+                    }
+                }
+
+//                // tick off a second for everyone's time
+//                busyWorkers = busyWorkers.map { max($0 - 1, 0) }
+
+                // determine how many available instructions we have now that
+                //      have their prereqs met. pick ones to work on (based
+                //      on number of workers) and add their times to the worker
+                //      queue. remove them from choices and add their next steps.
+                let availableChoices = choices.sorted().filter { name -> Bool in
+                    guard let inst = instructions[name] else { return false }
+                    var preReqsMet = true
+                    for preReq in inst.prereqs {
+                        if !takenSteps.contains(preReq) {
+                            preReqsMet = false
+                            break
+                        }
+                    }
+                    return preReqsMet
+                }
+
+                // only act on as many choices as we have workers
+                for choice in availableChoices {
+                    guard let freeWorkerIdx = busyWorkers.firstIndex(of: 0) else { break } // no more free workers
+
+                    // remove this instruction step as an available choice to work
+                    if let choiceIdx = choices.firstIndex(of: choice) {
+                        choices.remove(at: choiceIdx)
+                    }
+
+                    if let instruction = instructions[choice] {
+                        // set work as busy with amount of time to work
+                        let workTime = (asciiMap[instruction.name] ?? 0) + offset
+                        busyWorkers[freeWorkerIdx] = workTime
+                        busyWorkSteps[freeWorkerIdx] = instruction.name
+
+                        // add next steps to choices
+                        choices = choices.union(instruction.nextSteps)
+                    }
+                }
+            }
+
+            // printState(time: timeTaken, workers: busyWorkers, work: busyWorkSteps, finished: takenSteps.joined())
+
+            timeTaken += 1
+        }
+
+        // finished all the choices but there may still be work being done
+        //      take the max value and add it to the timeTaken
+        if let timeLeft = busyWorkers.max() {
+            timeTaken += (timeLeft - 1) // one loop was done just not counted
+        }
+
+        return timeTaken
+    }
+
+    func printState(time: Int, workers: [Int], work: [String], finished: String) {
+        let workersInfo = workers.enumerated().map {
+            let step = work[$0]
+            return "\(step)(\($1))"
+        }.joined(separator: "\t")
+
+        print("\(time)\t\(workersInfo)\t\(finished)")
     }
 
     func findBeginnings(instructions: Instructions) -> [String] {
