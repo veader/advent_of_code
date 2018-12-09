@@ -86,12 +86,9 @@ struct DayEight: AdventDay {
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            return 0
-            /*
-            let answer = partTwo(instructions: instructions)
+            let answer = partTwo(tree: tree)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
-             */
         }
     }
 
@@ -100,11 +97,35 @@ struct DayEight: AdventDay {
         return metadataSum(for: rootNode)
     }
 
+    func partTwo(tree: LicenseTree) -> Int {
+        guard let rootNode = tree.rootNode else { return Int.min }
+        return sumNodeValue(for: rootNode)
+    }
+
+
     func metadataSum(for node: LicenseTree.Node) -> Int {
         return node.metadata.reduce(0, +) +
                 node.nodes.reduce(0, { result, childNode in
                     return result + metadataSum(for: childNode)
                 })
+    }
+
+    func sumNodeValue(for node: LicenseTree.Node) -> Int {
+        if node.header.children == 0 {
+            return node.metadata.reduce(0, +)
+        } else {
+            return node.metadata.reduce(0) { result, metadata in
+                guard metadata > 0 else { return result }
+
+                let idx = metadata - 1
+                if node.nodes.indices.contains(idx) {
+                    let childNode = node.nodes[idx]
+                    return result + sumNodeValue(for: childNode)
+                } else {
+                    return result
+                }
+            }
+        }
     }
 
     func parse(input: String) -> [Int] {

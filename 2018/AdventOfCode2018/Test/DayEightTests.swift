@@ -65,6 +65,14 @@ class DayEightTests: XCTestCase {
         XCTAssertEqual(138, day.metadataSum(for: root))
     }
 
+    func testNodeValueSum() {
+        let day = DayEight()
+        let stream = DayEight.TreeStream(stream: day.parse(input: input))
+        let tree = day.constructTree(stream: stream)
+        let root = tree!.rootNode!
+        XCTAssertEqual(66, day.sumNodeValue(for: root))
+    }
+
     func testNodeConsructionNoChildren() {
         let day = DayEight()
         let stream = DayEight.TreeStream(stream: [0, 3, 10, 11, 12])
