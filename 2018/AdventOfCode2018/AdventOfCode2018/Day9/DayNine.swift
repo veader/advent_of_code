@@ -115,10 +115,9 @@ struct DayNine: AdventDay {
              print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
              return answer
          } else {
-            return 0
-//            let answer = partTwo(tree: tree)
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-//            return answer
+            let answer = partTwo()
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
          }
     }
 
@@ -126,12 +125,9 @@ struct DayNine: AdventDay {
         return play(players: 468, until: 71010)
      }
 
-    /*
-     func partTwo(tree: LicenseTree) -> Int {
-     guard let rootNode = tree.rootNode else { return Int.min }
-     return sumNodeValue(for: rootNode)
+     func partTwo() -> Int {
+        return play(players: 468, until: 71010 * 100)
      }
-     */
 
     func play(players: Int, until lastMarble: Int) -> Int {
         let circle = MarbleCircle()
