@@ -68,19 +68,24 @@ struct DayEleven: AdventDay {
             })
         }
 
-        func calculateMax(size: Int = 3) -> (coordinate: Coordinate, max: Int)? {
-            // map of anchor grid with their total value
-            var subGridTotals = [Coordinate: Int]()
+        typealias PowerGridResponse = (coordinate: Coordinate, max: Int)
+        func calculateMax(size: Int = 3) -> PowerGridResponse? {
+            var maxValue = Int.min
+            var maxAnchor = Coordinate(x: -1, y: -1)
 
             for x in 0..<(gridSize - size) {
                 for y in 0..<(gridSize - size) {
                     let anchor = Coordinate(x: x, y: y)
-                    subGridTotals[anchor] = subGridTotal(size: size, anchor: anchor) 
+                    let max = subGridTotal(size: size, anchor: anchor)
+                    if max > maxValue {
+                        maxValue = max
+                        maxAnchor = anchor
+                    }
+                    // TODO: stop when you start to decrease...
                 }
             }
 
-            guard let max = subGridTotals.max(by: { $0.value < $1.value }) else { return nil }
-            return (coordinate: max.key, max: max.value)
+            return (coordinate: maxAnchor, max: maxValue)
         }
     }
 
@@ -91,10 +96,9 @@ struct DayEleven: AdventDay {
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            return 0
-//            let answer = partTwo(tree: tree)
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-//            return answer
+            let answer = partTwo()
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
         }
     }
 
@@ -103,6 +107,26 @@ struct DayEleven: AdventDay {
         guard let max = grid.calculateMax() else { return Coordinate(x: -1, y: -1) }
         print(max)
         return max.coordinate
+    }
+
+    func partTwo() -> Coordinate {
+        let grid = PowerGrid(serial: 1309)
+
+        var maxValue = Int.min
+        var maxAnchor: Coordinate = Coordinate(x: -1, y: -1)
+
+        for size in 3...300 {
+            if let max = grid.calculateMax(size: size) {
+                print("\(size): \(max)")
+                if max.max > maxValue {
+                    maxValue = max.max
+                    maxAnchor = max.coordinate
+                }
+            }
+        }
+
+        print("\(maxAnchor) \(maxValue)")
+        return maxAnchor
     }
 
     /*
