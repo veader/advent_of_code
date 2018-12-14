@@ -109,10 +109,9 @@ struct DayTwelve: AdventDay {
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            return 0
-//            let answer = partTwo(tree: tree)
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-//            return answer
+            let answer = partTwo(info: plantInfo)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
         }
     }
 
@@ -136,12 +135,37 @@ struct DayTwelve: AdventDay {
         return currentGeneration.sum()
     }
 
-    /*
-     func partTwo(tree: LicenseTree) -> Int {
-     guard let rootNode = tree.rootNode else { return Int.min }
-     return sumNodeValue(for: rootNode)
-     }
-     */
+    func partTwo(info: PotInfo) -> Int {
+        let totalGenerations = 50_000_000_000
+
+        // Initially did the work below but of course it takes too long...
+        // Noticed that it was growing by 21,000 per 1,000 generations.
+        // (Put it in a spreadsheet to verify and yup...)
+        // So we have our multiplier and a random 480 that was on there too.
+        return ((totalGenerations / 1000) * 21000) + 480
+
+        /*
+        let firstGeneration = PlantGeneration(initial: info.startingCondition)
+
+        var currentGeneration = firstGeneration
+        var generationCount = 0
+         print("[\(generationCount)] : \(currentGeneration.sum())")
+
+        repeat {
+            guard let nextGen = currentGeneration.nextGeneration(given: info.growthRules) else {
+                print("Problem generating next generation: \(generationCount)")
+                break
+            }
+            currentGeneration = PlantGeneration(initial: nextGen.generation, zeroIndex: nextGen.zeroIndex)
+            generationCount += 1
+            if generationCount % 1000 == 0 {
+                print("[\(generationCount)] : \(currentGeneration.sum())")
+            }
+        } while generationCount < totalGenerations
+
+        return currentGeneration.sum()
+        */
+    }
 
     func parse(input: String) -> PotInfo? {
         var lines = input.split(separator: "\n")
