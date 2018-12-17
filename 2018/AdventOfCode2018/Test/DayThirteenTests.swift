@@ -169,8 +169,18 @@ class DayThirteenTests: XCTestCase {
                       \\------/
                     """
 
+    let sampleBusyMap = """
+                        />-<\\
+                        |   |
+                        | /<+-\\
+                        | | | v
+                        \\>+</ |
+                          |   ^
+                          \\<->/
+                        """
+
     func testMapInit() {
-        let map = DayThirteen.Map(lines: sampleMapInLines())
+        let map = DayThirteen.Map(lines: lines(from: sampleMap))
         XCTAssertEqual(2, map.carts.count)
         let printableMap = map.printable(showCarts: false)
         // print(printableMap)
@@ -179,14 +189,20 @@ class DayThirteenTests: XCTestCase {
     }
 
     func testMapRun() {
-        var map = DayThirteen.Map(lines: sampleMapInLines())
+        var map = DayThirteen.Map(lines: lines(from: sampleMap))
         let collision = map.startYourEngines()
         XCTAssertEqual(Coordinate(x: 7, y: 3), collision)
     }
 
-    func sampleMapInLines() -> [String] {
-        return sampleMap.split(separator: "\n")
-                        .map(String.init)
-                        .map { $0.trimmingCharacters(in: .newlines) }
+    func testMapRemovalRun() {
+        var map = DayThirteen.Map(lines: lines(from: sampleBusyMap))
+        let lastLocation = map.startYourEngines(removing: true)
+        XCTAssertEqual(Coordinate(x: 6, y: 4), lastLocation)
+    }
+
+    func lines(from source: String) -> [String] {
+        return source.split(separator: "\n")
+                     .map(String.init)
+                     .map { $0.trimmingCharacters(in: .newlines) }
     }
 }

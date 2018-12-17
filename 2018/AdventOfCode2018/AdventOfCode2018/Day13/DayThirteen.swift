@@ -11,7 +11,7 @@ import Foundation
 struct DayThirteen: AdventDay {
     var dayNumber: Int = 13
 
-    struct Cart {
+    struct Cart: Hashable {
         enum Orientation: String, CaseIterable {
             case north = "^"
             case south = "v"
@@ -202,13 +202,20 @@ struct DayThirteen: AdventDay {
             self.carts = theCarts
         }
 
-        /// Move each cart in the proper order to determine where the first crash is...
-        mutating func startYourEngines() -> Coordinate? {
-            var collision: Coordinate? = nil
+        /// Move each cart in the proper order.
+        /// - If `removing` is false, we return the first collision
+        /// - If `removing` is true, we return the location of the last remaining cart
+        mutating func startYourEngines(removing: Bool = false) -> Coordinate? {
+            var lastLocation: Coordinate? = nil
 
-            while collision == nil {
+            while lastLocation == nil {
 //                print(printable(showCarts: true))
 //                print("\n\n")
+
+                if carts.count == 1 {
+                    lastLocation = carts[0].location
+                    break
+                }
 
                 let sortedCarts = carts.sorted(by: {
                     if $0.location.y == $1.location.y {
@@ -218,13 +225,23 @@ struct DayThirteen: AdventDay {
                     }
                 })
 
+                var cartsToRemove: Set<Cart> = Set()
+
                 for var cart in sortedCarts {
                     // make sure we aren't about to hit something...
                     let currentLocations = carts.map { $0.location }
                     let nextLocation = cart.nextLocation
-                    guard !currentLocations.contains(nextLocation) else {
-                        collision = nextLocation
-                        break
+
+                    if currentLocations.contains(nextLocation) {
+                        if removing {
+                            cartsToRemove.insert(cart)
+                            if let collidingCart = carts.first(where: { $0.location == nextLocation }) {
+                                cartsToRemove.insert(collidingCart)
+                            }
+                        } else {
+                            lastLocation = nextLocation // record collision
+                            break
+                        }
                     }
 
                     cart.move(with: segment(at: nextLocation))
@@ -234,9 +251,16 @@ struct DayThirteen: AdventDay {
                         carts[cartIndex] = cart
                     }
                 }
+
+                // cleanup any removed carts (should just be if removing is true)
+                for removedCart in cartsToRemove {
+                    if let cartIndex = carts.firstIndex(where: { $0.identifier == removedCart.identifier }) {
+                        carts.remove(at: cartIndex)
+                    }
+                }
             }
 
-            return collision
+            return lastLocation
         }
 
         func segment(at coordinate: Coordinate) -> String {
@@ -284,10 +308,9 @@ struct DayThirteen: AdventDay {
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            return 0
-//            let answer = partTwo(tree: tree)
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-//            return answer
+            let answer = partTwo(map: map)!
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
         }
     }
 
@@ -296,8 +319,8 @@ struct DayThirteen: AdventDay {
         return map.startYourEngines()
     }
 
-//    func partTwo(tree: LicenseTree) -> Int {
-//        guard let rootNode = tree.rootNode else { return Int.min }
-//        return sumNodeValue(for: rootNode)
-//    }
+    func partTwo(map: Map) -> Coordinate? {
+        var map = map
+        return map.startYourEngines(removing: true)
+    }
 }
