@@ -15,19 +15,27 @@ struct DayFourteen: AdventDay {
         var scores: [Int]
         var firstIndex: Int
         var secondIndex: Int
-        var iterations: Int
 
         init() {
             scores = [3, 7]
             firstIndex = 0
             secondIndex = 1
-            iterations = 0
         }
 
         mutating func generateRecipes(count: Int) {
             while scores.count < count + 1 {
                 generateRecipes()
             }
+        }
+
+        mutating func generateRecipes(until sequence:[Int]) -> Int {
+            var offset: Int? = nil
+            repeat {
+                generateRecipes()
+                offset = contains(subSequence: sequence)
+            } while offset == nil
+
+            return offset!
         }
 
         mutating func generateRecipes() {
@@ -66,7 +74,25 @@ struct DayFourteen: AdventDay {
             guard offset + count < scores.count else { return nil }
             return Array(scores[offset ..< (offset+count)])
         }
-    }
+
+        /// Returns the number of elements before the given subsequence
+        /// - note: Only checks for subsequence at the end +/- 1
+        func contains(subSequence: [Int]) -> Int? {
+            let size = subSequence.count
+            guard scores.count > size else { return nil }
+
+            // should be within the last one or two
+            let suffix = scores.suffix(size + 1)
+
+            if Array(suffix.prefix(size)) == subSequence {
+                return scores.count - (size + 1)
+            } else if Array(suffix.suffix(size)) == subSequence {
+                return scores.count - size
+            }
+
+            return nil
+        }
+     }
 
     @discardableResult func run(_ input: String? = nil, _ part: Int? = 1) -> Any {
         if part == 1 {
@@ -74,10 +100,9 @@ struct DayFourteen: AdventDay {
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            return 0
-//            let answer = partTwo()
-//            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-//            return answer
+            let answer = partTwo()
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
         }
     }
 
@@ -92,5 +117,10 @@ struct DayFourteen: AdventDay {
         }
 
         return scores.compactMap(String.init).joined()
+    }
+
+    func partTwo() -> Int {
+        var scoreboard = RecipesScoreboard()
+        return scoreboard.generateRecipes(until: [6,0,7,3,3,1])
     }
 }

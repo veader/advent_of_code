@@ -81,4 +81,31 @@ class DayFourteenTests: XCTestCase {
         XCTAssertEqual("5941429882", scoreValues)
     }
 
+    func testSubsequenceAfterFive() {
+        var scoreboard = DayFourteen.RecipesScoreboard()
+        let offset = scoreboard.generateRecipes(until: [0,1,2,4,5])
+        XCTAssertEqual(5, offset)
+//        scoreboard.generateRecipes(count: 10)
+//        XCTAssertEqual(5, scoreboard.contains(subSequence: [0,1,2,4,5]))
+    }
+
+    func testSubsequenceAfterNine() {
+        var scoreboard = DayFourteen.RecipesScoreboard()
+        let offset = scoreboard.generateRecipes(until: [5,1,5,8,9])
+        XCTAssertEqual(9, offset)
+//        scoreboard.generateRecipes(count: 13)
+//        XCTAssertEqual(9, scoreboard.contains(subSequence: [5,1,5,8,9]))
+    }
+
+    func testSubsequenceAfterEighteen() {
+        var scoreboard = DayFourteen.RecipesScoreboard()
+        let offset = scoreboard.generateRecipes(until: [9,2,5,1,0])
+        XCTAssertEqual(18, offset)
+    }
+
+    func testSubsequenceAfterLots() {
+        var scoreboard = DayFourteen.RecipesScoreboard()
+        let offset = scoreboard.generateRecipes(until: [5,9,4,1,4])
+        XCTAssertEqual(2018, offset)
+    }
 }
