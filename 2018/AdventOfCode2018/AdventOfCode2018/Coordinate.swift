@@ -8,10 +8,23 @@
 
 import Foundation
 
-public struct Coordinate: Hashable, Equatable {
+protocol CoordinateLike {
+    var x: Int { get }
+    var y: Int { get }
+}
+
+public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugStringConvertible {
     let x: Int
     let y: Int
     let name: String?
+
+    public var debugDescription: String {
+        if let name = name {
+            return "Coordinate(\(x)x\(y) '\(name)')"
+        } else {
+            return "Coordinate(\(x)x\(y))"
+        }
+    }
 
     init(x: Int, y: Int) {
         self.x = x
