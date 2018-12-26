@@ -26,6 +26,18 @@ class DayFifteenTests: XCTestCase {
                 #######
                 """
 
+    let input3 = """
+                #########
+                #G..G..G#
+                #.......#
+                #.......#
+                #G..E..G#
+                #.......#
+                #.......#
+                #G..G..G#
+                #########
+                """
+
     func testMapParsing() {
         let lines = input.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
 
@@ -64,18 +76,111 @@ class DayFifteenTests: XCTestCase {
     }
 
     func testTakeTurn() {
-        let lines = input2.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+        let lines = input3.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
         var map = DayFifteen.CaveMap(input: lines)
+
         map.takeTurn()
+        print(map.printable())
+        print("\n")
+
+        map.takeTurn()
+        print(map.printable())
+        print("\n")
+
+        map.takeTurn()
+        print(map.printable())
+        print("\n")
+    }
+
+    func testRunSimulation1() {
+        let input4 = """
+                #######
+                #.G...#
+                #...EG#
+                #.#.#G#
+                #..G#E#
+                #.....#
+                #######
+                """
+        let lines = input4.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+        var map = DayFifteen.CaveMap(input: lines)
+        let outcome = map.runSimulation()
+        XCTAssertEqual(27730, outcome)
+    }
+
+    func testRunSimulation2() {
+        let input5 = """
+                    #######
+                    #G..#E#
+                    #E#E.E#
+                    #G.##.#
+                    #...#E#
+                    #...E.#
+                    #######
+                    """
+        let lines = input5.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+        var map = DayFifteen.CaveMap(input: lines)
+        let outcome = map.runSimulation()
+        XCTAssertEqual(36334, outcome)
+    }
+
+    func testRunSimulation3() {
+        let input6 = """
+                    #######
+                    #E..EG#
+                    #.#G.E#
+                    #E.##E#
+                    #G..#.#
+                    #..E#.#
+                    #######
+                    """
+        let lines = input6.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+        var map = DayFifteen.CaveMap(input: lines)
+        let outcome = map.runSimulation()
+        XCTAssertEqual(39514, outcome)
+    }
+
+    func testRunSimulation4() {
+        let input7 = """
+                    #######
+                    #E.G#.#
+                    #.#G..#
+                    #G.#.G#
+                    #G..#.#
+                    #...E.#
+                    #######
+                    """
+        let lines = input7.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+        var map = DayFifteen.CaveMap(input: lines)
+        let outcome = map.runSimulation()
+        XCTAssertEqual(27755, outcome)
+    }
+
+    func testRunSimulation5() {
+        let input8 = """
+                    #########
+                    #G......#
+                    #.E.#...#
+                    #..##..G#
+                    #...##..#
+                    #...#...#
+                    #.G...G.#
+                    #.....G.#
+                    #########
+                    """
+        let lines = input8.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+        var map = DayFifteen.CaveMap(input: lines)
+        let outcome = map.runSimulation()
+        XCTAssertEqual(18740, outcome)
     }
 
     func testMoveMap() {
         let lines = input2.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
         let map = DayFifteen.CaveMap(input: lines)
         let elf = map.creatures.first(where: { $0.creatureType == .elf })
-        let destinations = map.nextDestinations(for: elf!)
-        XCTAssertEqual(3, destinations?.count)
-        XCTAssertEqual(Coordinate(x: 3, y: 1), destinations?.first)
+        let mapResonse = map.nextDestinations(for: elf!)
+        XCTAssertEqual(3, mapResonse?.destinations.count)
+        XCTAssertEqual(Coordinate(x: 3, y: 1), mapResonse?.destinations.first)
     }
 
 }

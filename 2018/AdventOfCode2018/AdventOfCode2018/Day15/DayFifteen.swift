@@ -10,13 +10,25 @@ import Foundation
 
 extension Array where Element : CreatureLike {
     func sortedForReadability() -> [Element] {
-        return self.sorted(by: { $0.position.y < $1.position.y && $0.position.x < $1.position.x })
+        return self.sorted(by: {
+            if $0.position.y == $1.position.y {
+                return $0.position.x < $1.position.x
+            } else {
+                return $0.position.y < $1.position.y
+            }
+        })
     }
 }
 
 extension Array where Element : CoordinateLike {
     func sortedForReadability() -> [Element] {
-        return self.sorted(by: { $0.y < $1.y && $0.x < $1.x })
+        return self.sorted(by: {
+            if $0.y == $1.y {
+                return $0.x < $1.x
+            } else {
+                return $0.y < $1.y
+            }
+        })
     }
 }
 
@@ -27,7 +39,7 @@ protocol CreatureLike {
 struct DayFifteen: AdventDay {
     var dayNumber: Int = 15
 
-    struct Creature: CreatureLike, CustomDebugStringConvertible {
+    struct Creature: CreatureLike, CustomDebugStringConvertible, Equatable {
         enum CreatureType: Character {
             case goblin = "G"
             case elf = "E"
@@ -36,7 +48,7 @@ struct DayFifteen: AdventDay {
         let creatureType: CreatureType
         var position: Coordinate
         var hitPoints: Int
-        let attackPower: Int = 3
+        let attackPower: Int
 
         var dead: Bool {
             return hitPoints <= 0
@@ -46,18 +58,19 @@ struct DayFifteen: AdventDay {
             return "Creature(\(creatureType) @ \(position.x)x\(position.y) HP:\(hitPoints))"
         }
 
-        init(type: CreatureType, position: Coordinate) {
+        init(type: CreatureType, position: Coordinate, attackPower: Int = 3) {
             self.creatureType = type
             self.position = position
             self.hitPoints = 200
+            self.attackPower = attackPower
         }
 
         mutating func move(to newLocation: Coordinate) {
             position = newLocation
         }
 
-        mutating func attacked() {
-            hitPoints -= attackPower
+        mutating func attacked(for attack: Int) {
+            hitPoints -= attack
         }
     }
 
@@ -107,12 +120,25 @@ struct DayFifteen: AdventDay {
             })
         }
 
-        func adjacentSpots(around c: Coordinate) -> [Coordinate] {
+        func attackableEnemies(of creature: Creature) -> [Creature]? {
+            let foes = enemies(of: creature)
+            let enemyLocations = Set(foes.map { $0.position })
+            let attackableSpots = adjacentSpots(around: creature.position).intersection(enemyLocations)
+
+            guard !attackableSpots.isEmpty else { return nil }
+
+            let attackableFoes = foes.filter { attackableSpots.contains($0.position) }
+            let lowestHP = attackableFoes.map { $0.hitPoints }.min()
+            let weakestFoes = attackableFoes.filter { $0.hitPoints == lowestHP }
+            return weakestFoes.sortedForReadability()
+        }
+
+        func adjacentSpots(around c: Coordinate) -> Set<Coordinate> {
             let coordinates = [Coordinate(x: c.x, y: c.y - 1),
                                Coordinate(x: c.x, y: c.y + 1),
                                Coordinate(x: c.x - 1, y: c.y),
                                Coordinate(x: c.x + 1, y: c.y)]
-            return coordinates.filter { isValid(location: $0) }
+            return Set(coordinates.filter { isValid(location: $0) })
         }
 
         func emptyAdjacentSpots(around c: Coordinate) -> Set<Coordinate> {
@@ -136,7 +162,13 @@ struct DayFifteen: AdventDay {
                     !creatures.map { $0.position }.contains(c)
         }
 
-        func nextDestinations(for creature: Creature) -> [Coordinate]? {
+        func nextDestinations(for creature: Creature) -> (map: [[Int]], destinations: [Coordinate])? {
+            // make sure we can't already attack anyone... (saves us some work)
+            let foes = enemies(of: creature)
+            let enemyLocations = Set(foes.map { $0.position })
+            let attackableFoeSpots = adjacentSpots(around: creature.position).intersection(enemyLocations)
+            guard attackableFoeSpots.isEmpty else { return nil }
+
             var spotsConsidered = Set<Coordinate>()
             var nextLayer = Set<Coordinate>()
             var destinations = [Coordinate]()
@@ -146,7 +178,7 @@ struct DayFifteen: AdventDay {
             moveMap[creature.position.y][creature.position.x] = 0
 
             // determine the spots adjacent all our enemies so we can identify them early
-            let foes = enemies(of: creature)
+            // let foes = enemies(of: creature)
             let attackingSpots = foes.map { emptyAdjacentSpots(around: $0.position) }.joined()
 
             // we shouldn't be in an attacking spot...
@@ -162,7 +194,7 @@ struct DayFifteen: AdventDay {
             while !nextLayer.isEmpty {
                 var theNewNextLayer = Set<Coordinate>()
 
-                spotsConsidered.formUnion(nextLayer)
+                spotsConsidered = spotsConsidered.union(nextLayer)
 
                 for spot in nextLayer {
                     moveMap[spot.y][spot.x] = moveCount
@@ -174,12 +206,9 @@ struct DayFifteen: AdventDay {
                         // look for the next layer of adjacent spots we haven't already considered
                         var adjacentSpots = emptyAdjacentSpots(around: spot)
                         adjacentSpots.subtract(spotsConsidered)
-                        theNewNextLayer.formUnion(adjacentSpots)
+                        theNewNextLayer = theNewNextLayer.union(adjacentSpots)
                     }
                 }
-
-                print(describing(moveMap: moveMap))
-                print("\n\n")
 
                 // stop as soon as we've hit one or more attacking spots
                 if foundHit {
@@ -190,74 +219,115 @@ struct DayFifteen: AdventDay {
                 moveCount += 1
             }
 
-            return destinations.sortedForReadability()
+            // print(describing(moveMap: moveMap))
+
+            return (map: moveMap, destinations: destinations.sortedForReadability())
         }
 
-        func reachableSpots(from c: Coordinate) -> Set<Coordinate> {
-            var spotsToConsider = Set<Coordinate>()
-            var spotsConsidered = Set<Coordinate>()
-            var reachable = Set<Coordinate>()
+        func traceRoute(from source: Coordinate, to destination: Coordinate, map: [[Int]]) -> [Coordinate] {
+            var route = [Coordinate]()
+            route.append(destination)
 
-            // seed with the spots around this location
-            for spot in emptyAdjacentSpots(around: c) {
-                spotsToConsider.insert(spot)
+            var movableSpots = adjacentSpots(around: destination)
+            while !movableSpots.isEmpty {
+                guard !movableSpots.contains(source) else { break }
+
+                let sorted = Array(movableSpots).sortedForReadability().sorted(by: { map[$0.y][$0.x] < map[$1.y][$1.x] })
+                guard let previousStep = sorted.first else { print("WHAT"); break }
+                route.insert(previousStep, at: 0)
+
+                movableSpots = adjacentSpots(around: previousStep)
             }
 
-            while !spotsToConsider.isEmpty {
-                // consider the first spot in our set
-                let spot = spotsToConsider.removeFirst()
-                spotsConsidered.insert(spot)
+            // TODO: build print method to debug?
 
-                // it's reachable if it's empty
-                if isEmpty(spot) {
-                    reachable.insert(spot)
+            return route
+        }
+
+        mutating func runSimulation() -> Int {
+            var turnCount = 0
+            print("Round \(turnCount):\n\(printable())")
+
+            while !takeTurn() {
+                turnCount += 1
+                print("Round \(turnCount):\n\(printable())")
+            }
+
+            print("Ran \(turnCount) turns")
+            print(printable())
+            print("--------------------------")
+
+            let hpSum = creatures.map { $0.hitPoints }.reduce(0, +)
+            return turnCount * hpSum
+        }
+
+        /// Take a turn in the simulation.
+        /// Runs creature movements and attacks for a single turn.
+        ///
+        /// - returns: Bool - is the simulation complete?
+        @discardableResult mutating func takeTurn() -> Bool {
+            for var creature in creatures.sortedForReadability() {
+                guard !creature.dead else { continue }
+
+                if enemies(of: creature).isEmpty {
+                    print("No enemies left to attack...")
+                    return true
                 }
 
-                // for all nearby spots (based on movement), see if we should consider them
-                for nearbySpot in emptyAdjacentSpots(around: spot) {
-                    if !spotsConsidered.contains(nearbySpot) {
-                        spotsToConsider.insert(nearbySpot)
+                /*if let attackable = attackableEnemies(of: creature),
+                    var foe = attackable.first {
+
+                    print("\(creature) is attacking \(foe)")
+
+                    if let idx = creatures.firstIndex(where: { $0 == foe }) {
+                        foe.attacked(for: creature.attackPower)
+                        if foe.dead {
+                            print("\(foe) is dead!")
+                            creatures.remove(at: idx)
+                        } else {
+                            creatures[idx] = foe
+                        }
+                    }
+                } else { */
+                    // for each creature determine where we should move next
+                    if let mappingResponse = nextDestinations(for: creature) {
+                        if let destination = mappingResponse.destinations.first {
+                            let route = traceRoute(from: creature.position, to: destination, map: mappingResponse.map)
+                            print("Moving \(creature) along \(route)")
+
+                            if let idx = creatures.firstIndex(where: { $0 == creature }),
+                                let newPosition = route.first {
+
+                                creature.move(to: newPosition)
+                                creatures[idx] = creature
+                            } else {
+                                print("Unable to move \(creature)...")
+                            }
+                        } else {
+                            print("No destinations found for \(creature)...")
+                        }
+                    }
+
+                if let attackable = attackableEnemies(of: creature),
+                    var foe = attackable.first {
+
+                    print("\(creature) is attacking \(foe)")
+
+                    if let idx = creatures.firstIndex(where: { $0 == foe }) {
+                        foe.attacked(for: creature.attackPower)
+                        if foe.dead {
+                            print("\(foe) is dead!")
+                            creatures.remove(at: idx)
+                        } else {
+                            creatures[idx] = foe
+                        }
                     }
                 }
+
+                //}
             }
 
-            return reachable
-        }
-
-        mutating func takeTurn() {
-            print(printable())
-
-            for creature in creatures.sortedForReadability() {
-                //
-
-                // find all spot adjacent, reachable to enemies
-                let foes = enemies(of: creature)
-                print("Foes: ----")
-                print(foes)
-                let attackingSpots = foes.map { emptyAdjacentSpots(around: $0.position) }.joined()
-                print("Attacking: ----")
-                print(attackingSpots)
-                let reachable = reachableSpots(from: creature.position)
-                print("Reachable: ----")
-                print(reachable)
-                let spotsToConsider = reachable.intersection(Set(attackingSpots))
-                print("To Consider: ----")
-                print(spotsToConsider)
-
-                // find the one with the shortest open path
-                let sortedSpotToConsider = spotsToConsider.sorted(by: {
-                    creature.position.distance(to: $0) < creature.position.distance(to: $1)
-                })
-
-                print(sortedSpotToConsider)
-
-                // grab the lowest one by distance
-                // determine route there
-                // grab first step
-                // move creature
-
-                // repeat...
-            }
+            return false // not done
         }
 
         func describing(moveMap: [[Int]]) -> String {
@@ -309,31 +379,32 @@ struct DayFifteen: AdventDay {
     }
 
     @discardableResult func run(_ input: String? = nil, _ part: Int? = 1) -> Any {
-        return 0
-        /*
-         guard let input = input ?? defaultInput else {
-         print("Day \(dayNumber): NO INPUT")
-         exit(10)
-         }
+        guard let input = input ?? defaultInput else {
+            print("Day \(dayNumber): NO INPUT")
+            exit(10)
+        }
 
-         if part == 1 {
-         let answer = partOne(tree: tree)
-         print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-         return answer
-         } else {
-         let answer = partTwo(tree: tree)
-         print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-         return answer
-         }
-         */
+        let lines = input.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+        let map = DayFifteen.CaveMap(input: lines)
+
+        if part == 1 {
+            let answer = partOne(map: map)
+            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+            return answer
+        } else {
+            return 0
+//            let answer = partTwo(tree: tree)
+//            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
+//            return answer
+        }
     }
 
-    /*
-     func partOne(tree: LicenseTree) -> Int {
-     guard let rootNode = tree.rootNode else { return Int.min }
-     return metadataSum(for: rootNode)
+     func partOne(map: CaveMap) -> Int {
+        var theMap = map
+        return theMap.runSimulation()
      }
 
+    /*
      func partTwo(tree: LicenseTree) -> Int {
      guard let rootNode = tree.rootNode else { return Int.min }
      return sumNodeValue(for: rootNode)
