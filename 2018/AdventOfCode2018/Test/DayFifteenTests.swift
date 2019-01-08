@@ -10,7 +10,7 @@ import XCTest
 
 class DayFifteenTests: XCTestCase {
 
-    let input = """
+    let input1 = """
                 #######
                 #.G.E.#
                 #E.G.E#
@@ -38,10 +38,14 @@ class DayFifteenTests: XCTestCase {
                 #########
                 """
 
-    func testMapParsing() {
-        let lines = input.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
+    func linesFrom(input: String) -> [String] {
+        return input.split(separator: "\n")
+                    .map(String.init)
+                    .map { $0.trimmingCharacters(in: .newlines) }
+    }
 
-        let map = DayFifteen.CaveMap(input: lines)
+    func testMapParsing() {
+        let map = DayFifteen.CaveMap(input: linesFrom(input: input1))
         XCTAssertEqual(7, map.creatures.count)
         XCTAssertEqual(15, map.map.reduce(0, { result, row in
             return result + row.filter({ $0 == .empty }).count
@@ -56,10 +60,7 @@ class DayFifteenTests: XCTestCase {
     }
 
     func testAdjacentSpots() {
-        let lines = input.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        let lines2 = input2.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-
-        let map = DayFifteen.CaveMap(input: lines)
+        let map = DayFifteen.CaveMap(input: linesFrom(input: input1))
         let c = Coordinate(x: 2, y: 1)
         let emptySpots = map.emptyAdjacentSpots(around: c)
         XCTAssertEqual(3, emptySpots.count)
@@ -67,7 +68,7 @@ class DayFifteenTests: XCTestCase {
         XCTAssert(emptySpots.contains(Coordinate(x: 3, y: 1)))
         XCTAssert(emptySpots.contains(Coordinate(x: 2, y: 2)))
 
-        let map2 = DayFifteen.CaveMap(input: lines2)
+        let map2 = DayFifteen.CaveMap(input: linesFrom(input: input2))
         let c2 = Coordinate(x: 4, y: 1)
         let emptySpots2 = map2.emptyAdjacentSpots(around: c2)
         XCTAssertEqual(2, emptySpots2.count)
@@ -75,9 +76,28 @@ class DayFifteenTests: XCTestCase {
         XCTAssert(emptySpots2.contains(Coordinate(x: 5, y: 1)))
     }
 
+    func testAttackingOrder() {
+        let attackInput = """
+                        #######
+                        #...#E#
+                        #E#...#
+                        #GE##.#
+                        #E..#E#
+                        #.....#
+                        #######
+                        """
+        let map = DayFifteen.CaveMap(input: linesFrom(input: attackInput))
+        let goblin = map.creatures.first(where: { $0.creatureType == .goblin })
+        let mapResponse = map.nextDestinations(for: goblin!)
+        XCTAssertNil(mapResponse)
+
+        let attackResponse = map.attackableEnemies(of: goblin!)
+        XCTAssertEqual(3, attackResponse?.count)
+        XCTAssertEqual(Coordinate(x: 1, y: 2), attackResponse?.first?.position)
+    }
+
     func testTakeTurn() {
-        let lines = input3.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        var map = DayFifteen.CaveMap(input: lines)
+        var map = DayFifteen.CaveMap(input: linesFrom(input: input3))
 
         map.takeTurn()
         print(map.printable())
@@ -102,8 +122,7 @@ class DayFifteenTests: XCTestCase {
                 #.....#
                 #######
                 """
-        let lines = input4.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        var map = DayFifteen.CaveMap(input: lines)
+        var map = DayFifteen.CaveMap(input: linesFrom(input: input4))
         let outcome = map.runSimulation()
         XCTAssertEqual(27730, outcome)
     }
@@ -118,8 +137,7 @@ class DayFifteenTests: XCTestCase {
                     #...E.#
                     #######
                     """
-        let lines = input5.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        var map = DayFifteen.CaveMap(input: lines)
+        var map = DayFifteen.CaveMap(input: linesFrom(input: input5))
         let outcome = map.runSimulation()
         XCTAssertEqual(36334, outcome)
     }
@@ -134,8 +152,7 @@ class DayFifteenTests: XCTestCase {
                     #..E#.#
                     #######
                     """
-        let lines = input6.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        var map = DayFifteen.CaveMap(input: lines)
+        var map = DayFifteen.CaveMap(input: linesFrom(input: input6))
         let outcome = map.runSimulation()
         XCTAssertEqual(39514, outcome)
     }
@@ -150,8 +167,7 @@ class DayFifteenTests: XCTestCase {
                     #...E.#
                     #######
                     """
-        let lines = input7.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        var map = DayFifteen.CaveMap(input: lines)
+        var map = DayFifteen.CaveMap(input: linesFrom(input: input7))
         let outcome = map.runSimulation()
         XCTAssertEqual(27755, outcome)
     }
@@ -168,19 +184,17 @@ class DayFifteenTests: XCTestCase {
                     #.....G.#
                     #########
                     """
-        let lines = input8.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        var map = DayFifteen.CaveMap(input: lines)
+        var map = DayFifteen.CaveMap(input: linesFrom(input: input8))
         let outcome = map.runSimulation()
         XCTAssertEqual(18740, outcome)
     }
 
     func testMoveMap() {
-        let lines = input2.split(separator: "\n").map(String.init).map { $0.trimmingCharacters(in: .newlines) }
-        let map = DayFifteen.CaveMap(input: lines)
+        let map = DayFifteen.CaveMap(input: linesFrom(input: input2))
         let elf = map.creatures.first(where: { $0.creatureType == .elf })
-        let mapResonse = map.nextDestinations(for: elf!)
-        XCTAssertEqual(3, mapResonse?.destinations.count)
-        XCTAssertEqual(Coordinate(x: 3, y: 1), mapResonse?.destinations.first)
+        let mapResponse = map.nextDestinations(for: elf!)
+        XCTAssertEqual(3, mapResponse?.destinations.count)
+        XCTAssertEqual(Coordinate(x: 3, y: 1), mapResponse?.destinations.first)
     }
 
 }

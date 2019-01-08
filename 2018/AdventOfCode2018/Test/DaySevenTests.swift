@@ -70,7 +70,7 @@ class DaySevenTests: XCTestCase {
         let day = DaySeven()
         let instructions = day.parse(input: input)
 
-        let answer = day.work(instructions: instructions, workers: 2, offset: 0) as? Int
+        let answer = day.work(instructions: instructions, workers: 2, offset: 0)
         XCTAssertEqual(15, answer)
     }
 

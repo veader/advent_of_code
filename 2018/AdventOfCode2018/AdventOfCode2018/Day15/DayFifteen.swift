@@ -250,7 +250,7 @@ struct DayFifteen: AdventDay {
 
             while !takeTurn() {
                 turnCount += 1
-                print("Round \(turnCount):\n\(printable())")
+                print("\nRound \(turnCount):\n\(printable())")
             }
 
             print("Ran \(turnCount) turns")
@@ -268,50 +268,42 @@ struct DayFifteen: AdventDay {
         @discardableResult mutating func takeTurn() -> Bool {
             for var creature in creatures.sortedForReadability() {
                 guard !creature.dead else { continue }
+                if !creatures.contains(where: { $0.position == creature.position }) {
+                    continue
+                }
+//                if let c = creatures.first(where: { $0.position == creature.position }) {
+//                    guard !c.dead else { continue }
+//                }
 
                 if enemies(of: creature).isEmpty {
                     print("No enemies left to attack...")
                     return true
                 }
 
-                /*if let attackable = attackableEnemies(of: creature),
-                    var foe = attackable.first {
+                // move first (unless we are in attack range - nil response)
+                if let mappingResponse = nextDestinations(for: creature) {
+                    if let destination = mappingResponse.destinations.first {
+                        let route = traceRoute(from: creature.position, to: destination, map: mappingResponse.map)
+//                        print("Moving \(creature) along \(route)")
 
-                    print("\(creature) is attacking \(foe)")
+                        if let idx = creatures.firstIndex(where: { $0 == creature }),
+                            let newPosition = route.first {
 
-                    if let idx = creatures.firstIndex(where: { $0 == foe }) {
-                        foe.attacked(for: creature.attackPower)
-                        if foe.dead {
-                            print("\(foe) is dead!")
-                            creatures.remove(at: idx)
+                            creature.move(to: newPosition)
+                            creatures[idx] = creature
                         } else {
-                            creatures[idx] = foe
+//                            print("Unable to move \(creature)...")
                         }
+                    } else {
+//                        print("No destinations found for \(creature)...")
                     }
-                } else { */
-                    // for each creature determine where we should move next
-                    if let mappingResponse = nextDestinations(for: creature) {
-                        if let destination = mappingResponse.destinations.first {
-                            let route = traceRoute(from: creature.position, to: destination, map: mappingResponse.map)
-                            print("Moving \(creature) along \(route)")
+                }
 
-                            if let idx = creatures.firstIndex(where: { $0 == creature }),
-                                let newPosition = route.first {
-
-                                creature.move(to: newPosition)
-                                creatures[idx] = creature
-                            } else {
-                                print("Unable to move \(creature)...")
-                            }
-                        } else {
-                            print("No destinations found for \(creature)...")
-                        }
-                    }
-
+                // attack if we are near an ememy
                 if let attackable = attackableEnemies(of: creature),
                     var foe = attackable.first {
 
-                    print("\(creature) is attacking \(foe)")
+//                    print("\(creature) is attacking \(foe)")
 
                     if let idx = creatures.firstIndex(where: { $0 == foe }) {
                         foe.attacked(for: creature.attackPower)
@@ -323,8 +315,6 @@ struct DayFifteen: AdventDay {
                         }
                     }
                 }
-
-                //}
             }
 
             return false // not done
