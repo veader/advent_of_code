@@ -24,7 +24,7 @@ struct DayOne: AdventDay {
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            let answer: String = ""//partTwo(tree: tree)
+            let answer = partTwo(modules)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         }
@@ -36,19 +36,35 @@ struct DayOne: AdventDay {
         }
     }
 
+    func partTwo(_ modules: [Int]) -> Int {
+        return modules.reduce(0) { (result, mass) -> Int in
+            let fuel = fuelForMass(mass)
+            let fuelCost = fuelCostForMass(fuel)
+            return result + fuel + fuelCost
+        }
+    }
+
     func fuelForMass(_ mass: Int) -> Int {
         guard mass > 0 else { return 0 }
 
         var dividedMass: Float = Float(mass) / 3.0
         dividedMass.round(.down)
 
-        return Int(dividedMass) - 2
+        let fuel = Int(dividedMass) - 2
+
+        guard fuel > 0 else { return 0 }
+        return fuel
     }
 
-    /*
-    func partTwo(tree: LicenseTree) -> Int {
-        guard let rootNode = tree.rootNode else { return Int.min }
-        return sumNodeValue(for: rootNode)
+    func fuelCostForMass(_ mass: Int) -> Int {
+        var costs = [Int]()
+        var currentMass = mass
+
+        while currentMass > 0 {
+            currentMass = fuelForMass(currentMass)
+            costs.append(currentMass)
+        }
+
+        return costs.reduce(0, +)
     }
-     */
 }
