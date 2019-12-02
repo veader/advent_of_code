@@ -11,20 +11,20 @@ import XCTest
 class DayTwoTests: XCTestCase {
 
     func testPartOne() {
-        var machine = IntCodeMachine(input: [1,0,0,0,99])
+        var machine = IntCodeMachine(memory: [1,0,0,0,99])
         machine.run()
-        XCTAssertEqual([2,0,0,0,99], machine.ints)
+        XCTAssertEqual([2,0,0,0,99], machine.memory)
 
-        machine = IntCodeMachine(input: [2,3,0,3,99])
+        machine = IntCodeMachine(memory: [2,3,0,3,99])
         machine.run()
-        XCTAssertEqual([2,3,0,6,99], machine.ints)
+        XCTAssertEqual([2,3,0,6,99], machine.memory)
 
-        machine = IntCodeMachine(input: [2,4,4,5,99,0])
+        machine = IntCodeMachine(memory: [2,4,4,5,99,0])
         machine.run()
-        XCTAssertEqual([2,4,4,5,99,9801], machine.ints)
+        XCTAssertEqual([2,4,4,5,99,9801], machine.memory)
 
-        machine = IntCodeMachine(input: [1,1,1,4,99,5,6,0,99])
+        machine = IntCodeMachine(memory: [1,1,1,4,99,5,6,0,99])
         machine.run()
-        XCTAssertEqual([30,1,1,4,2,5,6,0,99], machine.ints)
+        XCTAssertEqual([30,1,1,4,2,5,6,0,99], machine.memory)
     }
 }

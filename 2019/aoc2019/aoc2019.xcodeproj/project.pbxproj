@@ -92,6 +92,7 @@
 				766719372394C0AE00648F48 /* data */,
 				766719482394C1D000648F48 /* day1 */,
 				76D042DF2394D83D00A09228 /* day2 */,
+				76D042EA2395441E00A09228 /* shared */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -132,9 +133,16 @@
 			children = (
 				76D042E02394D84F00A09228 /* README.md */,
 				76D042E12394D86D00A09228 /* DayTwo.swift */,
-				76D042E42394DC8000A09228 /* IntCodeMachine.swift */,
 			);
 			path = day2;
+			sourceTree = "<group>";
+		};
+		76D042EA2395441E00A09228 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				76D042E42394DC8000A09228 /* IntCodeMachine.swift */,
+			);
+			path = shared;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

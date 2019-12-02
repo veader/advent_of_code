@@ -17,59 +17,60 @@ struct DayTwo: AdventDay {
             exit(10)
         }
 
-        let ints = input.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: ",").compactMap { Int($0) }
+        let memory = input.trimmingCharacters(in: .whitespacesAndNewlines)
+                          .split(separator: ",")
+                          .compactMap { Int($0) }
 
         if part == 1 {
-            let answer = partOne(input: ints)
+            let answer = partOne(input: memory)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            let answer = 0 //partTwo(modules)
+            let answer = partTwo(input: memory)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         }
     }
 
     func partOne(input: [Int]) -> Int {
-        var machine = IntCodeMachine(input: input)
+        var machine = IntCodeMachine(memory: input)
+
         // alter values at 1 and 2
-        machine.ints[1] = 12
-        machine.ints[2] = 2
+        machine.store(value: 12, at: 1)
+        machine.store(value: 2, at: 2)
 
         machine.run()
 
-        return machine.ints[0]
+        return machine.memory(at: 0)
     }
 
-    func partTwo(_ modules: [Int]) -> Int {
-        return modules.reduce(0) { (result, mass) -> Int in
-            let fuel = fuelForMass(mass)
-            let fuelCost = fuelCostForMass(fuel)
-            return result + fuel + fuelCost
-        }
-    }
+    func partTwo(input: [Int]) -> Int {
+        var machine: IntCodeMachine
+        let searchResult = 19690720
+        let range = 0...99
 
-    func fuelForMass(_ mass: Int) -> Int {
-        guard mass > 0 else { return 0 }
+        // hack: brute force
+        for noun in range {
+            for verb in range {
+                machine = IntCodeMachine(memory: input)
 
-        var dividedMass: Float = Float(mass) / 3.0
-        dividedMass.round(.down)
+                // alter noun and range
+                machine.store(value: noun, at: 1)
+                machine.store(value: verb, at: 2)
 
-        let fuel = Int(dividedMass) - 2
+                machine.run()
 
-        guard fuel > 0 else { return 0 }
-        return fuel
-    }
+                let result = machine.memory(at: 0)
 
-    func fuelCostForMass(_ mass: Int) -> Int {
-        var costs = [Int]()
-        var currentMass = mass
-
-        while currentMass > 0 {
-            currentMass = fuelForMass(currentMass)
-            costs.append(currentMass)
+                if result == searchResult {
+                    let answerString = "\(String(format: "%02d", noun))\(String(format: "%02d", verb))"
+                    return Int(answerString) ?? 0
+//                } else {
+//                    print("Noun: \(noun) Verb: \(verb) Result: \(result)")
+                }
+            }
         }
 
-        return costs.reduce(0, +)
+        return 0
     }
 }
