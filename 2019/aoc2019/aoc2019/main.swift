@@ -8,6 +8,6 @@
 
 import Foundation
 
-let day = DayOne()
+let day = DayTwo()
 day.run()
-day.run(nil, 2)
+// day.run(nil, 2)
