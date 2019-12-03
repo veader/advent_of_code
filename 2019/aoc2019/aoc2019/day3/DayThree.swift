@@ -12,25 +12,26 @@ struct Wire {
     struct WireSegment {
         let start: Coordinate
         let end: Coordinate
+        let distanceFromOrigin: Int
 
         var xRange: ClosedRange<Int> {
-            let minX = min(start.x, end.x)
-            let maxX = max(start.x, end.x)
-            return minX...maxX
+            min(start.x, end.x)...max(start.x, end.x)
         }
 
         var yRange: ClosedRange<Int> {
-            let minY = min(start.y, end.y)
-            let maxY = max(start.y, end.y)
-            return minY...maxY
+            min(start.y, end.y)...max(start.y, end.y)
+        }
+
+        var length: Int {
+            start.distance(to: end)
         }
 
         var vertical: Bool {
-            return start.x == end.x // x is constant
+            start.x == end.x // x is constant
         }
 
         var horizontal: Bool {
-            return start.y == end.y // y is constant
+            start.y == end.y // y is constant
         }
 
         /// - Note: Assumes both lines are either horizontal or vertical
@@ -58,9 +59,15 @@ struct Wire {
             return nil
         }
 
+        /// Total distance from origin of wire to the intersection point
+        func intersectionDistance(_ segment: WireSegment) -> Int {
+            guard let intersectionCoordinate = intersection(segment) else { return Int.max }
+            return start.distance(to: intersectionCoordinate) + distanceFromOrigin
+        }
+
         /// - Note: Assumes both lines are either horizontal or vertical
         func intersects(_ segment: WireSegment) -> Bool {
-            return intersection(segment) != nil
+            intersection(segment) != nil
         }
 
 //        var slope: Float {
@@ -87,15 +94,17 @@ struct Wire {
 
         var newSegment: WireSegment?
 
+        let distanceFromOrigin = segments.map { $0.length }.reduce(0, +)
+
         switch direction {
         case "U":
-            newSegment = WireSegment(start: start, end: Coordinate(x: start.x, y: start.y + distance))
+            newSegment = WireSegment(start: start, end: Coordinate(x: start.x, y: start.y + distance), distanceFromOrigin: distanceFromOrigin)
         case "D":
-            newSegment = WireSegment(start: start, end: Coordinate(x: start.x, y: start.y - distance))
+            newSegment = WireSegment(start: start, end: Coordinate(x: start.x, y: start.y - distance), distanceFromOrigin: distanceFromOrigin)
         case "L":
-            newSegment = WireSegment(start: start, end: Coordinate(x: start.x + distance, y: start.y))
+            newSegment = WireSegment(start: start, end: Coordinate(x: start.x + distance, y: start.y), distanceFromOrigin: distanceFromOrigin)
         case "R":
-            newSegment = WireSegment(start: start, end: Coordinate(x: start.x - distance, y: start.y))
+            newSegment = WireSegment(start: start, end: Coordinate(x: start.x - distance, y: start.y), distanceFromOrigin: distanceFromOrigin)
         default:
             break
         }
@@ -118,7 +127,10 @@ struct DayThree: AdventDay {
     var dayNumber: Int = 3
 
     func parse(_ input: String?) -> [Wire] {
+        // each line describes a wire's path
         let wireDescriptions = (input ?? "").split(separator: "\n")
+
+        // turn the wire descriptions into Wire structures
         return wireDescriptions.map { line -> Wire in
             var wire = Wire()
 
@@ -149,7 +161,7 @@ struct DayThree: AdventDay {
         // find where each segment of wireA might cross wireB
         let intersections = wireA.segments.flatMap { segment -> [Coordinate] in
             return wireB.segments.compactMap { $0.intersection(segment) }
-        }
+        }.filter { $0 != Coordinate.origin }
 
         // find shortest distance between origin and intersection points
         var distanceHash = [Coordinate: Int]()
@@ -164,6 +176,26 @@ struct DayThree: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let wires = parse(input)
+
+        guard let wireA = wires.first, let wireB = wires.last else {
+            return Int.max
+        }
+
+        var distanceHash = [Coordinate: Int]()
+
+        wireA.segments.forEach { segA in
+            wireB.segments.forEach { segB in
+                if let intersection = segB.intersection(segA), intersection != Coordinate.origin {
+                    // at a point of intersection, calculate distance to start of each wire
+                    let distanceA = segA.intersectionDistance(segB)
+                    let distanceB = segB.intersectionDistance(segA)
+                    // print("Intersection: \(intersection) A:\(distanceA) B:\(distanceB)")
+                    distanceHash[intersection] = distanceA + distanceB
+                }
+            }
+        }
+
+        return distanceHash.min { $0.value < $1.value }?.value ?? Int.max
     }
 }

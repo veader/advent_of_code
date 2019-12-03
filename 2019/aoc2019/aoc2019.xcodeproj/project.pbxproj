@@ -21,6 +21,8 @@
 		76ED708223967AE000566C50 /* DayThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED708123967AE000566C50 /* DayThree.swift */; };
 		76ED708323967AE400566C50 /* DayThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED708123967AE000566C50 /* DayThree.swift */; };
 		76ED70862396900200566C50 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED70852396900200566C50 /* Coordinate.swift */; };
+		76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED70872396AFF600566C50 /* DayThreeTests.swift */; };
+		76ED70892396B07D00566C50 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED70852396900200566C50 /* Coordinate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -55,6 +57,7 @@
 		76ED708123967AE000566C50 /* DayThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThree.swift; sourceTree = "<group>"; };
 		76ED708423968F7200566C50 /* day3input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day3input.txt; sourceTree = "<group>"; };
 		76ED70852396900200566C50 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		76ED70872396AFF600566C50 /* DayThreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThreeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +127,7 @@
 				766719402394C11500648F48 /* Info.plist */,
 				7667194D2394C55F00648F48 /* DayOneTests.swift */,
 				76D042E82394E06100A09228 /* DayTwoTests.swift */,
+				76ED70872396AFF600566C50 /* DayThreeTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -272,8 +276,10 @@
 				76ED708323967AE400566C50 /* DayThree.swift in Sources */,
 				7667194E2394C55F00648F48 /* DayOneTests.swift in Sources */,
 				766719502394C61B00648F48 /* AdventDay.swift in Sources */,
+				76ED70892396B07D00566C50 /* Coordinate.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
+				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

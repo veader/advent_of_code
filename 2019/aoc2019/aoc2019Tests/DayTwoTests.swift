@@ -27,4 +27,16 @@ class DayTwoTests: XCTestCase {
         machine.run()
         XCTAssertEqual([30,1,1,4,2,5,6,0,99], machine.memory)
     }
+
+    func testPartOneAnswer() {
+        let day = DayTwo()
+        let answer = day.run(part: 1) as! Int
+        XCTAssertEqual(9706670, answer)
+    }
+
+    func testPartTwoAnswer() {
+        let day = DayTwo()
+        let answer = day.run(part: 2) as! Int
+        XCTAssertEqual(2552, answer)
+    }
 }

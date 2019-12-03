@@ -19,6 +19,12 @@ class DayOneTests: XCTestCase {
         XCTAssertEqual(33583, day.fuelForMass(100756))
     }
 
+    func testPartOneAnswer() {
+        let day = DayOne()
+        let answer = day.run(part: 1) as! Int
+        XCTAssertEqual(3390596, answer)
+    }
+
     func testPartTwo() {
         let day = DayOne()
 
@@ -30,5 +36,11 @@ class DayOneTests: XCTestCase {
 
         fuel = day.fuelForMass(100756)
         XCTAssertEqual(50346, fuel + day.fuelCostForMass(fuel))
+    }
+
+    func testPartTwoAnswer() {
+        let day = DayOne()
+        let answer = day.run(part: 2) as! Int
+        XCTAssertEqual(5083024, answer)
     }
 }
