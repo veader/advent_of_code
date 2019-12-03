@@ -11,29 +11,15 @@ import Foundation
 struct DayTwo: AdventDay {
     var dayNumber: Int = 2
 
-    @discardableResult func run(_ input: String? = nil, _ part: Int? = 1) -> Any {
-        guard let input = input ?? defaultInput else {
-            print("Day \(dayNumber): NO INPUT")
-            exit(10)
-        }
-
-        let memory = input.trimmingCharacters(in: .whitespacesAndNewlines)
-                          .split(separator: ",")
-                          .compactMap { Int($0) }
-
-        if part == 1 {
-            let answer = partOne(input: memory)
-            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-            return answer
-        } else {
-            let answer = partTwo(input: memory)
-            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-            return answer
-        }
+    func parse(_ input: String?) -> [Int] {
+        return (input ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+                            .split(separator: ",")
+                            .compactMap { Int($0) }
     }
 
-    func partOne(input: [Int]) -> Int {
-        var machine = IntCodeMachine(memory: input)
+    func partOne(input: String?) -> Any {
+        let memory = parse(input)
+        var machine = IntCodeMachine(memory: memory)
 
         // alter values at 1 and 2
         machine.store(value: 12, at: 1)
@@ -44,7 +30,8 @@ struct DayTwo: AdventDay {
         return machine.memory(at: 0)
     }
 
-    func partTwo(input: [Int]) -> Int {
+    func partTwo(input: String?) -> Any {
+        let memory = parse(input)
         var machine: IntCodeMachine
         let searchResult = 19690720
         let range = 0...99
@@ -52,7 +39,7 @@ struct DayTwo: AdventDay {
         // hack: brute force
         for noun in range {
             for verb in range {
-                machine = IntCodeMachine(memory: input)
+                machine = IntCodeMachine(memory: memory)
 
                 // alter noun and range
                 machine.store(value: noun, at: 1)

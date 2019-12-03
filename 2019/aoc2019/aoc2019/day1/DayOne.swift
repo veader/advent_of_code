@@ -11,32 +11,19 @@ import Foundation
 struct DayOne: AdventDay {
     var dayNumber: Int = 1
 
-    @discardableResult func run(_ input: String? = nil, _ part: Int? = 1) -> Any {
-        guard let input = input ?? defaultInput else {
-            print("Day \(dayNumber): NO INPUT")
-            exit(10)
-        }
-
-        let modules = input.split(separator: "\n").compactMap { Int($0) }
-
-        if part == 1 {
-            let answer = partOne(modules)
-            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-            return answer
-        } else {
-            let answer = partTwo(modules)
-            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-            return answer
-        }
+    func parse(_ input: String?) -> [Int] {
+        return (input ?? "").split(separator: "\n").compactMap { Int($0) }
     }
 
-    func partOne(_ modules: [Int]) -> Int {
+    func partOne(input: String?) -> Any {
+        let modules = parse(input)
         return modules.reduce(0) { (result, mass) -> Int in
             result + fuelForMass(mass)
         }
     }
 
-    func partTwo(_ modules: [Int]) -> Int {
+    func partTwo(input: String?) -> Any {
+        let modules = parse(input)
         return modules.reduce(0) { (result, mass) -> Int in
             let fuel = fuelForMass(mass)
             let fuelCost = fuelCostForMass(fuel)

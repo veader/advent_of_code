@@ -12,35 +12,15 @@ import Foundation
 struct EmptyDay: AdventDay {
     var dayNumber: Int = 0
 
-    @discardableResult func run(_ input: String? = nil, _ part: Int? = 1) -> Any {
-        return 0
-        /*
-        guard let input = input ?? defaultInput else {
-            print("Day \(dayNumber): NO INPUT")
-            exit(10)
-        }
-
-        if part == 1 {
-            let answer = partOne(tree: tree)
-            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-            return answer
-        } else {
-            let answer = partTwo(tree: tree)
-            print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
-            return answer
-        }
-         */
-    }
+    // func parse(_ input: String?) -> FOO { return FOO... }
 
     /*
-    func partOne(tree: LicenseTree) -> Int {
-        guard let rootNode = tree.rootNode else { return Int.min }
-        return metadataSum(for: rootNode)
+    func partOne(input: String?) -> Any {
+        return 0
     }
 
-    func partTwo(tree: LicenseTree) -> Int {
-        guard let rootNode = tree.rootNode else { return Int.min }
-        return sumNodeValue(for: rootNode)
+    func partTwo(input: String?) -> Any {
+        return 0
     }
      */
 }

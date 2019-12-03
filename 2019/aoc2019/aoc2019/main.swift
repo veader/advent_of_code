@@ -9,5 +9,5 @@
 import Foundation
 
 let day = DayTwo()
-day.run()
-day.run(nil, 2)
+day.run(part: 1)
+day.run(part: 2)
