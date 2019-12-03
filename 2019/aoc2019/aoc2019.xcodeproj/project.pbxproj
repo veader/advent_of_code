@@ -18,6 +18,9 @@
 		76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D042E42394DC8000A09228 /* IntCodeMachine.swift */; };
 		76D042E72394DC9100A09228 /* DayTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D042E12394D86D00A09228 /* DayTwo.swift */; };
 		76D042E92394E06100A09228 /* DayTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D042E82394E06100A09228 /* DayTwoTests.swift */; };
+		76ED708223967AE000566C50 /* DayThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED708123967AE000566C50 /* DayThree.swift */; };
+		76ED708323967AE400566C50 /* DayThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED708123967AE000566C50 /* DayThree.swift */; };
+		76ED70862396900200566C50 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76ED70852396900200566C50 /* Coordinate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -48,6 +51,10 @@
 		76D042E32394D88700A09228 /* day2input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day2input.txt; sourceTree = "<group>"; };
 		76D042E42394DC8000A09228 /* IntCodeMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntCodeMachine.swift; sourceTree = "<group>"; };
 		76D042E82394E06100A09228 /* DayTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwoTests.swift; sourceTree = "<group>"; };
+		76ED7080239679E900566C50 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76ED708123967AE000566C50 /* DayThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThree.swift; sourceTree = "<group>"; };
+		76ED708423968F7200566C50 /* day3input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day3input.txt; sourceTree = "<group>"; };
+		76ED70852396900200566C50 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,9 +97,10 @@
 			isa = PBXGroup;
 			children = (
 				766719372394C0AE00648F48 /* data */,
+				76D042EA2395441E00A09228 /* shared */,
 				766719482394C1D000648F48 /* day1 */,
 				76D042DF2394D83D00A09228 /* day2 */,
-				76D042EA2395441E00A09228 /* shared */,
+				76ED707F239679CC00566C50 /* day3 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -105,6 +113,7 @@
 			children = (
 				766719492394C20400648F48 /* day1input.txt */,
 				76D042E32394D88700A09228 /* day2input.txt */,
+				76ED708423968F7200566C50 /* day3input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -141,8 +150,18 @@
 			isa = PBXGroup;
 			children = (
 				76D042E42394DC8000A09228 /* IntCodeMachine.swift */,
+				76ED70852396900200566C50 /* Coordinate.swift */,
 			);
 			path = shared;
+			sourceTree = "<group>";
+		};
+		76ED707F239679CC00566C50 /* day3 */ = {
+			isa = PBXGroup;
+			children = (
+				76ED7080239679E900566C50 /* README.md */,
+				76ED708123967AE000566C50 /* DayThree.swift */,
+			);
+			path = day3;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -234,11 +253,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76ED70862396900200566C50 /* Coordinate.swift in Sources */,
 				766719452394C17400648F48 /* AdventDay.swift in Sources */,
 				766719312394C0A500648F48 /* main.swift in Sources */,
 				7667194C2394C22F00648F48 /* DayOne.swift in Sources */,
 				76D042E22394D86D00A09228 /* DayTwo.swift in Sources */,
 				76D042E52394DC8000A09228 /* IntCodeMachine.swift in Sources */,
+				76ED708223967AE000566C50 /* DayThree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -248,6 +269,7 @@
 			files = (
 				76D042E72394DC9100A09228 /* DayTwo.swift in Sources */,
 				76D042E92394E06100A09228 /* DayTwoTests.swift in Sources */,
+				76ED708323967AE400566C50 /* DayThree.swift in Sources */,
 				7667194E2394C55F00648F48 /* DayOneTests.swift in Sources */,
 				766719502394C61B00648F48 /* AdventDay.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
