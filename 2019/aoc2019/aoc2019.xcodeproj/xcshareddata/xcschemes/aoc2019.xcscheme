@@ -63,7 +63,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "PROJECT_DIR"
-            value = "/Users/veader/Code/mine/advent_of_code/2019/aoc2019"
+            value = "$HOME/Code/mine/advent_of_code/2019/aoc2019"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
