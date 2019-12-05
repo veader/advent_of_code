@@ -22,6 +22,22 @@ class DayFourTests: XCTestCase {
         XCTAssertTrue(234456.validPassword)
     }
 
+    func testPartTwoIntExtension() {
+        XCTAssertTrue(112233.extraValidPassword)
+        XCTAssertTrue(111122.extraValidPassword)
+
+        XCTAssertFalse(123444.extraValidPassword) // 4 repeats but not pair
+    }
+
+    func testCollectionExtension() {
+        let collection = [1,1,2,3,3,3,4,5]
+        let dupSequences = collection.duplicateSubSequences()
+        print(dupSequences)
+        XCTAssertEqual(2, dupSequences.count)
+        XCTAssertEqual([1,1], dupSequences.first)
+        XCTAssertEqual([3,3,3], dupSequences.last)
+    }
+
     func testPartOneAnswer() {
         let day = DayFour()
         let answer = day.run(part: 1) as! Int
@@ -30,8 +46,7 @@ class DayFourTests: XCTestCase {
 
     func testPartTwoAnswer() {
         let day = DayFour()
-        XCTAssertTrue(true)
-//        let answer = day.run(part: 2) as! Int
-//        XCTAssertEqual(2552, answer)
+        let answer = day.run(part: 2) as! Int
+        XCTAssertEqual(1111, answer)
     }
 }
