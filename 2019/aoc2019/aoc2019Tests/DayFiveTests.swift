@@ -78,15 +78,120 @@ class DayFiveTests: XCTestCase {
         XCTAssertEqual(1, machine.inputs.count)
     }
 
+    func testEqualityInstructions() {
+        var machine: IntCodeMachine
+
+        // tests if input = 8
+        machine = IntCodeMachine(memory: [3,9,8,9,10,9,4,9,99,-1,8])
+        machine.inputs = [8]
+        machine.run()
+        XCTAssertEqual(1, machine.outputs.last!)
+
+        // tests if input = 8
+        machine = IntCodeMachine(memory: [3,9,8,9,10,9,4,9,99,-1,8])
+        machine.inputs = [9]
+        machine.run()
+        XCTAssertEqual(0, machine.outputs.last!)
+
+        // tests if input < 8
+        machine = IntCodeMachine(memory: [3,9,7,9,10,9,4,9,99,-1,8])
+        machine.inputs = [7]
+        machine.run()
+        XCTAssertEqual(1, machine.outputs.last!)
+
+        // tests if input < 8
+        machine = IntCodeMachine(memory: [3,9,7,9,10,9,4,9,99,-1,8])
+        machine.inputs = [9]
+        machine.run()
+        XCTAssertEqual(0, machine.outputs.last!)
+
+        // tests if input = 8
+        machine = IntCodeMachine(memory: [3,3,1108,-1,8,3,4,3,99])
+        machine.inputs = [8]
+        machine.run()
+        XCTAssertEqual(1, machine.outputs.last!)
+
+        // tests if input = 8
+        machine = IntCodeMachine(memory: [3,3,1108,-1,8,3,4,3,99])
+        machine.inputs = [9]
+        machine.run()
+        XCTAssertEqual(0, machine.outputs.last!)
+
+        // tests if input < 8
+        machine = IntCodeMachine(memory: [3,3,1107,-1,8,3,4,3,999])
+        machine.inputs = [7]
+        machine.run()
+        XCTAssertEqual(1, machine.outputs.last!)
+
+        // tests if input < 8
+        machine = IntCodeMachine(memory: [3,3,1107,-1,8,3,4,3,999])
+        machine.inputs = [9]
+        machine.run()
+        XCTAssertEqual(0, machine.outputs.last!)
+    }
+
+    func testJumpInstructions() {
+        var machine: IntCodeMachine
+
+        // is input 0?
+        machine = IntCodeMachine(memory: [3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9])
+        machine.inputs = [0]
+        machine.run()
+        XCTAssertEqual(0, machine.outputs.last!)
+
+        // is input 0?
+        machine = IntCodeMachine(memory: [3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9])
+        machine.inputs = [2]
+        machine.run()
+        XCTAssertEqual(1, machine.outputs.last!)
+
+        // is input 0?
+        machine = IntCodeMachine(memory: [3,3,1105,-1,9,1101,0,0,12,4,12,99,1])
+        machine.inputs = [0]
+        machine.run()
+        XCTAssertEqual(0, machine.outputs.last!)
+
+        // is input 0?
+        machine = IntCodeMachine(memory: [3,3,1105,-1,9,1101,0,0,12,4,12,99,1])
+        machine.inputs = [2]
+        machine.run()
+        XCTAssertEqual(1, machine.outputs.last!)
+    }
+
+    func testNewInstructionsLargerExample() {
+        let memory = [3,21,1008,21,8,20,1005,20,22,107,8,21,20,1006,20,31,
+                      1106,0,36,98,0,0,1002,21,125,20,4,20,1105,1,46,104,
+                      999,1105,1,46,1101,1000,1,20,4,20,1105,1,46,98,99]
+        var machine: IntCodeMachine
+
+        // < 8 -> 999
+        machine = IntCodeMachine(memory: memory)
+        machine.inputs = [7]
+        machine.run()
+        XCTAssertEqual(999, machine.outputs.last!)
+
+        // = 8 -> 1000
+        machine = IntCodeMachine(memory: memory)
+        machine.inputs = [8]
+        machine.run()
+        XCTAssertEqual(1000, machine.outputs.last!)
+
+        // = 8 -> 1001
+        machine = IntCodeMachine(memory: memory)
+        machine.inputs = [9]
+        machine.run()
+        XCTAssertEqual(1001, machine.outputs.last!)
+    }
+
     func testPartOneAnswer() {
         let day = DayFive()
         let answer = day.run(part: 1) as! Int
         XCTAssertEqual(6069343, answer)
     }
 
-//    func testPartTwoAnswer() {
-//        let day = DayFour()
-//        let answer = day.run(part: 2) as! Int
-//        XCTAssertEqual(1111, answer)
-//    }
+    func testPartTwoAnswer() {
+        let day = DayFive()
+        let answer = day.run(part: 2) as! Int
+        XCTAssertEqual(3188550, answer)
+    }
 }

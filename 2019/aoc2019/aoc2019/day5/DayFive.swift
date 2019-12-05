@@ -24,11 +24,17 @@ struct DayFive: AdventDay {
 
         machine.run()
 
-        // return machine.memory(at: 0)
         return machine.outputs.last ?? 0
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let memory = parse(input)
+        var machine = IntCodeMachine(memory: memory)
+        machine.inputs = [5]
+
+        machine.run()
+
+        // return machine.memory(at: 0)
+        return machine.outputs.last ?? 0
     }
 }

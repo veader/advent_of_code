@@ -15,6 +15,10 @@ struct IntCodeMachine {
             case multiply = 2
             case input = 3
             case output = 4
+            case jumpIfTrue = 5
+            case jumpIfFalse = 6
+            case lessThan = 7
+            case equals = 8
             case terminate = 99
 
             // the following are error cases
@@ -78,14 +82,19 @@ struct IntCodeMachine {
             var paramInfo = [OpCodeParam]()
 
             switch opcode {
-            case .add, .multiply:
+            case .input, .output:
+                // these instructions have 1 param
+                paramInfo.append(OpCodeParam.param(code: Int(String(stringInput.popLast() ?? Character("a"))), offset: 1))
+            case .jumpIfTrue, .jumpIfFalse:
+                // these instructions have 2 params
+                for offset in 1...2 {
+                    paramInfo.append(OpCodeParam.param(code: Int(String(stringInput.popLast() ?? Character("a"))), offset: offset))
+                }
+            case .add, .multiply, .lessThan, .equals:
                 // these instructions have 3 params
                 for offset in 1...3 {
                     paramInfo.append(OpCodeParam.param(code: Int(String(stringInput.popLast() ?? Character("a"))), offset: offset))
                 }
-            case .input, .output:
-                // these instructions have 1 param
-                paramInfo.append(OpCodeParam.param(code: Int(String(stringInput.popLast() ?? Character("a"))), offset: 1))
             default:
                 break // no params
             }
@@ -149,11 +158,8 @@ struct IntCodeMachine {
             }
         }
 
-        if debug {
-            print(heap)
-        }
+        var movedPointer = false
 
-        // TODO: handle param mode
         switch instruction.opcode {
         case .add:
             let value1 = value(at: 0, heap: heap, params: instruction.parameters)
@@ -172,12 +178,36 @@ struct IntCodeMachine {
             let outputValue = value(at: 0, heap: heap, params: instruction.parameters)
             outputs.append(outputValue)
             print("OUTPUT: \(outputValue)")
+        case .jumpIfTrue, .jumpIfFalse:
+            let value1 = value(at: 0, heap: heap, params: instruction.parameters)
+            let value2 = value(at: 1, heap: heap, params: instruction.parameters)
+
+            if case .jumpIfTrue = instruction.opcode, value1 != 0 {
+                instructionPointer = value2
+                movedPointer = true
+            } else if case .jumpIfFalse = instruction.opcode, value1 == 0 {
+                instructionPointer = value2
+                movedPointer = true
+            }
+        case .lessThan, .equals:
+            let value1 = value(at: 0, heap: heap, params: instruction.parameters)
+            let value2 = value(at: 1, heap: heap, params: instruction.parameters)
+
+            if case .lessThan = instruction.opcode, value1 < value2 {
+                store(value: 1, at: heap[2])
+            } else if case .equals = instruction.opcode, value1 == value2 {
+                store(value: 1, at: heap[2])
+            } else {
+                store(value: 0, at: heap[2])
+            }
         default:
             print("This shouldn't be here... \(instruction)")
         }
 
         // move to next instruction
-        instructionPointer = instructionPointer + instruction.offset
+        if !movedPointer {
+            instructionPointer = instructionPointer + instruction.offset
+        }
 
         return instruction
     }
