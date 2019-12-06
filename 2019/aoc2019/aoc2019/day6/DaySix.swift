@@ -52,7 +52,16 @@ struct DaySix: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let descriptions = parse(input)
+        guard
+            let orbitGraph = buildOrbitGraph(with: descriptions),
+            let commonAncestor = orbitGraph.commonAncestor(first: "YOU", second: "SAN"),
+            let youNode = orbitGraph.search(for: "YOU"),
+            let santaNode = orbitGraph.search(for: "SAN")
+            else { return 0 }
+
+        return (santaNode.depth(to: commonAncestor.value) ?? 0) +
+                (youNode.depth(to: commonAncestor.value) ?? 0)
     }
 
     /// Return the parent node of the graph build by processing descriptions

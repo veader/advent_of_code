@@ -34,7 +34,6 @@ class OrbitNode {
     func search(for value: String) -> OrbitNode? {
         guard self.value != value else { return self }
 
-        // return children.compactMap({ $0.search(for: value) }).first
         for child in children {
             if let match = child.search(for: value) {
                 return match
@@ -55,6 +54,34 @@ class OrbitNode {
         }
 
         return path
+    }
+
+    func depth(to node: String) -> Int? {
+        return pathToRoot().firstIndex(where: { $0.value == node })
+    }
+
+    func commonAncestor(first: String, second: String) -> OrbitNode? {
+        guard
+            let firstNode = search(for: first),
+            let secondNode = search(for: second)
+            else { return nil }
+
+        var firstPath = firstNode.pathToRoot()
+        var secondPath = secondNode.pathToRoot()
+
+        var ancestor: OrbitNode?
+
+        // lots of array mutations, should probably do some index stuffs...
+        var tmpFirst = firstPath.popLast()
+        var tmpSecond = secondPath.popLast()
+        while tmpFirst != nil, tmpSecond != nil {
+            guard tmpFirst?.value == tmpSecond?.value else { break }
+            ancestor = tmpFirst
+            tmpFirst = firstPath.popLast()
+            tmpSecond = secondPath.popLast()
+        }
+
+        return ancestor
     }
 }
 

@@ -24,6 +24,22 @@ class DaySixTests: XCTestCase {
                     K)L
                     """
 
+    let testInput2 = """
+                     COM)B
+                     B)C
+                     C)D
+                     D)E
+                     E)F
+                     B)G
+                     G)H
+                     D)I
+                     E)J
+                     J)K
+                     K)L
+                     K)YOU
+                     I)SAN
+                     """
+
     func testOrbitNodeBuilding() {
         let tree = OrbitNode(value: "COM")
 
@@ -97,6 +113,39 @@ class DaySixTests: XCTestCase {
         XCTAssertEqual(2, nodeC.depth)
     }
 
+    func testOrbitCommonAncestor() {
+        let day = DaySix()
+
+        var descriptions = day.parse(testInput)
+        var graph = day.buildOrbitGraph(with: descriptions)
+
+        var ancestor = graph?.commonAncestor(first: "J", second: "G")
+        XCTAssertEqual("B", ancestor?.value)
+
+        ancestor = graph?.commonAncestor(first: "L", second: "I")
+        XCTAssertEqual("D", ancestor?.value)
+
+        ancestor = graph?.commonAncestor(first: "A", second: "Z")
+        XCTAssertNil(ancestor)
+
+        descriptions = day.parse(testInput2)
+        graph = day.buildOrbitGraph(with: descriptions)
+        ancestor = graph?.commonAncestor(first: "YOU", second: "SAN")
+        XCTAssertEqual("D", ancestor?.value)
+    }
+
+    func testOrbitDepthToNode() {
+        let day = DaySix()
+        let descriptions = day.parse(testInput2)
+        let graph = day.buildOrbitGraph(with: descriptions)
+
+        let santaNode: OrbitNode! = graph?.search(for: "SAN")
+        XCTAssertEqual(1, santaNode.depth(to: "D"))
+
+        let youNode: OrbitNode! = graph?.search(for: "YOU")
+        XCTAssertEqual(2, youNode.depth(to: "E"))
+    }
+
     func testOrbitGraphBuilding() {
         let day = DaySix()
         let descriptions = day.parse(testInput)
@@ -108,8 +157,8 @@ class DaySixTests: XCTestCase {
         XCTAssertEqual(2, graph?.search(for: "D")?.children.count)
         XCTAssertEqual(2, graph?.search(for: "E")?.children.count)
 
-        print(graph!)
-        print(graph!.nestedOutput)
+//        print(graph!)
+//        print(graph!.nestedOutput)
     }
 
     func testOrbitChecksum() {
@@ -120,6 +169,12 @@ class DaySixTests: XCTestCase {
         XCTAssertEqual(42, graph!.checksum)
     }
 
+    func testPartTwo() {
+        let day = DaySix()
+        let answer = day.run(part: 2, testInput2) as! Int
+        XCTAssertEqual(4, answer)
+    }
+
     func testPartOneAnswer() {
         let day = DaySix()
         let answer = day.run(part: 1) as! Int
@@ -127,9 +182,8 @@ class DaySixTests: XCTestCase {
     }
 
     func testPartTwoAnswer() {
-        XCTAssert(true)
-//        let day = DayFive()
-//        let answer = day.run(part: 2) as! Int
-//        XCTAssertEqual(3188550, answer)
+        let day = DaySix()
+        let answer = day.run(part: 2) as! Int
+        XCTAssertEqual(340, answer)
     }
 }
