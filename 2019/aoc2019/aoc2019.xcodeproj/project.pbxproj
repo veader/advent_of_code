@@ -36,6 +36,11 @@
 		DCD6BEFE239A7A1C00D80913 /* DaySix.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BEFA239A7A0800D80913 /* DaySix.swift */; };
 		DCD6BF00239A7A3100D80913 /* OrbitNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BEFF239A7A3100D80913 /* OrbitNode.swift */; };
 		DCD6BF01239A7D1400D80913 /* OrbitNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BEFF239A7A3100D80913 /* OrbitNode.swift */; };
+		DCD6BF05239BEE5700D80913 /* DaySeven.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF04239BEE5700D80913 /* DaySeven.swift */; };
+		DCD6BF08239BF2FD00D80913 /* IntCodeInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF07239BF2FD00D80913 /* IntCodeInstruction.swift */; };
+		DCD6BF09239BF31E00D80913 /* IntCodeInstruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF07239BF2FD00D80913 /* IntCodeInstruction.swift */; };
+		DCD6BF0B239C016100D80913 /* DaySevenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF0A239C016100D80913 /* DaySevenTests.swift */; };
+		DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF04239BEE5700D80913 /* DaySeven.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +89,11 @@
 		DCD6BEFA239A7A0800D80913 /* DaySix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySix.swift; sourceTree = "<group>"; };
 		DCD6BEFC239A7A1700D80913 /* DaySixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySixTests.swift; sourceTree = "<group>"; };
 		DCD6BEFF239A7A3100D80913 /* OrbitNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitNode.swift; sourceTree = "<group>"; };
+		DCD6BF03239BEE4D00D80913 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCD6BF04239BEE5700D80913 /* DaySeven.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeven.swift; sourceTree = "<group>"; };
+		DCD6BF06239BEE7500D80913 /* day7input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day7input.txt; sourceTree = "<group>"; };
+		DCD6BF07239BF2FD00D80913 /* IntCodeInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntCodeInstruction.swift; sourceTree = "<group>"; };
+		DCD6BF0A239C016100D80913 /* DaySevenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySevenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,6 +143,7 @@
 				76ED708A2397ECBF00566C50 /* day4 */,
 				DCD6BEEF23994A3F00D80913 /* day5 */,
 				DCD6BEF7239A782200D80913 /* day6 */,
+				DCD6BF02239BEE4200D80913 /* day7 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -148,6 +159,7 @@
 				76ED708423968F7200566C50 /* day3input.txt */,
 				DCD6BEF623994FDB00D80913 /* day5input.txt */,
 				DCD6BEF9239A795E00D80913 /* day6input.txt */,
+				DCD6BF06239BEE7500D80913 /* day7input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -162,6 +174,7 @@
 				76ED70922397EF3F00566C50 /* DayFourTests.swift */,
 				DCD6BEF423994EDC00D80913 /* DayFiveTests.swift */,
 				DCD6BEFC239A7A1700D80913 /* DaySixTests.swift */,
+				DCD6BF0A239C016100D80913 /* DaySevenTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -187,8 +200,9 @@
 		76D042EA2395441E00A09228 /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				76D042E42394DC8000A09228 /* IntCodeMachine.swift */,
 				76ED70852396900200566C50 /* Coordinate.swift */,
+				76D042E42394DC8000A09228 /* IntCodeMachine.swift */,
+				DCD6BF07239BF2FD00D80913 /* IntCodeInstruction.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -229,6 +243,15 @@
 				DCD6BEFF239A7A3100D80913 /* OrbitNode.swift */,
 			);
 			path = day6;
+			sourceTree = "<group>";
+		};
+		DCD6BF02239BEE4200D80913 /* day7 */ = {
+			isa = PBXGroup;
+			children = (
+				DCD6BF03239BEE4D00D80913 /* README.md */,
+				DCD6BF04239BEE5700D80913 /* DaySeven.swift */,
+			);
+			path = day7;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -321,7 +344,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				76ED70862396900200566C50 /* Coordinate.swift in Sources */,
+				DCD6BF08239BF2FD00D80913 /* IntCodeInstruction.swift in Sources */,
 				766719452394C17400648F48 /* AdventDay.swift in Sources */,
+				DCD6BF05239BEE5700D80913 /* DaySeven.swift in Sources */,
 				76ED70902397EE0A00566C50 /* Wire.swift in Sources */,
 				DCD6BEFB239A7A0800D80913 /* DaySix.swift in Sources */,
 				76ED708D2397ED5600566C50 /* DayFour.swift in Sources */,
@@ -344,15 +369,18 @@
 				DCD6BEF323994B6400D80913 /* DayFive.swift in Sources */,
 				DCD6BEFD239A7A1700D80913 /* DaySixTests.swift in Sources */,
 				76ED70932397EF3F00566C50 /* DayFourTests.swift in Sources */,
+				DCD6BF0B239C016100D80913 /* DaySevenTests.swift in Sources */,
 				76D042E92394E06100A09228 /* DayTwoTests.swift in Sources */,
 				76ED708323967AE400566C50 /* DayThree.swift in Sources */,
 				7667194E2394C55F00648F48 /* DayOneTests.swift in Sources */,
 				766719502394C61B00648F48 /* AdventDay.swift in Sources */,
+				DCD6BF09239BF31E00D80913 /* IntCodeInstruction.swift in Sources */,
 				DCD6BEFE239A7A1C00D80913 /* DaySix.swift in Sources */,
 				76ED70892396B07D00566C50 /* Coordinate.swift in Sources */,
 				DCD6BF01239A7D1400D80913 /* OrbitNode.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
 				DCD6BEF523994EDC00D80913 /* DayFiveTests.swift in Sources */,
+				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
 				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,
 				76ED70912397EE0F00566C50 /* Wire.swift in Sources */,

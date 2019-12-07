@@ -11,11 +11,11 @@ import XCTest
 class DayFiveTests: XCTestCase {
 
     func testOpCodeInstructionCreation() {
-        var answer: IntCodeMachine.Instruction
-        var param: IntCodeMachine.Instruction.OpCodeParam
+        var answer: IntCodeInstruction
+        var param: IntCodeInstruction.OpCodeParam
 
         // basic instruction with no param data
-        answer = IntCodeMachine.Instruction(input: 1)
+        answer = IntCodeInstruction(input: 1)
         XCTAssertEqual(.add, answer.opcode)
 
         param = answer.parameters[0]
@@ -41,7 +41,7 @@ class DayFiveTests: XCTestCase {
 
         // -----------------------------
         // full multiply with param data
-        answer = IntCodeMachine.Instruction(input: 1002)
+        answer = IntCodeInstruction(input: 1002)
         XCTAssertEqual(.multiply, answer.opcode)
 
         param = answer.parameters[0] // should be position
@@ -71,9 +71,7 @@ class DayFiveTests: XCTestCase {
         var machine = IntCodeMachine(memory: [3,0])
         machine.inputs = [5,6]
 
-        let stepResult = machine.runStep()
-        XCTAssertEqual(.input, stepResult.opcode)
-
+        machine.runNextInstruction()
         XCTAssertEqual(5, machine.memory(at: 0))
         XCTAssertEqual(1, machine.inputs.count)
     }
