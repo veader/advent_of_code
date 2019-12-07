@@ -11,15 +11,8 @@ import Foundation
 struct DayFive: AdventDay {
     var dayNumber: Int = 5
 
-    func parse(_ input: String?) -> [Int] {
-        return (input ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-            .split(separator: ",")
-            .compactMap { Int($0) }
-    }
-
     func partOne(input: String?) -> Any {
-        let memory = parse(input)
-        var machine = IntCodeMachine(memory: memory)
+        var machine = IntCodeMachine(instructions: input ?? "")
         machine.inputs = [1]
 
         machine.run()
@@ -28,8 +21,7 @@ struct DayFive: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        let memory = parse(input)
-        var machine = IntCodeMachine(memory: memory)
+        var machine = IntCodeMachine(instructions: input ?? "")
         machine.inputs = [5]
 
         machine.run()

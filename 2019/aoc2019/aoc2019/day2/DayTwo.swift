@@ -11,15 +11,8 @@ import Foundation
 struct DayTwo: AdventDay {
     var dayNumber: Int = 2
 
-    func parse(_ input: String?) -> [Int] {
-        return (input ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
-                            .split(separator: ",")
-                            .compactMap { Int($0) }
-    }
-
     func partOne(input: String?) -> Any {
-        let memory = parse(input)
-        var machine = IntCodeMachine(memory: memory)
+        var machine = IntCodeMachine(instructions: input ?? "")
 
         // alter values at 1 and 2
         machine.store(value: 12, at: 1)
@@ -31,7 +24,7 @@ struct DayTwo: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        let memory = parse(input)
+        let memory = IntCodeMachine.parse(instructions: input ?? "")
         var machine: IntCodeMachine
         let searchResult = 19690720
         let range = 0...99

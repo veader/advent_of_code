@@ -251,4 +251,16 @@ extension IntCodeMachine {
         instructionPointer = 0
         self.internalMemory = memory
     }
+
+    init(instructions: String) {
+        instructionPointer = 0
+        internalMemory = IntCodeMachine.parse(instructions: instructions)
+    }
+
+    static func parse(instructions: String) -> [Int] {
+        return instructions
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+                .split(separator: ",")
+                .compactMap { Int($0) }
+    }
 }
