@@ -27,14 +27,6 @@ struct OrbitDescription {
     }
 }
 
-extension OrbitNode {
-    var checksum: Int {
-        children.reduce(self.depth) { result, child -> Int in
-            result + child.checksum
-        }
-    }
-}
-
 struct DaySix: AdventDay {
     var dayNumber: Int = 6
 

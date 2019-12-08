@@ -85,6 +85,14 @@ class OrbitNode {
     }
 }
 
+extension OrbitNode {
+    var checksum: Int {
+        children.reduce(self.depth) { result, child -> Int in
+            result + child.checksum
+        }
+    }
+}
+
 extension OrbitNode: CustomDebugStringConvertible {
     var debugDescription: String {
         return "[\(value): {" +

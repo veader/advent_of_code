@@ -44,6 +44,12 @@
 		DCD6BF10239CC0BC00D80913 /* DayEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF0F239CC0BC00D80913 /* DayEight.swift */; };
 		DCD6BF12239CC0CD00D80913 /* DayEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF0F239CC0BC00D80913 /* DayEight.swift */; };
 		DCD6BF14239D2FB700D80913 /* DayEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF13239D2FB700D80913 /* DayEightTests.swift */; };
+		DCD6BF16239D49BC00D80913 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF15239D49BC00D80913 /* Array.swift */; };
+		DCD6BF18239D49D000D80913 /* AmpCircuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF17239D49D000D80913 /* AmpCircuit.swift */; };
+		DCD6BF19239D49F100D80913 /* AmpCircuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF17239D49D000D80913 /* AmpCircuit.swift */; };
+		DCD6BF1A239D49F400D80913 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF15239D49BC00D80913 /* Array.swift */; };
+		DCD6BF1C239D4A0200D80913 /* SpaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */; };
+		DCD6BF1D239D4A0200D80913 /* SpaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,6 +107,9 @@
 		DCD6BF0F239CC0BC00D80913 /* DayEight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEight.swift; sourceTree = "<group>"; };
 		DCD6BF11239CC0C700D80913 /* day8input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day8input.txt; sourceTree = "<group>"; };
 		DCD6BF13239D2FB700D80913 /* DayEightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEightTests.swift; sourceTree = "<group>"; };
+		DCD6BF15239D49BC00D80913 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		DCD6BF17239D49D000D80913 /* AmpCircuit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmpCircuit.swift; sourceTree = "<group>"; };
+		DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +222,7 @@
 				76ED70852396900200566C50 /* Coordinate.swift */,
 				76D042E42394DC8000A09228 /* IntCodeMachine.swift */,
 				DCD6BF07239BF2FD00D80913 /* IntCodeInstruction.swift */,
+				DCD6BF15239D49BC00D80913 /* Array.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -260,6 +270,7 @@
 			children = (
 				DCD6BF03239BEE4D00D80913 /* README.md */,
 				DCD6BF04239BEE5700D80913 /* DaySeven.swift */,
+				DCD6BF17239D49D000D80913 /* AmpCircuit.swift */,
 			);
 			path = day7;
 			sourceTree = "<group>";
@@ -269,6 +280,7 @@
 			children = (
 				DCD6BF0E239CC0B300D80913 /* README.md */,
 				DCD6BF0F239CC0BC00D80913 /* DayEight.swift */,
+				DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */,
 			);
 			path = day8;
 			sourceTree = "<group>";
@@ -367,8 +379,10 @@
 				766719452394C17400648F48 /* AdventDay.swift in Sources */,
 				DCD6BF05239BEE5700D80913 /* DaySeven.swift in Sources */,
 				76ED70902397EE0A00566C50 /* Wire.swift in Sources */,
+				DCD6BF16239D49BC00D80913 /* Array.swift in Sources */,
 				DCD6BEFB239A7A0800D80913 /* DaySix.swift in Sources */,
 				76ED708D2397ED5600566C50 /* DayFour.swift in Sources */,
+				DCD6BF1C239D4A0200D80913 /* SpaceImage.swift in Sources */,
 				DCD6BEF223994A5600D80913 /* DayFive.swift in Sources */,
 				766719312394C0A500648F48 /* main.swift in Sources */,
 				DCD6BF10239CC0BC00D80913 /* DayEight.swift in Sources */,
@@ -376,6 +390,7 @@
 				DCD6BF00239A7A3100D80913 /* OrbitNode.swift in Sources */,
 				76D042E22394D86D00A09228 /* DayTwo.swift in Sources */,
 				76D042E52394DC8000A09228 /* IntCodeMachine.swift in Sources */,
+				DCD6BF18239D49D000D80913 /* AmpCircuit.swift in Sources */,
 				76ED708223967AE000566C50 /* DayThree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -400,11 +415,14 @@
 				76ED70892396B07D00566C50 /* Coordinate.swift in Sources */,
 				DCD6BF01239A7D1400D80913 /* OrbitNode.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
+				DCD6BF1D239D4A0200D80913 /* SpaceImage.swift in Sources */,
 				DCD6BEF523994EDC00D80913 /* DayFiveTests.swift in Sources */,
 				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
 				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,
 				DCD6BF14239D2FB700D80913 /* DayEightTests.swift in Sources */,
+				DCD6BF1A239D49F400D80913 /* Array.swift in Sources */,
+				DCD6BF19239D49F100D80913 /* AmpCircuit.swift in Sources */,
 				76ED70912397EE0F00566C50 /* Wire.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
