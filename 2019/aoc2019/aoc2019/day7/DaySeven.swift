@@ -8,20 +8,36 @@
 
 import Foundation
 
-struct Amp {
+class Amp {
     let phase: Int
     let memory: [Int]
+    var machine: IntCodeMachine
 
-    mutating func process(signal input: Int) -> Int {
-        var machine = IntCodeMachine(memory: memory)
-        machine.inputs = [phase, input]
+    init(phase: Int, memory: [Int]) {
+        self.phase = phase
+        self.memory = memory
+
+        machine = IntCodeMachine(memory: memory)
+        machine.inputs = [phase]
+    }
+
+    func process(signal input: Int) -> Int {
+        machine.set(input: input)
         machine.run()
 
         if case .finished(output: let output) = machine.state {
+            // print("Finished with output: \(output)")
             return output
+        } else if case .awaitingInput = machine.state {
+            guard machine.outputs.count > 0 else {
+                print("Machine awaiting input but has no output to give...")
+                return -1
+            }
+            return machine.outputs.last ?? -1
         } else {
             print("Machine not in finished state... \(machine.state)")
-            return -1
+            print("Available outputs: \(machine.outputs)")
+            return -2
         }
     }
 }
@@ -31,10 +47,24 @@ struct AmpCircuit {
     let sequence: [Int]
 
     func process() -> Int {
-        return sequence.reduce(0) { input, phase -> Int in
-            var amp = Amp(phase: phase, memory: memory)
-            return amp.process(signal: input)
+        // create our series of amps
+        let amps = sequence.map { Amp(phase: $0, memory: memory) }
+        let lastAmp: Amp! = amps.last // a bit dangerous
+
+        var signal = 0 // start with 0
+        var finished = false
+
+        while !finished {
+            amps.forEach { amp in
+                signal = amp.process(signal: signal)
+            }
+
+            if case .finished(_) = lastAmp.machine.state {
+                finished = true
+            }
         }
+
+        return signal
     }
 }
 
@@ -72,10 +102,11 @@ struct DaySeven: AdventDay {
 
     func partOne(input: String?) -> Any {
         let memory = IntCodeMachine.parse(instructions: input ?? "")
-        return max(mutating: Array(0..<5), memory: memory)
+        return max(mutating: Array(0..<5), memory: memory) // 0 -> 4
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let memory = IntCodeMachine.parse(instructions: input ?? "")
+        return max(mutating: Array(5..<10), memory: memory) // 5 -> 9
     }
 }
