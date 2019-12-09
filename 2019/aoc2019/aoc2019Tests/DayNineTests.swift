@@ -33,7 +33,6 @@ class DayNineTests: XCTestCase {
 
         let copyInstructions = "109,1,204,-1,1001,100,1,100,1008,100,16,101,1006,101,0,99"
         machine = IntCodeMachine(instructions: copyInstructions)
-        machine.debug = true
         machine.run()
         XCTAssertEqual(copyInstructions, machine.outputs.map(String.init).joined(separator: ","))
 
@@ -54,8 +53,9 @@ class DayNineTests: XCTestCase {
 
     func testPartTwoAnswer() {
         XCTAssert(true)
+        // commented out because of how long it takes to run
 //        let day = DayNine()
 //        let answer = day.run(part: 2) as! Int
-//        XCTAssertEqual(34579864, answer)
+//        XCTAssertEqual(64236, answer)
     }
 }

@@ -22,6 +22,10 @@ struct DayNine: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let machine = IntCodeMachine(instructions: input ?? "")
+        machine.inputs = [2]
+        machine.run()
+
+        return machine.outputs.last ?? 0
     }
 }
