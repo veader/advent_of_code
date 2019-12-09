@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct IntCodeMachine {
+class IntCodeMachine {
     enum State {
         case halted  /// no instructions have been run
         case running /// started running an instruction
@@ -18,15 +18,36 @@ struct IntCodeMachine {
     }
 
     // MARK: - Properties
+
+    /// Internal (protected) memory used when running the machine
     private var internalMemory: [Int]
+
+    /// Contents of memory (read only) for external use.
     var memory: [Int] {
         get { return internalMemory }
     }
 
-    var instructionPointer: Int
-    var inputs = [Int]()
-    var outputs = [Int]()
+    /// Memory used when accessing outside of the original memory space.
+    /// Stored with address as the key.
+    private var overflowMemory: [Int: Int]
 
+    /// Location (in memory space) of the current instruction
+    var instructionPointer: Int
+
+    /// Collection of inputs to use as required.
+    /// If no inputs are found, the machine will sit waiting for input.
+    var inputs: [Int] = [Int]()
+
+    /// Collections of outputs given over the course of the machine's run.
+    var outputs: [Int] = [Int]()
+
+    /// Relative base used for instructions in relative mode.
+    var relativeBase: Int = 0
+
+    /// Should extra information be printed for debugging?
+    var debug: Bool = false
+
+    /// Current state of this machine.
     var state: IntCodeMachine.State = .halted {
         didSet {
             if case .running = self.state {
@@ -35,7 +56,19 @@ struct IntCodeMachine {
         }
     }
 
-    var debug: Bool = false
+
+    // MARK: - Inits
+    init(memory: [Int]) {
+        instructionPointer = 0
+        overflowMemory = [Int: Int]()
+        internalMemory = memory
+    }
+
+    init(instructions: String) {
+        instructionPointer = 0
+        overflowMemory = [Int: Int]()
+        internalMemory = IntCodeMachine.parse(instructions: instructions)
+    }
 
 
     // MARK: - Static Methods
@@ -48,21 +81,22 @@ struct IntCodeMachine {
 
 
     // MARK: - Public Methods
-    mutating func run() {
+    func run() {
         state = .running
     }
 
     /// Run the next
-    mutating func runNextInstruction() {
+    func runNextInstruction() {
         // read instruction
         let instruction = currentInstruction()
 
-        if debug {
-            print("+==================================================================")
-            print("| Running step: Position: \(instructionPointer)")
+        printDebug("+==================================================================")
+        printDebug("| Running step: Position: \(instructionPointer)")
+        printDebug("| Instruction: \(instruction)")
+        printDebug("| Memory Size: \(memory.count)")
+        printDebug("| Overflow Memory: \(overflowMemory)")
+        printDebug("| Relative Base: \(relativeBase)")
             // print(memory)
-            print("| Instruction: \(instruction)")
-        }
 
         // terminate at the end or bogus instruction
         guard
@@ -73,66 +107,69 @@ struct IntCodeMachine {
                 return
             }
 
-        // read values into the heap
-        let heap = instruction.parameters.map { param -> Int in
-            switch param {
-            case .position(offset: let offset):
-                // in position mode, memory location needs to be dereferenced when used
-                return memory(at: instructionPointer + offset)
-                // return memory(at: memAddress)
-            case .immediate(offset: let offset):
-                return memory(at: instructionPointer + offset)
-            }
-        }
+        printDebug("| Mem Slice: \(memory[instructionPointer..<(instructionPointer + instruction.offset)])")
 
         var movedPointer = false
 
         switch instruction.opcode {
         case .add:
-            let value1 = value(at: 0, heap: heap, params: instruction.parameters)
-            let value2 = value(at: 1, heap: heap, params: instruction.parameters)
+            let value1 = value(for: instruction.parameters[0])
+            let value2 = value(for: instruction.parameters[1])
+            let storeAddr = address(for: instruction.parameters[2])
 
-            store(value: value1 + value2, at: heap[2])
+            store(value: value1 + value2, at: storeAddr)
         case .multiply:
-            let value1 = value(at: 0, heap: heap, params: instruction.parameters)
-            let value2 = value(at: 1, heap: heap, params: instruction.parameters)
+            let value1 = value(for: instruction.parameters[0])
+            let value2 = value(for: instruction.parameters[1])
+            let storeAddr = address(for: instruction.parameters[2])
 
-            store(value: value1 * value2, at: heap[2])
+            store(value: value1 * value2, at: storeAddr)
         case .input:
             guard let input = gatherInput() else {
                 // stop processing and leave the machine in current configuration
                 state = .awaitingInput
                 return
             }
-            store(value: input, at: heap[0])
+
+            let storeAddr = address(for: instruction.parameters[0])
+            store(value: input, at: storeAddr)
         case .output:
-            let outputValue = value(at: 0, heap: heap, params: instruction.parameters)
+            let outputValue = value(for: instruction.parameters[0])
             outputs.append(outputValue)
             print("OUTPUT: \(outputValue)")
         case .jumpIfTrue, .jumpIfFalse:
-            let value1 = value(at: 0, heap: heap, params: instruction.parameters)
-            let value2 = value(at: 1, heap: heap, params: instruction.parameters)
+            let value1 = value(for: instruction.parameters[0])
+            let value2 = value(for: instruction.parameters[1])
 
             if case .jumpIfTrue = instruction.opcode, value1 != 0 {
+                printDebug("Jumping to \(value2)")
                 instructionPointer = value2
                 movedPointer = true
             } else if case .jumpIfFalse = instruction.opcode, value1 == 0 {
+                printDebug("Jumping to \(value2)")
                 instructionPointer = value2
                 movedPointer = true
             }
         case .lessThan, .equals:
-            let value1 = value(at: 0, heap: heap, params: instruction.parameters)
-            let value2 = value(at: 1, heap: heap, params: instruction.parameters)
+            let value1 = value(for: instruction.parameters[0])
+            let value2 = value(for: instruction.parameters[1])
+            let storeAddr = address(for: instruction.parameters[2])
 
             if case .lessThan = instruction.opcode, value1 < value2 {
-                store(value: 1, at: heap[2])
+                store(value: 1, at: storeAddr)
             } else if case .equals = instruction.opcode, value1 == value2 {
-                store(value: 1, at: heap[2])
+                store(value: 1, at: storeAddr)
             } else {
-                store(value: 0, at: heap[2])
+                store(value: 0, at: storeAddr)
             }
-        default:
-            print("This shouldn't be here... \(instruction)")
+        case .adjustRelativeBase:
+            let value1 = value(for: instruction.parameters[0])
+            printDebug("Adjusting relative base: from \(relativeBase) to \(relativeBase + value1)")
+            relativeBase += value1
+        case .terminate, .error:
+            break // nothing to do here
+        case .unknownInstruction:
+            print("Unknown: \(instruction)")
         }
 
         // move to next instruction
@@ -144,26 +181,47 @@ struct IntCodeMachine {
     /// What is the memory value at a given location?
     /// - parameters:
     ///     - position: Memory location
-    /// - returns: Value of memory location. `-1` on unknown location
+    /// - returns: Value of memory location. `-1` for negative address
     func memory(at position: Int) -> Int {
-        guard internalMemory.indices.contains(position) else { return -1 }
-        return internalMemory[position]
+        guard position >= 0 else {
+            printDebug("ERROR: Attempted to read from address \(position)")
+            return -1
+        }
+
+        if internalMemory.indices.contains(position) {
+            printDebug("Read \(internalMemory[position]) from address: \(position)")
+            return internalMemory[position]
+        } else if overflowMemory.keys.contains(position) {
+            printDebug("Read \(overflowMemory[position] ?? 0) from address: \(position)")
+            return overflowMemory[position] ?? 0
+        }
+
+        return 0 // assume uninitialized memory
     }
 
     /// Store a value into the machine's memory at a given position.
     /// - parameters:
     ///     - value: Value to store in memory
     ///     - position: Memory location
-    mutating func store(value: Int, at position: Int) {
-        guard internalMemory.indices.contains(position) else { return }
-        internalMemory[position] = value
+    func store(value: Int, at position: Int) {
+        printDebug("Storing \(value) at address: \(position)")
+        guard position >= 0 else {
+            printDebug("ERROR: Attempted to store to address \(position)")
+            return
+        }
+
+        if internalMemory.indices.contains(position) {
+            internalMemory[position] = value
+        } else {
+            overflowMemory[position] = value
+        }
     }
 
     /// Give input to the machine.
     /// If the machine is waiting for input, it will continue to run again.
     /// - parameters:
     ///     - input: Input to give to the machine
-    mutating func set(input: Int) {
+    func set(input: Int) {
         inputs.append(input)
 
         // if the machine is awaiting input, kick it off again
@@ -172,46 +230,66 @@ struct IntCodeMachine {
         }
     }
 
+    /// Attempts to reset the machine.
+    /// Instruction pointer, relative base, and outputs reset.
+    /// - warning: The memory is not reset, use with caution
+    func reset() {
+        instructionPointer = 0
+        relativeBase = 0
+        outputs = [Int]()
+    }
+
 
     // MARK: - Private Methods
-    private mutating func runloop() {
+    private func runloop() {
         while case .running = self.state {
             runNextInstruction()
         }
     }
 
-    private func value(at index: Int, heap: [Int], params: [IntCodeInstruction.OpCodeParam]) -> Int {
-        var value = heap[index]
-        if case .position(offset: _) = params[index] {
-            value = memory(at: value)
+    private func address(for param: IntCodeInstruction.OpCodeParam) -> Int {
+        switch param {
+        case .position(offset: let offset):
+            // in position mode, memory location needs to be dereferenced when used
+            return memory(at: instructionPointer + offset)
+        case .immediate(offset: let offset):
+            return instructionPointer + offset
+        case .relative(offset: let offset):
+            // in relative mode, the contents of this memory location should be used in conjunction with relativeBase
+            return memory(at: instructionPointer + offset) + relativeBase
         }
-
-        return value
     }
 
-    private mutating func gatherInput() -> Int? {
+    private func value(for param: IntCodeInstruction.OpCodeParam) -> Int {
+        let addr = address(for: param)
+        switch param {
+        case .position(offset: _):
+            return memory(at: addr)
+        case .immediate(offset: _):
+            return memory(at: addr)
+        case .relative(offset: _):
+            return memory(at: addr)
+        }
+    }
+
+    private func gatherInput() -> Int? {
         guard !inputs.isEmpty else { return nil }
         return inputs.removeFirst()
     }
 
     private func currentInstruction() -> IntCodeInstruction {
+        // TODO: can the instruction pointer move into overflow memory?
+
         guard
             memory.indices.contains(instructionPointer)
             else { return IntCodeInstruction(opcode: .unknownInstruction) }
 
         return IntCodeInstruction(input: memory[instructionPointer])
     }
-}
 
-// MARK: - Init Extension
-extension IntCodeMachine {
-    init(memory: [Int]) {
-        instructionPointer = 0
-        self.internalMemory = memory
-    }
-
-    init(instructions: String) {
-        instructionPointer = 0
-        internalMemory = IntCodeMachine.parse(instructions: instructions)
+    private func printDebug(_ output: String) {
+        if debug {
+            print(output)
+        }
     }
 }

@@ -18,22 +18,25 @@ struct IntCodeInstruction {
         case jumpIfFalse = 6
         case lessThan = 7
         case equals = 8
+        case adjustRelativeBase = 9
         case terminate = 99
 
         // the following are error cases
         case error = -1
         case unknownInstruction = -2
-        case awaitingInput = -3
     }
 
     enum OpCodeParam {
         case position(offset: Int)
         case immediate(offset: Int)
+        case relative(offset: Int)
 
         static func param(code: Int? = 0, offset: Int) -> OpCodeParam {
             switch code {
             case 1:
                 return .immediate(offset: offset)
+            case 2:
+                return .relative(offset: offset)
             default:
                 return .position(offset: offset)
             }
@@ -42,6 +45,7 @@ struct IntCodeInstruction {
 
     let opcode: OpCode
     let parameters: [OpCodeParam]
+    var rawInput: Int?
 
     /// Offset to jump to reach the next instruction
     var offset: Int {
@@ -60,6 +64,7 @@ struct IntCodeInstruction {
         //    - then 1 char (1) for 2nd param should be in immidate mode
         //    - then 3rd param should default to position mode
 
+        rawInput = input
         var rawOpCode: Int
 
         var stringInput = String(input)
@@ -82,7 +87,7 @@ struct IntCodeInstruction {
         var paramInfo = [OpCodeParam]()
 
         switch opcode {
-        case .input, .output:
+        case .input, .output, .adjustRelativeBase:
             // these instructions have 1 param
             paramInfo.append(OpCodeParam.param(code: Int(String(stringInput.popLast() ?? Character("a"))), offset: 1))
         case .jumpIfTrue, .jumpIfFalse:
@@ -95,10 +100,71 @@ struct IntCodeInstruction {
             for offset in 1...3 {
                 paramInfo.append(OpCodeParam.param(code: Int(String(stringInput.popLast() ?? Character("a"))), offset: offset))
             }
-        default:
-            break // no params
+        case .terminate, .error, .unknownInstruction:
+            break // no parameters
         }
 
         parameters = paramInfo
+    }
+}
+
+extension IntCodeInstruction: CustomStringConvertible {
+    var description: String {
+        var typeString = ""
+        switch opcode {
+        case .add:
+            typeString = "Add"
+        case .multiply:
+            typeString = "Multiply"
+        case .input:
+            typeString = "Input"
+        case .output:
+            typeString = "Output"
+        case .jumpIfTrue:
+            typeString = "JumpIfTrue"
+        case .jumpIfFalse:
+            typeString = "JumpIfFalse"
+        case .lessThan:
+            typeString = "LessThan"
+        case .equals:
+            typeString = "Equals"
+        case .adjustRelativeBase:
+            typeString = "AdjustRelativeBase"
+        case .terminate:
+            typeString = "Terminate"
+        case .error:
+            typeString = "Error"
+        case .unknownInstruction:
+            typeString = "UnknownInstruction"
+        }
+
+        var output = "Instruction.\(typeString)("
+        if let raw = rawInput {
+            output += "raw: \(raw), "
+        }
+        output += "parameters: [\(parameters.map { $0.description }.joined(separator: ", "))]"
+        output += ")"
+        return output
+    }
+}
+
+extension IntCodeInstruction.OpCodeParam: CustomStringConvertible {
+    var description: String {
+        var typeString = ""
+        var theOffset: Int
+
+        switch self {
+        case .immediate(offset: let offset):
+            typeString = "Immediate"
+            theOffset = offset
+        case .position(offset: let offset):
+            typeString = "Position"
+            theOffset = offset
+        case .relative(offset: let offset):
+            typeString = "Relative"
+            theOffset = offset
+        }
+
+        return "Param.\(typeString)(offset: \(theOffset))"
     }
 }

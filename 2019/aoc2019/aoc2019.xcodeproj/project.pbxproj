@@ -50,6 +50,9 @@
 		DCD6BF1A239D49F400D80913 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF15239D49BC00D80913 /* Array.swift */; };
 		DCD6BF1C239D4A0200D80913 /* SpaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */; };
 		DCD6BF1D239D4A0200D80913 /* SpaceImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */; };
+		DCD6BF21239E7A0700D80913 /* DayNine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF20239E7A0700D80913 /* DayNine.swift */; };
+		DCD6BF22239E7A3800D80913 /* DayNine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF20239E7A0700D80913 /* DayNine.swift */; };
+		DCD6BF25239E7E9600D80913 /* DayNineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF24239E7E9600D80913 /* DayNineTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +113,10 @@
 		DCD6BF15239D49BC00D80913 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		DCD6BF17239D49D000D80913 /* AmpCircuit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmpCircuit.swift; sourceTree = "<group>"; };
 		DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceImage.swift; sourceTree = "<group>"; };
+		DCD6BF1F239E7A0000D80913 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCD6BF20239E7A0700D80913 /* DayNine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNine.swift; sourceTree = "<group>"; };
+		DCD6BF23239E7D5D00D80913 /* day9input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day9input.txt; sourceTree = "<group>"; };
+		DCD6BF24239E7E9600D80913 /* DayNineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +168,7 @@
 				DCD6BEF7239A782200D80913 /* day6 */,
 				DCD6BF02239BEE4200D80913 /* day7 */,
 				DCD6BF0D239CC0A800D80913 /* day8 */,
+				DCD6BF1E239E79F600D80913 /* day9 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -178,6 +186,7 @@
 				DCD6BEF9239A795E00D80913 /* day6input.txt */,
 				DCD6BF06239BEE7500D80913 /* day7input.txt */,
 				DCD6BF11239CC0C700D80913 /* day8input.txt */,
+				DCD6BF23239E7D5D00D80913 /* day9input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -194,6 +203,7 @@
 				DCD6BEFC239A7A1700D80913 /* DaySixTests.swift */,
 				DCD6BF0A239C016100D80913 /* DaySevenTests.swift */,
 				DCD6BF13239D2FB700D80913 /* DayEightTests.swift */,
+				DCD6BF24239E7E9600D80913 /* DayNineTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -283,6 +293,15 @@
 				DCD6BF1B239D4A0200D80913 /* SpaceImage.swift */,
 			);
 			path = day8;
+			sourceTree = "<group>";
+		};
+		DCD6BF1E239E79F600D80913 /* day9 */ = {
+			isa = PBXGroup;
+			children = (
+				DCD6BF1F239E7A0000D80913 /* README.md */,
+				DCD6BF20239E7A0700D80913 /* DayNine.swift */,
+			);
+			path = day9;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,6 +402,7 @@
 				DCD6BEFB239A7A0800D80913 /* DaySix.swift in Sources */,
 				76ED708D2397ED5600566C50 /* DayFour.swift in Sources */,
 				DCD6BF1C239D4A0200D80913 /* SpaceImage.swift in Sources */,
+				DCD6BF21239E7A0700D80913 /* DayNine.swift in Sources */,
 				DCD6BEF223994A5600D80913 /* DayFive.swift in Sources */,
 				766719312394C0A500648F48 /* main.swift in Sources */,
 				DCD6BF10239CC0BC00D80913 /* DayEight.swift in Sources */,
@@ -415,8 +435,10 @@
 				76ED70892396B07D00566C50 /* Coordinate.swift in Sources */,
 				DCD6BF01239A7D1400D80913 /* OrbitNode.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
+				DCD6BF25239E7E9600D80913 /* DayNineTests.swift in Sources */,
 				DCD6BF1D239D4A0200D80913 /* SpaceImage.swift in Sources */,
 				DCD6BEF523994EDC00D80913 /* DayFiveTests.swift in Sources */,
+				DCD6BF22239E7A3800D80913 /* DayNine.swift in Sources */,
 				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
 				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,

@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 struct DaySeven: AdventDay {
     var dayNumber: Int = 7
 

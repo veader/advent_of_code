@@ -68,7 +68,7 @@ class DayFiveTests: XCTestCase {
 
     func testInputInstruction() {
         // should read from inputs and store at 0 in memory
-        var machine = IntCodeMachine(memory: [3,0])
+        let machine = IntCodeMachine(memory: [3,0])
         machine.inputs = [5,6]
 
         machine.runNextInstruction()

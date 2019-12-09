@@ -12,7 +12,7 @@ struct DayTwo: AdventDay {
     var dayNumber: Int = 2
 
     func partOne(input: String?) -> Any {
-        var machine = IntCodeMachine(instructions: input ?? "")
+        let machine = IntCodeMachine(instructions: input ?? "")
 
         // alter values at 1 and 2
         machine.store(value: 12, at: 1)
