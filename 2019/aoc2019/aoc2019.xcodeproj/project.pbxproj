@@ -53,6 +53,9 @@
 		DCD6BF21239E7A0700D80913 /* DayNine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF20239E7A0700D80913 /* DayNine.swift */; };
 		DCD6BF22239E7A3800D80913 /* DayNine.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF20239E7A0700D80913 /* DayNine.swift */; };
 		DCD6BF25239E7E9600D80913 /* DayNineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF24239E7E9600D80913 /* DayNineTests.swift */; };
+		DCD6BF29239FC0BE00D80913 /* DayTen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF28239FC0BE00D80913 /* DayTen.swift */; };
+		DCD6BF2B239FC5B700D80913 /* DayTen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF28239FC0BE00D80913 /* DayTen.swift */; };
+		DCD6BF2D239FC5C200D80913 /* DayTenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -117,6 +120,10 @@
 		DCD6BF20239E7A0700D80913 /* DayNine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNine.swift; sourceTree = "<group>"; };
 		DCD6BF23239E7D5D00D80913 /* day9input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day9input.txt; sourceTree = "<group>"; };
 		DCD6BF24239E7E9600D80913 /* DayNineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineTests.swift; sourceTree = "<group>"; };
+		DCD6BF27239FC0A600D80913 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCD6BF28239FC0BE00D80913 /* DayTen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTen.swift; sourceTree = "<group>"; };
+		DCD6BF2A239FC11D00D80913 /* day10input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day10input.txt; sourceTree = "<group>"; };
+		DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTenTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +176,7 @@
 				DCD6BF02239BEE4200D80913 /* day7 */,
 				DCD6BF0D239CC0A800D80913 /* day8 */,
 				DCD6BF1E239E79F600D80913 /* day9 */,
+				DCD6BF26239FC09700D80913 /* day10 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -187,6 +195,7 @@
 				DCD6BF06239BEE7500D80913 /* day7input.txt */,
 				DCD6BF11239CC0C700D80913 /* day8input.txt */,
 				DCD6BF23239E7D5D00D80913 /* day9input.txt */,
+				DCD6BF2A239FC11D00D80913 /* day10input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -204,6 +213,7 @@
 				DCD6BF0A239C016100D80913 /* DaySevenTests.swift */,
 				DCD6BF13239D2FB700D80913 /* DayEightTests.swift */,
 				DCD6BF24239E7E9600D80913 /* DayNineTests.swift */,
+				DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -304,6 +314,15 @@
 			path = day9;
 			sourceTree = "<group>";
 		};
+		DCD6BF26239FC09700D80913 /* day10 */ = {
+			isa = PBXGroup;
+			children = (
+				DCD6BF27239FC0A600D80913 /* README.md */,
+				DCD6BF28239FC0BE00D80913 /* DayTen.swift */,
+			);
+			path = day10;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -397,6 +416,7 @@
 				DCD6BF08239BF2FD00D80913 /* IntCodeInstruction.swift in Sources */,
 				766719452394C17400648F48 /* AdventDay.swift in Sources */,
 				DCD6BF05239BEE5700D80913 /* DaySeven.swift in Sources */,
+				DCD6BF29239FC0BE00D80913 /* DayTen.swift in Sources */,
 				76ED70902397EE0A00566C50 /* Wire.swift in Sources */,
 				DCD6BF16239D49BC00D80913 /* Array.swift in Sources */,
 				DCD6BEFB239A7A0800D80913 /* DaySix.swift in Sources */,
@@ -427,6 +447,7 @@
 				DCD6BF0B239C016100D80913 /* DaySevenTests.swift in Sources */,
 				76D042E92394E06100A09228 /* DayTwoTests.swift in Sources */,
 				76ED708323967AE400566C50 /* DayThree.swift in Sources */,
+				DCD6BF2D239FC5C200D80913 /* DayTenTests.swift in Sources */,
 				7667194E2394C55F00648F48 /* DayOneTests.swift in Sources */,
 				DCD6BF12239CC0CD00D80913 /* DayEight.swift in Sources */,
 				766719502394C61B00648F48 /* AdventDay.swift in Sources */,
@@ -439,6 +460,7 @@
 				DCD6BF1D239D4A0200D80913 /* SpaceImage.swift in Sources */,
 				DCD6BEF523994EDC00D80913 /* DayFiveTests.swift in Sources */,
 				DCD6BF22239E7A3800D80913 /* DayNine.swift in Sources */,
+				DCD6BF2B239FC5B700D80913 /* DayTen.swift in Sources */,
 				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
 				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,

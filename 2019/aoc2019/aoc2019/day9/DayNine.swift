@@ -11,8 +11,6 @@ import Foundation
 struct DayNine: AdventDay {
     var dayNumber: Int = 9
 
-    // func parse(_ input: String?) -> FOO { return FOO... }
-
     func partOne(input: String?) -> Any {
         let machine = IntCodeMachine(instructions: input ?? "")
         machine.inputs = [1]
