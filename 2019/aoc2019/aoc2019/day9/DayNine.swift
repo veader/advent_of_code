@@ -13,6 +13,7 @@ struct DayNine: AdventDay {
 
     func partOne(input: String?) -> Any {
         let machine = IntCodeMachine(instructions: input ?? "")
+        machine.silent = true
         machine.inputs = [1]
         machine.run()
 
@@ -21,6 +22,7 @@ struct DayNine: AdventDay {
 
     func partTwo(input: String?) -> Any {
         let machine = IntCodeMachine(instructions: input ?? "")
+        machine.silent = true
         machine.inputs = [2]
         machine.run()
 

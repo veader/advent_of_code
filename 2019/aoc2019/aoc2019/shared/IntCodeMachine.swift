@@ -47,6 +47,9 @@ class IntCodeMachine {
     /// Should extra information be printed for debugging?
     var debug: Bool = false
 
+    /// Avoid all output, including OUTPUT data.
+    var silent: Bool = false
+
     /// Current state of this machine.
     var state: IntCodeMachine.State = .halted {
         didSet {
@@ -136,7 +139,9 @@ class IntCodeMachine {
         case .output:
             let outputValue = value(for: instruction.parameters[0])
             outputs.append(outputValue)
-            print("OUTPUT: \(outputValue)")
+            if !silent {
+                print("OUTPUT: \(outputValue)")
+            }
         case .jumpIfTrue, .jumpIfFalse:
             let value1 = value(for: instruction.parameters[0])
             let value2 = value(for: instruction.parameters[1])
@@ -288,7 +293,7 @@ class IntCodeMachine {
     }
 
     private func printDebug(_ output: String) {
-        if debug {
+        if debug && !silent {
             print(output)
         }
     }

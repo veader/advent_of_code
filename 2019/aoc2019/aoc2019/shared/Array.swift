@@ -29,6 +29,15 @@ extension Array {
             return Array<Element>(self[startIdx..<(startIdx + size)])
         }
     }
+
+    /// Return a new sequence with the number of elements from the ened of the array
+    /// - parameters:
+    ///     - count: Number of items to return
+    /// - returns: An array with the last elements, nil if the array does not contain enough
+    func last(count: Int) -> [Element]? {
+        guard self.count >= count else { return nil }
+        return Array(self[(endIndex - count)..<endIndex])
+    }
 }
 
 extension Array where Element: Equatable {

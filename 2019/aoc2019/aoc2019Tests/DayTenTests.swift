@@ -115,7 +115,7 @@ class DayTenTests: XCTestCase {
     func testArrayUnique() {
         let arr = [1,1,1,2,3,3,3,4,5,6,6,7]
         let uniq = arr.unique()
-        print(uniq)
+        // print(uniq)
         XCTAssertEqual(7, uniq.count)
     }
 

@@ -18,6 +18,7 @@ class Amp {
         self.memory = memory
 
         machine = IntCodeMachine(memory: memory)
+        machine.silent = true
         machine.inputs = [phase]
     }
 

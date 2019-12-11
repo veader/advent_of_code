@@ -81,48 +81,56 @@ class DayFiveTests: XCTestCase {
 
         // tests if input = 8
         machine = IntCodeMachine(memory: [3,9,8,9,10,9,4,9,99,-1,8])
+        machine.silent = true
         machine.inputs = [8]
         machine.run()
         XCTAssertEqual(1, machine.outputs.last!)
 
         // tests if input = 8
         machine = IntCodeMachine(memory: [3,9,8,9,10,9,4,9,99,-1,8])
+        machine.silent = true
         machine.inputs = [9]
         machine.run()
         XCTAssertEqual(0, machine.outputs.last!)
 
         // tests if input < 8
         machine = IntCodeMachine(memory: [3,9,7,9,10,9,4,9,99,-1,8])
+        machine.silent = true
         machine.inputs = [7]
         machine.run()
         XCTAssertEqual(1, machine.outputs.last!)
 
         // tests if input < 8
         machine = IntCodeMachine(memory: [3,9,7,9,10,9,4,9,99,-1,8])
+        machine.silent = true
         machine.inputs = [9]
         machine.run()
         XCTAssertEqual(0, machine.outputs.last!)
 
         // tests if input = 8
         machine = IntCodeMachine(memory: [3,3,1108,-1,8,3,4,3,99])
+        machine.silent = true
         machine.inputs = [8]
         machine.run()
         XCTAssertEqual(1, machine.outputs.last!)
 
         // tests if input = 8
         machine = IntCodeMachine(memory: [3,3,1108,-1,8,3,4,3,99])
+        machine.silent = true
         machine.inputs = [9]
         machine.run()
         XCTAssertEqual(0, machine.outputs.last!)
 
         // tests if input < 8
         machine = IntCodeMachine(memory: [3,3,1107,-1,8,3,4,3,999])
+        machine.silent = true
         machine.inputs = [7]
         machine.run()
         XCTAssertEqual(1, machine.outputs.last!)
 
         // tests if input < 8
         machine = IntCodeMachine(memory: [3,3,1107,-1,8,3,4,3,999])
+        machine.silent = true
         machine.inputs = [9]
         machine.run()
         XCTAssertEqual(0, machine.outputs.last!)
@@ -133,24 +141,28 @@ class DayFiveTests: XCTestCase {
 
         // is input 0?
         machine = IntCodeMachine(memory: [3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9])
+        machine.silent = true
         machine.inputs = [0]
         machine.run()
         XCTAssertEqual(0, machine.outputs.last!)
 
         // is input 0?
         machine = IntCodeMachine(memory: [3,12,6,12,15,1,13,14,13,4,13,99,-1,0,1,9])
+        machine.silent = true
         machine.inputs = [2]
         machine.run()
         XCTAssertEqual(1, machine.outputs.last!)
 
         // is input 0?
         machine = IntCodeMachine(memory: [3,3,1105,-1,9,1101,0,0,12,4,12,99,1])
+        machine.silent = true
         machine.inputs = [0]
         machine.run()
         XCTAssertEqual(0, machine.outputs.last!)
 
         // is input 0?
         machine = IntCodeMachine(memory: [3,3,1105,-1,9,1101,0,0,12,4,12,99,1])
+        machine.silent = true
         machine.inputs = [2]
         machine.run()
         XCTAssertEqual(1, machine.outputs.last!)
@@ -164,18 +176,21 @@ class DayFiveTests: XCTestCase {
 
         // < 8 -> 999
         machine = IntCodeMachine(memory: memory)
+        machine.silent = true
         machine.inputs = [7]
         machine.run()
         XCTAssertEqual(999, machine.outputs.last!)
 
         // = 8 -> 1000
         machine = IntCodeMachine(memory: memory)
+        machine.silent = true
         machine.inputs = [8]
         machine.run()
         XCTAssertEqual(1000, machine.outputs.last!)
 
         // = 8 -> 1001
         machine = IntCodeMachine(memory: memory)
+        machine.silent = true
         machine.inputs = [9]
         machine.run()
         XCTAssertEqual(1001, machine.outputs.last!)
