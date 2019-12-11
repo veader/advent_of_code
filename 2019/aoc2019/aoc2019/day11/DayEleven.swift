@@ -18,6 +18,9 @@ struct DayEleven: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
+        let robot = PaintingRobot(input: input ?? "")
+        robot.startingColor = .white
+        robot.run()
         return 0
     }
 }

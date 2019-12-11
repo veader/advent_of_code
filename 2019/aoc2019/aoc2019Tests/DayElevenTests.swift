@@ -46,6 +46,7 @@ class DayElevenTests: XCTestCase {
 
     func testPartTwoAnswer() {
         XCTAssert(true)
+        // answer is in printed output
 //        let day = DayEleven()
 //        let answer = day.run(part: 2) as! Int
 //        XCTAssertEqual(416, answer)

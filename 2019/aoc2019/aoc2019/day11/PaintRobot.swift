@@ -35,6 +35,9 @@ class PaintingRobot {
     /// Current location of the robot (starts at 0,0)
     var location: Coordinate
 
+    /// What color is the starting panel? (defaults to black)
+    var startingColor: PanelColor
+
     init(input: String) {
         machine = IntCodeMachine(instructions: input)
         machine.silent = true
@@ -42,6 +45,7 @@ class PaintingRobot {
         paintedPanels = [Coordinate: PanelColor]()
         orientation = .north
         location = Coordinate.origin
+        startingColor = .black
     }
 
     /// Execute instructions and paint until finished
@@ -49,7 +53,7 @@ class PaintingRobot {
         var finished = false
 
         // to start the machine off, we will prime the input with black
-        machine.set(input: PanelColor.black.rawValue)
+        machine.set(input: startingColor.rawValue)
 
         // start the machine running
         machine.run()
@@ -109,11 +113,12 @@ class PaintingRobot {
 
     /// Given our current orientation, take one step forward
     private func moveForward() {
+        // note: output needed to be in "top-left" origin layout. reversing usual north/south
         switch orientation {
         case .north:
-            location = Coordinate(x: location.x, y: location.y + 1)
-        case .south:
             location = Coordinate(x: location.x, y: location.y - 1)
+        case .south:
+            location = Coordinate(x: location.x, y: location.y + 1)
         case .east:
             location = Coordinate(x: location.x + 1, y: location.y)
         case .west:
