@@ -126,26 +126,47 @@ class DayTenTests: XCTestCase {
         let laser = map.laserStation
 
         XCTAssertEqual(0, laser?.directionIndex)
+        XCTAssertEqual(Coordinate.SlopeType.vertical(direction: -1), laser?.direction)
 
-        // top & bottom = 10, sides = 8 => 36
-        XCTAssertEqual(36, laser?.directionSteps.count)
+        // top & bottom = 10, sides = 8 => 36 : around the sides, didn't work
+        XCTAssertEqual(64, laser?.directionSteps.count)
 
-//        print(laser.directionIndex)
-//        print(laser.direction)
-//        print(laser.directionSteps)
+        // print(laser?.directionSteps)
     }
 
     func testLaserDestruction() {
         let stationLocation = Coordinate(x: 8, y: 3)
         let map = SpaceMap(input: testMap6)
         map.addStation(at: stationLocation)
-        map.printMap()
 
         let count = map.asteroids.count
-
         let destroyed = map.fireTheFreakingLaser()
-        // map.printMap()
-        XCTAssertEqual(destroyed.count, count)
+        XCTAssertEqual(destroyed.count, count-1)
+    }
+
+    func testLaserDestructionLarger() {
+        let map = SpaceMap(input: testMap5)
+        guard let stationLocation = map.maxVisibilityLocation() else {
+            XCTFail("Unable to find laser station location")
+            return
+        }
+
+        map.addStation(at: stationLocation)
+
+        let count = map.asteroids.count
+        let destroyed = map.fireTheFreakingLaser()
+        XCTAssertEqual(destroyed.count, count-1)
+        XCTAssertEqual(Coordinate(x: 11, y: 12), destroyed[0])
+        XCTAssertEqual(Coordinate(x: 12, y: 1), destroyed[1])
+        XCTAssertEqual(Coordinate(x: 12, y: 2), destroyed[2])
+        XCTAssertEqual(Coordinate(x: 12, y: 8), destroyed[9])
+        XCTAssertEqual(Coordinate(x: 16, y: 0), destroyed[19])
+        XCTAssertEqual(Coordinate(x: 16, y: 9), destroyed[49])
+        XCTAssertEqual(Coordinate(x: 10, y: 16), destroyed[99])
+        XCTAssertEqual(Coordinate(x: 9, y: 6), destroyed[198])
+        XCTAssertEqual(Coordinate(x: 8, y: 2), destroyed[199])
+        XCTAssertEqual(Coordinate(x: 10, y: 9), destroyed[200])
+        XCTAssertEqual(Coordinate(x: 11, y: 1), destroyed[298])
     }
 
     func testPartOneAnswer() {
@@ -155,10 +176,9 @@ class DayTenTests: XCTestCase {
     }
 
     func testPartTwoAnswer() {
-        XCTAssert(true)
-//        let day = DayTen()
-//        let answer = day.run(part: 2) as! Int
-//        XCTAssertEqual(64236, answer)
+        let day = DayTen()
+        let answer = day.run(part: 2) as! Int
+        XCTAssertEqual(416, answer)
     }
 
     let testMap1 =  """

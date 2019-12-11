@@ -20,7 +20,10 @@ struct DayTen: AdventDay {
     func partTwo(input: String?) -> Any {
         let map = SpaceMap(input: input ?? "")
         guard let location = map.maxVisibilityLocation() else { return 0 }
-        map.laserStation = SpaceLaser(width: map.width, height: map.height, location: location)
-        return 0
+        map.addStation(at: location)
+
+        let destroyed = map.fireTheFreakingLaser()
+        let twohundredthDestroyed = destroyed[199]
+        return (twohundredthDestroyed.x * 100) + twohundredthDestroyed.y
     }
 }

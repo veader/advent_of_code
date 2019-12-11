@@ -50,43 +50,47 @@ class SpaceLaser {
         directionIndex = 0
         var steps = [Coordinate.SlopeType]()
 
-        var perimeterLocation: Coordinate
         var slope: Coordinate.SlopeType
 
-        // sweep from "12 o'clock" along the top edge to top right corner
-        for x in (location.x..<width) {
-            perimeterLocation = Coordinate(x: x, y: 0)
-            slope = location.slope(to: perimeterLocation)
-            steps.append(slope)
-        }
+        // start with vertical ("up")
+        steps.append(location.slope(to: Coordinate(x: location.x, y: 0)))
 
-        // sweep down right edge
-        for y in (1..<height) {
-            perimeterLocation = Coordinate(x: width - 1, y: y)
-            slope = location.slope(to: perimeterLocation)
-            steps.append(slope)
-        }
+        // work in quadrents
+        var quadrent = [Coordinate.SlopeType]()
 
-        // sweep across bottom edge
-        for x in (0..<width-1).reversed() {
-            perimeterLocation = Coordinate(x: x, y: height - 1)
-            slope = location.slope(to: perimeterLocation)
-            steps.append(slope)
-        }
 
-        // sweep up left edge
-        for y in (0..<height-1).reversed() {
-            perimeterLocation = Coordinate(x: 0, y: y)
-            slope = location.slope(to: perimeterLocation)
-            steps.append(slope)
-        }
+        // ==========================================================
+        // sweep from "12 o'clock" to "3 o'clock"
+        quadrent = slopesInQuadrent(xs: (location.x..<width), ys: (0..<location.y))
+        steps.append(contentsOf: quadrent)
 
-        // sweep from origin to "12 o'clock" along the top edge
-        for x in (1..<location.x) {
-            perimeterLocation = Coordinate(x: x, y: 0)
-            slope = location.slope(to: perimeterLocation)
-            steps.append(slope)
-        }
+        // had in horizontal (right)
+        steps.append(location.slope(to: Coordinate(x: location.x + 1, y: location.y)))
+
+
+        // ==========================================================
+        // sweep from "3 o'clock" to "6 o'clock"
+        quadrent = slopesInQuadrent(xs: (location.x..<width), ys: (location.y..<height))
+        steps.append(contentsOf: quadrent)
+
+        // had in vertical ("down")
+        steps.append(location.slope(to: Coordinate(x: location.x, y: height)))
+
+
+        // ==========================================================
+        // sweep from "6 o'clock" to "9 o'clock"
+        quadrent = slopesInQuadrent(xs: (0..<location.x), ys: (location.y..<height))
+        steps.append(contentsOf: quadrent)
+
+        // had in horizontal (left)
+        steps.append(location.slope(to: Coordinate(x: location.x - 1, y: location.y)))
+
+
+        // ==========================================================
+        // sweep from "9 o'clock" to "12 o'clock"
+        quadrent = slopesInQuadrent(xs: (0..<location.x), ys: (0..<location.y))
+        steps.append(contentsOf: quadrent)
+
 
         // remove any duplicates
         steps = steps.unique()
@@ -95,6 +99,31 @@ class SpaceLaser {
         let up = Coordinate.SlopeType.vertical(direction: -1) // with origin in top left, up/down are inverted :/ 
         directionIndex = steps.firstIndex(of: up) ?? -1
         directionSteps = steps
+    }
+
+    func slopesInQuadrent(xs: Range<Int>, ys: Range<Int>) -> [Coordinate.SlopeType] {
+        var quadrent = [Coordinate.SlopeType]()
+
+        for x in xs {
+            for y in ys {
+                let slope = location.slope(to: Coordinate(x: x, y: y))
+                quadrent.append(slope)
+            }
+        }
+
+        return quadrent.filter { s -> Bool in
+            // filter out the horizontal/vertical ones
+            guard case .normal(slope: _) = s else { return false }
+            return true
+        }.sorted { lhs, rhs -> Bool in
+            // sort by slope amount
+            if  case .normal(slope: let slopeA) = lhs,
+                case .normal(slope: let slopeB) = rhs {
+                return slopeA < slopeB
+            } else {
+                return false
+            }
+        }.unique()
     }
 }
 
@@ -175,34 +204,28 @@ class SpaceMap {
             let slope = laser.location.slope(to: location)
             asteroidMatrix[location] = slope
         }
-        // print(asteroidMatrix)
 
         // loop until we've shot everything
-        while !asteroidMatrix.isEmpty {
-            // print(laser.direction)
-
+        while asteroidMatrix.count > 1 {
             let hittableAsteroids = asteroidMatrix.filter { location, slope -> Bool in
                 slope == laser.direction && location != laser.location
             }
-            // print(hittableAsteroids)
 
             // find the closest one to destroy
             if hittableAsteroids.count > 0,
                 let target = hittableAsteroids.sorted(by: { laser.location.distance(to: $0.key) < laser.location.distance(to: $1.key) }).first
             {
-                print("DESTROY \(target.key)")
                 // destroy it!
                 asteroidMatrix.removeValue(forKey: target.key)
                 destroyedAsteroidLocations.append(target.key)
                 asteroids.removeValue(forKey: target.key)
+
+                // print("DESTROY \(target.key)")
+                // printMap()
             }
 
             laser.rotate() // move to the next laser
-
-            printMap()
-            // print("\n")
         }
-
 
         return destroyedAsteroidLocations
     }
