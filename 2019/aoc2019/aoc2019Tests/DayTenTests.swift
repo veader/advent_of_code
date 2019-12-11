@@ -12,16 +12,15 @@ class DayTenTests: XCTestCase {
 
     func testSpaceMapParsing() {
         var map: SpaceMap
-        let day = DayTen()
 
-        map = day.parse(testMap1)
+        map = SpaceMap(input: testMap1)
         XCTAssertEqual(5, map.width)
         XCTAssertEqual(5, map.height)
         XCTAssert(map.asteroids.keys.contains(Coordinate(x: 1, y: 0)))
         XCTAssert(map.asteroids.keys.contains(Coordinate(x: 2, y: 2)))
         XCTAssertFalse(map.asteroids.keys.contains(Coordinate(x: 0, y: 0)))
 
-        map = day.parse(testMap2)
+        map = SpaceMap(input: testMap2)
         XCTAssertEqual(10, map.width)
         XCTAssertEqual(10, map.height)
     }
@@ -29,15 +28,14 @@ class DayTenTests: XCTestCase {
     func testSpaceMapPrinting() {
         var map: SpaceMap
         var printedMap: String
-        let day = DayTen()
 
-        map = day.parse(testMap1)
+        map = SpaceMap(input: testMap1)
         printedMap = map.printMap()
         XCTAssertEqual(testMap1+"\n", printedMap)
         // map.calculateVisibilityCounts()
         // map.printMap(showCounts: true)
 
-        map = day.parse(testMap2)
+        map = SpaceMap(input: testMap2)
         printedMap = map.printMap()
         XCTAssertEqual(testMap2+"\n", printedMap)
         // map.calculateVisibilityCounts()
@@ -85,34 +83,69 @@ class DayTenTests: XCTestCase {
     }
 
     func testPartOne() {
-        let day = DayTen()
         var map: SpaceMap
         var location: Coordinate?
 
-        map = day.parse(testMap1)
+        map = SpaceMap(input: testMap1)
         location = map.maxVisibilityLocation()
         XCTAssertEqual(Coordinate(x: 3, y: 4), location)
         XCTAssertEqual(8, map.visibility(at: location!))
 
-        map = day.parse(testMap2)
+        map = SpaceMap(input: testMap2)
         location = map.maxVisibilityLocation()
         XCTAssertEqual(Coordinate(x: 5, y: 8), location)
         XCTAssertEqual(33, map.visibility(at: location!))
 
-        map = day.parse(testMap3)
+        map = SpaceMap(input: testMap3)
         location = map.maxVisibilityLocation()
         XCTAssertEqual(Coordinate(x: 1, y: 2), location)
         XCTAssertEqual(35, map.visibility(at: location!))
 
-        map = day.parse(testMap4)
+        map = SpaceMap(input: testMap4)
         location = map.maxVisibilityLocation()
         XCTAssertEqual(Coordinate(x: 6, y: 3), location)
         XCTAssertEqual(41, map.visibility(at: location!))
 
-        map = day.parse(testMap5)
+        map = SpaceMap(input: testMap5)
         location = map.maxVisibilityLocation()
         XCTAssertEqual(Coordinate(x: 11, y: 13), location)
         XCTAssertEqual(210, map.visibility(at: location!))
+    }
+
+    func testArrayUnique() {
+        let arr = [1,1,1,2,3,3,3,4,5,6,6,7]
+        let uniq = arr.unique()
+        print(uniq)
+        XCTAssertEqual(7, uniq.count)
+    }
+
+    func testSpaceLaserDirectionSteps() {
+        let location = Coordinate(x: 4, y: 4)
+        let map = SpaceMap(width: 10, height: 10, asteroids: AsteroidMap())
+        map.addStation(at: location)
+        let laser = map.laserStation
+
+        XCTAssertEqual(0, laser?.directionIndex)
+
+        // top & bottom = 10, sides = 8 => 36
+        XCTAssertEqual(36, laser?.directionSteps.count)
+
+//        print(laser.directionIndex)
+//        print(laser.direction)
+//        print(laser.directionSteps)
+    }
+
+    func testLaserDestruction() {
+        let stationLocation = Coordinate(x: 8, y: 3)
+        let map = SpaceMap(input: testMap6)
+        map.addStation(at: stationLocation)
+        map.printMap()
+
+        let count = map.asteroids.count
+
+        let destroyed = map.fireTheFreakingLaser()
+        // map.printMap()
+        XCTAssertEqual(destroyed.count, count)
     }
 
     func testPartOneAnswer() {
@@ -200,5 +233,14 @@ class DayTenTests: XCTestCase {
                     .#.#.###########.###
                     #.#.#.#####.####.###
                     ###.##.####.##.#..##
+                    """
+
+    // 8,3 is the location of the station
+    let testMap6 =  """
+                    .#....#####...#..
+                    ##...##.#####..##
+                    ##...#...#.#####.
+                    ..#.....#...###..
+                    ..#.#.....#....##
                     """
 }

@@ -30,3 +30,12 @@ extension Array {
         }
     }
 }
+
+extension Array where Element: Equatable {
+    /// Returns a new version of this array removing duplicate entries
+    func unique() -> [Element] {
+        reduce([]) { result, element -> [Element] in
+            result.contains(element) ? result : result + [element]
+        }
+    }
+}

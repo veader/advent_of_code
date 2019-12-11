@@ -56,6 +56,8 @@
 		DCD6BF29239FC0BE00D80913 /* DayTen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF28239FC0BE00D80913 /* DayTen.swift */; };
 		DCD6BF2B239FC5B700D80913 /* DayTen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF28239FC0BE00D80913 /* DayTen.swift */; };
 		DCD6BF2D239FC5C200D80913 /* DayTenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */; };
+		DCD6BF2F23A02C6F00D80913 /* SpaceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */; };
+		DCD6BF3023A02C8600D80913 /* SpaceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,6 +126,7 @@
 		DCD6BF28239FC0BE00D80913 /* DayTen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTen.swift; sourceTree = "<group>"; };
 		DCD6BF2A239FC11D00D80913 /* day10input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day10input.txt; sourceTree = "<group>"; };
 		DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTenTests.swift; sourceTree = "<group>"; };
+		DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -319,6 +322,7 @@
 			children = (
 				DCD6BF27239FC0A600D80913 /* README.md */,
 				DCD6BF28239FC0BE00D80913 /* DayTen.swift */,
+				DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */,
 			);
 			path = day10;
 			sourceTree = "<group>";
@@ -418,6 +422,7 @@
 				DCD6BF05239BEE5700D80913 /* DaySeven.swift in Sources */,
 				DCD6BF29239FC0BE00D80913 /* DayTen.swift in Sources */,
 				76ED70902397EE0A00566C50 /* Wire.swift in Sources */,
+				DCD6BF2F23A02C6F00D80913 /* SpaceMap.swift in Sources */,
 				DCD6BF16239D49BC00D80913 /* Array.swift in Sources */,
 				DCD6BEFB239A7A0800D80913 /* DaySix.swift in Sources */,
 				76ED708D2397ED5600566C50 /* DayFour.swift in Sources */,
@@ -454,6 +459,7 @@
 				DCD6BF09239BF31E00D80913 /* IntCodeInstruction.swift in Sources */,
 				DCD6BEFE239A7A1C00D80913 /* DaySix.swift in Sources */,
 				76ED70892396B07D00566C50 /* Coordinate.swift in Sources */,
+				DCD6BF3023A02C8600D80913 /* SpaceMap.swift in Sources */,
 				DCD6BF01239A7D1400D80913 /* OrbitNode.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
 				DCD6BF25239E7E9600D80913 /* DayNineTests.swift in Sources */,
