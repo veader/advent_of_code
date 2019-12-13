@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ThreeDimPosition: Equatable {
+struct ThreeDimPosition: Equatable, Hashable {
     let x: Int
     let y: Int
     let z: Int

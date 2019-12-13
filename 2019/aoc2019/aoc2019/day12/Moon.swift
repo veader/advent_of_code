@@ -24,6 +24,10 @@ class Moon {
         kineticEnergy * potentialEnergy
     }
 
+    var shortDescription: String {
+        return "\(position.x).\(position.y).\(position.z),\(velocity.x).\(velocity.y).\(velocity.z)"
+    }
+
     
     init(position: ThreeDimPosition) {
         self.position = position
@@ -76,6 +80,17 @@ extension Moon {
     convenience init?(input: String) {
         guard let pos = ThreeDimPosition(input: input) else { return nil }
         self.init(position: pos)
+    }
+}
+
+extension Moon: Equatable, Hashable {
+    static func == (lhs: Moon, rhs: Moon) -> Bool {
+        lhs.position == rhs.position && lhs.velocity == rhs.velocity
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(position)
+        hasher.combine(velocity)
     }
 }
 

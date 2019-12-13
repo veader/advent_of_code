@@ -36,7 +36,44 @@ struct DayTwelve: AdventDay {
         }
     }
 
+    func runTillRepeat(moons: [Moon], pairs:[[Moon]]) -> Int {
+        var previousStates = Set<Int>()
+        var iterations = 0
+        previousStates.insert(hash(for: moons))
+
+        while true {
+            step(moons: moons, pairs: pairs)
+            let moonsHash = hash(for: moons)
+
+            if previousStates.contains(moonsHash) {
+                print("FOUND IT!!! \(iterations)")
+                break
+            } else {
+                previousStates.insert(moonsHash)
+            }
+
+            iterations += 1
+
+            if (iterations % 1_000_000) == 0 {
+                print("\(iterations) \(Date())")
+            }
+        }
+
+        return iterations
+    }
+
+    func hash(for moons: [Moon]) -> Int {
+        var hasher = Hasher()
+        moons.forEach { hasher.combine($0) }
+        return hasher.finalize()
+    }
+
+    func stepDescription(moons: [Moon]) -> String {
+        moons.reduce("") { $0 + "|\($1.shortDescription)" }
+    }
+
     func partTwo(input: String?) -> Any {
+        // https://users.cs.duke.edu/~reif/paper/tate/nbody.pdf ??
         return 0
     }
 

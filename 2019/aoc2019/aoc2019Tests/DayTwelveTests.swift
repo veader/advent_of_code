@@ -116,6 +116,20 @@ class DayTwelveTests: XCTestCase {
         XCTAssertEqual(1940, totalEnergy)
     }
 
+    func testPartTwo() {
+//        let day = DayTwelve()
+
+//        let moons = day.parse(testMoons1)
+//        let pairs = day.createPairs(moons: moons)
+//        let repeated = day.runTillRepeat(moons: moons, pairs: pairs)
+//        XCTAssertEqual(2772, repeated)
+
+//        let moons = day.parse(testMoons2)
+//        let pairs = day.createPairs(moons: moons)
+//        let repeated = day.runTillRepeat(moons: moons, pairs: pairs)
+//        XCTAssertEqual(4686774924, repeated)
+    }
+
     func testPartOneAnswer() {
         let day = DayTwelve()
         let answer = day.run(part: 1) as! Int
