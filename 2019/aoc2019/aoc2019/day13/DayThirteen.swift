@@ -29,6 +29,6 @@ struct DayThirteen: AdventDay {
         let cabinet = ArcadeCabinet(input: input ?? "")
         cabinet.play()
 
-        return 0
+        return cabinet.score
     }
 }

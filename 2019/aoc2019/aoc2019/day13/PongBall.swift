@@ -25,14 +25,20 @@ struct PongBall {
     /// Blocks that are removed as we bounce
     var removedBlocks: [Coordinate] = [Coordinate]()
 
+    let bounceDepth = 8
+    let pathLength = 100
+
 
     /// Attempt to calculate where we would could impact the paddle if we bounce around enough.
-    mutating func find(paddle: Coordinate, screen: ArcadeScreen, bounceDepth: Int = 8) -> Coordinate? {
+    mutating func find(paddle: Coordinate, screen: ArcadeScreen) -> Coordinate? {
         var pathLocation = position
         var pathSlope = slope
 
         /// keep going until we are about to pass the paddle
-        while pathLocation.y < (paddle.y - 1) && bounces.count < bounceDepth {
+        while pathLocation.y < (paddle.y - 1) &&
+            bounces.count < bounceDepth &&
+            pathSteps.count < pathLength
+        {
             pathSteps.append(pathLocation)
 
             // update our slope and record any bounces we make changing it
@@ -91,74 +97,10 @@ struct PongBall {
             return .normal(slope: slopeValue, direction: direction * -1)
         }
 
-/*
-        if slopeValue == 1 && direction == 1 {
-            // heading down and to the right
-            // check: right, down, and diagonal
-            if screen.solid(at: position.right) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction)
-            }
-            if screen.solid(at: position.down) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction * -1)
-            }
-            if screen.solid(at: diagonalLocation) {
-                bounces.append(position)
-                return .normal(slope: slopeValue, direction: direction * -1)
-            }
-        } else if slopeValue == 1 && direction == -1 {
-            // heading up and to the left
-            // check: left, up, and diagonal
-            if screen.solid(at: position.left) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction)
-            }
-            if screen.solid(at: position.up) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction * -1)
-            }
-            if screen.solid(at: diagonalLocation) {
-                bounces.append(position)
-                return .normal(slope: slopeValue, direction: direction * -1)
-            }
-        } else if slopeValue == -1 && direction == 1 {
-            // heading down and to the left
-            // check: left, down, and diagonal
-            if screen.solid(at: position.left) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction)
-            }
-            if screen.solid(at: position.down) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction * -1)
-            }
-            if screen.solid(at: diagonalLocation) {
-                bounces.append(position)
-                return .normal(slope: slopeValue, direction: direction * -1)
-            }
-        } else if slopeValue == -1 && direction == -1 {
-            // heading up and to the right
-            // check: right, up, and diagonal
-            if screen.solid(at: position.right) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction)
-            }
-            if screen.solid(at: position.up) {
-                bounces.append(position)
-                return .normal(slope: slopeValue * -1, direction: direction * -1)
-            }
-            if screen.solid(at: diagonalLocation) {
-                bounces.append(position)
-                return .normal(slope: slopeValue, direction: direction * -1)
-            }
-        } else {
-            print("What? How did we get here?")
-        }
-*/
         return slope // keep going the way we're going
     }
 
+    /// Location either up or down from the given location in the direction of travel
     private func vertical(location: Coordinate, slope: Coordinate.SlopeType) -> Coordinate {
         guard // nothing but diagonal slopes here...
             case .normal(slope: _, direction: let direction) = slope
@@ -173,6 +115,7 @@ struct PongBall {
         return Coordinate.origin
     }
 
+    /// Location either left or right from the given location in the direction of travel
     private func horizontal(location: Coordinate, slope: Coordinate.SlopeType) -> Coordinate {
         guard // nothing but diagonal slopes here...
             case .normal(slope: let slopeValue, direction: let direction) = slope
@@ -197,7 +140,7 @@ struct PongBall {
 }
 
 extension Coordinate {
-    // NOTE: these methods
+    // NOTE: these methods have up/down direction mixed... 'cause
 
     var up: Coordinate {
         Coordinate(x: self.x, y: self.y - 1)

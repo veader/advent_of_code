@@ -52,3 +52,5 @@ instead specifies the new score to show in the segment display. For example, a s
 of output values like `-1,0,12345` would show `12345` as the player's current score.
 
 Beat the game by breaking all the blocks. **What is your score after the last block is broken?**
+
+Your puzzle answer was `17336`.
