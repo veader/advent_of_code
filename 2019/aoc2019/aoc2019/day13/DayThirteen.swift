@@ -26,6 +26,9 @@ struct DayThirteen: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
+        let cabinet = ArcadeCabinet(input: input ?? "")
+        cabinet.play()
+
         return 0
     }
 }

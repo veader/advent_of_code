@@ -47,6 +47,8 @@
 		DCD40E9D23A3AD8300363124 /* DayThirteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E9923A3AD7000363124 /* DayThirteen.swift */; };
 		DCD40EA023A3B32D00363124 /* ArcadeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E9F23A3B32D00363124 /* ArcadeScreen.swift */; };
 		DCD40EA123A3B32D00363124 /* ArcadeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E9F23A3B32D00363124 /* ArcadeScreen.swift */; };
+		DCD40EA323A3BD1D00363124 /* ArcadeCabinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40EA223A3BD1D00363124 /* ArcadeCabinet.swift */; };
+		DCD40EA423A3BD1D00363124 /* ArcadeCabinet.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40EA223A3BD1D00363124 /* ArcadeCabinet.swift */; };
 		DCD6BEF223994A5600D80913 /* DayFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BEF123994A5600D80913 /* DayFive.swift */; };
 		DCD6BEF323994B6400D80913 /* DayFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BEF123994A5600D80913 /* DayFive.swift */; };
 		DCD6BEF523994EDC00D80913 /* DayFiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BEF423994EDC00D80913 /* DayFiveTests.swift */; };
@@ -133,6 +135,7 @@
 		DCD40E9B23A3AD7E00363124 /* DayThirteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThirteenTests.swift; sourceTree = "<group>"; };
 		DCD40E9E23A3AE7300363124 /* day13input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day13input.txt; sourceTree = "<group>"; };
 		DCD40E9F23A3B32D00363124 /* ArcadeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeScreen.swift; sourceTree = "<group>"; };
+		DCD40EA223A3BD1D00363124 /* ArcadeCabinet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcadeCabinet.swift; sourceTree = "<group>"; };
 		DCD6BEF023994A4C00D80913 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCD6BEF123994A5600D80913 /* DayFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFive.swift; sourceTree = "<group>"; };
 		DCD6BEF423994EDC00D80913 /* DayFiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFiveTests.swift; sourceTree = "<group>"; };
@@ -342,6 +345,7 @@
 				DCD40E9823A3AD6500363124 /* README.md */,
 				DCD40E9923A3AD7000363124 /* DayThirteen.swift */,
 				DCD40E9F23A3B32D00363124 /* ArcadeScreen.swift */,
+				DCD40EA223A3BD1D00363124 /* ArcadeCabinet.swift */,
 			);
 			path = day13;
 			sourceTree = "<group>";
@@ -493,6 +497,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD40EA323A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				76ED70862396900200566C50 /* Coordinate.swift in Sources */,
 				DCD40E9A23A3AD7000363124 /* DayThirteen.swift in Sources */,
 				DCD6BF08239BF2FD00D80913 /* IntCodeInstruction.swift in Sources */,
@@ -529,6 +534,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCD40EA423A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				76ED708E2397ED5A00566C50 /* DayFour.swift in Sources */,
 				DCD40E7C23A11E9500363124 /* PaintRobot.swift in Sources */,
 				76D042E72394DC9100A09228 /* DayTwo.swift in Sources */,

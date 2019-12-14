@@ -13,7 +13,7 @@ class ArcadeScreen {
         case empty = 0
         case wall = 1
         case block = 2
-        case horizontalPaddle = 3
+        case paddle = 3
         case ball = 4
 
         var draw: String {
@@ -24,7 +24,7 @@ class ArcadeScreen {
                 return "▓"
             case .block:
                 return "░"
-            case .horizontalPaddle:
+            case .paddle:
                 return "═"
             case .ball:
                 return "◍"
@@ -34,11 +34,16 @@ class ArcadeScreen {
 
     var grid: [Coordinate: Tile] = [Coordinate: Tile]()
 
+    var ballLocation: Coordinate? {
+        grid.filter({ $0.value == .ball }).first?.key
+    }
+
+    var paddleLocation: Coordinate? {
+        grid.filter({ $0.value == .paddle }).first?.key
+    }
+
     func draw(input: [Int]) {
-//        print(input)
-//        print("")
         let screenInput = input.chunks(size: 3)
-//        screenInput.forEach { print($0) }
 
         for tileInput in screenInput {
             guard tileInput.count == 3 else {
@@ -55,8 +60,21 @@ class ArcadeScreen {
         }
     }
 
+    /// Draw the a tile at a location
     func draw(tile: Tile, at location: Coordinate) {
         grid[location] = tile
+    }
+
+    /// Is there a "solid" object at the point (ie: block or wall)
+    func solid(at location: Coordinate) -> Bool {
+        guard let tile = grid[location] else { return false }
+
+        switch tile {
+        case .block, .wall:
+            return true
+        default:
+            return false
+        }
     }
 
     @discardableResult
@@ -67,11 +85,14 @@ class ArcadeScreen {
         let minY = usedCoordinates.min(by: { $0.y < $1.y })?.y ?? 0
         let maxY = usedCoordinates.max(by: { $0.y < $1.y })?.y ?? 0
 
-        let xRange = minX..<maxX
-        let yRange = minY..<maxY
+        let xRange = min(0, minX)..<(maxX + 1)
+        let yRange = min(0, minY)..<(maxY + 1)
 
-        var output = ""
+        var output = " "
+        xRange.forEach { output += "\($0 % 10)" }
+        output += "\n"
         for y in yRange {
+            output += "\(y % 10)"
             for x in xRange {
                 let location = Coordinate(x: x, y: y)
                 if let tile = grid[location] {

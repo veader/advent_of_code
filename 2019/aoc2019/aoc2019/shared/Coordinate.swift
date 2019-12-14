@@ -92,6 +92,21 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         }
     }
 
+    func next(on slope: SlopeType) -> Coordinate {
+        switch slope {
+        case .horizontal(direction: let direction):
+            return Coordinate(x: x + direction, y: y)
+        case .vertical(direction: let direction):
+            return Coordinate(x: x, y: y + direction)
+        case .normal(slope: let slopeValue, direction: let direction):
+            // y = mx + b -> b = y - mx or x = (y-b)/m
+            let intercept = Float(y) - (slopeValue * Float(x))
+            let newY = y + direction
+            let newX = Int((Float(newY) - intercept) / Float(slopeValue))
+            return Coordinate(x: newX, y: newY)
+        }
+    }
+
     public static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
         // don't check the name
         lhs.x == rhs.x && lhs.y == rhs.y
