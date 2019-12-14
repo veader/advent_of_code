@@ -63,7 +63,7 @@ class ArcadeCabinet {
         // start the machine running
         machine.run()
 
-        var waitCount = 500
+        var waitCount = 1000
 
         while !finished {
             if case .finished(output: _) = machine.state {
@@ -113,11 +113,43 @@ class ArcadeCabinet {
 
         var output: JoystickOrientation = .neutral
 
+        print("=========================================")
+        print("Paddle @ \(paddleLocation)")
+
         // find the slope of travel for the ball
         // REMEMBER: down is up and up is down, because of top-left origin
         let slope = prevLocation.slope(to: currentLocation)
-        print(slope)
 
+        var pongBall = PongBall(position: currentLocation, slope: slope)
+        if let intersection = pongBall.find(paddle: paddleLocation, screen: screen) {
+            print("Hit paddle @ \(intersection)")
+            print("")
+            screen.printPath(of: pongBall)
+
+            let ballHeight = intersection.y - currentLocation.y
+            let ballDelta = abs(currentLocation.x - intersection.x)
+            print("Ball height: \(ballHeight), delta: \(ballDelta)")
+            if ballHeight - 2 > ballDelta {
+                // attempt to favor towards middle, just in case
+                print("Favoring middle...")
+                let center = screen.centerX
+
+                if paddleLocation.x < center {
+                    output = .right
+                } else if paddleLocation.x > center {
+                    output = .left
+                }
+            } else {
+                // head towards point of intersection
+                if paddleLocation.x < intersection.x {
+                    output = .right
+                } else if paddleLocation.x > intersection.x {
+                    output = .left
+                }
+            }
+        }
+
+        /*
         if case .normal(slope: _, direction: let direction) = slope {
             if let bounce = followTheBouncing(ball: currentLocation, paddle: paddleLocation, slope: slope) {
                 print("Ball @ \(currentLocation) should bounce once it hits: \(bounce.0), updating slope: \(bounce.1)")
@@ -130,6 +162,7 @@ class ArcadeCabinet {
                 }
             }
         }
+         */
 
         // store the last place we saw the ball for next loop
         previousBallLocation = currentLocation

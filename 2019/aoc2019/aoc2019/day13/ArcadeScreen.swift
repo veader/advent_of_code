@@ -42,6 +42,11 @@ class ArcadeScreen {
         grid.filter({ $0.value == .paddle }).first?.key
     }
 
+    var centerX: Int {
+        let maxX = grid.keys.max(by: { $0.x < $1.x })?.x ?? 1
+        return maxX / 2
+    }
+
     func draw(input: [Int]) {
         let screenInput = input.chunks(size: 3)
 
@@ -79,14 +84,9 @@ class ArcadeScreen {
 
     @discardableResult
     func printScreen() -> String {
-        let usedCoordinates = grid.keys
-        let minX = usedCoordinates.min(by: { $0.x < $1.x })?.x ?? 0
-        let maxX = usedCoordinates.max(by: { $0.x < $1.x })?.x ?? 0
-        let minY = usedCoordinates.min(by: { $0.y < $1.y })?.y ?? 0
-        let maxY = usedCoordinates.max(by: { $0.y < $1.y })?.y ?? 0
-
-        let xRange = min(0, minX)..<(maxX + 1)
-        let yRange = min(0, minY)..<(maxY + 1)
+        let ranges = printRanges()
+        let xRange = ranges.0
+        let yRange = ranges.1
 
         var output = " "
         xRange.forEach { output += "\($0 % 10)" }
@@ -106,5 +106,46 @@ class ArcadeScreen {
 
         print(output)
         return output
+    }
+
+    func printPath(of ball: PongBall) {
+        let ranges = printRanges()
+        let xRange = ranges.0
+        let yRange = ranges.1
+
+        var output = " "
+        xRange.forEach { output += "\($0 % 10)" }
+        output += "\n"
+        for y in yRange {
+            output += "\(y % 10)"
+            for x in xRange {
+                let location = Coordinate(x: x, y: y)
+                if ball.bounces.contains(location) {
+                    output += "*"
+                } else if ball.pathSteps.contains(location) {
+                    output += "¤"
+                } else if let tile = grid[location] {
+                    output += tile.draw
+                } else {
+                    output += Tile.empty.draw
+                }
+            }
+            output += "\n"
+        }
+
+        print(output)
+    }
+
+    func printRanges() -> (Range<Int>, Range<Int>) {
+        let usedCoordinates = grid.keys
+        let minX = usedCoordinates.min(by: { $0.x < $1.x })?.x ?? 0
+        let maxX = usedCoordinates.max(by: { $0.x < $1.x })?.x ?? 0
+        let minY = usedCoordinates.min(by: { $0.y < $1.y })?.y ?? 0
+        let maxY = usedCoordinates.max(by: { $0.y < $1.y })?.y ?? 0
+
+        let xRange = min(0, minX)..<(maxX + 1)
+        let yRange = min(0, minY)..<(maxY + 1)
+
+        return (xRange, yRange)
     }
 }
