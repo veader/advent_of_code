@@ -8,111 +8,133 @@
 
 import Foundation
 
-struct Reaction {
-    let inputs: [String: Int]
-    let output: String
-    let quantity: Int
+struct NanoFactory {
+    let reactions: [String: Reaction]
+    var requirements: [String: Int]
+    var leftovers: [String: Int]
 
-    typealias ParserResponse = (quantity: Int, name: String)
-    private static let parser: (String) -> ParserResponse? = { input -> ParserResponse? in
-        let pieces = input.trimmingCharacters(in: .symbols)
-            .split(separator: " ")
-            .compactMap(String.init)
-        guard
-            pieces.count == 2,
-            let quantity = Int(pieces[0])
-            else { print("Parser Pieces: \(pieces)"); return nil }
-
-        return (quantity, pieces[1])
+    var finished: Bool {
+        requirements.keys.count == 1
     }
 
-    init?(input: String) {
-        // format: 12 HKGWZ, 1 GPVTF, 8 PSHF => 9 QDVJ
-        let pieces = input.split(separator: "=").compactMap(String.init)
+    mutating func prime(count: Int = 1) {
+        requirements["FUEL"] = count
+    }
 
-        guard
-            pieces.count == 2,
-            let outputResponse = Reaction.parser(pieces[1])
-            else { print("Pieces: \(pieces)"); return nil }
+    mutating func process() {
+        print("Start loop: \(requirements)")
+        print("\tLeftovers: \(leftovers)")
+        var reqs = requirements
+        for req in requirements {
+            guard let reaction = reactions[req.key] else { continue }
+            var requiredQuantity = req.value // number of this element we need
+            print("\(req.key) makes in quantities of \(reaction.quantity)")
+            print("\tWe need \(requiredQuantity) of \(req.key)")
 
-        output = outputResponse.name
-        quantity = outputResponse.quantity
-
-        let rawInputs = pieces[0]
-                            .split(separator: ",")
-                            .compactMap(String.init)
-                            .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-
-        var tmpInputs = [String: Int]()
-        rawInputs.forEach { input in
-            if let response = Reaction.parser(input) {
-                tmpInputs[response.name] = response.quantity
+            if let extra = leftovers[req.key], extra > 0 {
+                if extra >= requiredQuantity {
+                    print("\t* We have ALL we need in leftovers, use those first")
+                    leftovers[req.key] = (leftovers[req.key] ?? 0) - requiredQuantity
+                    requiredQuantity -= requiredQuantity
+                } else {
+                    print("\t* We have SOME in leftovers, use those first")
+                    requiredQuantity -= extra
+                    leftovers[req.key] = (leftovers[req.key] ?? 0) - extra
+                    print("\t* Now only need \(requiredQuantity)")
+                }
             }
+
+            var multiplier = requiredQuantity / reaction.quantity
+            multiplier += (requiredQuantity % reaction.quantity == 0 ? 0 : 1)
+            let amountMade = multiplier * reaction.quantity
+            print("\tSo we have to make \(multiplier).. (\(amountMade))")
+
+            if requiredQuantity > 0 {
+                // for each requirement determine how many inputs (and quantities) it needs
+                for input in reaction.inputs {
+                    print("\t\t\(req.key) needs \(input.key) - \(input.value)")
+                    var quantityNeeded = input.value * multiplier
+
+                    if let extra = leftovers[input.key], extra > 0 {
+                        if extra >= quantityNeeded {
+                            print("\t\tFound ALL in leftovers of \(input.key)")
+                            // remove from the leftovers and skip since we found all we needed
+                            leftovers[input.key] = (leftovers[input.key] ?? 0) - quantityNeeded
+                            continue
+                        } else {
+                            print("\t\tFound SOME in leftovers of \(input.key)")
+                            // remove from the leftovers and continue since we need more
+                            quantityNeeded -= extra
+                            leftovers[input.key] = (leftovers[input.key] ?? 0) - extra
+                        }
+
+                        print("\t\tNow we only need \(quantityNeeded) of \(input.key)")
+                    }
+
+                    reqs[input.key] = (reqs[input.key] ?? 0) + quantityNeeded
+                }
+            }
+
+            // if we made more of this than we needed, add it to the leftovers
+            if amountMade > requiredQuantity {
+                let extra = amountMade - requiredQuantity
+                print("\t** We made extra... Leftover: \(extra)")
+                leftovers[reaction.output] = (leftovers[reaction.output] ?? 0) + extra
+            }
+
+            // clean up the initial quanitity of this element
+            reqs[req.key] = (reqs[req.key] ?? 0) - req.value
         }
-        inputs = tmpInputs
+
+        // filter out any elements that we've satisified all needs of
+        reqs = reqs.filter { $1 != 0 }
+        // TODO: clean out leftovers?
+
+        print("End loop: \(reqs)")
+        requirements = reqs
     }
 }
 
-struct DayFourteen: AdventDay {
-    var dayNumber: Int = 14
+extension NanoFactory {
+    init(input: String) {
+        requirements = [String: Int]()
+        leftovers = [String: Int]()
 
-    func parse(_ input: String?) -> [String: Reaction] {
         var reactionHash = [String: Reaction]()
-        let reactions = (input ?? "")
-                            .split(separator: "\n")
-                            .compactMap(String.init)
-                            .compactMap { Reaction.init(input: $0) }
+        let reactionList = input.split(separator: "\n")
+                                .compactMap(String.init)
+                                .compactMap { Reaction.init(input: $0) }
 
-        reactions.forEach { reaction in
+        for reaction in reactionList {
             if reactionHash[reaction.output] != nil {
                 // shouldn't happen but good to know...
                 print("OH NO: Second reaction for \(reaction.output)")
             }
             reactionHash[reaction.output] = reaction
         }
-        return reactionHash
+
+        reactions = reactionHash
     }
+}
 
-    func gatheringLoop(reactions: [String: Reaction], requirements: [String: Int]) -> [String: Int] {
-        print("Start loop: \(requirements)")
-        var reqs = requirements
-        for req in requirements {
-            // for each requirement determine how many inputs (and quantities) it needs
-            guard let reaction = reactions[req.key] else { continue }
-            let quantity = req.value // number of this element we need
-            for input in reaction.inputs {
-                var needed = req.value / reaction.quantity
-                let remainder = req.value % reaction.quantity
-                needed += (remainder == 0 ? 0 : 1)
-                let quantityNeeded = needed * input.value
+struct DayFourteen: AdventDay {
+    var dayNumber: Int = 14
 
-                reqs[input.key] = (reqs[input.key] ?? 0) + quantityNeeded
-            }
-
-            // clean up the initial quanitity of this element
-            //   - being paranoid in case we loop around to this element again while making it?
-            reqs[req.key] = (reqs[req.key] ?? 0) - quantity
-        }
-
-        // filter out any elements that we've satisified all needs of
-        reqs = reqs.filter { $1 > 0 }
-
-        print("End loop: \(reqs)")
-
-        return reqs
-    }
 
     func partOne(input: String?) -> Any {
-        let reactions = parse(input)
-        var reqs: [String: Int] = [String: Int]()
-        reqs["FUEL"] = 1
+        var factory = NanoFactory(input: input ?? "")
+        factory.prime()
 
         repeat {
             print("----------------------------------")
-            reqs = gatheringLoop(reactions: reactions, requirements: reqs)
-        } while reqs.keys.count > 1
+            factory.process()
+        } while !factory.finished
 
-        return reqs["ORE"] ?? 0
+        print("Finals...")
+        print(factory.requirements)
+        print(factory.leftovers)
+
+        return factory.requirements["ORE"] ?? 0
     }
 
     func partTwo(input: String?) -> Any {

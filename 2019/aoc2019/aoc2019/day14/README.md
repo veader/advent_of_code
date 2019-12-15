@@ -120,3 +120,5 @@ Here are some larger examples:
 
 Given the list of reactions in your puzzle input, **what is the minimum amount of ORE
 required to produce exactly 1 FUEL**?
+
+Your puzzle answer was `374457`.

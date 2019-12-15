@@ -20,7 +20,8 @@ class DayFourteenTests: XCTestCase {
     }
 
     func testParsing() {
-        let hash = DayFourteen().parse(testInput1)
+        let factory = NanoFactory(input: testInput1)
+        let hash = factory.reactions
         XCTAssertEqual(7, hash.keys.count)
 
         let fuel = hash["FUEL"]
@@ -32,38 +33,39 @@ class DayFourteenTests: XCTestCase {
         XCTAssertEqual(2, ab?.inputs.count)
     }
 
-    func testDivision() {
-        let remainder = 23 % 3
-        var answer = 23/3
-        answer += (remainder == 0 ? 0 : 1)
-        XCTAssertEqual(8, answer)
-    }
-
     func testGatheringLoop() {
-        let day = DayFourteen()
-        let hash = day.parse(testInput1)
-        var reqs = day.gatheringLoop(reactions: hash, requirements: ["FUEL": 1])
+        var factory = NanoFactory(input: testInput1)
+        factory.prime()
+        factory.process()
+        var reqs = factory.requirements
         XCTAssertEqual(3, reqs.count)
         XCTAssertEqual(2, reqs["AB"])
         XCTAssertEqual(3, reqs["BC"])
         XCTAssertEqual(4, reqs["CA"])
 
-        reqs = day.gatheringLoop(reactions: hash, requirements: ["FUEL": 2])
+        factory = NanoFactory(input: testInput1)
+        factory.prime(count: 2)
+        factory.process()
+        reqs = factory.requirements
         XCTAssertEqual(3, reqs.count)
         XCTAssertEqual(4, reqs["AB"])
         XCTAssertEqual(6, reqs["BC"])
         XCTAssertEqual(8, reqs["CA"])
 
         // start again
-        reqs = day.gatheringLoop(reactions: hash, requirements: ["FUEL": 1])
+        factory = NanoFactory(input: testInput1)
+        factory.prime()
+        factory.process()
         // second loop
-        reqs = day.gatheringLoop(reactions: hash, requirements: reqs)
+        factory.process()
+        reqs = factory.requirements
         XCTAssertEqual(3, reqs.count)
         XCTAssertEqual(10, reqs["A"])
         XCTAssertEqual(23, reqs["B"])
         XCTAssertEqual(37, reqs["C"])
         // third loop
-        reqs = day.gatheringLoop(reactions: hash, requirements: reqs)
+        factory.process()
+        reqs = factory.requirements
         XCTAssertEqual(1, reqs.count)
         XCTAssertEqual(165, reqs["ORE"])
     }
@@ -72,16 +74,30 @@ class DayFourteenTests: XCTestCase {
         let day = DayFourteen()
         var result: Any
 
-//        result == day.partOne(input: testInput1)
-//        XCTAssertEqual(165, result as? Int)
+        result = day.partOne(input: testInput1)
+        XCTAssertEqual(165, result as? Int)
 
         result = day.partOne(input: testInput2)
         XCTAssertEqual(13312, result as? Int)
 
-//        result = day.partOne(input: testInput3)
-//        XCTAssertEqual(180697, result as? Int)
+        result = day.partOne(input: testInput3)
+        XCTAssertEqual(180697, result as? Int)
     }
 
+    func testPartOneAnswer() {
+        let day = DayFourteen()
+        let answer = day.run(part: 1) as! Int
+        XCTAssertEqual(374457, answer)
+    }
+
+    func testPartTwoAnswer() {
+        XCTAssert(true)
+//        let day = DayFourteen()
+//        let answer = day.run(part: 2) as! Int
+//        XCTAssertEqual(416, answer)
+    }
+
+    
     let testInput1 = """
                      9 ORE => 2 A
                      8 ORE => 3 B
