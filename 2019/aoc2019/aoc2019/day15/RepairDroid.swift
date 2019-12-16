@@ -13,7 +13,7 @@ class RepairDroid {
         case wall = "▓"
         case empty = "."
         case robot = "◍"
-        case tank = "O"
+        case oxygen = "O"
     }
 
     enum MoveDirection: Int, Equatable {
@@ -66,14 +66,14 @@ class RepairDroid {
 
     // MARK: - Main logic points
 
-    /// Explore the map...
+    /// Explore the map. Generates a version of the map to use for other calculations.
     func explore() {
         var finished = false
 
         // start the machine running
         machine.run()
 
-        let maxLoops = 22_000
+        let maxLoops = 22_000 // determined by rigorous scientific method (ie: brute force)
         var iteration = 0
 
         while !finished {
@@ -92,20 +92,16 @@ class RepairDroid {
 
                 iteration += 1
                 if iteration > maxLoops {
-                    // print("Exceeded max iteraion count.")
                     finished = true
-                } else {
-                    // print("Iteration: \(iteration)")
                 }
-            } else {
-                // print(".")
             }
         }
 
         printMap()
     }
 
-    func processStatus() {
+    /// Process the status of the last move command
+    private func processStatus() {
         guard let lastOutput = machine.outputs.popLast() else { return }
 
         if let status = MoveStatus(rawValue: lastOutput) {
@@ -121,7 +117,7 @@ class RepairDroid {
                 if case .oxygen = status {
                     // if we found the oxygen tank, record it
                     oxygenTank = location
-                    map[location] = .tank
+                    map[location] = .oxygen
                 } else {
                     map[location] = .empty
                 }
@@ -133,6 +129,7 @@ class RepairDroid {
         }
     }
 
+    /// Find the shortest path to the oxygen tank using a BFS
     func findShortestPath() -> Int {
         guard let goal = oxygenTank else { print("No goal..."); return Int.max }
         distanceMap.removeAll() // reset distance map
@@ -141,7 +138,8 @@ class RepairDroid {
         return answer
     }
 
-    func bfSearch(location searchLocation: Coordinate, distance: Int, goal: Coordinate) -> Int {
+    /// Do a BFS on the map from this location looking for shortest distance
+    private func bfSearch(location searchLocation: Coordinate, distance: Int, goal: Coordinate) -> Int {
         // if we've already seen this location and had a shorter or similar path, abort
         if let prevDistance = distanceMap[searchLocation], prevDistance <= distance {
             return Int.max
@@ -149,7 +147,7 @@ class RepairDroid {
 
         distanceMap[searchLocation] = distance // shortest path (yet) to this location
 
-        if let tile = map[searchLocation], case .tank = tile {
+        if let tile = map[searchLocation], case .oxygen = tile {
             return distance // we hit the goal
         }
 
@@ -159,7 +157,7 @@ class RepairDroid {
             guard let tile = map[stepLocation] else { return nil }
 
             switch tile {
-            case .empty, .tank:
+            case .empty, .oxygen:
                 return stepLocation
             default:
                 return nil
@@ -173,6 +171,32 @@ class RepairDroid {
 
         return shortestPaths.min() ??  Int.max
     }
+
+    /// How long does it take to fill the map?
+    func fillMap() -> Int {
+        var oxygenMap = map // copy?
+        var iterations = 0
+
+        while oxygenMap.first(where: { $0.value == .empty }) != nil {
+            // find all oxygenated tiles
+            let o2Tiles = oxygenMap.filter({ $0.value == .oxygen })
+
+            // for each tile fill empty adjacent tiles with oxygen
+            for tile in o2Tiles {
+                for direction in directions {
+                    let adjacentLocation = tile.key.location(for: direction)
+                    if case .empty = oxygenMap[adjacentLocation] {
+                        oxygenMap[adjacentLocation] = .oxygen
+                    }
+                }
+            }
+
+            iterations += 1
+        }
+
+        return 0
+    }
+
 
     // MARK: - Helper Methods
 
@@ -198,7 +222,7 @@ class RepairDroid {
             let testLocation = currentLocation.location(for: direction)
             if let tile = map[testLocation] {
                 switch tile {
-                case .empty, .tank:
+                case .empty, .oxygen:
                     return direction
                 default:
                     continue
@@ -212,8 +236,10 @@ class RepairDroid {
         return .north // should never get here....
     }
 
-    func printMap() {
-        let usedCoordinates = map.keys
+    func printMap(_ printableMap: [Coordinate: Tile]? = nil) {
+        let theMap = printableMap ?? map
+
+        let usedCoordinates = theMap.keys
         let minX = usedCoordinates.min(by: { $0.x < $1.x })?.x ?? 0
         let maxX = usedCoordinates.max(by: { $0.x < $1.x })?.x ?? 0
         let minY = usedCoordinates.min(by: { $0.y < $1.y })?.y ?? 0
@@ -229,7 +255,7 @@ class RepairDroid {
                 let mapLocation = Coordinate(x: x, y: y)
                 if mapLocation == currentLocation {
                     output += Tile.robot.rawValue
-                } else if let tile = map[mapLocation] {
+                } else if let tile = theMap[mapLocation] {
                     output += tile.rawValue
                 } else {
                     output += " "

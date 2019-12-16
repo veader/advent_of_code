@@ -24,6 +24,12 @@ struct DayFifteen: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let droid = RepairDroid(input: input ?? "")
+        print("Starting Explore: \(Date())")
+        droid.explore() // create map to search
+        print("Spreading Oxygen: \(Date())")
+        let iterations = droid.fillMap()
+        print("Finished: \(Date())")
+        return iterations
     }
 }
