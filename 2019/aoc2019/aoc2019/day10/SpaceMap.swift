@@ -50,7 +50,7 @@ class SpaceLaser {
         directionIndex = 0
         var steps = [Coordinate.SlopeType]()
 
-        var slope: Coordinate.SlopeType
+        // var slope: Coordinate.SlopeType
 
         // start with vertical ("up")
         steps.append(location.slope(to: Coordinate(x: location.x, y: 0)))

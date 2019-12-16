@@ -36,6 +36,7 @@
 		DC610DB523A6D95C00E9A93C /* DayFifteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC610DB423A6D95C00E9A93C /* DayFifteen.swift */; };
 		DC610DB823A7073200E9A93C /* RepairDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC610DB723A7073200E9A93C /* RepairDroid.swift */; };
 		DC610DB923A7073200E9A93C /* RepairDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC610DB723A7073200E9A93C /* RepairDroid.swift */; };
+		DC610DBB23A7AE2700E9A93C /* DayFifteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC610DBA23A7AE2700E9A93C /* DayFifteenTests.swift */; };
 		DCD40E7B23A11E8600363124 /* PaintRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E7A23A11E8600363124 /* PaintRobot.swift */; };
 		DCD40E7C23A11E9500363124 /* PaintRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E7A23A11E8600363124 /* PaintRobot.swift */; };
 		DCD40E8C23A260FC00363124 /* DayTwelve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E8B23A260FC00363124 /* DayTwelve.swift */; };
@@ -138,6 +139,7 @@
 		DC610DB423A6D95C00E9A93C /* DayFifteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFifteen.swift; sourceTree = "<group>"; };
 		DC610DB623A6DADA00E9A93C /* day15input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day15input.txt; sourceTree = "<group>"; };
 		DC610DB723A7073200E9A93C /* RepairDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairDroid.swift; sourceTree = "<group>"; };
+		DC610DBA23A7AE2700E9A93C /* DayFifteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFifteenTests.swift; sourceTree = "<group>"; };
 		DCD40E7A23A11E8600363124 /* PaintRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintRobot.swift; sourceTree = "<group>"; };
 		DCD40E8A23A260EC00363124 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCD40E8B23A260FC00363124 /* DayTwelve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwelve.swift; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 				DCD40E8F23A2613600363124 /* DayTwelveTests.swift */,
 				DCD40E9B23A3AD7E00363124 /* DayThirteenTests.swift */,
 				DCD40EAF23A51C2900363124 /* DayFourteenTests.swift */,
+				DC610DBA23A7AE2700E9A93C /* DayFifteenTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -589,6 +592,7 @@
 			files = (
 				DCD40EA423A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				76ED708E2397ED5A00566C50 /* DayFour.swift in Sources */,
+				DC610DBB23A7AE2700E9A93C /* DayFifteenTests.swift in Sources */,
 				DC610DB923A7073200E9A93C /* RepairDroid.swift in Sources */,
 				DCD40E7C23A11E9500363124 /* PaintRobot.swift in Sources */,
 				76D042E72394DC9100A09228 /* DayTwo.swift in Sources */,

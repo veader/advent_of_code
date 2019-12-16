@@ -105,3 +105,5 @@ example, it was only `2` moves away from the repair droid's starting position.
 
 **What is the fewest number of movement commands** required to move the repair droid 
 from its starting position to the location of the oxygen system?
+
+Your puzzle answer was `262`.

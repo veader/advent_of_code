@@ -16,13 +16,13 @@ class RepairDroid {
         case tank = "O"
     }
 
-    enum MoveCommand: Int, Equatable {
+    enum MoveDirection: Int, Equatable {
         case north = 1
         case south = 2
         case west = 3
         case east = 4
 
-        var opposite: MoveCommand {
+        var opposite: MoveDirection {
             switch self {
             case .north:
                 return .south
@@ -47,14 +47,24 @@ class RepairDroid {
     var map: [Coordinate: Tile]
     var oxygenTank: Coordinate? = nil
     var currentLocation: Coordinate = Coordinate.origin
-    var attemptedDirection: MoveCommand? = nil
+    var traveling: MoveDirection
+
+    var distanceMap: [Coordinate: Int]
+
+    let directions: [MoveDirection] = [.north, .east, .south, .west]
 
     init(input: String) {
         machine = IntCodeMachine(instructions: input)
         machine.silent = true
         map = [Coordinate: Tile]()
         map[currentLocation] = .empty // nothing at the start
+        traveling = .north
+
+        distanceMap = [Coordinate: Int]()
     }
+
+
+    // MARK: - Main logic points
 
     /// Explore the map...
     func explore() {
@@ -63,7 +73,8 @@ class RepairDroid {
         // start the machine running
         machine.run()
 
-        var waitCount = 1_000_000
+        let maxLoops = 22_000
+        var iteration = 0
 
         while !finished {
             if case .finished(output: _) = machine.state {
@@ -74,110 +85,24 @@ class RepairDroid {
                 processStatus()
 
                 let next = nextDirection()
-                attemptedDirection = next
+                traveling = next
                 machine.set(input: next.rawValue)
 
-                printMap()
+                // printMap()
 
-                waitCount -= 1
-                if waitCount == 0 {
-                    exit(1)
+                iteration += 1
+                if iteration > maxLoops {
+                    // print("Exceeded max iteraion count.")
+                    finished = true
+                } else {
+                    // print("Iteration: \(iteration)")
                 }
             } else {
                 // print(".")
             }
         }
-    }
 
-    func location(for direction: MoveCommand) -> Coordinate {
-        switch direction {
-        case .north:
-            return Coordinate(x: currentLocation.x, y: currentLocation.y + 1)
-        case .south:
-            return Coordinate(x: currentLocation.x, y: currentLocation.y - 1)
-        case .east:
-            return Coordinate(x: currentLocation.x + 1, y: currentLocation.y)
-        case .west:
-            return Coordinate(x: currentLocation.x - 1, y: currentLocation.y)
-        }
-    }
-
-    func locationForLastDirection() -> Coordinate? {
-        guard let direction = attemptedDirection else { return nil }
-        return location(for: direction)
-    }
-
-    func nextDirection() -> MoveCommand {
-        let neighborLocations: [MoveCommand] = [.north, .east, .south, .west]
-        let neighbors: [(MoveCommand, Coordinate, Tile?)] = neighborLocations.map { cmd in
-            (cmd, location(for: cmd), map[location(for: cmd)])
-        }
-
-        // first attempt to hit any unexplored neighbor
-        if let neighbor = neighbors.first(where: { $0.2 == nil }) {
-            return neighbor.0
-        }
-
-        // next attempt to backtrack to find unexplore blocks in our past
-        let emptyBlocks = neighbors.filter({ $0.2 == .empty })
-        if emptyBlocks.count == 1 {
-            // no other choice but the way we came
-            if let neighbor = emptyBlocks.first {
-                return neighbor.0
-            }
-        } else {
-            // we came one way to get here but there are other empty options.
-            //  take those instead of the way we came...
-            if let neighbor = emptyBlocks.first(where: { $0.0 != attemptedDirection?.opposite }) {
-                return neighbor.0
-            }
-        }
-
-        // we found nothing... go north?
-        print("No unexplored neigbors")
-        return .north
-
-        /*
-        guard let direction = attemptedDirection else { return .north } // default to trying north
-        switch direction {
-        case .north:
-            let eastLocation = location(for: .east)
-            let tile = map[eastLocation]
-            if tile == nil {
-                return .east
-            } else {
-                attemptedDirection = .east
-                return nextDirection()
-            }
-        case .east:
-            let southDirection = location(for: .south)
-            let tile = map[southDirection]
-            if tile == nil {
-                return .south
-            } else {
-                attemptedDirection = .south
-                return nextDirection()
-            }
-        case .south:
-            let westDirection = location(for: .west)
-            let tile = map[westDirection]
-            if tile == nil {
-                return .west
-            } else {
-                attemptedDirection = .west
-                return nextDirection()
-            }
-        case .west:
-            let northDirection = location(for: .north)
-            let tile = map[northDirection]
-            if tile == nil {
-                return .north
-            } else {
-                attemptedDirection = .north
-                return nextDirection()
-            }
-        }
- */
+        printMap()
     }
 
     func processStatus() {
@@ -187,29 +112,104 @@ class RepairDroid {
             switch status {
             case .wall:
                 // mark the wall and pick next direction
-                if let location = locationForLastDirection() {
-                    map[location] = .wall
-                }
-            case .success:
+                let location = locationForLastDirection()
+                map[location] = .wall
+            case .success, .oxygen:
                 // mark spot and move, pick next direction
-                if let location = locationForLastDirection() {
-                    map[location] = .empty
-                    currentLocation = location
-                }
-                // attemptedDirection = nil // clear direction
-            case .oxygen:
-                // mark tank, save location, move, pick new direction
-                if let location = locationForLastDirection() {
-                    map[location] = .tank
-                    currentLocation = location
+                let location = locationForLastDirection()
+
+                if case .oxygen = status {
+                    // if we found the oxygen tank, record it
                     oxygenTank = location
+                    map[location] = .tank
+                } else {
+                    map[location] = .empty
                 }
-                // attemptedDirection = nil // clear direction
-                break
+
+                currentLocation = location
             }
         } else {
             print("Awaiting input but we have no status.")
         }
+    }
+
+    func findShortestPath() -> Int {
+        guard let goal = oxygenTank else { print("No goal..."); return Int.max }
+        distanceMap.removeAll() // reset distance map
+
+        let answer = bfSearch(location: Coordinate.origin, distance: 0, goal: goal)
+        return answer
+    }
+
+    func bfSearch(location searchLocation: Coordinate, distance: Int, goal: Coordinate) -> Int {
+        // if we've already seen this location and had a shorter or similar path, abort
+        if let prevDistance = distanceMap[searchLocation], prevDistance <= distance {
+            return Int.max
+        }
+
+        distanceMap[searchLocation] = distance // shortest path (yet) to this location
+
+        if let tile = map[searchLocation], case .tank = tile {
+            return distance // we hit the goal
+        }
+
+        // determine possible paths from our current location
+        let pathLocations = directions.compactMap { direction -> Coordinate? in
+            let stepLocation = searchLocation.location(for: direction)
+            guard let tile = map[stepLocation] else { return nil }
+
+            switch tile {
+            case .empty, .tank:
+                return stepLocation
+            default:
+                return nil
+            }
+        }
+
+        // continue search
+        let shortestPaths = pathLocations.map {
+            bfSearch(location: $0, distance: distance + 1, goal: goal)
+        }
+
+        return shortestPaths.min() ??  Int.max
+    }
+
+    // MARK: - Helper Methods
+
+    func locationForLastDirection() -> Coordinate {
+        currentLocation.location(for: traveling)
+    }
+
+    func nextDirection() -> MoveDirection {
+        var lookDirections: [MoveDirection]
+
+        switch traveling {
+        case .north:
+            lookDirections = directions.rotate(by: -1)
+        case .east:
+            lookDirections = directions
+        case .south:
+            lookDirections = directions.rotate(by: 1)
+        case .west:
+            lookDirections = directions.rotate(by: 2)
+        }
+
+        for direction in lookDirections {
+            let testLocation = currentLocation.location(for: direction)
+            if let tile = map[testLocation] {
+                switch tile {
+                case .empty, .tank:
+                    return direction
+                default:
+                    continue
+                }
+            } else {
+                // we have no knowledge of this tile, go that direction
+                return direction
+            }
+        }
+
+        return .north // should never get here....
     }
 
     func printMap() {
@@ -239,5 +239,20 @@ class RepairDroid {
         }
 
         print(output)
+    }
+}
+
+extension Coordinate {
+    func location(for direction: RepairDroid.MoveDirection) -> Coordinate {
+        switch direction {
+        case .north:
+            return Coordinate(x: self.x, y: self.y + 1)
+        case .south:
+            return Coordinate(x: self.x, y: self.y - 1)
+        case .east:
+            return Coordinate(x: self.x + 1, y: self.y)
+        case .west:
+            return Coordinate(x: self.x - 1, y: self.y)
+        }
     }
 }
