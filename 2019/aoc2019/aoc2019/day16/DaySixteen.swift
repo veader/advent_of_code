@@ -12,23 +12,22 @@ struct FFT {
     static let pattern: [Int] = [1, 0, -1, 0] // "base" pattern
 
     @discardableResult
-    static func process(input: inout [Int], phases: Int, size: Int = 8, offset: Int = 0) -> [Int] {
+    static func process(input: inout [Int], phases: Int, offset: Int = 0) -> [Int] {
         var iterations = 0
         while iterations < phases {
-            phase(input: &input, size: size, offset: offset)
+            let startTime = Date()
+            phase(input: &input, offset: offset)
             iterations += 1
+            print("Finished phase \(iterations): \(startTime) - \(Date())")
         }
 
         return input
     }
 
     @discardableResult
-    static func phase(input: inout [Int], size: Int = 8, offset: Int = 0) -> [Int] {
+    static func phase(input: inout [Int], offset: Int = 0) -> [Int] {
         // edit the input in place (save memory allocations)
-        // let maxIdx = min(offset + size, input.count)
-        let maxIdx = input.count
-        print("Phase running over \(offset..<maxIdx)")
-        for idx in (offset..<maxIdx) {
+        for idx in (offset..<input.count) {
             input[idx] = phaseDigit(at: idx, stepSize: idx + 1, input: input)
         }
 
@@ -127,11 +126,12 @@ struct DaySixteen: AdventDay {
         let offset = Int(String(signal.prefix(7).map(String.init).joined())) ?? 0
         print("Offset: \(offset)")
         print("Start Processing: \(Date())")
-        let output = FFT.process(input: &signal, phases: 100, size: 8, offset: offset)
+        let output = FFT.process(input: &signal, phases: 100, offset: offset)
 //        let offsetOutput = output.dropFirst(offset)
 //        let outputStr = offsetOutput.prefix(8).map(String.init).joined()
         let outputStr = output[offset..<(offset+8)].compactMap(String.init).joined()
         print("End: \(Date())")
+        print(outputStr)
         return outputStr
     }
 }
