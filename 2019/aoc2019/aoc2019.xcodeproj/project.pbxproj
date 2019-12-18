@@ -156,6 +156,7 @@
 		DC88267623A99251006BE5E5 /* DaySeventeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeen.swift; sourceTree = "<group>"; };
 		DC88267923A99481006BE5E5 /* day17input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day17input.txt; sourceTree = "<group>"; };
 		DC88267B23A9CE39006BE5E5 /* DaySeventeenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeenTests.swift; sourceTree = "<group>"; };
+		DC88267D23A9D8C0006BE5E5 /* map.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = map.md; sourceTree = "<group>"; };
 		DCD40E7A23A11E8600363124 /* PaintRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintRobot.swift; sourceTree = "<group>"; };
 		DCD40E8A23A260EC00363124 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCD40E8B23A260FC00363124 /* DayTwelve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwelve.swift; sourceTree = "<group>"; };
@@ -403,6 +404,7 @@
 			children = (
 				DC88267523A99248006BE5E5 /* README.md */,
 				DC88267623A99251006BE5E5 /* DaySeventeen.swift */,
+				DC88267D23A9D8C0006BE5E5 /* map.md */,
 			);
 			path = day17;
 			sourceTree = "<group>";
