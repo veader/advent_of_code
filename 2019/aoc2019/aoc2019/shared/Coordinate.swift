@@ -13,6 +13,26 @@ protocol CoordinateLike {
     var y: Int { get }
 }
 
+enum MoveDirection: Int, Equatable {
+    case north = 1
+    case south = 2
+    case west = 3
+    case east = 4
+
+    var opposite: MoveDirection {
+        switch self {
+        case .north:
+            return .south
+        case .south:
+            return .north
+        case .east:
+            return .west
+        case .west:
+            return .east
+        }
+    }
+}
+
 public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugStringConvertible {
     let x: Int
     let y: Int
@@ -104,6 +124,19 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
             let newY = y + direction
             let newX = Int((Float(newY) - intercept) / Float(slopeValue))
             return Coordinate(x: newX, y: newY)
+        }
+    }
+
+    func location(for direction: MoveDirection) -> Coordinate {
+        switch direction {
+        case .north:
+            return Coordinate(x: self.x, y: self.y + 1)
+        case .south:
+            return Coordinate(x: self.x, y: self.y - 1)
+        case .east:
+            return Coordinate(x: self.x + 1, y: self.y)
+        case .west:
+            return Coordinate(x: self.x - 1, y: self.y)
         }
     }
 

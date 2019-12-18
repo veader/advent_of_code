@@ -16,26 +16,6 @@ class RepairDroid {
         case oxygen = "O"
     }
 
-    enum MoveDirection: Int, Equatable {
-        case north = 1
-        case south = 2
-        case west = 3
-        case east = 4
-
-        var opposite: MoveDirection {
-            switch self {
-            case .north:
-                return .south
-            case .south:
-                return .north
-            case .east:
-                return .west
-            case .west:
-                return .east
-            }
-        }
-    }
-
     enum MoveStatus: Int, Equatable {
         case wall = 0
         case success = 1
@@ -268,17 +248,4 @@ class RepairDroid {
     }
 }
 
-extension Coordinate {
-    func location(for direction: RepairDroid.MoveDirection) -> Coordinate {
-        switch direction {
-        case .north:
-            return Coordinate(x: self.x, y: self.y + 1)
-        case .south:
-            return Coordinate(x: self.x, y: self.y - 1)
-        case .east:
-            return Coordinate(x: self.x + 1, y: self.y)
-        case .west:
-            return Coordinate(x: self.x - 1, y: self.y)
-        }
-    }
-}
+
