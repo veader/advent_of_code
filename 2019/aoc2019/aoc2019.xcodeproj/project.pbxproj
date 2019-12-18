@@ -45,6 +45,12 @@
 		DC88267823A99256006BE5E5 /* DaySeventeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88267623A99251006BE5E5 /* DaySeventeen.swift */; };
 		DC88267A23A99481006BE5E5 /* day17input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC88267923A99481006BE5E5 /* day17input.txt */; };
 		DC88267C23A9CE39006BE5E5 /* DaySeventeenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88267B23A9CE39006BE5E5 /* DaySeventeenTests.swift */; };
+		DC88268123AA4448006BE5E5 /* DayEighteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268023AA4448006BE5E5 /* DayEighteen.swift */; };
+		DC88268223AA4448006BE5E5 /* DayEighteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268023AA4448006BE5E5 /* DayEighteen.swift */; };
+		DC88268423AA4454006BE5E5 /* DayEighteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */; };
+		DC88268623AA45E7006BE5E5 /* day18input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC88268523AA45E7006BE5E5 /* day18input.txt */; };
+		DC88268823AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
+		DC88268923AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
 		DCD40E7B23A11E8600363124 /* PaintRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E7A23A11E8600363124 /* PaintRobot.swift */; };
 		DCD40E7C23A11E9500363124 /* PaintRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E7A23A11E8600363124 /* PaintRobot.swift */; };
 		DCD40E8C23A260FC00363124 /* DayTwelve.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD40E8B23A260FC00363124 /* DayTwelve.swift */; };
@@ -157,6 +163,11 @@
 		DC88267923A99481006BE5E5 /* day17input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day17input.txt; sourceTree = "<group>"; };
 		DC88267B23A9CE39006BE5E5 /* DaySeventeenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeenTests.swift; sourceTree = "<group>"; };
 		DC88267D23A9D8C0006BE5E5 /* map.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = map.md; sourceTree = "<group>"; };
+		DC88267F23AA4438006BE5E5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DC88268023AA4448006BE5E5 /* DayEighteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteen.swift; sourceTree = "<group>"; };
+		DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteenTests.swift; sourceTree = "<group>"; };
+		DC88268523AA45E7006BE5E5 /* day18input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day18input.txt; sourceTree = "<group>"; };
+		DC88268723AA5F03006BE5E5 /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
 		DCD40E7A23A11E8600363124 /* PaintRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaintRobot.swift; sourceTree = "<group>"; };
 		DCD40E8A23A260EC00363124 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCD40E8B23A260FC00363124 /* DayTwelve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwelve.swift; sourceTree = "<group>"; };
@@ -266,6 +277,7 @@
 				DC610DB223A6D94300E9A93C /* day15 */,
 				DC610DBC23A7CF3300E9A93C /* day16 */,
 				DC88267423A9923C006BE5E5 /* day17 */,
+				DC88267E23AA442E006BE5E5 /* day 18 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -292,6 +304,7 @@
 				DC610DB623A6DADA00E9A93C /* day15input.txt */,
 				DC610DC323A7D14100E9A93C /* day16input.txt */,
 				DC88267923A99481006BE5E5 /* day17input.txt */,
+				DC88268523AA45E7006BE5E5 /* day18input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -317,6 +330,7 @@
 				DC610DBA23A7AE2700E9A93C /* DayFifteenTests.swift */,
 				DC610DC123A7CF5400E9A93C /* DaySixteenTests.swift */,
 				DC88267B23A9CE39006BE5E5 /* DaySeventeenTests.swift */,
+				DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -407,6 +421,16 @@
 				DC88267D23A9D8C0006BE5E5 /* map.md */,
 			);
 			path = day17;
+			sourceTree = "<group>";
+		};
+		DC88267E23AA442E006BE5E5 /* day 18 */ = {
+			isa = PBXGroup;
+			children = (
+				DC88267F23AA4438006BE5E5 /* README.md */,
+				DC88268023AA4448006BE5E5 /* DayEighteen.swift */,
+				DC88268723AA5F03006BE5E5 /* Vault.swift */,
+			);
+			path = "day 18";
 			sourceTree = "<group>";
 		};
 		DCD40E8923A260E200363124 /* day12 */ = {
@@ -582,6 +606,7 @@
 				DCD40EAE23A51C1200363124 /* day14input.txt in Resources */,
 				DC88267A23A99481006BE5E5 /* day17input.txt in Resources */,
 				DC610DC423A7D14100E9A93C /* day16input.txt in Resources */,
+				DC88268623AA45E7006BE5E5 /* day18input.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -613,10 +638,12 @@
 				DCD40EB223A54A0800363124 /* Reaction.swift in Sources */,
 				DCD40EA623A496A000363124 /* PongBall.swift in Sources */,
 				DCD6BEF223994A5600D80913 /* DayFive.swift in Sources */,
+				DC88268823AA5F03006BE5E5 /* Vault.swift in Sources */,
 				DCD40EAB23A51BFF00363124 /* DayFourteen.swift in Sources */,
 				DC610DB523A6D95C00E9A93C /* DayFifteen.swift in Sources */,
 				DCD40E7B23A11E8600363124 /* PaintRobot.swift in Sources */,
 				DCD40E8C23A260FC00363124 /* DayTwelve.swift in Sources */,
+				DC88268123AA4448006BE5E5 /* DayEighteen.swift in Sources */,
 				766719312394C0A500648F48 /* main.swift in Sources */,
 				DC610DBF23A7CF4600E9A93C /* DaySixteen.swift in Sources */,
 				DCD6BF10239CC0BC00D80913 /* DayEight.swift in Sources */,
@@ -637,6 +664,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCD40EA423A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
+				DC88268223AA4448006BE5E5 /* DayEighteen.swift in Sources */,
 				76ED708E2397ED5A00566C50 /* DayFour.swift in Sources */,
 				DC610DBB23A7AE2700E9A93C /* DayFifteenTests.swift in Sources */,
 				DC610DB923A7073200E9A93C /* RepairDroid.swift in Sources */,
@@ -669,6 +697,7 @@
 				DC12DEF023A1120F006AB8FF /* Orientation.swift in Sources */,
 				DCD6BF01239A7D1400D80913 /* OrbitNode.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
+				DC88268923AA5F03006BE5E5 /* Vault.swift in Sources */,
 				DCD6BF25239E7E9600D80913 /* DayNineTests.swift in Sources */,
 				DCD6BF1D239D4A0200D80913 /* SpaceImage.swift in Sources */,
 				DCD40EAC23A51BFF00363124 /* DayFourteen.swift in Sources */,
@@ -682,6 +711,7 @@
 				DC12DEEC23A10D46006AB8FF /* DayElevenTests.swift in Sources */,
 				DCD40EB323A54A0800363124 /* Reaction.swift in Sources */,
 				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
+				DC88268423AA4454006BE5E5 /* DayEighteenTests.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
 				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,
 				DCD6BF14239D2FB700D80913 /* DayEightTests.swift in Sources */,

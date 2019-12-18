@@ -13,7 +13,7 @@ protocol CoordinateLike {
     var y: Int { get }
 }
 
-enum MoveDirection: Int, Equatable {
+enum MoveDirection: Int, Equatable, CaseIterable {
     case north = 1
     case south = 2
     case west = 3
