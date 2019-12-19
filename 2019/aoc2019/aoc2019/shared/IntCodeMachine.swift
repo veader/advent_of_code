@@ -242,6 +242,7 @@ class IntCodeMachine {
         instructionPointer = 0
         relativeBase = 0
         outputs = [Int]()
+        state = .halted
     }
 
 
