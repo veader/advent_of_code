@@ -76,7 +76,8 @@ struct Vault {
 
     // MARK: - Path Finding
     struct SearchProgress {
-        var visited = [Coordinate]()
+        // var visited = [Coordinate]()
+        var location: Coordinate
         var foundKeys = [String]()
         var doorsUnlocked = [String]()
         var stepCount = 0
@@ -93,7 +94,12 @@ struct Vault {
         }
 
         var hashKey: String {
-            "L:\(visited.last) K:\(foundKeys) D:\(doorsUnlocked)"
+            // "L:\(visited.last ?? Coordinate.origin) K:\(foundKeys.sorted()) D:\(doorsUnlocked.sorted())"
+            "L:\(location) K:\(foundKeys.sorted()) D:\(doorsUnlocked.sorted())"
+        }
+
+        var weight: Int {
+            (foundKeys.count * 3) + (doorsUnlocked.count * 2) - stepCount
         }
     }
 
@@ -105,15 +111,59 @@ struct Vault {
         var searchHash = [String: Bool]()
 
         // kick search off at the start
-        var progress = SearchProgress()
-        progress.visited.append(start)
+        // var progress = SearchProgress()
+        // progress.visited.append(start)
+        let progress = SearchProgress(location: start)
         possibilities.append(progress)
         searchHash[progress.hashKey] = true
 
         var iterations = 0
         while !possibilities.isEmpty {
-            // TODO: rewrite this with a normal for loop to try and save some of the efforts
+            // find our best solution to this point (if any)
+            var shortestSolutionYet: Int = solutions.sorted(by: { $0.stepCount < $1.stepCount }).first?.stepCount ?? Int.max
 
+            var newPossibilities = [SearchProgress]()
+
+            for possibility in possibilities.sorted(by: { $0.weight > $1.weight }) {
+                // find new searchable paths originating from this search path
+                var newPaths = search(progress: possibility, hash: searchHash)
+
+                newPaths = newPaths.filter { progress -> Bool in
+                    // filter out (and save) any real solutions
+                    if progress.finished {
+                        print("FOUND A SOLUTION!!!! ----------------------------")
+                        solutions.append(progress)
+
+                        if shortestSolutionYet > progress.stepCount {
+                            shortestSolutionYet = progress.stepCount
+                        }
+
+                        return false // no need to do anything else with it
+                    }
+
+                    // filter out any with more steps than our shortest solution
+                    if progress.stepCount > shortestSolutionYet {
+                        return false
+                    }
+
+                    // filter out any with matching hashed paths
+                    if searchHash[progress.hashKey] != nil {
+                        return false
+                    }
+
+                    return true
+                }
+
+                // add hashes for new possible paths
+                newPaths.forEach { searchHash[$0.hashKey] = true }
+
+                newPossibilities.append(contentsOf: newPaths)
+            }
+
+            possibilities = newPossibilities
+
+            /*
+            // ------------------------------------
             // for each possible location, find all new possibilities
             possibilities = possibilities.flatMap { search(progress: $0, hash: searchHash) }
                                          .sorted { $0.stepCount < $1.stepCount }
@@ -121,15 +171,7 @@ struct Vault {
             // add hashes for possibilities
             possibilities.forEach { searchHash[$0.hashKey] = true }
 
-            // filter out (and save) any real solutions
-            possibilities = possibilities.filter { progress -> Bool in
-                if progress.finished {
-                    print("FOUND A SOLUTION!!!! ----------------------------")
-                    solutions.append(progress)
-                    return false
-                }
-                return true
-            }
+
 
             // filter out any possibilities with steps more than one of our solutions
             if let shortestPath = solutions.sorted(by: { $0.stepCount < $1.stepCount }).first {
@@ -151,20 +193,28 @@ struct Vault {
                         }
                     }
             print("Removed \(beforeCount - possibilities.count) duplicates...")
+            */
 
-            print("\(possibilities.count) possibilities at iteration \(iterations)")
-            // printPossibilities(possibilities)
-            print("\(searchHash.keys.count) hash keys")
+//            print("\(possibilities.count) possibilities at iteration \(iterations)")
+//            // printPossibilities(possibilities)
+//            print("\(searchHash.keys.count) hash keys")
 
             iterations += 1
-            if iterations > 10_000 {
-                break
+//            if iterations > 10_000 {
+//                break
+//            }
+            if iterations % 100 == 0 {
+                print("\(iterations) @ \(Date())")
             }
         }
 
+        print("\(iterations) iterations")
+        print("Found \(solutions.count) solutions")
+
 //        print("Solutions: (\(solutions.count))\n\(solutions)")
 
-        return solutions.sorted { $0.stepCount < $1.stepCount }.first ?? SearchProgress()
+        let finalSolution = solutions.sorted { $0.stepCount < $1.stepCount }.first
+        return finalSolution ?? SearchProgress(location: Coordinate.origin)
     }
 
     /// BFS from the given location to find the shortest path to reach all keys
@@ -173,7 +223,8 @@ struct Vault {
         var progress = progress
 
         // where are we?
-        guard let location = progress.visited.last else { return [] }
+        // guard let location = progress.visited.last else { return [] }
+        let location = progress.location
         // print("Examining: \(location)")
 
         // what do we need to do at this location?
@@ -243,7 +294,8 @@ struct Vault {
         return searchable.compactMap { coordinate -> SearchProgress? in
             // for each possible searchable location, create an updated progress
             var newProgress = progress // copy
-            newProgress.visited.append(coordinate)
+            // newProgress.visited.append(coordinate)
+            newProgress.location = coordinate
             newProgress.stepCount += 1
 
             guard !hash.keys.contains(newProgress.hashKey) else {

@@ -14,9 +14,12 @@ struct DayEighteen: AdventDay {
     // func parse(_ input: String?) -> FOO { return FOO... }
 
     func partOne(input: String?) -> Any {
+        print("Start \(Date())")
         let vault = Vault(input: input ?? "")
-        vault.searchForAllKeys()
-        return 0
+        let result = vault.searchForAllKeys()
+        print(result)
+        print("End \(Date())")
+        return result?.stepCount ?? 0
     }
 
     func partTwo(input: String?) -> Any {
