@@ -9,5 +9,5 @@
 import Foundation
 
 let day = DayNineteen()
-day.run(part: 1)
+// day.run(part: 1)
 day.run(part: 2)
