@@ -108,6 +108,12 @@
 		DCD6BF2D239FC5C200D80913 /* DayTenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */; };
 		DCD6BF2F23A02C6F00D80913 /* SpaceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */; };
 		DCD6BF3023A02C8600D80913 /* SpaceMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */; };
+		DCF9735A23ACEE3400E57797 /* DayTwenty.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9735923ACEE3400E57797 /* DayTwenty.swift */; };
+		DCF9735B23ACEE3400E57797 /* DayTwenty.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9735923ACEE3400E57797 /* DayTwenty.swift */; };
+		DCF9735D23ACF11900E57797 /* day20input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCF9735C23ACF11900E57797 /* day20input.txt */; };
+		DCF9735F23ACF2CC00E57797 /* DonutMaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9735E23ACF2CC00E57797 /* DonutMaze.swift */; };
+		DCF9736023ACF2CC00E57797 /* DonutMaze.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9735E23ACF2CC00E57797 /* DonutMaze.swift */; };
+		DCF9736223AD003C00E57797 /* DayTwentyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9736123AD003C00E57797 /* DayTwentyTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -223,6 +229,11 @@
 		DCD6BF2A239FC11D00D80913 /* day10input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day10input.txt; sourceTree = "<group>"; };
 		DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTenTests.swift; sourceTree = "<group>"; };
 		DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceMap.swift; sourceTree = "<group>"; };
+		DCF9735823ACEE2A00E57797 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCF9735923ACEE3400E57797 /* DayTwenty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwenty.swift; sourceTree = "<group>"; };
+		DCF9735C23ACF11900E57797 /* day20input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day20input.txt; sourceTree = "<group>"; };
+		DCF9735E23ACF2CC00E57797 /* DonutMaze.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DonutMaze.swift; sourceTree = "<group>"; };
+		DCF9736123AD003C00E57797 /* DayTwentyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -285,6 +296,7 @@
 				DC88267423A9923C006BE5E5 /* day17 */,
 				DC88267E23AA442E006BE5E5 /* day 18 */,
 				DCB0A77523ABC77E004AE819 /* day 19 */,
+				DCF9735723ACEE2000E57797 /* day20 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -313,6 +325,7 @@
 				DC88267923A99481006BE5E5 /* day17input.txt */,
 				DC88268523AA45E7006BE5E5 /* day18input.txt */,
 				DCB0A77A23ABC88E004AE819 /* day19input.txt */,
+				DCF9735C23ACF11900E57797 /* day20input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -339,6 +352,7 @@
 				DC610DC123A7CF5400E9A93C /* DaySixteenTests.swift */,
 				DC88267B23A9CE39006BE5E5 /* DaySeventeenTests.swift */,
 				DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */,
+				DCF9736123AD003C00E57797 /* DayTwentyTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -541,6 +555,16 @@
 			path = day10;
 			sourceTree = "<group>";
 		};
+		DCF9735723ACEE2000E57797 /* day20 */ = {
+			isa = PBXGroup;
+			children = (
+				DCF9735823ACEE2A00E57797 /* README.md */,
+				DCF9735923ACEE3400E57797 /* DayTwenty.swift */,
+				DCF9735E23ACF2CC00E57797 /* DonutMaze.swift */,
+			);
+			path = day20;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -620,6 +644,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF9735D23ACF11900E57797 /* day20input.txt in Resources */,
 				DCD40EAE23A51C1200363124 /* day14input.txt in Resources */,
 				DCB0A77B23ABC88E004AE819 /* day19input.txt in Resources */,
 				DC88267A23A99481006BE5E5 /* day17input.txt in Resources */,
@@ -666,12 +691,14 @@
 				766719312394C0A500648F48 /* main.swift in Sources */,
 				DC610DBF23A7CF4600E9A93C /* DaySixteen.swift in Sources */,
 				DCD6BF10239CC0BC00D80913 /* DayEight.swift in Sources */,
+				DCF9735F23ACF2CC00E57797 /* DonutMaze.swift in Sources */,
 				DC12DEE923A10D16006AB8FF /* DayEleven.swift in Sources */,
 				DCD40E9223A2693600363124 /* ThreeDimPosition.swift in Sources */,
 				7667194C2394C22F00648F48 /* DayOne.swift in Sources */,
 				DCD6BF00239A7A3100D80913 /* OrbitNode.swift in Sources */,
 				DC12DEEF23A1120F006AB8FF /* Orientation.swift in Sources */,
 				76D042E22394D86D00A09228 /* DayTwo.swift in Sources */,
+				DCF9735A23ACEE3400E57797 /* DayTwenty.swift in Sources */,
 				76D042E52394DC8000A09228 /* IntCodeMachine.swift in Sources */,
 				DCD6BF18239D49D000D80913 /* AmpCircuit.swift in Sources */,
 				76ED708223967AE000566C50 /* DayThree.swift in Sources */,
@@ -687,6 +714,7 @@
 				76ED708E2397ED5A00566C50 /* DayFour.swift in Sources */,
 				DC610DBB23A7AE2700E9A93C /* DayFifteenTests.swift in Sources */,
 				DC610DB923A7073200E9A93C /* RepairDroid.swift in Sources */,
+				DCF9735B23ACEE3400E57797 /* DayTwenty.swift in Sources */,
 				DCD40E7C23A11E9500363124 /* PaintRobot.swift in Sources */,
 				76D042E72394DC9100A09228 /* DayTwo.swift in Sources */,
 				DCD6BEF323994B6400D80913 /* DayFive.swift in Sources */,
@@ -694,6 +722,7 @@
 				DCD6BEFD239A7A1700D80913 /* DaySixTests.swift in Sources */,
 				76ED70932397EF3F00566C50 /* DayFourTests.swift in Sources */,
 				DCD6BF0B239C016100D80913 /* DaySevenTests.swift in Sources */,
+				DCF9736023ACF2CC00E57797 /* DonutMaze.swift in Sources */,
 				76D042E92394E06100A09228 /* DayTwoTests.swift in Sources */,
 				DCD40EB023A51C2900363124 /* DayFourteenTests.swift in Sources */,
 				DC12DEED23A10D4B006AB8FF /* DayEleven.swift in Sources */,
@@ -732,6 +761,7 @@
 				DCD40EB323A54A0800363124 /* Reaction.swift in Sources */,
 				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
 				DC88268423AA4454006BE5E5 /* DayEighteenTests.swift in Sources */,
+				DCF9736223AD003C00E57797 /* DayTwentyTests.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
 				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,
 				DCD6BF14239D2FB700D80913 /* DayEightTests.swift in Sources */,
