@@ -172,41 +172,77 @@ struct DonutMaze {
         }
     }
 
+    struct SearchStep {
+        let location: Coordinate
+        let distance: Int
+        let level: Int
+        var finished: Bool = false
+    }
+
 
     /// Determine the shortest path from start to the end.
     func shortestPath(recursive: Bool = false) -> Int {
         var progress = SearchProgress()
         guard start != nil, goal != nil else { return Int.max }
 
-        return bfSearch(location: start!, distance: 0, level: 0, progress: &progress, recursive: recursive)
+        // places to search
+        var toSearch = [SearchStep]()
+
+        var solutions = [SearchStep]()
+
+        let startingStep = SearchStep(location: start!, distance: 0, level: 0)
+        toSearch.append(startingStep)
+
+        while !toSearch.isEmpty {
+            toSearch = toSearch.flatMap { bfSearch(step: $0, progress: &progress, recursive: recursive) }
+
+            // TODO: remove paths with longer distances that solutions
+            // TODO: sort
+
+            toSearch = toSearch.filter { step -> Bool in
+                if step.finished {
+                    print("SOLUTION: \(step)")
+                    solutions.append(step)
+                }
+
+                return !step.finished
+            }
+        }
+
+        return solutions.sorted(by: { $0.distance < $1.distance }).first?.distance ?? 0
+        // return bfSearch(step: startingStep, progress: &progress, recursive: recursive)
     }
 
     /// Use BFS to find shortest path from this location
-    private func bfSearch(location: Coordinate, distance: Int, level: Int, progress: inout SearchProgress, recursive: Bool) -> Int {
-        if let prevDistance = progress.distance(location: location, level: level), prevDistance < distance {
-            return Int.max // we visited here before on a shorter route
+    private func bfSearch(step: SearchStep, progress: inout SearchProgress, recursive: Bool) -> [SearchStep] {
+        if let prevDistance = progress.distance(location: step.location, level: step.level), prevDistance < step.distance {
+            return [] // we visited here before on a shorter route
         }
 
         // record our distance
-        progress.record(distance: distance, location: location, level: level)
+        progress.record(distance: step.distance, location: step.location, level: step.level)
 
         // have we hit our goal?
-        if goal == location {
-            if level == 0 {
-                print("Hit the goal \(distance) - level \(level)")
-                return distance
+        if goal == step.location {
+            if step.level == 0 {
+                print("Hit the goal \(step.distance) - level \(step.level)")
+                var finalStep = step
+                finalStep.finished = true
+                return [finalStep]
             } else {
-                print("Hit ZZ but at level \(level)")
-                return Int.max
+                print("Hit ZZ but at level \(step.level)")
+                return []
             }
         }
 
         // if we are on a portal, teleport to the other side...
-        if let tile = map[location], case .portal(name: let name) = tile {
-            guard let otherSide = portalConnections[name]?.first(where: { $0 != location }) else {
+        if let tile = map[step.location], case .portal(name: let name) = tile {
+            guard let otherSide = portalConnections[name]?.first(where: { $0 != step.location }) else {
                 print("Unable to find other side of the portal: \(name)")
-                return Int.max
+                return []
             }
+
+            // if we are at level 0 and on an outer portal
 
             // find empty space next to otherSize
             let neighbors = MoveDirection.allCases.map({ otherSide.location(for: $0) })
@@ -216,7 +252,7 @@ struct DonutMaze {
                 }
                 return false
             }) {
-                var newLevel = level
+                var newLevel = step.level
 
                 var debugText = ""
 
@@ -226,15 +262,15 @@ struct DonutMaze {
 
                     // before we step into a portal, see if has been used on
                     //  this level before. if so, we need to pop levels; otherwise push
-                    if progress.wasUsed(portal: name, level: level) {
-                        newLevel = max(0, level - 1) // used portal mean we are going down
-                        debugText = "Popping a level entering used \(name) on \(level) -> \(newLevel)"
+                    if progress.wasUsed(portal: name, level: step.level) {
+                        newLevel = max(0, step.level - 1) // used portal mean we are going down
+                        debugText = "Popping a level entering used \(name) on \(step.level) -> \(newLevel)"
 
                         // clear mark as we go down
-                        progress.removeUsedMark(level: level, portal: name)
+                        progress.removeUsedMark(level: step.level, portal: name)
                     } else {
-                        newLevel = level + 1 // unused portal means we we are going up
-                        debugText = "Pushing a level entering \(name) on \(level) -> \(newLevel)"
+                        newLevel = step.level + 1 // unused portal means we we are going up
+                        debugText = "Pushing a level entering \(name) on \(step.level) -> \(newLevel)"
 
                         // mark the next level up so we know how to get down
                         progress.markUsed(level: newLevel, portal: name)
@@ -266,23 +302,24 @@ struct DonutMaze {
                 }
 
                 // double check what is on the other side to prevent flopping
-                if let portalDistance = progress.distance(location: target, level: newLevel), portalDistance < distance {
-                    print("\tPeered through the portal \(name) on \(level) looking to level \(newLevel); someone has been there quicker before...")
-                    return Int.max
+                if let portalDistance = progress.distance(location: target, level: newLevel), portalDistance < step.distance {
+                    print("\tPeered through the portal \(name) on \(step.level) looking to level \(newLevel); someone has been there quicker before...")
+                    return []
                 }
 
                 if !debugText.isEmpty {
                     print(debugText)
                 }
 
-                return bfSearch(location: target, distance: distance, level: newLevel, progress: &progress, recursive: recursive)
+                return [SearchStep(location: target, distance: step.distance, level: newLevel)]
+                // return bfSearch(location: target, distance: step.distance, level: newLevel, progress: &progress, recursive: recursive)
             } else {
                 print("Unable to teleport to \(name)")
             }
         }
 
         let nextSteps = MoveDirection.allCases.compactMap { dir -> Coordinate? in
-            let nextLocation = location.location(for: dir)
+            let nextLocation = step.location.location(for: dir)
 
             if let tile = map[nextLocation] {
                 switch tile {
@@ -304,11 +341,12 @@ struct DonutMaze {
             return nil // nothing here
         }
 
-        let shortestPaths = nextSteps.map {
-            bfSearch(location: $0, distance: distance + 1, level: level, progress: &progress, recursive: recursive)
+        let nextPaths = nextSteps.map {
+            SearchStep(location: $0, distance: step.distance + 1, level: step.level)
+            // bfSearch(location: $0, distance: distance + 1, level: level, progress: &progress, recursive: recursive)
         }
 
-        return shortestPaths.min() ?? Int.max
+        return nextPaths
     }
 
 
