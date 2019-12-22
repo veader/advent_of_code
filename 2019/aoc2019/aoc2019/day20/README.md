@@ -240,3 +240,5 @@ outermost layer.
 
 In your maze, when accounting for recursion, **how many steps does it take to get from the 
 open tile marked `AA` to the open tile marked `ZZ`, both at the outermost layer?**
+
+Your puzzle answer was `5744`.

@@ -135,9 +135,6 @@ struct DonutMaze {
         // hash by recursion level, then by coordinate to distance
         var distanceMap = [Int: [Coordinate: Int]]()
 
-        // hashed by portal name and recursion levels used on
-        var usedPortals = [String: [Int]]()
-
         func distance(location: Coordinate, level: Int) -> Int? {
             guard
                 let levelMap = distanceMap[level],
@@ -157,19 +154,6 @@ struct DonutMaze {
                 distanceMap[level] = newMap
             }
         }
-
-        func wasUsed(portal: String, level: Int) -> Bool {
-            guard let levels = usedPortals[portal], levels.contains(level) else { return false }
-            return true
-        }
-
-        mutating func markUsed(level: Int, portal: String) {
-            usedPortals[portal] = (usedPortals[portal] ?? []) + [level]
-        }
-
-        mutating func removeUsedMark(level: Int, portal: String) {
-            usedPortals[portal] = (usedPortals[portal] ?? []).filter { $0 != level}
-        }
     }
 
     struct SearchStep {
@@ -185,9 +169,11 @@ struct DonutMaze {
         var progress = SearchProgress()
         guard start != nil, goal != nil else { return Int.max }
 
+        let stepSortingBlock: (SearchStep, SearchStep) -> Bool = { $0.distance < $1.distance }
+
         // places to search
         var toSearch = [SearchStep]()
-
+        // routes that worked
         var solutions = [SearchStep]()
 
         let startingStep = SearchStep(location: start!, distance: 0, level: 0)
@@ -196,9 +182,7 @@ struct DonutMaze {
         while !toSearch.isEmpty {
             toSearch = toSearch.flatMap { bfSearch(step: $0, progress: &progress, recursive: recursive) }
 
-            // TODO: remove paths with longer distances that solutions
-            // TODO: sort
-
+            // remove (and record) any found solutions
             toSearch = toSearch.filter { step -> Bool in
                 if step.finished {
                     print("SOLUTION: \(step)")
@@ -207,10 +191,13 @@ struct DonutMaze {
 
                 return !step.finished
             }
+
+            // remove any paths to search with distances more than our current shortest solution
+            let currentShortestSolution = solutions.sorted(by: stepSortingBlock).first?.distance ?? Int.max
+            toSearch = toSearch.filter { $0.distance < currentShortestSolution }.sorted(by: stepSortingBlock)
         }
 
-        return solutions.sorted(by: { $0.distance < $1.distance }).first?.distance ?? 0
-        // return bfSearch(step: startingStep, progress: &progress, recursive: recursive)
+        return solutions.sorted(by: stepSortingBlock).first?.distance ?? 0
     }
 
     /// Use BFS to find shortest path from this location
@@ -230,7 +217,7 @@ struct DonutMaze {
                 finalStep.finished = true
                 return [finalStep]
             } else {
-                print("Hit ZZ but at level \(step.level)")
+                // print("Hit ZZ but at level \(step.level).")
                 return []
             }
         }
@@ -242,77 +229,47 @@ struct DonutMaze {
                 return []
             }
 
-            // if we are at level 0 and on an outer portal
+            // if we are at level 0 and on an outer portal, abort - only if we are recursive
+            if isOuter(portal: step.location) && step.level == 0 && recursive {
+                // print("Attempted to enter outer portal \(name) on level zero.")
+                return []
+            }
 
             // find empty space next to otherSize
-            let neighbors = MoveDirection.allCases.map({ otherSide.location(for: $0) })
-            if let target = neighbors.first(where: {
-                if case .empty = map[$0] {
+            let emptyNeighbors = MoveDirection.allCases.map({ otherSide.location(for: $0) })
+                .filter {
+                    guard case .empty = map[$0] else { return false }
                     return true
                 }
-                return false
-            }) {
+
+            if let target = emptyNeighbors.first {
                 var newLevel = step.level
 
-                var debugText = ""
-
                 if recursive {
-                    // TODO: we might have to care about level + coordinate
-
-
-                    // before we step into a portal, see if has been used on
-                    //  this level before. if so, we need to pop levels; otherwise push
-                    if progress.wasUsed(portal: name, level: step.level) {
-                        newLevel = max(0, step.level - 1) // used portal mean we are going down
-                        debugText = "Popping a level entering used \(name) on \(step.level) -> \(newLevel)"
-
-                        // clear mark as we go down
-                        progress.removeUsedMark(level: step.level, portal: name)
-                    } else {
-                        newLevel = step.level + 1 // unused portal means we we are going up
-                        debugText = "Pushing a level entering \(name) on \(step.level) -> \(newLevel)"
-
-                        // mark the next level up so we know how to get down
-                        progress.markUsed(level: newLevel, portal: name)
-                    }
-
-
                     // TODO: problem here is we are getting negative levels
 
-                    /*
-                    // determine resursive
-                    if isInner(portal: location) && isOuter(portal: otherSide) {
-                        // popping a level
-                        newLevel -= 1
-                        print("Teleporting: \(name) - popping level from \(level) to \(newLevel)")
-                    } else if isInner(portal: otherSide) && isOuter(portal: location) {
-                        // pushing on a level
+                    // determine resursive level
+                    if isInner(portal: step.location) {
+                        // if we are going into an inner portal, add a level
                         newLevel += 1
-                        print("Teleporting: \(name) - pushing level from \(level) to \(newLevel)")
+                        // print("Teleporting: \(name) - adding level from \(step.level) to \(newLevel)")
+                    } else if isOuter(portal: step.location) {
+                        // if we are going into an outer portal (must be on level > 0), subtract level
+                        newLevel -= 1
+                        // print("Teleporting: \(name) - removing level from \(step.level) to \(newLevel)")
                     } else {
-                        print("Level switch unknown. Portal \(name)... \(location) \(otherSide)")
+                        print("Level switch unknown. Portal \(name)... \(step.location) \(otherSide)")
                         print("X: \(minX)..\(maxX), Y: \(minY)..\(maxY)")
                     }
-                     */
-
-                    // mark this portal as closed on both sides
-//                    progress.markUsed(level: level, portal: name)
-//                    progress.markUsed(level: newLevel, portal: name)
-//                    print(progress.usedPortals)
                 }
 
                 // double check what is on the other side to prevent flopping
                 if let portalDistance = progress.distance(location: target, level: newLevel), portalDistance < step.distance {
-                    print("\tPeered through the portal \(name) on \(step.level) looking to level \(newLevel); someone has been there quicker before...")
+                    // print("\tPeered through the portal \(name) on \(step.level) looking to level \(newLevel); someone has been there quicker before...")
                     return []
                 }
 
-                if !debugText.isEmpty {
-                    print(debugText)
-                }
-
                 return [SearchStep(location: target, distance: step.distance, level: newLevel)]
-                // return bfSearch(location: target, distance: step.distance, level: newLevel, progress: &progress, recursive: recursive)
             } else {
                 print("Unable to teleport to \(name)")
             }
@@ -325,13 +282,6 @@ struct DonutMaze {
                 switch tile {
                 case .wall:
                     return nil
-//                case .portal(name: let name):
-//                    if progress.wasUsed(portal: name, level: level) {
-//                        print("Hit used portal \(name)")
-//                        return nil
-//                    } else {
-//                        return nextLocation
-//                    }
                 default: // empty spaces and portals
                     guard nextLocation != start else { return nil }
                     return nextLocation
@@ -343,7 +293,6 @@ struct DonutMaze {
 
         let nextPaths = nextSteps.map {
             SearchStep(location: $0, distance: step.distance + 1, level: step.level)
-            // bfSearch(location: $0, distance: distance + 1, level: level, progress: &progress, recursive: recursive)
         }
 
         return nextPaths

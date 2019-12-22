@@ -15,10 +15,17 @@ struct DayTwenty: AdventDay {
 
     func partOne(input: String?) -> Any {
         let maze = DonutMaze(input: input ?? "")
-        return maze.shortestPath()
+        print("Start: \(Date())")
+        let answer = maze.shortestPath()
+        print("End: \(Date())")
+        return answer
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let maze = DonutMaze(input: input ?? "")
+        print("Start: \(Date())")
+        let answer = maze.shortestPath(recursive: true)
+        print("End: \(Date())")
+        return answer
     }
 }

@@ -297,6 +297,7 @@
 				DC88267E23AA442E006BE5E5 /* day 18 */,
 				DCB0A77523ABC77E004AE819 /* day 19 */,
 				DCF9735723ACEE2000E57797 /* day20 */,
+				DCF9736323B0028E00E57797 /* day21 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -563,6 +564,13 @@
 				DCF9735E23ACF2CC00E57797 /* DonutMaze.swift */,
 			);
 			path = day20;
+			sourceTree = "<group>";
+		};
+		DCF9736323B0028E00E57797 /* day21 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = day21;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
