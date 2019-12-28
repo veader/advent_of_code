@@ -125,6 +125,10 @@
 		DCF9737223B5AF3F00E57797 /* VacuumRobot.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737023B5AF3F00E57797 /* VacuumRobot.swift */; };
 		DCF9737423B7243900E57797 /* TractorBeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737323B7243900E57797 /* TractorBeam.swift */; };
 		DCF9737523B7243900E57797 /* TractorBeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737323B7243900E57797 /* TractorBeam.swift */; };
+		DCF9737923B7ADAB00E57797 /* DayTwentyTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737823B7ADAB00E57797 /* DayTwentyTwo.swift */; };
+		DCF9737A23B7ADAB00E57797 /* DayTwentyTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737823B7ADAB00E57797 /* DayTwentyTwo.swift */; };
+		DCF9737C23B7B07000E57797 /* day22input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCF9737B23B7B07000E57797 /* day22input.txt */; };
+		DCF9737E23B7EBC800E57797 /* DayTwentyTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737D23B7EBC800E57797 /* DayTwentyTwoTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -252,6 +256,10 @@
 		DCF9736D23B5AF2100E57797 /* Camera.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Camera.swift; sourceTree = "<group>"; };
 		DCF9737023B5AF3F00E57797 /* VacuumRobot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VacuumRobot.swift; sourceTree = "<group>"; };
 		DCF9737323B7243900E57797 /* TractorBeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TractorBeam.swift; sourceTree = "<group>"; };
+		DCF9737723B7AD9C00E57797 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCF9737823B7ADAB00E57797 /* DayTwentyTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyTwo.swift; sourceTree = "<group>"; };
+		DCF9737B23B7B07000E57797 /* day22input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day22input.txt; sourceTree = "<group>"; };
+		DCF9737D23B7EBC800E57797 /* DayTwentyTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyTwoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -316,6 +324,7 @@
 				DCB0A77523ABC77E004AE819 /* day 19 */,
 				DCF9735723ACEE2000E57797 /* day20 */,
 				DCF9736323B0028E00E57797 /* day21 */,
+				DCF9737623B7AD9100E57797 /* day22 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -346,6 +355,7 @@
 				DCB0A77A23ABC88E004AE819 /* day19input.txt */,
 				DCF9735C23ACF11900E57797 /* day20input.txt */,
 				DCF9736523B0056C00E57797 /* day21input.txt */,
+				DCF9737B23B7B07000E57797 /* day22input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -373,6 +383,7 @@
 				DC88267B23A9CE39006BE5E5 /* DaySeventeenTests.swift */,
 				DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */,
 				DCF9736123AD003C00E57797 /* DayTwentyTests.swift */,
+				DCF9737D23B7EBC800E57797 /* DayTwentyTwoTests.swift */,
 			);
 			path = aoc2019Tests;
 			sourceTree = "<group>";
@@ -598,6 +609,15 @@
 			path = day21;
 			sourceTree = "<group>";
 		};
+		DCF9737623B7AD9100E57797 /* day22 */ = {
+			isa = PBXGroup;
+			children = (
+				DCF9737723B7AD9C00E57797 /* README.md */,
+				DCF9737823B7ADAB00E57797 /* DayTwentyTwo.swift */,
+			);
+			path = day22;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -683,6 +703,7 @@
 				DCF9736623B0056C00E57797 /* day21input.txt in Resources */,
 				DC88267A23A99481006BE5E5 /* day17input.txt in Resources */,
 				DC610DC423A7D14100E9A93C /* day16input.txt in Resources */,
+				DCF9737C23B7B07000E57797 /* day22input.txt in Resources */,
 				DC88268623AA45E7006BE5E5 /* day18input.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -694,6 +715,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF9737923B7ADAB00E57797 /* DayTwentyTwo.swift in Sources */,
 				DCD40EA323A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				76ED70862396900200566C50 /* Coordinate.swift in Sources */,
 				DC88267723A99251006BE5E5 /* DaySeventeen.swift in Sources */,
@@ -760,6 +782,7 @@
 				76D042E72394DC9100A09228 /* DayTwo.swift in Sources */,
 				DCD6BEF323994B6400D80913 /* DayFive.swift in Sources */,
 				DCF9737223B5AF3F00E57797 /* VacuumRobot.swift in Sources */,
+				DCF9737E23B7EBC800E57797 /* DayTwentyTwoTests.swift in Sources */,
 				DCD40E8E23A2612800363124 /* DayTwelve.swift in Sources */,
 				DCD6BEFD239A7A1700D80913 /* DaySixTests.swift in Sources */,
 				76ED70932397EF3F00566C50 /* DayFourTests.swift in Sources */,
@@ -788,6 +811,7 @@
 				DCD6BF01239A7D1400D80913 /* OrbitNode.swift in Sources */,
 				76D042E62394DC8E00A09228 /* IntCodeMachine.swift in Sources */,
 				DC88268923AA5F03006BE5E5 /* Vault.swift in Sources */,
+				DCF9737A23B7ADAB00E57797 /* DayTwentyTwo.swift in Sources */,
 				DCD6BF25239E7E9600D80913 /* DayNineTests.swift in Sources */,
 				DCD6BF1D239D4A0200D80913 /* SpaceImage.swift in Sources */,
 				DCD40EAC23A51BFF00363124 /* DayFourteen.swift in Sources */,
