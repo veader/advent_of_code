@@ -16,10 +16,13 @@ struct DayEighteen: AdventDay {
     func partOne(input: String?) -> Any {
         print("Start \(Date())")
         let vault = Vault(input: input ?? "")
-        let result = vault.searchForAllKeys()
-        print(result)
-        print("End \(Date())")
-        return result?.stepCount ?? 0
+        if let result = vault.searchForAllKeys() {
+            print(result)
+            print("End \(Date())")
+            return result.stepCount
+        } else {
+            return 0
+        }
     }
 
     func partTwo(input: String?) -> Any {

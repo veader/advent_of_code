@@ -11,8 +11,6 @@ import Foundation
 struct DayTwenty: AdventDay {
     var dayNumber: Int = 20
 
-    // func parse(_ input: String?) -> FOO { return FOO... }
-
     func partOne(input: String?) -> Any {
         let maze = DonutMaze(input: input ?? "")
         print("Start: \(Date())")

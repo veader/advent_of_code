@@ -227,7 +227,15 @@ class IntCodeMachine {
     /// - parameters:
     ///     - input: Input to give to the machine
     func set(input: Int) {
-        inputs.append(input)
+        set(inputs: [input])
+    }
+
+    /// Give a series of inputs to the machine at once.
+    /// If the machine is waiting for input, it will continue to run again.
+    /// - parameters:
+    ///     - inputs: A collection of inputs to give the machine
+    func set(inputs newInputs: [Int]) {
+        inputs.append(contentsOf: newInputs)
 
         // if the machine is awaiting input, kick it off again
         if case .awaitingInput = state {
