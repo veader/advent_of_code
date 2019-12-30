@@ -45,6 +45,10 @@ class DayTwentyTwoTests: XCTestCase {
 
         deck.deal(.increment(number: 3))
         XCTAssertEqual([0,7,4,1,8,5,2,9,6,3], deck.cards)
+
+        deck = CardDeck(size: 10)
+        deck.deal(.increment(number: 7))
+        print(deck.cards)
     }
 
     func testPartOnePieces() {
@@ -91,6 +95,133 @@ class DayTwentyTwoTests: XCTestCase {
             deck.deal(deal)
         }
         XCTAssertEqual(testInput1Answer, deck.cards)
+    }
+
+    func testReversingNewStack0() {
+        let index = 2
+        let size = 10
+
+        var deck = CardDeck(size: size)
+        deck.deal(.newStack)
+        let value = deck.cards[index]
+
+        let originalIndex = CardDeck.indexReversing(deal: .newStack, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+    }
+
+    func testReversingNewStack1() {
+        let index = 243
+        let size = 555
+
+        var deck = CardDeck(size: size)
+        deck.deal(.newStack)
+        let value = deck.cards[index]
+
+        let originalIndex = CardDeck.indexReversing(deal: .newStack, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+    }
+
+    func testReversingCut0() {
+        let index = 2
+        let size = 10
+        var deal: Deal = .cut(number: 3)
+
+        var deck = CardDeck(size: size)
+        deck.deal(deal)
+        var value = deck.cards[index]
+
+        var originalIndex = CardDeck.indexReversing(deal: deal, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+
+
+        deal = .cut(number: -3)
+        deck = CardDeck(size: size)
+        deck.deal(deal)
+        value = deck.cards[index]
+
+        originalIndex = CardDeck.indexReversing(deal: deal, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+    }
+
+    func testReversingCut1() {
+        let index = 243
+        let size = 555
+        var deal: Deal = .cut(number: 312)
+
+        var deck = CardDeck(size: size)
+        deck.deal(deal)
+        var value = deck.cards[index]
+
+        var originalIndex = CardDeck.indexReversing(deal: deal, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+
+
+        deal = .cut(number: 313)
+        deck = CardDeck(size: size)
+        deck.deal(deal)
+        value = deck.cards[index]
+
+        originalIndex = CardDeck.indexReversing(deal: deal, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+
+
+        deal = .cut(number: 311)
+        deck = CardDeck(size: size)
+        deck.deal(deal)
+        value = deck.cards[index]
+
+        originalIndex = CardDeck.indexReversing(deal: deal, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+    }
+
+    func testReverseIncrement0() {
+        let index = 2
+        let size = 10
+
+        var deal: Deal = .increment(number: 3)
+        var deck = CardDeck(size: size)
+        deck.deal(deal)
+        var value = deck.cards[index]
+
+        var originalIndex = CardDeck.indexReversing(deal: deal, index: index, size: size)
+        XCTAssertEqual(value, originalIndex)
+
+        for idx in 0..<size {
+            value = deck.cards[idx]
+            originalIndex = CardDeck.indexReversing(deal: deal, index: idx, size: size)
+            XCTAssertEqual(value, originalIndex)
+        }
+
+
+        deal = .increment(number: 7)
+        deck = CardDeck(size: size)
+        deck.deal(deal)
+
+        for idx in 0..<size {
+            value = deck.cards[idx]
+            originalIndex = CardDeck.indexReversing(deal: deal, index: idx, size: size)
+            XCTAssertEqual(value, originalIndex)
+        }
+    }
+
+    func testReverseMultipleSteps() {
+        let size = 10
+        let day = DayTwentyTwo()
+        let instructions = day.parse(testInput1)
+
+        var deck = CardDeck(size: size)
+        for deal in instructions {
+            deck.deal(deal)
+        }
+
+        for idx in 0..<size {
+            let value = deck.cards[idx]
+            var original = idx
+            for deal in instructions.reversed() {
+                original = CardDeck.indexReversing(deal: deal, index: original, size: size)
+            }
+            XCTAssertEqual(value, original)
+        }
     }
 
     let testInput1 = """
