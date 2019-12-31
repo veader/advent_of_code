@@ -129,6 +129,13 @@
 		DCF9737A23B7ADAB00E57797 /* DayTwentyTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737823B7ADAB00E57797 /* DayTwentyTwo.swift */; };
 		DCF9737C23B7B07000E57797 /* day22input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCF9737B23B7B07000E57797 /* day22input.txt */; };
 		DCF9737E23B7EBC800E57797 /* DayTwentyTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9737D23B7EBC800E57797 /* DayTwentyTwoTests.swift */; };
+		DCF9738223BB025400E57797 /* DayTwentyThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9738123BB025400E57797 /* DayTwentyThree.swift */; };
+		DCF9738323BB025400E57797 /* DayTwentyThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9738123BB025400E57797 /* DayTwentyThree.swift */; };
+		DCF9738523BB045300E57797 /* day23input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCF9738423BB045300E57797 /* day23input.txt */; };
+		DCF9738723BB08A500E57797 /* NetworkComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9738623BB08A500E57797 /* NetworkComputer.swift */; };
+		DCF9738823BB08A500E57797 /* NetworkComputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9738623BB08A500E57797 /* NetworkComputer.swift */; };
+		DCF9738A23BB0A7100E57797 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9738923BB0A7100E57797 /* Network.swift */; };
+		DCF9738B23BB0A7100E57797 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF9738923BB0A7100E57797 /* Network.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -260,6 +267,11 @@
 		DCF9737823B7ADAB00E57797 /* DayTwentyTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyTwo.swift; sourceTree = "<group>"; };
 		DCF9737B23B7B07000E57797 /* day22input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day22input.txt; sourceTree = "<group>"; };
 		DCF9737D23B7EBC800E57797 /* DayTwentyTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyTwoTests.swift; sourceTree = "<group>"; };
+		DCF9738023BB024B00E57797 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCF9738123BB025400E57797 /* DayTwentyThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyThree.swift; sourceTree = "<group>"; };
+		DCF9738423BB045300E57797 /* day23input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day23input.txt; sourceTree = "<group>"; };
+		DCF9738623BB08A500E57797 /* NetworkComputer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkComputer.swift; sourceTree = "<group>"; };
+		DCF9738923BB0A7100E57797 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,6 +337,7 @@
 				DCF9735723ACEE2000E57797 /* day20 */,
 				DCF9736323B0028E00E57797 /* day21 */,
 				DCF9737623B7AD9100E57797 /* day22 */,
+				DCF9737F23BB023F00E57797 /* day23 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -356,6 +369,7 @@
 				DCF9735C23ACF11900E57797 /* day20input.txt */,
 				DCF9736523B0056C00E57797 /* day21input.txt */,
 				DCF9737B23B7B07000E57797 /* day22input.txt */,
+				DCF9738423BB045300E57797 /* day23input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -618,6 +632,17 @@
 			path = day22;
 			sourceTree = "<group>";
 		};
+		DCF9737F23BB023F00E57797 /* day23 */ = {
+			isa = PBXGroup;
+			children = (
+				DCF9738023BB024B00E57797 /* README.md */,
+				DCF9738123BB025400E57797 /* DayTwentyThree.swift */,
+				DCF9738623BB08A500E57797 /* NetworkComputer.swift */,
+				DCF9738923BB0A7100E57797 /* Network.swift */,
+			);
+			path = day23;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -698,6 +723,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF9735D23ACF11900E57797 /* day20input.txt in Resources */,
+				DCF9738523BB045300E57797 /* day23input.txt in Resources */,
 				DCD40EAE23A51C1200363124 /* day14input.txt in Resources */,
 				DCB0A77B23ABC88E004AE819 /* day19input.txt in Resources */,
 				DCF9736623B0056C00E57797 /* day21input.txt in Resources */,
@@ -718,11 +744,13 @@
 				DCF9737923B7ADAB00E57797 /* DayTwentyTwo.swift in Sources */,
 				DCD40EA323A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				76ED70862396900200566C50 /* Coordinate.swift in Sources */,
+				DCF9738723BB08A500E57797 /* NetworkComputer.swift in Sources */,
 				DC88267723A99251006BE5E5 /* DaySeventeen.swift in Sources */,
 				DCF9737423B7243900E57797 /* TractorBeam.swift in Sources */,
 				DCD40E9A23A3AD7000363124 /* DayThirteen.swift in Sources */,
 				DCD6BF08239BF2FD00D80913 /* IntCodeInstruction.swift in Sources */,
 				DCF9737123B5AF3F00E57797 /* VacuumRobot.swift in Sources */,
+				DCF9738223BB025400E57797 /* DayTwentyThree.swift in Sources */,
 				DC610DB823A7073200E9A93C /* RepairDroid.swift in Sources */,
 				766719452394C17400648F48 /* AdventDay.swift in Sources */,
 				DCD6BF05239BEE5700D80913 /* DaySeven.swift in Sources */,
@@ -757,6 +785,7 @@
 				DCD40E9223A2693600363124 /* ThreeDimPosition.swift in Sources */,
 				7667194C2394C22F00648F48 /* DayOne.swift in Sources */,
 				DCD6BF00239A7A3100D80913 /* OrbitNode.swift in Sources */,
+				DCF9738A23BB0A7100E57797 /* Network.swift in Sources */,
 				DC12DEEF23A1120F006AB8FF /* Orientation.swift in Sources */,
 				76D042E22394D86D00A09228 /* DayTwo.swift in Sources */,
 				DCF9735A23ACEE3400E57797 /* DayTwenty.swift in Sources */,
@@ -771,6 +800,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF9737523B7243900E57797 /* TractorBeam.swift in Sources */,
+				DCF9738823BB08A500E57797 /* NetworkComputer.swift in Sources */,
 				DCD40EA423A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				DC88268223AA4448006BE5E5 /* DayEighteen.swift in Sources */,
 				76ED708E2397ED5A00566C50 /* DayFour.swift in Sources */,
@@ -827,6 +857,7 @@
 				DCD40EB323A54A0800363124 /* Reaction.swift in Sources */,
 				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
 				DC88268423AA4454006BE5E5 /* DayEighteenTests.swift in Sources */,
+				DCF9738323BB025400E57797 /* DayTwentyThree.swift in Sources */,
 				DCF9736223AD003C00E57797 /* DayTwentyTests.swift in Sources */,
 				DCF9736F23B5AF2100E57797 /* Camera.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
@@ -836,6 +867,7 @@
 				DCD6BF1A239D49F400D80913 /* Array.swift in Sources */,
 				DCD6BF19239D49F100D80913 /* AmpCircuit.swift in Sources */,
 				76ED70912397EE0F00566C50 /* Wire.swift in Sources */,
+				DCF9738B23BB0A7100E57797 /* Network.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
