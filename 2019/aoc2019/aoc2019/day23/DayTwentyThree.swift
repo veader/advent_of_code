@@ -15,6 +15,7 @@ struct DayTwentyThree: AdventDay {
 
     func partOne(input: String?) -> Any {
         let computers = 50
+
         let network = Network(count: computers, instructions: input ?? "")
         network.setupComputers()
         network.go()
@@ -23,6 +24,13 @@ struct DayTwentyThree: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
+        let computers = 50
+
+        let network = Network(count: computers, instructions: input ?? "")
+        network.useNAT = true
+        network.setupComputers()
+        network.go()
+
         return 0
     }
 }
