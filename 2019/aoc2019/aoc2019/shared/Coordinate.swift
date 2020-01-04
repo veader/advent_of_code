@@ -112,6 +112,7 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         }
     }
 
+    /// Return the next coordinate on the given slope from this coordinate.
     func next(on slope: SlopeType) -> Coordinate {
         switch slope {
         case .horizontal(direction: let direction):
@@ -127,6 +128,7 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         }
     }
 
+    /// Return location in the given direction relative to this coordinate.
     func location(for direction: MoveDirection) -> Coordinate {
         switch direction {
         case .north:
@@ -138,6 +140,11 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         case .west:
             return Coordinate(x: self.x - 1, y: self.y)
         }
+    }
+
+    /// Adjacent locations to this coordinate. (up, down, left, right)
+    func adjacent() -> [Coordinate] {
+        MoveDirection.allCases.map { location(for: $0) }
     }
 
     public static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
