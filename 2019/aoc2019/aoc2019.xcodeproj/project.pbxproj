@@ -56,6 +56,10 @@
 		DC88268623AA45E7006BE5E5 /* day18input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC88268523AA45E7006BE5E5 /* day18input.txt */; };
 		DC88268823AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
 		DC88268923AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
+		DCA44B4523C18908004ACA0A /* DepthCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */; };
+		DCA44B4623C18908004ACA0A /* DepthCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */; };
+		DCA44B4823C18928004ACA0A /* RecursiveBugGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */; };
+		DCA44B4923C18928004ACA0A /* RecursiveBugGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */; };
 		DCB0A77823ABC795004AE819 /* DayNineteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB0A77723ABC795004AE819 /* DayNineteen.swift */; };
 		DCB0A77923ABC795004AE819 /* DayNineteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB0A77723ABC795004AE819 /* DayNineteen.swift */; };
 		DCB0A77B23ABC88E004AE819 /* day19input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCB0A77A23ABC88E004AE819 /* day19input.txt */; };
@@ -209,6 +213,8 @@
 		DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteenTests.swift; sourceTree = "<group>"; };
 		DC88268523AA45E7006BE5E5 /* day18input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day18input.txt; sourceTree = "<group>"; };
 		DC88268723AA5F03006BE5E5 /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
+		DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthCoordinate.swift; sourceTree = "<group>"; };
+		DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveBugGrid.swift; sourceTree = "<group>"; };
 		DCB0A77623ABC78A004AE819 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCB0A77723ABC795004AE819 /* DayNineteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineteen.swift; sourceTree = "<group>"; };
 		DCB0A77A23ABC88E004AE819 /* day19input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day19input.txt; sourceTree = "<group>"; };
@@ -499,6 +505,8 @@
 				DC74409F23C0FE930016A4C5 /* README.md */,
 				DC7440A023C0FE9B0016A4C5 /* DayTwentyFour.swift */,
 				DC7440A623C103960016A4C5 /* BugGrid.swift */,
+				DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */,
+				DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */,
 			);
 			path = day24;
 			sourceTree = "<group>";
@@ -783,7 +791,9 @@
 				DCD6BF29239FC0BE00D80913 /* DayTen.swift in Sources */,
 				76ED70902397EE0A00566C50 /* Wire.swift in Sources */,
 				DCD6BF2F23A02C6F00D80913 /* SpaceMap.swift in Sources */,
+				DCA44B4523C18908004ACA0A /* DepthCoordinate.swift in Sources */,
 				DCD6BF16239D49BC00D80913 /* Array.swift in Sources */,
+				DCA44B4823C18928004ACA0A /* RecursiveBugGrid.swift in Sources */,
 				DCD6BEFB239A7A0800D80913 /* DaySix.swift in Sources */,
 				76ED708D2397ED5600566C50 /* DayFour.swift in Sources */,
 				DCD40E9523A2693E00363124 /* Moon.swift in Sources */,
@@ -827,6 +837,7 @@
 				DCF9737523B7243900E57797 /* TractorBeam.swift in Sources */,
 				DCF9738823BB08A500E57797 /* NetworkComputer.swift in Sources */,
 				DCD40EA423A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
+				DCA44B4923C18928004ACA0A /* RecursiveBugGrid.swift in Sources */,
 				DC88268223AA4448006BE5E5 /* DayEighteen.swift in Sources */,
 				76ED708E2397ED5A00566C50 /* DayFour.swift in Sources */,
 				DC610DBB23A7AE2700E9A93C /* DayFifteenTests.swift in Sources */,
@@ -849,6 +860,7 @@
 				76ED708323967AE400566C50 /* DayThree.swift in Sources */,
 				DC610DC023A7CF4600E9A93C /* DaySixteen.swift in Sources */,
 				DCD40E9023A2613600363124 /* DayTwelveTests.swift in Sources */,
+				DCA44B4623C18908004ACA0A /* DepthCoordinate.swift in Sources */,
 				DCD6BF2D239FC5C200D80913 /* DayTenTests.swift in Sources */,
 				7667194E2394C55F00648F48 /* DayOneTests.swift in Sources */,
 				DCD6BF12239CC0CD00D80913 /* DayEight.swift in Sources */,

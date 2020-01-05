@@ -62,6 +62,107 @@ class DayTwentyFourTests: XCTestCase {
         XCTAssertEqual(dupeGrid.description, testInputDupe + "\n")
     }
 
+    func testDepthCoordinateUpLogic() {
+        var dCoord: DepthCoordinate
+        var neighbors: [DepthCoordinate]
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 1, y: 0))
+        neighbors = dCoord.locations(for: .north, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 0, coordinate: Coordinate(x: 2, y: 1)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 2, y: 1))
+        neighbors = dCoord.locations(for: .north, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 1, coordinate: Coordinate(x: 2, y: 0)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 2, y: 3))
+        neighbors = dCoord.locations(for: .north, size: 5)
+        XCTAssertEqual(5, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 0, y: 4)), neighbors.first)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 4, y: 4)), neighbors.last)
+    }
+
+    func testDepthCoordinateDownLogic() {
+        var dCoord: DepthCoordinate
+        var neighbors: [DepthCoordinate]
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 1, y: 4))
+        neighbors = dCoord.locations(for: .south, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 0, coordinate: Coordinate(x: 2, y: 3)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 2, y: 0))
+        neighbors = dCoord.locations(for: .south, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 1, coordinate: Coordinate(x: 2, y: 1)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 2, y: 1))
+        neighbors = dCoord.locations(for: .south, size: 5)
+        XCTAssertEqual(5, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 0, y: 0)), neighbors.first)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 4, y: 0)), neighbors.last)
+    }
+
+    func testDepthCoordinateRightLogic() {
+        var dCoord: DepthCoordinate
+        var neighbors: [DepthCoordinate]
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 4, y: 4))
+        neighbors = dCoord.locations(for: .east, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 0, coordinate: Coordinate(x: 3, y: 2)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 0, y: 0))
+        neighbors = dCoord.locations(for: .east, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 1, coordinate: Coordinate(x: 1, y: 0)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 1, y: 2))
+        neighbors = dCoord.locations(for: .east, size: 5)
+        XCTAssertEqual(5, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 0, y: 0)), neighbors.first)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 0, y: 4)), neighbors.last)
+    }
+
+    func testDepthCoordinatorLeftLogic() {
+        var dCoord: DepthCoordinate
+        var neighbors: [DepthCoordinate]
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 0, y: 4))
+        neighbors = dCoord.locations(for: .west, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 0, coordinate: Coordinate(x: 1, y: 2)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 1, y: 0))
+        neighbors = dCoord.locations(for: .west, size: 5)
+        XCTAssertEqual(1, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 1, coordinate: Coordinate(x: 0, y: 0)), neighbors.first)
+
+        dCoord = DepthCoordinate(depth: 1, coordinate: Coordinate(x: 3, y: 2))
+        neighbors = dCoord.locations(for: .west, size: 5)
+        XCTAssertEqual(5, neighbors.count)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 4, y: 0)), neighbors.first)
+        XCTAssertEqual(DepthCoordinate(depth: 2, coordinate: Coordinate(x: 4, y: 4)), neighbors.last)
+    }
+
+    func testRecursiveGridIteration() {
+        let day = DayTwentyFour()
+        let grid = day.parse(testInput0)
+        let rGrid = RecursiveBugGrid(other: grid)
+//        print(rGrid)
+
+        var nextRGrid: RecursiveBugGrid
+        nextRGrid = rGrid
+
+        for i in (0..<10) {
+//            print("---- Increment \(i+1)")
+            nextRGrid = nextRGrid.increment()
+//            print(nextRGrid)
+        }
+        XCTAssertEqual(99, nextRGrid.bugs.count)
+    }
+
     let testInput0 = """
                      ....#
                      #..#.

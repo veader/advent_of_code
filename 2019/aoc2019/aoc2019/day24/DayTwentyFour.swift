@@ -59,6 +59,17 @@ struct DayTwentyFour: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let grid = parse(input)
+        let rGrid = RecursiveBugGrid(other: grid)
+
+        var nextRGrid = rGrid
+
+        for i in 0..<200 {
+            print("Iteration \(i) - \(Date())")
+            nextRGrid = nextRGrid.increment()
+        }
+
+        print(nextRGrid)
+        return nextRGrid.bugs.count
     }
 }
