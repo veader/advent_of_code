@@ -60,6 +60,13 @@
 		DCA44B4623C18908004ACA0A /* DepthCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */; };
 		DCA44B4823C18928004ACA0A /* RecursiveBugGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */; };
 		DCA44B4923C18928004ACA0A /* RecursiveBugGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */; };
+		DCA44B4D23C24AD3004ACA0A /* DayTwentyFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4C23C24AD3004ACA0A /* DayTwentyFive.swift */; };
+		DCA44B4E23C24AD3004ACA0A /* DayTwentyFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4C23C24AD3004ACA0A /* DayTwentyFive.swift */; };
+		DCA44B5023C24C5B004ACA0A /* day25input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCA44B4F23C24C5B004ACA0A /* day25input.txt */; };
+		DCA44B5223C35C27004ACA0A /* SearchDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B5123C35C27004ACA0A /* SearchDroid.swift */; };
+		DCA44B5323C35C27004ACA0A /* SearchDroid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B5123C35C27004ACA0A /* SearchDroid.swift */; };
+		DCA44B5523C35D26004ACA0A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B5423C35D26004ACA0A /* String.swift */; };
+		DCA44B5623C35D26004ACA0A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B5423C35D26004ACA0A /* String.swift */; };
 		DCB0A77823ABC795004AE819 /* DayNineteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB0A77723ABC795004AE819 /* DayNineteen.swift */; };
 		DCB0A77923ABC795004AE819 /* DayNineteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCB0A77723ABC795004AE819 /* DayNineteen.swift */; };
 		DCB0A77B23ABC88E004AE819 /* day19input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DCB0A77A23ABC88E004AE819 /* day19input.txt */; };
@@ -215,6 +222,11 @@
 		DC88268723AA5F03006BE5E5 /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
 		DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthCoordinate.swift; sourceTree = "<group>"; };
 		DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveBugGrid.swift; sourceTree = "<group>"; };
+		DCA44B4B23C24ACB004ACA0A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DCA44B4C23C24AD3004ACA0A /* DayTwentyFive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyFive.swift; sourceTree = "<group>"; };
+		DCA44B4F23C24C5B004ACA0A /* day25input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day25input.txt; sourceTree = "<group>"; };
+		DCA44B5123C35C27004ACA0A /* SearchDroid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDroid.swift; sourceTree = "<group>"; };
+		DCA44B5423C35D26004ACA0A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		DCB0A77623ABC78A004AE819 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCB0A77723ABC795004AE819 /* DayNineteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineteen.swift; sourceTree = "<group>"; };
 		DCB0A77A23ABC88E004AE819 /* day19input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day19input.txt; sourceTree = "<group>"; };
@@ -355,6 +367,7 @@
 				DCF9737623B7AD9100E57797 /* day22 */,
 				DCF9737F23BB023F00E57797 /* day23 */,
 				DC74409E23C0FE8A0016A4C5 /* day24 */,
+				DCA44B4A23C24ABF004ACA0A /* day25 */,
 				766719302394C0A500648F48 /* main.swift */,
 				766719442394C17400648F48 /* AdventDay.swift */,
 				766719462394C1A600648F48 /* EmptyDay.swift */,
@@ -388,6 +401,7 @@
 				DCF9737B23B7B07000E57797 /* day22input.txt */,
 				DCF9738423BB045300E57797 /* day23input.txt */,
 				DC7440A223C100040016A4C5 /* day24input.txt */,
+				DCA44B4F23C24C5B004ACA0A /* day25input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -447,6 +461,7 @@
 				DC12DEEE23A1120F006AB8FF /* Orientation.swift */,
 				76D042E42394DC8000A09228 /* IntCodeMachine.swift */,
 				DCD6BF07239BF2FD00D80913 /* IntCodeInstruction.swift */,
+				DCA44B5423C35D26004ACA0A /* String.swift */,
 			);
 			path = shared;
 			sourceTree = "<group>";
@@ -531,6 +546,16 @@
 				DC88268723AA5F03006BE5E5 /* Vault.swift */,
 			);
 			path = "day 18";
+			sourceTree = "<group>";
+		};
+		DCA44B4A23C24ABF004ACA0A /* day25 */ = {
+			isa = PBXGroup;
+			children = (
+				DCA44B4B23C24ACB004ACA0A /* README.md */,
+				DCA44B4C23C24AD3004ACA0A /* DayTwentyFive.swift */,
+				DCA44B5123C35C27004ACA0A /* SearchDroid.swift */,
+			);
+			path = day25;
 			sourceTree = "<group>";
 		};
 		DCB0A77523ABC77E004AE819 /* day 19 */ = {
@@ -754,6 +779,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCF9735D23ACF11900E57797 /* day20input.txt in Resources */,
+				DCA44B5023C24C5B004ACA0A /* day25input.txt in Resources */,
 				DCF9738523BB045300E57797 /* day23input.txt in Resources */,
 				DCD40EAE23A51C1200363124 /* day14input.txt in Resources */,
 				DCB0A77B23ABC88E004AE819 /* day19input.txt in Resources */,
@@ -772,6 +798,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCA44B5523C35D26004ACA0A /* String.swift in Sources */,
 				DCF9737923B7ADAB00E57797 /* DayTwentyTwo.swift in Sources */,
 				DCD40EA323A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				76ED70862396900200566C50 /* Coordinate.swift in Sources */,
@@ -821,6 +848,8 @@
 				7667194C2394C22F00648F48 /* DayOne.swift in Sources */,
 				DCD6BF00239A7A3100D80913 /* OrbitNode.swift in Sources */,
 				DCF9738A23BB0A7100E57797 /* Network.swift in Sources */,
+				DCA44B4D23C24AD3004ACA0A /* DayTwentyFive.swift in Sources */,
+				DCA44B5223C35C27004ACA0A /* SearchDroid.swift in Sources */,
 				DC12DEEF23A1120F006AB8FF /* Orientation.swift in Sources */,
 				76D042E22394D86D00A09228 /* DayTwo.swift in Sources */,
 				DCF9735A23ACEE3400E57797 /* DayTwenty.swift in Sources */,
@@ -846,6 +875,7 @@
 				DCF9736C23B5A7A600E57797 /* SpringDroid.swift in Sources */,
 				DCD40E7C23A11E9500363124 /* PaintRobot.swift in Sources */,
 				76D042E72394DC9100A09228 /* DayTwo.swift in Sources */,
+				DCA44B5323C35C27004ACA0A /* SearchDroid.swift in Sources */,
 				DCD6BEF323994B6400D80913 /* DayFive.swift in Sources */,
 				DCF9737223B5AF3F00E57797 /* VacuumRobot.swift in Sources */,
 				DCF9737E23B7EBC800E57797 /* DayTwentyTwoTests.swift in Sources */,
@@ -896,9 +926,11 @@
 				DC7440A423C1023D0016A4C5 /* DayTwentyFourTests.swift in Sources */,
 				DCD40EB323A54A0800363124 /* Reaction.swift in Sources */,
 				DCD6BF0C239C074300D80913 /* DaySeven.swift in Sources */,
+				DCA44B4E23C24AD3004ACA0A /* DayTwentyFive.swift in Sources */,
 				DC88268423AA4454006BE5E5 /* DayEighteenTests.swift in Sources */,
 				DCF9738323BB025400E57797 /* DayTwentyThree.swift in Sources */,
 				DCF9736223AD003C00E57797 /* DayTwentyTests.swift in Sources */,
+				DCA44B5623C35D26004ACA0A /* String.swift in Sources */,
 				DCF9736F23B5AF2100E57797 /* Camera.swift in Sources */,
 				7667194F2394C5C300648F48 /* DayOne.swift in Sources */,
 				76ED70882396AFF600566C50 /* DayThreeTests.swift in Sources */,

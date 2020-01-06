@@ -31,6 +31,19 @@ enum MoveDirection: Int, Equatable, CaseIterable {
             return .east
         }
     }
+
+    var stringValue: String {
+        switch self {
+        case .north:
+            return "north"
+        case .south:
+            return "south"
+        case .east:
+            return "east"
+        case .west:
+            return "west"
+        }
+    }
 }
 
 public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugStringConvertible {
