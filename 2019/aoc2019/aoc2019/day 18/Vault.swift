@@ -70,245 +70,172 @@ struct Vault {
         }
 
         map = tmpMap
-        keys = tmpKeys
+        keys = tmpKeys.sorted()
         doors = tmpDoors
     }
 
-    // MARK: - Path Finding
     struct SearchProgress {
-        // var visited = [Coordinate]()
-        var location: Coordinate
-        var foundKeys = [String]()
-        var doorsUnlocked = [String]()
-        var stepCount = 0
-        var finished = false
+        var distanceMap = [Coordinate: [String: SearchStep]]()
+    }
 
-        mutating func pickup(key: String) {
-            guard !foundKeys.contains(key) else { return }
-            foundKeys.append(key)
-        }
-
-        mutating func unlock(door: String) {
-            guard !doorsUnlocked.contains(door) else { return }
-            doorsUnlocked.append(door)
-        }
+    struct SearchStep: Equatable {
+        let location: Coordinate
+        let foundKeys: [String]
+        let stepCount: Int
 
         var hashKey: String {
-            // "L:\(visited.last ?? Coordinate.origin) K:\(foundKeys.sorted()) D:\(doorsUnlocked.sorted())"
-            "L:\(location) K:\(foundKeys.sorted()) D:\(doorsUnlocked.sorted())"
+            foundKeys.joined(separator: ",")
         }
 
-        var weight: Int {
-            (foundKeys.count * 3) + (doorsUnlocked.count * 2) - stepCount
+        /// Can we unlock a given door with our found keys?
+        func canUnlock(door: String) -> Bool {
+            foundKeys.contains(door.lowercased())
+        }
+
+        /// Pick up a given key (if we haven't already) and return a new SearchStep
+        func pickup(key: String) -> SearchStep {
+            guard !foundKeys.contains(key) else { return self }
+
+            var newFoundKeys = foundKeys
+            newFoundKeys.append(key)
+            newFoundKeys = newFoundKeys.sorted()
+
+            return SearchStep(location: location, foundKeys: newFoundKeys, stepCount: stepCount)
+        }
+
+        /// Update the location and increment the step count in new SearchStep
+        func move(to newLocation: Coordinate) -> SearchStep {
+            return SearchStep(location: newLocation, foundKeys: foundKeys, stepCount: stepCount + 1)
+        }
+
+        static func ==(lhs: SearchStep, rhs: SearchStep) -> Bool {
+            return  lhs.location == rhs.location &&
+                    lhs.stepCount == rhs.stepCount &&
+                    lhs.foundKeys.sorted() == rhs.foundKeys.sorted()
         }
     }
 
-    func searchForAllKeys() -> SearchProgress? {
-        guard let start = startLocation else { return nil }
+    func shortestPathToAllKeys() -> SearchStep? {
+        var progress = SearchProgress()
+        let sortedKeys = keys.sorted()
+        let stepSortingBlock: (SearchStep, SearchStep) -> Bool = { $0.stepCount < $1.stepCount }
 
-        var possibilities = [SearchProgress]()
-        var solutions = [SearchProgress]()
-        var searchHash = [String: Bool]()
+        // places to search
+        var toSearch = [SearchStep]()
+        // routes that worked
+        var solutions = [SearchStep]()
 
-        // kick search off at the start
-        // var progress = SearchProgress()
-        // progress.visited.append(start)
-        let progress = SearchProgress(location: start)
-        possibilities.append(progress)
-        searchHash[progress.hashKey] = true
+        let startingStep = SearchStep(location: startLocation!, foundKeys: [], stepCount: 0)
+        toSearch.append(startingStep)
 
-        var iterations = 0
-        while !possibilities.isEmpty {
-            // find our best solution to this point (if any)
-            var shortestSolutionYet: Int = solutions.sorted(by: { $0.stepCount < $1.stepCount }).first?.stepCount ?? Int.max
+        while !toSearch.isEmpty {
+            toSearch = toSearch.flatMap { bfSearch(step: $0, progress: &progress) }
 
-            var newPossibilities = [SearchProgress]()
-
-            for possibility in possibilities.sorted(by: { $0.weight > $1.weight }) {
-                // find new searchable paths originating from this search path
-                var newPaths = search(progress: possibility, hash: searchHash)
-
-                newPaths = newPaths.filter { progress -> Bool in
-                    // filter out (and save) any real solutions
-                    if progress.finished {
-                        print("FOUND A SOLUTION!!!! ----------------------------")
-                        solutions.append(progress)
-
-                        if shortestSolutionYet > progress.stepCount {
-                            shortestSolutionYet = progress.stepCount
-                        }
-
-                        return false // no need to do anything else with it
-                    }
-
-                    // filter out any with more steps than our shortest solution
-                    if progress.stepCount > shortestSolutionYet {
-                        return false
-                    }
-
-                    // filter out any with matching hashed paths
-                    if searchHash[progress.hashKey] != nil {
-                        return false
-                    }
-
-                    return true
+            // remove (and record) any found solutions
+            toSearch = toSearch.filter { step -> Bool in
+                if step.foundKeys == sortedKeys {
+                    print("SOLUTION: \(step)")
+                    solutions.append(step)
+                    return false
                 }
 
-                // add hashes for new possible paths
-                newPaths.forEach { searchHash[$0.hashKey] = true }
-
-                newPossibilities.append(contentsOf: newPaths)
+                return true
             }
 
-            possibilities = newPossibilities
+            // remove any paths to search with distances more than our current shortest solution
+            let currentShortestSolution = solutions.sorted(by: stepSortingBlock).first?.stepCount ?? Int.max
+            toSearch = toSearch.filter { $0.stepCount < currentShortestSolution }//.sorted(by: stepSortingBlock)
+        }
 
-            /*
-            // ------------------------------------
-            // for each possible location, find all new possibilities
-            possibilities = possibilities.flatMap { search(progress: $0, hash: searchHash) }
-                                         .sorted { $0.stepCount < $1.stepCount }
+        print("All Solutions:\n\(solutions)")
+        return solutions.sorted(by: stepSortingBlock).first
+    }
 
-            // add hashes for possibilities
-            possibilities.forEach { searchHash[$0.hashKey] = true }
+    private func bfSearch(step: SearchStep, progress: inout SearchProgress) -> [SearchStep] {
+        var step = step // make a mutable copy
+        print("")
 
+        // check to see if this location is a door or key
+        if let grid = map[step.location] {
+            switch grid {
+            case .door(name: let door):
+                // we can only proceed if we can unlock the door
+                if !step.canUnlock(door: door) {
+                    return []
+                }
+            case .key(name: let key):
+                // pick up the key (if we haven't already)
+                step = step.pickup(key: key)
+            default:
+                break
+            }
+        }
 
-
-            // filter out any possibilities with steps more than one of our solutions
-            if let shortestPath = solutions.sorted(by: { $0.stepCount < $1.stepCount }).first {
-                let countBefore = possibilities.count
-                possibilities = possibilities.filter { $0.stepCount > shortestPath.stepCount }
-                let countAfter = possibilities.count
-                print("Given our \(solutions.count) solutions: we limited \(countBefore) down to \(countAfter)")
+        if let prevSteps = progress.distanceMap[step.location] {
+            print("Step: \(step)\nPrevious: \(prevSteps)")
+            // Have we been here before with fewer steps and the same keys?
+            if let similarStep = prevSteps[step.hashKey], similarStep.stepCount < step.stepCount {
+                print("\t** Been here before with fewer steps...")
+                return []
             }
 
-            let beforeCount = possibilities.count
-            // filter out any duplicates in the possibilities
-            possibilities = possibilities
-                    .sorted(by: { $0.stepCount < $1.stepCount }) // sort by step counts
-                    .reduce([]) { result, progress -> [SearchProgress] in
-                        if result.first(where: { $0.hashKey == progress.hashKey }) != nil {
-                            return result // already exists in this collection, with shorter step count
-                        } else {
-                            return result + [progress]
-                        }
-                    }
-            print("Removed \(beforeCount - possibilities.count) duplicates...")
-            */
-
-//            print("\(possibilities.count) possibilities at iteration \(iterations)")
-//            // printPossibilities(possibilities)
-//            print("\(searchHash.keys.count) hash keys")
-
-            iterations += 1
-//            if iterations > 10_000 {
-//                break
+            // TODO: HERE FIX THIS
+            // TODO: should store an array of optional steps that have different keys at this location?
+//            if prevStep.stepCount < step.stepCount && prevStep.foundKeys.count >= step.foundKeys.count {
+//                // previous step has more (or the same amount) keys.
+//                //  check that that this step has just a subset...
+//                let prevKeySet = Set(prevStep.foundKeys)
+//                let thisKeySet = Set(step.foundKeys)
+//                if thisKeySet.isSubset(of: prevKeySet) {
+//                    print("** No path forward.")
+//                    return [] // we visited here before on a shorter route
+//                }
+//            } else if prevStep == step { // same info
+//                print("** Duplicate... move on")
+//                return []
 //            }
-            if iterations % 100 == 0 {
-                print("\(iterations) @ \(Date())")
+        }
+
+        // record our distance
+        if step.stepCount > 0 {
+            if let otherSteps = progress.distanceMap[step.location] {
+                progress.distanceMap[step.location] = otherSteps + [step]
+            } else {
+                progress.distanceMap[step.location] = [step]
             }
         }
 
-        print("\(iterations) iterations")
-        print("Found \(solutions.count) solutions")
-
-//        print("Solutions: (\(solutions.count))\n\(solutions)")
-
-        let finalSolution = solutions.sorted { $0.stepCount < $1.stepCount }.first
-        return finalSolution ?? SearchProgress(location: Coordinate.origin)
-    }
-
-    /// BFS from the given location to find the shortest path to reach all keys
-    private func search(progress: SearchProgress, hash: [String: Bool]) -> [SearchProgress] {
-        // make it so we can mutate this progress
-        var progress = progress
-
-        // where are we?
-        // guard let location = progress.visited.last else { return [] }
-        let location = progress.location
-        // print("Examining: \(location)")
-
-        // what do we need to do at this location?
-        if let gridType = map[location] {
-            if case .door(name: let door) = gridType {
-                if progress.foundKeys.contains(door.lowercased()) {
-                    // unlock door, if we haven't already
-                    // print("Unlocked '\(door)'")
-                    progress.unlock(door: door)
-                } else {
-                    print("Somehow we moved to a door without the key for it")
-                    return [] // we shouldn't be here
-                }
-            } else if case .key(name: let key) = gridType {
-                // pick up the key if we haven't already
-                // print("Picked up key '\(key)'")
-                progress.pickup(key: key)
-            }
+        // have we hit our goal?
+        if step.foundKeys == keys {
+            print("Found all keys!")
+            return [step]
         }
 
-        // end goal -> find all keys
-        // TODO: idea, pass closure in to measure "finished"? (SearchProgress) -> Bool
-        if progress.foundKeys.sorted() == keys.sorted() {
-            print("Found all the keys!")
-            progress.finished = true
-            return [progress]
-        }
+        // determine potential next steps
+        let nextSteps = MoveDirection.allCases.compactMap { dir -> SearchStep? in
+            let nextLocation = step.location.location(for: dir)
 
-        // determine available steps from here
-        let searchable = MoveDirection.allCases
-            .map { location.location(for: $0) } // get neighboring locations
-            .filter { coord -> Bool in
-                guard let grid = map[coord] else { print("?"); return false }
+            guard let grid = map[nextLocation] else { return nil }
 
-                // determine if we *can* travel to the neighboring map location
-                switch grid {
-                case .wall:
-                    // print("\(coord) is a wall")
-                    return false // can't pass through walls
-                case .door(name: let door):
-                    // print("\(coord) is a door: \(door)")
-                    if progress.doorsUnlocked.contains(door) {
-                        // we have already unlocked this door, so we can pass through again
-                        return true
-                    } else if progress.foundKeys.contains(door.lowercased()) {
-                        // we have a key to unlock the door
-                        return true
-                    } else {
-//                        print("Hit door we don't have a key for: \(door)")
-                        return false
-                    }
-                case .key(name: _):
-                    // print("\(coord) is a key: \(key)")
-                    return true
-                default: // empty and start
-                    return true
-                }
-            }
-
-        // avoid twittering between adjacent locations
-//        if let prev = prevLocation, searchable.count > 1, canGoBackwards == false {
-//            searchable = searchable.filter { prev != $0 }
-//        }
-
-//        print("Searchable: \(searchable)")
-
-        return searchable.compactMap { coordinate -> SearchProgress? in
-            // for each possible searchable location, create an updated progress
-            var newProgress = progress // copy
-            // newProgress.visited.append(coordinate)
-            newProgress.location = coordinate
-            newProgress.stepCount += 1
-
-            guard !hash.keys.contains(newProgress.hashKey) else {
-//                print("\tNot taking this route since we've been here before. \(newProgress.hashKey)")
+            if case .wall = grid {
                 return nil
-            }
-            return newProgress
-        }
-    }
+            } else if case .door(name: let door) = grid, !step.canUnlock(door: door) {
+                // avoid locked doors.
+                return nil
+            } else {
+                let nextStep = step.move(to: nextLocation)
 
-    private func printPossibilities(_ possibilities: [SearchProgress]) {
-        print("Possibilities:")
-        possibilities.forEach { print($0) }
-        print("Count: \(possibilities.count)\n")
+                // This shouldn't be needed because the stepCount should change, right?
+//                // avoid duplicate steps
+//                if let prevStep = progress.distanceMap[nextLocation], prevStep == nextStep {
+//                    return nil
+//                }
+
+                return nextStep
+            }
+        }
+        print("Next steps: \(nextSteps.count) from \(step.location)")
+
+        return nextSteps
     }
 }

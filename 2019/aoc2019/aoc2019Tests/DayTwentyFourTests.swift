@@ -155,7 +155,7 @@ class DayTwentyFourTests: XCTestCase {
         var nextRGrid: RecursiveBugGrid
         nextRGrid = rGrid
 
-        for i in (0..<10) {
+        for _ in (0..<10) {
 //            print("---- Increment \(i+1)")
             nextRGrid = nextRGrid.increment()
 //            print(nextRGrid)

@@ -8,6 +8,6 @@
 
 import Foundation
 
-let day = DayTwentyFive()
+let day = DayEighteen()
 day.run(part: 1)
 day.run(part: 2)

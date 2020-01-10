@@ -11,18 +11,14 @@ import Foundation
 struct DayEighteen: AdventDay {
     var dayNumber: Int = 18
 
-    // func parse(_ input: String?) -> FOO { return FOO... }
-
     func partOne(input: String?) -> Any {
-        print("Start \(Date())")
         let vault = Vault(input: input ?? "")
-        if let result = vault.searchForAllKeys() {
-            print(result)
-            print("End \(Date())")
-            return result.stepCount
-        } else {
-            return 0
-        }
+
+        print("Start \(Date())")
+        let result = vault.shortestPathToAllKeys()
+        print(result)
+        print("End \(Date())")
+        return result?.stepCount
     }
 
     func partTwo(input: String?) -> Any {

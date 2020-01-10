@@ -56,6 +56,7 @@
 		DC88268623AA45E7006BE5E5 /* day18input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC88268523AA45E7006BE5E5 /* day18input.txt */; };
 		DC88268823AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
 		DC88268923AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
+		DC9EE4D923C41DEA00531D9F /* ArchiveVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE4D823C41DEA00531D9F /* ArchiveVault.swift */; };
 		DCA44B4523C18908004ACA0A /* DepthCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */; };
 		DCA44B4623C18908004ACA0A /* DepthCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */; };
 		DCA44B4823C18928004ACA0A /* RecursiveBugGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */; };
@@ -220,6 +221,7 @@
 		DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteenTests.swift; sourceTree = "<group>"; };
 		DC88268523AA45E7006BE5E5 /* day18input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day18input.txt; sourceTree = "<group>"; };
 		DC88268723AA5F03006BE5E5 /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
+		DC9EE4D823C41DEA00531D9F /* ArchiveVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveVault.swift; sourceTree = "<group>"; };
 		DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthCoordinate.swift; sourceTree = "<group>"; };
 		DCA44B4723C18928004ACA0A /* RecursiveBugGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecursiveBugGrid.swift; sourceTree = "<group>"; };
 		DCA44B4B23C24ACB004ACA0A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -541,6 +543,7 @@
 		DC88267E23AA442E006BE5E5 /* day 18 */ = {
 			isa = PBXGroup;
 			children = (
+				DC9EE4D823C41DEA00531D9F /* ArchiveVault.swift */,
 				DC88267F23AA4438006BE5E5 /* README.md */,
 				DC88268023AA4448006BE5E5 /* DayEighteen.swift */,
 				DC88268723AA5F03006BE5E5 /* Vault.swift */,
@@ -803,6 +806,7 @@
 				DCD40EA323A3BD1D00363124 /* ArcadeCabinet.swift in Sources */,
 				76ED70862396900200566C50 /* Coordinate.swift in Sources */,
 				DCF9738723BB08A500E57797 /* NetworkComputer.swift in Sources */,
+				DC9EE4D923C41DEA00531D9F /* ArchiveVault.swift in Sources */,
 				DC88267723A99251006BE5E5 /* DaySeventeen.swift in Sources */,
 				DCF9737423B7243900E57797 /* TractorBeam.swift in Sources */,
 				DCD40E9A23A3AD7000363124 /* DayThirteen.swift in Sources */,
