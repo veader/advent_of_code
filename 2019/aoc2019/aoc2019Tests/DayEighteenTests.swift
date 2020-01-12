@@ -40,7 +40,7 @@ class DayEighteenTests: XCTestCase {
 //        result = vault.shortestPathToAllKeys()
 //        XCTAssertEqual(132, result?.stepCount)
 
-        // this one works but takes a bit too long...
+//        // this one works but takes a bit too long...
         vault = Vault(input: testInput4)
         result = vault.shortestPathToAllKeys()
         XCTAssertEqual(136, result?.stepCount)

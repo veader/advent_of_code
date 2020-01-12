@@ -14,6 +14,13 @@ struct DayEighteen: AdventDay {
     func partOne(input: String?) -> Any {
         let vault = Vault(input: input ?? "")
 
+//        print(input ?? "")
+//        print("Start \(Date())")
+//        let updated = vault.pruneMap()
+//        print("End \(Date())")
+//        print(updated)
+//        return 0
+
         print("Start \(Date())")
         let result = vault.shortestPathToAllKeys()
         print(result)

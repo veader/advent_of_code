@@ -74,7 +74,71 @@ struct Vault {
         doors = tmpDoors
     }
 
-    struct SearchProgress {
+    func pruneMap() -> String {
+        var fixedLocations = true
+
+        var fixedMap = map // mutable copy
+
+        let usedCoordinates = map.keys
+        let minX = usedCoordinates.min(by: { $0.x < $1.x })?.x ?? 0
+        let maxX = usedCoordinates.max(by: { $0.x < $1.x })?.x ?? 0
+        let minY = usedCoordinates.min(by: { $0.y < $1.y })?.y ?? 0
+        let maxY = usedCoordinates.max(by: { $0.y < $1.y })?.y ?? 0
+
+        let xRange = min(0, minX)..<(maxX + 1)
+        let yRange = min(0, minY)..<(maxY + 1)
+
+        var iteration = 0
+
+        while fixedLocations {
+            iteration += 1
+            fixedLocations = false // start fresh
+
+            // go through each coordinate and if it has 3 walls surrounding it, make it a wall
+            for y in yRange {
+                for x in xRange {
+                    let location = Coordinate(x: x, y: y)
+                    guard case .empty = fixedMap[location] else { continue } // only touching empty spaces
+
+                    let walls = location.adjacent().compactMap { location -> GridType? in
+                        guard case .wall = fixedMap[location] else { return nil }
+                        return fixedMap[location]
+                    }
+
+                    if walls.count >= 3 {
+                        fixedMap[location] = .wall
+                        fixedLocations = true
+                    }
+                }
+            }
+        }
+
+        var output = ""
+        for y in yRange {
+            for x in xRange {
+                let location = Coordinate(x: x, y: y)
+                switch fixedMap[location] {
+                case .empty:
+                    output += "."
+                case .start:
+                    output += "@"
+                case .wall:
+                    output += "#"
+                case .key(name: let key):
+                    output += key
+                case .door(name: let door):
+                    output += door
+                case .none:
+                    break
+                }
+            }
+            output += "\n"
+        }
+        return output
+    }
+
+
+    class SearchProgress {
         var distanceMap = [Coordinate: [String: SearchStep]]()
     }
 
@@ -128,14 +192,18 @@ struct Vault {
         let startingStep = SearchStep(location: startLocation!, foundKeys: [], stepCount: 0)
         toSearch.append(startingStep)
 
+        var iteration = 0
+
         while !toSearch.isEmpty {
             toSearch = toSearch.flatMap { bfSearch(step: $0, progress: &progress) }
 
             // remove (and record) any found solutions
             toSearch = toSearch.filter { step -> Bool in
                 if step.foundKeys == sortedKeys {
-                    print("SOLUTION: \(step)")
-                    solutions.append(step)
+                    if !solutions.contains(step) {
+                        print("SOLUTION: \(step)")
+                        solutions.append(step)
+                    }
                     return false
                 }
 
@@ -145,6 +213,8 @@ struct Vault {
             // remove any paths to search with distances more than our current shortest solution
             let currentShortestSolution = solutions.sorted(by: stepSortingBlock).first?.stepCount ?? Int.max
             toSearch = toSearch.filter { $0.stepCount < currentShortestSolution }//.sorted(by: stepSortingBlock)
+            iteration += 1
+            print("Search Space [\(iteration)]: \(toSearch.count)")
         }
 
         print("All Solutions:\n\(solutions)")
@@ -153,7 +223,7 @@ struct Vault {
 
     private func bfSearch(step: SearchStep, progress: inout SearchProgress) -> [SearchStep] {
         var step = step // make a mutable copy
-        print("")
+//        print("")
 
         // check to see if this location is a door or key
         if let grid = map[step.location] {
@@ -172,42 +242,31 @@ struct Vault {
         }
 
         if let prevSteps = progress.distanceMap[step.location] {
-            print("Step: \(step)\nPrevious: \(prevSteps)")
+//            print("Step: \(step)\nPrevious: \(prevSteps)")
             // Have we been here before with fewer steps and the same keys?
             if let similarStep = prevSteps[step.hashKey], similarStep.stepCount < step.stepCount {
-                print("\t** Been here before with fewer steps...")
+//                print("\t** Been here before with fewer steps...")
                 return []
             }
-
-            // TODO: HERE FIX THIS
-            // TODO: should store an array of optional steps that have different keys at this location?
-//            if prevStep.stepCount < step.stepCount && prevStep.foundKeys.count >= step.foundKeys.count {
-//                // previous step has more (or the same amount) keys.
-//                //  check that that this step has just a subset...
-//                let prevKeySet = Set(prevStep.foundKeys)
-//                let thisKeySet = Set(step.foundKeys)
-//                if thisKeySet.isSubset(of: prevKeySet) {
-//                    print("** No path forward.")
-//                    return [] // we visited here before on a shorter route
-//                }
-//            } else if prevStep == step { // same info
-//                print("** Duplicate... move on")
-//                return []
-//            }
         }
 
         // record our distance
         if step.stepCount > 0 {
-            if let otherSteps = progress.distanceMap[step.location] {
-                progress.distanceMap[step.location] = otherSteps + [step]
+            if progress.distanceMap[step.location] == nil {
+                progress.distanceMap[step.location] = [String: SearchStep]()
+            }
+
+            if var locationSteps = progress.distanceMap[step.location] {
+                locationSteps[step.hashKey] = step
+                progress.distanceMap[step.location] = locationSteps
             } else {
-                progress.distanceMap[step.location] = [step]
+                print("**** Why don't we have a location hash for \(step.location)?")
             }
         }
 
         // have we hit our goal?
         if step.foundKeys == keys {
-            print("Found all keys!")
+//            print("Found all keys!")
             return [step]
         }
 
@@ -223,18 +282,10 @@ struct Vault {
                 // avoid locked doors.
                 return nil
             } else {
-                let nextStep = step.move(to: nextLocation)
-
-                // This shouldn't be needed because the stepCount should change, right?
-//                // avoid duplicate steps
-//                if let prevStep = progress.distanceMap[nextLocation], prevStep == nextStep {
-//                    return nil
-//                }
-
-                return nextStep
+                return step.move(to: nextLocation)
             }
         }
-        print("Next steps: \(nextSteps.count) from \(step.location)")
+//        print("Next steps: \(nextSteps.count) from \(step.location)")
 
         return nextSteps
     }

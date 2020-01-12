@@ -53,7 +53,7 @@
 		DC88268123AA4448006BE5E5 /* DayEighteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268023AA4448006BE5E5 /* DayEighteen.swift */; };
 		DC88268223AA4448006BE5E5 /* DayEighteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268023AA4448006BE5E5 /* DayEighteen.swift */; };
 		DC88268423AA4454006BE5E5 /* DayEighteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */; };
-		DC88268623AA45E7006BE5E5 /* day18input.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC88268523AA45E7006BE5E5 /* day18input.txt */; };
+		DC88268623AA45E7006BE5E5 /* day18input_original.txt in Resources */ = {isa = PBXBuildFile; fileRef = DC88268523AA45E7006BE5E5 /* day18input_original.txt */; };
 		DC88268823AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
 		DC88268923AA5F03006BE5E5 /* Vault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC88268723AA5F03006BE5E5 /* Vault.swift */; };
 		DC9EE4D923C41DEA00531D9F /* ArchiveVault.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC9EE4D823C41DEA00531D9F /* ArchiveVault.swift */; };
@@ -219,7 +219,7 @@
 		DC88267F23AA4438006BE5E5 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DC88268023AA4448006BE5E5 /* DayEighteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteen.swift; sourceTree = "<group>"; };
 		DC88268323AA4454006BE5E5 /* DayEighteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteenTests.swift; sourceTree = "<group>"; };
-		DC88268523AA45E7006BE5E5 /* day18input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day18input.txt; sourceTree = "<group>"; };
+		DC88268523AA45E7006BE5E5 /* day18input_original.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day18input_original.txt; sourceTree = "<group>"; };
 		DC88268723AA5F03006BE5E5 /* Vault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vault.swift; sourceTree = "<group>"; };
 		DC9EE4D823C41DEA00531D9F /* ArchiveVault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveVault.swift; sourceTree = "<group>"; };
 		DCA44B4423C18908004ACA0A /* DepthCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepthCoordinate.swift; sourceTree = "<group>"; };
@@ -281,6 +281,7 @@
 		DCD6BF2A239FC11D00D80913 /* day10input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day10input.txt; sourceTree = "<group>"; };
 		DCD6BF2C239FC5C200D80913 /* DayTenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTenTests.swift; sourceTree = "<group>"; };
 		DCD6BF2E23A02C6F00D80913 /* SpaceMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceMap.swift; sourceTree = "<group>"; };
+		DCEEC09523C9628B007F1589 /* day18input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day18input.txt; sourceTree = "<group>"; };
 		DCF9735823ACEE2A00E57797 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DCF9735923ACEE3400E57797 /* DayTwenty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwenty.swift; sourceTree = "<group>"; };
 		DCF9735C23ACF11900E57797 /* day20input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day20input.txt; sourceTree = "<group>"; };
@@ -396,7 +397,8 @@
 				DC610DB623A6DADA00E9A93C /* day15input.txt */,
 				DC610DC323A7D14100E9A93C /* day16input.txt */,
 				DC88267923A99481006BE5E5 /* day17input.txt */,
-				DC88268523AA45E7006BE5E5 /* day18input.txt */,
+				DC88268523AA45E7006BE5E5 /* day18input_original.txt */,
+				DCEEC09523C9628B007F1589 /* day18input.txt */,
 				DCB0A77A23ABC88E004AE819 /* day19input.txt */,
 				DCF9735C23ACF11900E57797 /* day20input.txt */,
 				DCF9736523B0056C00E57797 /* day21input.txt */,
@@ -790,7 +792,7 @@
 				DC88267A23A99481006BE5E5 /* day17input.txt in Resources */,
 				DC610DC423A7D14100E9A93C /* day16input.txt in Resources */,
 				DCF9737C23B7B07000E57797 /* day22input.txt in Resources */,
-				DC88268623AA45E7006BE5E5 /* day18input.txt in Resources */,
+				DC88268623AA45E7006BE5E5 /* day18input_original.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
