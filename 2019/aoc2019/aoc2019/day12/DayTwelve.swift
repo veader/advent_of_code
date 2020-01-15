@@ -19,86 +19,26 @@ struct DayTwelve: AdventDay {
 
     func partOne(input: String?) -> Any {
         let moons = parse(input)
-        let pairs = createPairs(moons: moons)
+        let simulation = MoonSimulation(moons: moons)
+        simulation.step(count: 1000)
 
-        runSteps(count: 1000, moons: moons, pairs: pairs)
-
-        return moons.reduce(0) { $0 + $1.totalEnergy }
-    }
-
-    func runSteps(count: Int, moons: [Moon], pairs: [[Moon]]) {
-        (0..<count).forEach { iteration in
-            step(moons: moons, pairs: pairs)
-
-            // print("After \(iteration + 1) steps:")
-            // moons.forEach { print($0) }
-            // print("")
-        }
-    }
-
-    func runTillRepeat(moons: [Moon], pairs:[[Moon]]) -> Int {
-        var previousStates = Set<Int>()
-        var iterations = 0
-        previousStates.insert(hash(for: moons))
-
-        while true {
-            step(moons: moons, pairs: pairs)
-            let moonsHash = hash(for: moons)
-
-            if previousStates.contains(moonsHash) {
-                print("FOUND IT!!! \(iterations)")
-                break
-            } else {
-                previousStates.insert(moonsHash)
-            }
-
-            iterations += 1
-
-            if (iterations % 1_000_000) == 0 {
-                print("\(iterations) \(Date())")
-            }
-        }
-
-        return iterations
-    }
-
-    func hash(for moons: [Moon]) -> Int {
-        var hasher = Hasher()
-        moons.forEach { hasher.combine($0) }
-        return hasher.finalize()
-    }
-
-    func stepDescription(moons: [Moon]) -> String {
-        moons.reduce("") { $0 + "|\($1.shortDescription)" }
+        return simulation.totalEnergy
     }
 
     func partTwo(input: String?) -> Any {
-        // https://users.cs.duke.edu/~reif/paper/tate/nbody.pdf ??
-        return 0
-    }
+        let moons = parse(input)
+        let simulation = MoonSimulation(moons: moons)
 
-    func step(moons: [Moon], pairs: [[Moon]]) {
-        // first we apply gravity
-        for pair in pairs {
-            pair[0].applyGravity(toward: pair[1])
+        let cycles = simulation.calculateCycles()
+        print(cycles)
+
+        let min = [cycles.x, cycles.y, cycles.z].min() ?? 0
+        var loopCount = min
+
+        while loopCount % cycles.x != 0 || loopCount % cycles.y != 0 || loopCount % cycles.z != 0 {
+            loopCount += min
         }
 
-        // next we apply velocity
-        for moon in moons {
-            moon.applyVelocity()
-        }
-    }
-
-    func createPairs(moons: [Moon]) -> [[Moon]] {
-        var theMoons = moons // copy so we can mutate it
-        var moonPairs = [[Moon]]()
-
-        while !theMoons.isEmpty {
-            guard let moon = theMoons.popLast() else { continue }
-            let newPairs = theMoons.map { [moon, $0] }
-            moonPairs = moonPairs + newPairs
-        }
-
-        return moonPairs
+        return loopCount
     }
 }

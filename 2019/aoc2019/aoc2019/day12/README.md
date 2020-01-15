@@ -273,3 +273,5 @@ This set of initial positions takes `4686774924` steps before it repeats a previ
 Clearly, you might need to **find a more efficient way to simulate the universe.**
 
 **How many steps does it take** to reach the first state that exactly matches a previous state?
+
+Your puzzle answer was `314917503970904`.

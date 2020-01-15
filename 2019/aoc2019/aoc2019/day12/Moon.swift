@@ -25,7 +25,7 @@ class Moon {
     }
 
     var shortDescription: String {
-        return "\(position.x).\(position.y).\(position.z),\(velocity.x).\(velocity.y).\(velocity.z)"
+        return "\(position.x),\(position.y),\(position.z):\(velocity.x),\(velocity.y),\(velocity.z)"
     }
 
     

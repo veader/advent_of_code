@@ -76,58 +76,43 @@ class DayTwelveTests: XCTestCase {
     func testPartOneStepping() {
         let day = DayTwelve()
         let moons = day.parse(testMoons1)
-        let pairs = day.createPairs(moons: moons)
+        let simulation = MoonSimulation(moons: moons)
 
-        day.step(moons: moons, pairs: pairs) // 1
-        XCTAssertEqual(ThreeDimPosition(x: 2, y: -1, z: 1), moons[0].position)
-        XCTAssertEqual(ThreeDimPosition(x: 3, y: -1, z: -1), moons[0].velocity)
-        XCTAssertEqual(ThreeDimPosition(x: 3, y: -7, z: -4), moons[1].position)
-        XCTAssertEqual(ThreeDimPosition(x: 1, y: 3, z: 3), moons[1].velocity)
+        simulation.step() // 1
+        XCTAssertEqual(ThreeDimPosition(x: 2, y: -1, z: 1), simulation.moons[0].position)
+        XCTAssertEqual(ThreeDimPosition(x: 3, y: -1, z: -1), simulation.moons[0].velocity)
+        XCTAssertEqual(ThreeDimPosition(x: 3, y: -7, z: -4), simulation.moons[1].position)
+        XCTAssertEqual(ThreeDimPosition(x: 1, y: 3, z: 3), simulation.moons[1].velocity)
 
-        day.step(moons: moons, pairs: pairs) // 2
-        XCTAssertEqual(ThreeDimPosition(x: 5, y: -3, z: -1), moons[0].position)
-        XCTAssertEqual(ThreeDimPosition(x: 3, y: -2, z: -2), moons[0].velocity)
-        XCTAssertEqual(ThreeDimPosition(x: 1, y: -2, z: 2), moons[1].position)
-        XCTAssertEqual(ThreeDimPosition(x: -2, y: 5, z: 6), moons[1].velocity)
+        simulation.step() // 2
+        XCTAssertEqual(ThreeDimPosition(x: 5, y: -3, z: -1), simulation.moons[0].position)
+        XCTAssertEqual(ThreeDimPosition(x: 3, y: -2, z: -2), simulation.moons[0].velocity)
+        XCTAssertEqual(ThreeDimPosition(x: 1, y: -2, z: 2), simulation.moons[1].position)
+        XCTAssertEqual(ThreeDimPosition(x: -2, y: 5, z: 6), simulation.moons[1].velocity)
 
-        day.step(moons: moons, pairs: pairs) // 3
-        day.step(moons: moons, pairs: pairs) // 4
-        day.step(moons: moons, pairs: pairs) // 5
-        day.step(moons: moons, pairs: pairs) // 6
-        day.step(moons: moons, pairs: pairs) // 7
-        day.step(moons: moons, pairs: pairs) // 8
-        day.step(moons: moons, pairs: pairs) // 9
-
-        day.step(moons: moons, pairs: pairs) // 10
-        XCTAssertEqual(ThreeDimPosition(x: 2, y: 1, z: -3), moons[0].position)
-        XCTAssertEqual(ThreeDimPosition(x: -3, y: -2, z: 1), moons[0].velocity)
-        XCTAssertEqual(ThreeDimPosition(x: 1, y: -8, z: 0), moons[1].position)
-        XCTAssertEqual(ThreeDimPosition(x: -1, y: 1, z: 3), moons[1].velocity)
+        simulation.step(count: 8) // 3-10
+        XCTAssertEqual(ThreeDimPosition(x: 2, y: 1, z: -3), simulation.moons[0].position)
+        XCTAssertEqual(ThreeDimPosition(x: -3, y: -2, z: 1), simulation.moons[0].velocity)
+        XCTAssertEqual(ThreeDimPosition(x: 1, y: -8, z: 0), simulation.moons[1].position)
+        XCTAssertEqual(ThreeDimPosition(x: -1, y: 1, z: 3), simulation.moons[1].velocity)
     }
 
     func testPartOne() {
         let day = DayTwelve()
         let moons = day.parse(testMoons2)
-        let pairs = day.createPairs(moons: moons)
+        let simulation = MoonSimulation(moons: moons)
+        simulation.step(count: 100)
 
-        day.runSteps(count: 100, moons: moons, pairs: pairs)
-
-        let totalEnergy = moons.reduce(0) { $0 + $1.totalEnergy }
-        XCTAssertEqual(1940, totalEnergy)
+        XCTAssertEqual(1940, simulation.totalEnergy)
     }
 
     func testPartTwo() {
-//        let day = DayTwelve()
+        let day = DayTwelve()
+        var answer = day.partTwo(input: testMoons1)
+        XCTAssertEqual(2772, answer as! Int)
 
-//        let moons = day.parse(testMoons1)
-//        let pairs = day.createPairs(moons: moons)
-//        let repeated = day.runTillRepeat(moons: moons, pairs: pairs)
-//        XCTAssertEqual(2772, repeated)
-
-//        let moons = day.parse(testMoons2)
-//        let pairs = day.createPairs(moons: moons)
-//        let repeated = day.runTillRepeat(moons: moons, pairs: pairs)
-//        XCTAssertEqual(4686774924, repeated)
+        answer = day.partTwo(input: testMoons2)
+        XCTAssertEqual(4_686_774_924, answer as! Int)
     }
 
     func testPartOneAnswer() {
