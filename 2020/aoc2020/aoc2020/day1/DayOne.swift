@@ -9,9 +9,10 @@ import Foundation
 
 
 struct DayOne: AdventDay {
+    var dayNumber: Int = 1
 
     func parse(_ input: String?) -> [Int] {
-        return (input ?? "").split(separator: "\n").compactMap { Int($0) }
+        (input ?? "").split(separator: "\n").compactMap { Int($0) }
     }
 
     func partOne(input: String?) -> Any {
@@ -75,6 +76,4 @@ struct DayOne: AdventDay {
         print(matching)
         return matching.reduce(1) { $0 * $1 }
     }
-
-    var dayNumber: Int = 1
 }

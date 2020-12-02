@@ -65,6 +65,8 @@ class Advent {
         switch day {
         case 1:
             return DayOne()
+        case 2:
+            return DayTwo()
         default:
             return nil
         }

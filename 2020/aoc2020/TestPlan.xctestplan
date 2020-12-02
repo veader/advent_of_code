@@ -1,0 +1,18 @@
+{
+  "configurations" : [
+    {
+      "id" : "0399C96E-DAC1-487C-A065-F76617183C19",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+
+  ],
+  "version" : 1
+}

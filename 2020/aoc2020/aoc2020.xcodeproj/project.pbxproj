@@ -10,6 +10,16 @@
 		C5B06B752576945C0031D307 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B742576945C0031D307 /* main.swift */; };
 		C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B7C2576949C0031D307 /* AdventDay.swift */; };
 		C5B06B852576953B0031D307 /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B842576953B0031D307 /* DayOne.swift */; };
+		C5B06C052577E76C0031D307 /* DayTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C042577E76C0031D307 /* DayTwo.swift */; };
+		C5B06C6F257828720031D307 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C6E257828720031D307 /* String.swift */; };
+		C5B06C7B25782AEB0031D307 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C7A25782AEB0031D307 /* Test.swift */; };
+		C5B06C8325782AFE0031D307 /* DayTwoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C8225782AFE0031D307 /* DayTwoTests.swift */; };
+		C5B06C8625782B040031D307 /* DayTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C042577E76C0031D307 /* DayTwo.swift */; };
+		C5B06C8925782B9A0031D307 /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B7C2576949C0031D307 /* AdventDay.swift */; };
+		C5B06C8C25782BA50031D307 /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B842576953B0031D307 /* DayOne.swift */; };
+		C5B06C8F25782BC60031D307 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C6E257828720031D307 /* String.swift */; };
+		C5B06C97257831230031D307 /* PasswordPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C96257831230031D307 /* PasswordPolicy.swift */; };
+		C5B06C9A257831250031D307 /* PasswordPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06C96257831230031D307 /* PasswordPolicy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -32,10 +42,26 @@
 		C5B06B832576952D0031D307 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C5B06B842576953B0031D307 /* DayOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOne.swift; sourceTree = "<group>"; };
 		C5B06B8925769A430031D307 /* day1input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day1input.txt; sourceTree = "<group>"; };
+		C5B06C022577E6920031D307 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C5B06C032577E6F10031D307 /* day2input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day2input.txt; sourceTree = "<group>"; };
+		C5B06C042577E76C0031D307 /* DayTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwo.swift; sourceTree = "<group>"; };
+		C5B06C6E257828720031D307 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		C5B06C7825782AEA0031D307 /* Test.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Test.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5B06C7A25782AEB0031D307 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test.swift; sourceTree = "<group>"; };
+		C5B06C7C25782AEB0031D307 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C5B06C8225782AFE0031D307 /* DayTwoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwoTests.swift; sourceTree = "<group>"; };
+		C5B06C96257831230031D307 /* PasswordPolicy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordPolicy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		C5B06B6E2576945C0031D307 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B06C7525782AEA0031D307 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -49,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				C5B06B732576945C0031D307 /* aoc2020 */,
+				C5B06C7925782AEB0031D307 /* Test */,
 				C5B06B722576945C0031D307 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				C5B06B712576945C0031D307 /* aoc2020 */,
+				C5B06C7825782AEA0031D307 /* Test.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,8 +92,10 @@
 		C5B06B732576945C0031D307 /* aoc2020 */ = {
 			isa = PBXGroup;
 			children = (
+				C5B06C6D257828650031D307 /* shared */,
 				C5B06B8825769A2F0031D307 /* data */,
 				C5B06B822576951F0031D307 /* day1 */,
+				C5B06C012577E6880031D307 /* day2 */,
 				C5B06B742576945C0031D307 /* main.swift */,
 				C5B06B7C2576949C0031D307 /* AdventDay.swift */,
 				C5B06B7F257694CA0031D307 /* EmptyDay.swift */,
@@ -86,8 +116,37 @@
 			isa = PBXGroup;
 			children = (
 				C5B06B8925769A430031D307 /* day1input.txt */,
+				C5B06C032577E6F10031D307 /* day2input.txt */,
 			);
 			path = data;
+			sourceTree = "<group>";
+		};
+		C5B06C012577E6880031D307 /* day2 */ = {
+			isa = PBXGroup;
+			children = (
+				C5B06C022577E6920031D307 /* README.md */,
+				C5B06C042577E76C0031D307 /* DayTwo.swift */,
+				C5B06C96257831230031D307 /* PasswordPolicy.swift */,
+			);
+			path = day2;
+			sourceTree = "<group>";
+		};
+		C5B06C6D257828650031D307 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				C5B06C6E257828720031D307 /* String.swift */,
+			);
+			path = shared;
+			sourceTree = "<group>";
+		};
+		C5B06C7925782AEB0031D307 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				C5B06C7A25782AEB0031D307 /* Test.swift */,
+				C5B06C7C25782AEB0031D307 /* Info.plist */,
+				C5B06C8225782AFE0031D307 /* DayTwoTests.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +169,23 @@
 			productReference = C5B06B712576945C0031D307 /* aoc2020 */;
 			productType = "com.apple.product-type.tool";
 		};
+		C5B06C7725782AEA0031D307 /* Test */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5B06C7D25782AEB0031D307 /* Build configuration list for PBXNativeTarget "Test" */;
+			buildPhases = (
+				C5B06C7425782AEA0031D307 /* Sources */,
+				C5B06C7525782AEA0031D307 /* Frameworks */,
+				C5B06C7625782AEA0031D307 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Test;
+			productName = Test;
+			productReference = C5B06C7825782AEA0031D307 /* Test.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -120,6 +196,9 @@
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					C5B06B702576945C0031D307 = {
+						CreatedOnToolsVersion = 12.2;
+					};
+					C5B06C7725782AEA0031D307 = {
 						CreatedOnToolsVersion = 12.2;
 					};
 				};
@@ -138,9 +217,20 @@
 			projectRoot = "";
 			targets = (
 				C5B06B702576945C0031D307 /* aoc2020 */,
+				C5B06C7725782AEA0031D307 /* Test */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C5B06C7625782AEA0031D307 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		C5B06B6D2576945C0031D307 /* Sources */ = {
@@ -149,7 +239,24 @@
 			files = (
 				C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */,
 				C5B06B752576945C0031D307 /* main.swift in Sources */,
+				C5B06C97257831230031D307 /* PasswordPolicy.swift in Sources */,
+				C5B06C6F257828720031D307 /* String.swift in Sources */,
 				C5B06B852576953B0031D307 /* DayOne.swift in Sources */,
+				C5B06C052577E76C0031D307 /* DayTwo.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5B06C7425782AEA0031D307 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5B06C8F25782BC60031D307 /* String.swift in Sources */,
+				C5B06C7B25782AEB0031D307 /* Test.swift in Sources */,
+				C5B06C8625782B040031D307 /* DayTwo.swift in Sources */,
+				C5B06C9A257831250031D307 /* PasswordPolicy.swift in Sources */,
+				C5B06C8C25782BA50031D307 /* DayOne.swift in Sources */,
+				C5B06C8925782B9A0031D307 /* AdventDay.swift in Sources */,
+				C5B06C8325782AFE0031D307 /* DayTwoTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +400,42 @@
 			};
 			name = Release;
 		};
+		C5B06C7E25782AEB0031D307 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = U47EA53RZE;
+				INFOPLIST_FILE = Test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		C5B06C7F25782AEB0031D307 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = U47EA53RZE;
+				INFOPLIST_FILE = Test/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.Test;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -310,6 +453,15 @@
 			buildConfigurations = (
 				C5B06B792576945C0031D307 /* Debug */,
 				C5B06B7A2576945C0031D307 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5B06C7D25782AEB0031D307 /* Build configuration list for PBXNativeTarget "Test" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5B06C7E25782AEB0031D307 /* Debug */,
+				C5B06C7F25782AEB0031D307 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
