@@ -8,6 +8,11 @@
 import Foundation
 
 struct PasswordPolicy {
+    enum PolicyType {
+        case count
+        case position
+    }
+
     let range: ClosedRange<Int>
     let letter: String
 
@@ -27,9 +32,29 @@ struct PasswordPolicy {
         letter = letterCapture
     }
 
-    func isValid(password: String) -> Bool {
-        let occurances = password.filter { String($0) == letter }
-        return range.contains(occurances.count)
+    /// Is the given password valid given the policy described here?
+    ///
+    /// Policy type dictates how the range and letter are treated in determining what is valid.
+    func isValid(password: String, type: PolicyType? = .count) -> Bool {
+        guard let type = type else { return false }
+
+        switch type {
+        case .count:
+            let occurances = password.filter { String($0) == letter }
+            return range.contains(occurances.count)
+        case .position:
+            let chars = Array(password).map(String.init)
+            guard var firstIdx = range.first, var lastIdx = range.last else { return false }
+
+            // make 0 indexed
+            firstIdx -= 1
+            lastIdx -= 1
+
+            let firstIdxMatch = chars.indices.contains(firstIdx) && chars[firstIdx] == letter
+            let lastIdxMatch = chars.indices.contains(lastIdx) && chars[lastIdx] == letter
+
+            return (firstIdxMatch || lastIdxMatch) && !(firstIdxMatch && lastIdxMatch)
+        }
     }
 }
 
@@ -50,7 +75,7 @@ struct SamplePassword {
         password = capturedSample
     }
 
-    var valid: Bool {
-        policy.isValid(password: password)
+    func valid(policyType: PasswordPolicy.PolicyType? = .count) -> Bool {
+        policy.isValid(password: password, type: policyType)
     }
 }

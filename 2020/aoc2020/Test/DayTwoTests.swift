@@ -40,4 +40,12 @@ class DayTwoTests: XCTestCase {
         XCTAssertFalse(policy.isValid(password: "aaa"))
         XCTAssertFalse(policy.isValid(password: "b"))
     }
+
+    func testPasswordPolicyPositionValidation() {
+        let policy = PasswordPolicy("1-3 a")!
+        XCTAssertTrue(policy.isValid(password: "abc", type: .position))
+        XCTAssertTrue(policy.isValid(password: "cba", type: .position))
+        XCTAssertTrue(policy.isValid(password: "cbazzzzz", type: .position))
+        XCTAssertFalse(policy.isValid(password: "cccccc", type: .position))
+    }
 }

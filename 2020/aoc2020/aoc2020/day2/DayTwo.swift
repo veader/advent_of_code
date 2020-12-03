@@ -16,10 +16,11 @@ struct DayTwo: AdventDay {
 
     func partOne(input: String?) -> Any {
         let passwords = parse(input)
-        return passwords.filter({ $0.valid }).count
+        return passwords.filter({ $0.valid() }).count
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let passwords = parse(input)
+        return passwords.filter({ $0.valid(policyType: .position) }).count
     }
 }
