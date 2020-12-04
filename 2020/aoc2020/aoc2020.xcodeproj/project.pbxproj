@@ -27,6 +27,11 @@
 		C5B06D0F2579DC440031D307 /* DayThreeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D0E2579DC440031D307 /* DayThreeTests.swift */; };
 		C5B06D132579DE730031D307 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D122579DE730031D307 /* Coordinate.swift */; };
 		C5B06D142579DE730031D307 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D122579DE730031D307 /* Coordinate.swift */; };
+		C5B06D20257A93CB0031D307 /* DayFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D1F257A93CB0031D307 /* DayFour.swift */; };
+		C5B06D21257A93CB0031D307 /* DayFour.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D1F257A93CB0031D307 /* DayFour.swift */; };
+		C5B06D25257A94110031D307 /* Passport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D24257A94110031D307 /* Passport.swift */; };
+		C5B06D26257A94110031D307 /* Passport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D24257A94110031D307 /* Passport.swift */; };
+		C5B06D2A257AAB6D0031D307 /* DayFourTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D29257AAB6D0031D307 /* DayFourTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -64,6 +69,11 @@
 		C5B06D072579D8520031D307 /* Forest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forest.swift; sourceTree = "<group>"; };
 		C5B06D0E2579DC440031D307 /* DayThreeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThreeTests.swift; sourceTree = "<group>"; };
 		C5B06D122579DE730031D307 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		C5B06D18257A917E0031D307 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C5B06D19257A938E0031D307 /* day4input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day4input.txt; sourceTree = "<group>"; };
+		C5B06D1F257A93CB0031D307 /* DayFour.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFour.swift; sourceTree = "<group>"; };
+		C5B06D24257A94110031D307 /* Passport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Passport.swift; sourceTree = "<group>"; };
+		C5B06D29257AAB6D0031D307 /* DayFourTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFourTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +120,7 @@
 				C5B06B822576951F0031D307 /* day1 */,
 				C5B06C012577E6880031D307 /* day2 */,
 				C5B06CFD257945940031D307 /* day3 */,
+				C5B06D17257A91780031D307 /* day4 */,
 				C5B06B742576945C0031D307 /* main.swift */,
 				C5B06B7C2576949C0031D307 /* AdventDay.swift */,
 				C5B06B7F257694CA0031D307 /* EmptyDay.swift */,
@@ -132,6 +143,7 @@
 				C5B06B8925769A430031D307 /* day1input.txt */,
 				C5B06C032577E6F10031D307 /* day2input.txt */,
 				C5B06CFF2579467C0031D307 /* day3input.txt */,
+				C5B06D19257A938E0031D307 /* day4input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -162,6 +174,7 @@
 				C5B06C7C25782AEB0031D307 /* Info.plist */,
 				C5B06C8225782AFE0031D307 /* DayTwoTests.swift */,
 				C5B06D0E2579DC440031D307 /* DayThreeTests.swift */,
+				C5B06D29257AAB6D0031D307 /* DayFourTests.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -174,6 +187,16 @@
 				C5B06D072579D8520031D307 /* Forest.swift */,
 			);
 			path = day3;
+			sourceTree = "<group>";
+		};
+		C5B06D17257A91780031D307 /* day4 */ = {
+			isa = PBXGroup;
+			children = (
+				C5B06D18257A917E0031D307 /* README.md */,
+				C5B06D1F257A93CB0031D307 /* DayFour.swift */,
+				C5B06D24257A94110031D307 /* Passport.swift */,
+			);
+			path = day4;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -264,6 +287,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5B06D20257A93CB0031D307 /* DayFour.swift in Sources */,
+				C5B06D25257A94110031D307 /* Passport.swift in Sources */,
 				C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */,
 				C5B06B752576945C0031D307 /* main.swift in Sources */,
 				C5B06D012579D80F0031D307 /* DayThree.swift in Sources */,
@@ -281,15 +306,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B06D092579D8520031D307 /* Forest.swift in Sources */,
+				C5B06D26257A94110031D307 /* Passport.swift in Sources */,
 				C5B06C8F25782BC60031D307 /* String.swift in Sources */,
 				C5B06C7B25782AEB0031D307 /* Test.swift in Sources */,
 				C5B06C8625782B040031D307 /* DayTwo.swift in Sources */,
 				C5B06C9A257831250031D307 /* PasswordPolicy.swift in Sources */,
 				C5B06D142579DE730031D307 /* Coordinate.swift in Sources */,
+				C5B06D21257A93CB0031D307 /* DayFour.swift in Sources */,
 				C5B06C8C25782BA50031D307 /* DayOne.swift in Sources */,
 				C5B06C8925782B9A0031D307 /* AdventDay.swift in Sources */,
 				C5B06D0F2579DC440031D307 /* DayThreeTests.swift in Sources */,
 				C5B06C8325782AFE0031D307 /* DayTwoTests.swift in Sources */,
+				C5B06D2A257AAB6D0031D307 /* DayFourTests.swift in Sources */,
 				C5B06D022579D80F0031D307 /* DayThree.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
