@@ -22,6 +22,17 @@ struct DayThree: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        guard let forest = parse(input) else { return 0 }
+
+        let slopes = [
+            Forest.Slope(rise: 1, run: 1),
+            Forest.Slope(rise: 1, run: 3),
+            Forest.Slope(rise: 1, run: 5),
+            Forest.Slope(rise: 1, run: 7),
+            Forest.Slope(rise: 2, run: 1),
+        ]
+
+        let impacts = slopes.map { forest.impacts(traveling: $0) }
+        return impacts.reduce(1, { $0 * $1 })
     }
 }

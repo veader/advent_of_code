@@ -55,4 +55,20 @@ class DayThreeTests: XCTestCase {
         let impacts = forest.impacts(traveling: slope)
         XCTAssertEqual(7, impacts)
     }
+
+    func testPartTwo() {
+        let slopes = [
+            Forest.Slope(rise: 1, run: 1),
+            Forest.Slope(rise: 1, run: 3),
+            Forest.Slope(rise: 1, run: 5),
+            Forest.Slope(rise: 1, run: 7),
+            Forest.Slope(rise: 2, run: 1),
+        ]
+
+        let forest = Forest(testMap)!
+        let impacts = slopes.map { forest.impacts(traveling: $0) }
+        let total = impacts.reduce(1, { $0 * $1 })
+
+        XCTAssertEqual(336, total)
+    }
 }
