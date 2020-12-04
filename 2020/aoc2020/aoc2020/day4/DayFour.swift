@@ -24,6 +24,7 @@ struct DayFour: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 1
+        let passports = parse(input)
+        return passports.filter({ $0.fullyValid }).count
     }
 }
