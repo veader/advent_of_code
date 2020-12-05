@@ -21,8 +21,13 @@ struct DayFive: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 1
-//        let passports = parse(input)
-//        return passports.filter({ $0.fullyValid }).count
+        let passes = parse(input)
+        let seatIDs = passes.map({ $0.seatID }).sorted()
+
+        let range = seatIDs.min()!...seatIDs.max()!
+        let totalSet = Set(range)
+        let missing = Set(seatIDs).symmetricDifference(totalSet)
+
+        return missing.first!
     }
 }
