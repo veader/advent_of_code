@@ -37,6 +37,11 @@
 		C5B06D99257B5F170031D307 /* BoardingPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D98257B5F170031D307 /* BoardingPass.swift */; };
 		C5B06D9A257B5F170031D307 /* BoardingPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06D98257B5F170031D307 /* BoardingPass.swift */; };
 		C5B06DA1257B5FF90031D307 /* DayFiveTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DA0257B5FF90031D307 /* DayFiveTests.swift */; };
+		C5B06DAA257D0FEC0031D307 /* DaySix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DA9257D0FEC0031D307 /* DaySix.swift */; };
+		C5B06DAB257D0FEC0031D307 /* DaySix.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DA9257D0FEC0031D307 /* DaySix.swift */; };
+		C5B06DB1257D10210031D307 /* DaySixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DB0257D10210031D307 /* DaySixTests.swift */; };
+		C5B06DB5257D129C0031D307 /* CustomsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DB4257D129C0031D307 /* CustomsForm.swift */; };
+		C5B06DBD257D15540031D307 /* CustomsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DB4257D129C0031D307 /* CustomsForm.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -84,6 +89,11 @@
 		C5B06D98257B5F170031D307 /* BoardingPass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardingPass.swift; sourceTree = "<group>"; };
 		C5B06D9F257B5FBE0031D307 /* day5input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day5input.txt; sourceTree = "<group>"; };
 		C5B06DA0257B5FF90031D307 /* DayFiveTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFiveTests.swift; sourceTree = "<group>"; };
+		C5B06DA7257D0EB30031D307 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C5B06DA8257D0FDF0031D307 /* day6input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day6input.txt; sourceTree = "<group>"; };
+		C5B06DA9257D0FEC0031D307 /* DaySix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySix.swift; sourceTree = "<group>"; };
+		C5B06DB0257D10210031D307 /* DaySixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySixTests.swift; sourceTree = "<group>"; };
+		C5B06DB4257D129C0031D307 /* CustomsForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomsForm.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +142,7 @@
 				C5B06CFD257945940031D307 /* day3 */,
 				C5B06D17257A91780031D307 /* day4 */,
 				C5B06D8F257B5D440031D307 /* day5 */,
+				C5B06DA6257D0EAB0031D307 /* day6 */,
 				C5B06B742576945C0031D307 /* main.swift */,
 				C5B06B7C2576949C0031D307 /* AdventDay.swift */,
 				C5B06B7F257694CA0031D307 /* EmptyDay.swift */,
@@ -156,6 +167,7 @@
 				C5B06CFF2579467C0031D307 /* day3input.txt */,
 				C5B06D19257A938E0031D307 /* day4input.txt */,
 				C5B06D9F257B5FBE0031D307 /* day5input.txt */,
+				C5B06DA8257D0FDF0031D307 /* day6input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -188,6 +200,7 @@
 				C5B06D0E2579DC440031D307 /* DayThreeTests.swift */,
 				C5B06D29257AAB6D0031D307 /* DayFourTests.swift */,
 				C5B06DA0257B5FF90031D307 /* DayFiveTests.swift */,
+				C5B06DB0257D10210031D307 /* DaySixTests.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -220,6 +233,16 @@
 				C5B06D98257B5F170031D307 /* BoardingPass.swift */,
 			);
 			path = day5;
+			sourceTree = "<group>";
+		};
+		C5B06DA6257D0EAB0031D307 /* day6 */ = {
+			isa = PBXGroup;
+			children = (
+				C5B06DA7257D0EB30031D307 /* README.md */,
+				C5B06DA9257D0FEC0031D307 /* DaySix.swift */,
+				C5B06DB4257D129C0031D307 /* CustomsForm.swift */,
+			);
+			path = day6;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5B06D99257B5F170031D307 /* BoardingPass.swift in Sources */,
+				C5B06DAA257D0FEC0031D307 /* DaySix.swift in Sources */,
 				C5B06D20257A93CB0031D307 /* DayFour.swift in Sources */,
 				C5B06D25257A94110031D307 /* Passport.swift in Sources */,
 				C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */,
@@ -321,6 +345,7 @@
 				C5B06C97257831230031D307 /* PasswordPolicy.swift in Sources */,
 				C5B06D132579DE730031D307 /* Coordinate.swift in Sources */,
 				C5B06C6F257828720031D307 /* String.swift in Sources */,
+				C5B06DB5257D129C0031D307 /* CustomsForm.swift in Sources */,
 				C5B06B852576953B0031D307 /* DayOne.swift in Sources */,
 				C5B06C052577E76C0031D307 /* DayTwo.swift in Sources */,
 			);
@@ -332,9 +357,12 @@
 			files = (
 				C5B06DA1257B5FF90031D307 /* DayFiveTests.swift in Sources */,
 				C5B06D092579D8520031D307 /* Forest.swift in Sources */,
+				C5B06DBD257D15540031D307 /* CustomsForm.swift in Sources */,
 				C5B06D26257A94110031D307 /* Passport.swift in Sources */,
+				C5B06DB1257D10210031D307 /* DaySixTests.swift in Sources */,
 				C5B06C8F25782BC60031D307 /* String.swift in Sources */,
 				C5B06C7B25782AEB0031D307 /* Test.swift in Sources */,
+				C5B06DAB257D0FEC0031D307 /* DaySix.swift in Sources */,
 				C5B06D93257B5D510031D307 /* DayFive.swift in Sources */,
 				C5B06C8625782B040031D307 /* DayTwo.swift in Sources */,
 				C5B06C9A257831250031D307 /* PasswordPolicy.swift in Sources */,
