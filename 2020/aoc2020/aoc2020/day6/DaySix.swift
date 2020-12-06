@@ -24,8 +24,7 @@ struct DaySix: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 1
-//        let passwords = parse(input)
-//        return passwords.filter({ $0.valid(policyType: .position) }).count
+        let forms = parse(input)
+        return forms.reduce(0) { $0 + $1.groupYesQuestions }
     }
 }

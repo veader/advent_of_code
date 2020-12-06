@@ -13,8 +13,14 @@ struct CustomsForm {
     let reponses: [String]
     let answers: [String: Int]
 
+    /// Count of questions that anyone in the group answered "yes" to
     var yesQuestions: Int {
         answers.keys.count
+    }
+
+    /// Count of questions that all members of the group answered "yes" to
+    var groupYesQuestions: Int {
+        answers.filter({ $1 == groupSize }).keys.count
     }
 
     init(_ input: String) {
