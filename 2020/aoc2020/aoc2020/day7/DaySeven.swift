@@ -22,6 +22,6 @@ struct DaySeven: AdventDay {
 
     func partTwo(input: String?) -> Any {
         let ruleSet = LuggageRuleSet(parse(input))
-        return 1
+        return ruleSet.childBagCount(of: "shiny gold")
     }
 }

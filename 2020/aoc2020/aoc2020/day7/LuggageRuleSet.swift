@@ -57,4 +57,16 @@ class LuggageRuleSet {
 
         return parents
     }
+
+    /// How many bags are contained within the a bag of the given color?
+    func childBagCount(of color: String) -> Int {
+        guard let rule = rules[color], rule.hasChildren else { return 0 }
+
+        return rule.children.reduce(0) { (result, child) -> Int in
+            let childColor = child.key
+            let count = child.value
+
+            return result + count + (count * childBagCount(of: childColor))
+        }
+    }
 }
