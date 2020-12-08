@@ -153,13 +153,14 @@
 			children = (
 				C5B06C6D257828650031D307 /* shared */,
 				C5B06B8825769A2F0031D307 /* data */,
-				C5B06B822576951F0031D307 /* day1 */,
-				C5B06C012577E6880031D307 /* day2 */,
-				C5B06CFD257945940031D307 /* day3 */,
-				C5B06D17257A91780031D307 /* day4 */,
-				C5B06D8F257B5D440031D307 /* day5 */,
-				C5B06DA6257D0EAB0031D307 /* day6 */,
-				C5B06DC0257DF6CB0031D307 /* day7 */,
+				C5B06B822576951F0031D307 /* day01 */,
+				C5B06C012577E6880031D307 /* day02 */,
+				C5B06CFD257945940031D307 /* day03 */,
+				C5B06D17257A91780031D307 /* day04 */,
+				C5B06D8F257B5D440031D307 /* day05 */,
+				C5B06DA6257D0EAB0031D307 /* day06 */,
+				C5B06DC0257DF6CB0031D307 /* day07 */,
+				C5B06DEA257F400D0031D307 /* day08 */,
 				C5B06B742576945C0031D307 /* main.swift */,
 				C5B06B7C2576949C0031D307 /* AdventDay.swift */,
 				C5B06B7F257694CA0031D307 /* EmptyDay.swift */,
@@ -167,13 +168,13 @@
 			path = aoc2020;
 			sourceTree = "<group>";
 		};
-		C5B06B822576951F0031D307 /* day1 */ = {
+		C5B06B822576951F0031D307 /* day01 */ = {
 			isa = PBXGroup;
 			children = (
 				C5B06B832576952D0031D307 /* README.md */,
 				C5B06B842576953B0031D307 /* DayOne.swift */,
 			);
-			path = day1;
+			path = day01;
 			sourceTree = "<group>";
 		};
 		C5B06B8825769A2F0031D307 /* data */ = {
@@ -190,14 +191,14 @@
 			path = data;
 			sourceTree = "<group>";
 		};
-		C5B06C012577E6880031D307 /* day2 */ = {
+		C5B06C012577E6880031D307 /* day02 */ = {
 			isa = PBXGroup;
 			children = (
 				C5B06C022577E6920031D307 /* README.md */,
 				C5B06C042577E76C0031D307 /* DayTwo.swift */,
 				C5B06C96257831230031D307 /* PasswordPolicy.swift */,
 			);
-			path = day2;
+			path = day02;
 			sourceTree = "<group>";
 		};
 		C5B06C6D257828650031D307 /* shared */ = {
@@ -225,47 +226,47 @@
 			path = Test;
 			sourceTree = "<group>";
 		};
-		C5B06CFD257945940031D307 /* day3 */ = {
+		C5B06CFD257945940031D307 /* day03 */ = {
 			isa = PBXGroup;
 			children = (
 				C5B06CFE2579459D0031D307 /* README.md */,
 				C5B06D002579D80F0031D307 /* DayThree.swift */,
 				C5B06D072579D8520031D307 /* Forest.swift */,
 			);
-			path = day3;
+			path = day03;
 			sourceTree = "<group>";
 		};
-		C5B06D17257A91780031D307 /* day4 */ = {
+		C5B06D17257A91780031D307 /* day04 */ = {
 			isa = PBXGroup;
 			children = (
 				C5B06D18257A917E0031D307 /* README.md */,
 				C5B06D1F257A93CB0031D307 /* DayFour.swift */,
 				C5B06D24257A94110031D307 /* Passport.swift */,
 			);
-			path = day4;
+			path = day04;
 			sourceTree = "<group>";
 		};
-		C5B06D8F257B5D440031D307 /* day5 */ = {
+		C5B06D8F257B5D440031D307 /* day05 */ = {
 			isa = PBXGroup;
 			children = (
 				C5B06D90257B5D4A0031D307 /* README.md */,
 				C5B06D91257B5D510031D307 /* DayFive.swift */,
 				C5B06D98257B5F170031D307 /* BoardingPass.swift */,
 			);
-			path = day5;
+			path = day05;
 			sourceTree = "<group>";
 		};
-		C5B06DA6257D0EAB0031D307 /* day6 */ = {
+		C5B06DA6257D0EAB0031D307 /* day06 */ = {
 			isa = PBXGroup;
 			children = (
 				C5B06DA7257D0EB30031D307 /* README.md */,
 				C5B06DA9257D0FEC0031D307 /* DaySix.swift */,
 				C5B06DB4257D129C0031D307 /* CustomsForm.swift */,
 			);
-			path = day6;
+			path = day06;
 			sourceTree = "<group>";
 		};
-		C5B06DC0257DF6CB0031D307 /* day7 */ = {
+		C5B06DC0257DF6CB0031D307 /* day07 */ = {
 			isa = PBXGroup;
 			children = (
 				C5B06DC1257DF6D60031D307 /* README.md */,
@@ -273,7 +274,14 @@
 				C5B06DD7257E851F0031D307 /* LuggageRule.swift */,
 				C5B06DDC257E88810031D307 /* LuggageRuleSet.swift */,
 			);
-			path = day7;
+			path = day07;
+			sourceTree = "<group>";
+		};
+		C5B06DEA257F400D0031D307 /* day08 */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = day08;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
