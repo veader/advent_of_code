@@ -38,7 +38,7 @@ enum BootInstruction {
 class BootCode {
 
     /// List of instructions for this boot code
-    let instructions: [BootInstruction]
+    var instructions: [BootInstruction]
 
     /// Current instruction index
     var currentIndex: Int = 0
@@ -87,27 +87,132 @@ class BootCode {
     func execute(instruction: BootInstruction?) {
         guard let instruction = instruction else { return }
 
+        debug(instruction: instruction)
+
         switch instruction {
         case .noop(value: _):
-            print("[NOP]   \t@ \(currentIndex) # \(accumulator)")
             currentIndex += 1 // do nothing and proceed to next instruction
         case .accumulate(value: let value):
-            print("[ACC] \(value) \t@ \(currentIndex) # \(accumulator)")
             accumulator += value // adjust the accumulator value
             currentIndex += 1 // proceed to next instruction
         case .jump(value: let value):
-            print("[JMP] \(value) \t@ \(currentIndex) # \(accumulator)")
             currentIndex += value
         }
     }
 
+    private func debug(instruction: BootInstruction?) {
+        guard let instruction = instruction else { return }
+
+        switch instruction {
+        case .noop(value: _):
+            print("[NOP]   \t@ \(currentIndex) # \(accumulator)")
+        case .accumulate(value: let value):
+            print("[ACC] \(value) \t@ \(currentIndex) # \(accumulator)")
+        case .jump(value: let value):
+            print("[JMP] \(value) \t@ \(currentIndex) # \(accumulator)")
+        }
+    }
+
     /// Run the boot code and detect the last instruction before we looped
-    func detectLoop() {
+    ///
+    /// - Returns: Index that triggers the loop. (`-1` if none)
+    @discardableResult
+    func detectLoop() -> Int {
+        var foundLoop: Bool = false
+
         run {
             // after each instruction check that the next instruction hasn't already been executed
             if self.runInstructionIndices.contains(self.currentIndex) {
                 self.currentIndex = -1 // place the current index outside of bounds to stop the run loop
+                foundLoop = true
             }
         }
+
+        return foundLoop ? (runInstructionIndices.last ?? -1) : -1
+    }
+
+    /// Detect any loop and attempt to fix it by swapping last failing instruction
+    func fixLoop() {
+        let originalInstructions = instructions // grab a copy, just in case
+
+        var hasInfiniteLoop = true
+        var failedSwapIndices = [Int]()
+        var originalInst: BootInstruction?
+        var swapIndex: Int = -1
+
+        // steps:
+        // - (main loop) -> while we still have an infinite loop
+        // - look through run instructions and find `nop` and `jmp`
+        // - see if we've already attempted to "fix" this index (skip and continue if we have)
+        // - swap instruction (saving off original & index)
+        // - detect loop
+        // - if no loop - success!
+        // - if loop, swap back instruction, record attempted fix
+
+        while hasInfiniteLoop {
+            // find next swappable index based on previously run instructions
+            if let indexToTry = findSwappableInstruction(ignoring: failedSwapIndices) {
+                swapIndex = indexToTry
+                originalInst = swapInstruction(index: indexToTry)
+            } else {
+                print("**** No swappable instruction found. First run?")
+            }
+
+            let idx = detectLoop() // see if we still have a loop (ie: index == -1)
+            guard idx != -1 else { hasInfiniteLoop = false; continue } // we're done
+
+            // revert the change... (if we have one)
+            if instructions.indices.contains(swapIndex), let ogInst = originalInst {
+                failedSwapIndices.append(swapIndex)
+                instructions[swapIndex] = ogInst
+                swapIndex = -1
+                originalInst = nil
+            }
+        }
+    }
+
+    /// Scan through the run instructions and look for indicies we can attempt to swap.
+    ///
+    /// - Parameters:
+    ///     - ignoring: Indices to ignore when looking for swappable
+    private func findSwappableInstruction(ignoring indicesToIgnore: [Int]) -> Int? {
+        runInstructionIndices.first { idx -> Bool in
+            guard !indicesToIgnore.contains(idx) else { return false }
+            return isInstructionSwappable(index: idx)
+        }
+    }
+
+    /// Is the instruction at the given index swappable?
+    ///
+    /// - Note: "Swappable" is defined as a NOOP or JUMP instruction.
+    private func isInstructionSwappable(index: Int) -> Bool {
+        let inst = instructions[index]
+        if case .noop(_) = inst {
+            return true
+        } else if case .jump(_) = inst {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    /// Swap the instruction at the given index and return the original value.
+    ///
+    /// - Note: Instruction at index is checked for swappability first...
+    private func swapInstruction(index: Int) -> BootInstruction? {
+        guard isInstructionSwappable(index: index) else { return nil }
+        let originalInstruction = instructions[index]
+
+        if case .jump(let value) = originalInstruction {
+            print("Swapping JMP for NOP")
+            instructions[index] = .noop(value: value)
+        } else if case .noop(let value) = originalInstruction {
+            print("Swapping NOP for JMP")
+            instructions[index] = .jump(value: value)
+        } else {
+            print("Not sure what this is...")
+        }
+
+        return originalInstruction
     }
 }

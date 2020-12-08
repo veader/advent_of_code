@@ -21,6 +21,18 @@ class DayEightTests: XCTestCase {
         acc +6
         """
 
+    let sampleNoLoopCode = """
+        nop +0
+        acc +1
+        jmp +4
+        acc +3
+        jmp -3
+        acc -99
+        acc +1
+        nop -4
+        acc +6
+        """
+
     func testBootInstructionParsing() {
         var inst: BootInstruction?
 
@@ -85,8 +97,21 @@ class DayEightTests: XCTestCase {
 
     func testBootCodeLoopFinding() {
         let bootCode = BootCode(sampleLoopCode.split(separator: "\n").map(String.init))
-        bootCode.detectLoop()
+        let idx = bootCode.detectLoop()
+        XCTAssertEqual(4, idx)
         XCTAssertEqual(5, bootCode.accumulator)
     }
 
+    func testBootCodeNoLoop() {
+        let bootCode = BootCode(sampleNoLoopCode.split(separator: "\n").map(String.init))
+        let idx = bootCode.detectLoop()
+        XCTAssertEqual(-1, idx)
+        XCTAssertEqual(8, bootCode.accumulator)
+    }
+
+    func testBootCodePartTwo() {
+        let bootCode = BootCode(sampleLoopCode.split(separator: "\n").map(String.init))
+        bootCode.fixLoop()
+        XCTAssertEqual(8, bootCode.accumulator)
+    }
 }

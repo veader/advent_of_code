@@ -22,6 +22,7 @@ struct DayEight: AdventDay {
 
     func partTwo(input: String?) -> Any {
         let bootCode = BootCode(parse(input))
-        return 0
+        bootCode.fixLoop()
+        return bootCode.accumulator
     }
 }
