@@ -7,8 +7,8 @@
 
 import Foundation
 
-let dayNum = 7
-let partNum = 2
+let dayNum = 8
+let partNum = 1
 
 let day = Advent.day(dayNum)
 day?.run(part: partNum)

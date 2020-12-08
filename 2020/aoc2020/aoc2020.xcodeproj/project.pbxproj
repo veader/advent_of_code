@@ -51,6 +51,11 @@
 		C5B06DE2257E9B600031D307 /* DaySevenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DE1257E9B600031D307 /* DaySevenTests.swift */; };
 		C5B06DE6257EACE70031D307 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DE5257EACE70031D307 /* Array.swift */; };
 		C5B06DE7257EACE70031D307 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06DE5257EACE70031D307 /* Array.swift */; };
+		C5B06E03257F44160031D307 /* BootCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06E02257F44160031D307 /* BootCode.swift */; };
+		C5B06E04257F44160031D307 /* BootCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06E02257F44160031D307 /* BootCode.swift */; };
+		C5B06E08257F48350031D307 /* DayEightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06E07257F48350031D307 /* DayEightTests.swift */; };
+		C5B06E0C257F4E7E0031D307 /* DayEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06E0B257F4E7E0031D307 /* DayEight.swift */; };
+		C5B06E0D257F4E7E0031D307 /* DayEight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06E0B257F4E7E0031D307 /* DayEight.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -110,6 +115,11 @@
 		C5B06DDC257E88810031D307 /* LuggageRuleSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuggageRuleSet.swift; sourceTree = "<group>"; };
 		C5B06DE1257E9B600031D307 /* DaySevenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySevenTests.swift; sourceTree = "<group>"; };
 		C5B06DE5257EACE70031D307 /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		C5B06DF9257F40490031D307 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C5B06DFA257F42170031D307 /* day8input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day8input.txt; sourceTree = "<group>"; };
+		C5B06E02257F44160031D307 /* BootCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BootCode.swift; sourceTree = "<group>"; };
+		C5B06E07257F48350031D307 /* DayEightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEightTests.swift; sourceTree = "<group>"; };
+		C5B06E0B257F4E7E0031D307 /* DayEight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEight.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +197,7 @@
 				C5B06D9F257B5FBE0031D307 /* day5input.txt */,
 				C5B06DA8257D0FDF0031D307 /* day6input.txt */,
 				C5B06DC2257DF7FC0031D307 /* day7input.txt */,
+				C5B06DFA257F42170031D307 /* day8input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -222,6 +233,7 @@
 				C5B06DA0257B5FF90031D307 /* DayFiveTests.swift */,
 				C5B06DB0257D10210031D307 /* DaySixTests.swift */,
 				C5B06DE1257E9B600031D307 /* DaySevenTests.swift */,
+				C5B06E07257F48350031D307 /* DayEightTests.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -280,6 +292,9 @@
 		C5B06DEA257F400D0031D307 /* day08 */ = {
 			isa = PBXGroup;
 			children = (
+				C5B06DF9257F40490031D307 /* README.md */,
+				C5B06E0B257F4E7E0031D307 /* DayEight.swift */,
+				C5B06E02257F44160031D307 /* BootCode.swift */,
 			);
 			path = day08;
 			sourceTree = "<group>";
@@ -381,9 +396,11 @@
 				C5B06D92257B5D510031D307 /* DayFive.swift in Sources */,
 				C5B06D012579D80F0031D307 /* DayThree.swift in Sources */,
 				C5B06DD1257E847F0031D307 /* DaySeven.swift in Sources */,
+				C5B06E0C257F4E7E0031D307 /* DayEight.swift in Sources */,
 				C5B06DE6257EACE70031D307 /* Array.swift in Sources */,
 				C5B06D082579D8520031D307 /* Forest.swift in Sources */,
 				C5B06C97257831230031D307 /* PasswordPolicy.swift in Sources */,
+				C5B06E03257F44160031D307 /* BootCode.swift in Sources */,
 				C5B06D132579DE730031D307 /* Coordinate.swift in Sources */,
 				C5B06C6F257828720031D307 /* String.swift in Sources */,
 				C5B06DDD257E88810031D307 /* LuggageRuleSet.swift in Sources */,
@@ -402,16 +419,19 @@
 				C5B06DD2257E847F0031D307 /* DaySeven.swift in Sources */,
 				C5B06DA1257B5FF90031D307 /* DayFiveTests.swift in Sources */,
 				C5B06D092579D8520031D307 /* Forest.swift in Sources */,
+				C5B06E04257F44160031D307 /* BootCode.swift in Sources */,
 				C5B06DBD257D15540031D307 /* CustomsForm.swift in Sources */,
 				C5B06DD9257E851F0031D307 /* LuggageRule.swift in Sources */,
 				C5B06D26257A94110031D307 /* Passport.swift in Sources */,
 				C5B06DB1257D10210031D307 /* DaySixTests.swift in Sources */,
 				C5B06C8F25782BC60031D307 /* String.swift in Sources */,
 				C5B06C7B25782AEB0031D307 /* Test.swift in Sources */,
+				C5B06E08257F48350031D307 /* DayEightTests.swift in Sources */,
 				C5B06DAB257D0FEC0031D307 /* DaySix.swift in Sources */,
 				C5B06D93257B5D510031D307 /* DayFive.swift in Sources */,
 				C5B06C8625782B040031D307 /* DayTwo.swift in Sources */,
 				C5B06C9A257831250031D307 /* PasswordPolicy.swift in Sources */,
+				C5B06E0D257F4E7E0031D307 /* DayEight.swift in Sources */,
 				C5B06D142579DE730031D307 /* Coordinate.swift in Sources */,
 				C5B06D21257A93CB0031D307 /* DayFour.swift in Sources */,
 				C5B06DDE257E88810031D307 /* LuggageRuleSet.swift in Sources */,
