@@ -60,4 +60,12 @@ class DayNineTests: XCTestCase {
         let weakness = cypher.findWeakness()
         XCTAssertEqual(127, weakness)
     }
+
+    func testCypherWeaknessRange() {
+        let data = testData1.split(separator: "\n").map(String.init).compactMap(Int.init)
+        let cypher = XMASCypher(preamble: 5, data: data)
+        let weakness = cypher.findWeakness()
+        let range = cypher.findWeaknessRange(target: weakness)
+        XCTAssertEqual([15, 25, 47, 40], range)
+    }
 }

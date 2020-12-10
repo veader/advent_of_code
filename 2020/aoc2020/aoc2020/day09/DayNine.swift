@@ -21,6 +21,15 @@ struct DayNine: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let data = parse(input)
+        let cypher = XMASCypher(preamble: 25, data: data)
+        let weaknessTarget = cypher.findWeakness()
+        let weakness = cypher.findWeaknessRange(target: weaknessTarget)
+
+        if let min = weakness?.min(), let max = weakness?.max() {
+            return min + max
+        } else {
+            return -1
+        }
     }
 }

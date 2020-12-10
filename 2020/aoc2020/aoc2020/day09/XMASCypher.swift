@@ -19,12 +19,14 @@ class XMASCypher {
         self.data = data
     }
 
+    /// Find the weakness in the cypher by locating a number in the series that can not
+    ///     be made by summing 2 numbers in the preceeding numbers (determined by the
+    ///     preamble size).
     func findWeakness() -> Int {
         var preableRange: Range<Int> = 0..<preamble // Range for the preamble window
         var idx = preamble
 
         while data.indices.contains(idx) {
-            // print("Checking that \(data[idx]) @ \(idx) is valid with preamble: \(Array(data[preableRange]))")
             guard isValid(data[idx], preable: Array(data[preableRange])) else { break }
 
             // move window and index up one
@@ -33,6 +35,39 @@ class XMASCypher {
         }
 
         return data[idx]
+    }
+
+    func findWeaknessRange(target: Int) -> [Int]? {
+        var weakness: [Int]?
+
+        for idx in data.indices {
+            //print("\nIndex: \(idx)")
+            let dataSlice = data.suffix(from: idx)
+            let subIndicies = dataSlice.indices
+            //print("Sub Indicies: \(subIndicies)")
+            let answer = dataSlice.indices.prefix { subIdx -> Bool in
+                guard let first = subIndicies.first, subIdx != first else { return true } // ignore the first index
+                //print("Sub Index: \(subIdx)")
+                let range = data[first..<subIdx]
+                let sum = range.reduce(0, +)
+                //print("Range: \(range) Sum: \(sum)")
+//                if sum == target {
+//                    print(" ----- FOUND IT! \(target)")
+//                    print("Returning \(range)...")
+//                }
+                return sum < target
+                // return true
+            }
+
+            let subSet = Array(data[answer])
+            let sum = subSet.reduce(0, +)
+            if sum == target {
+                weakness = subSet
+                break
+            }
+        }
+
+        return weakness
     }
 
     func isValid(_ int: Int, preable: [Int]) -> Bool {
