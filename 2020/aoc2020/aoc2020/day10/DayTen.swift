@@ -22,6 +22,11 @@ struct DayTen: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 1
+        print(Date())
+        let data = parse(input)
+        let array = AdapterArray(adapters: data)
+        let result = array.possibleAdapterConfigurations()
+        print(Date())
+        return result
     }
 }

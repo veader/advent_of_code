@@ -30,12 +30,15 @@ class DayTenTests: XCTestCase {
     func testFindingAdapterPossibilities() {
         let array = AdapterArray(adapters: testSampleOne.split(separator: "\n").map(String.init).compactMap(Int.init))
         let possibilities = array.possibleAdapterChains()
-        print(possibilities.map({ "\($0)" }).joined(separator: "\n"))
+        // print(possibilities.map({ "\($0)" }).joined(separator: "\n"))
         XCTAssertEqual(8, possibilities.count)
+        XCTAssertEqual(8, array.possibleAdapterConfigurations())
 
         let array2 = AdapterArray(adapters: testSampleTwo.split(separator: "\n").map(String.init).compactMap(Int.init))
         let possibilities2 = array2.possibleAdapterChains()
+        // print(possibilities2.map({ "\($0)" }).joined(separator: "\n"))
         XCTAssertEqual(19208, possibilities2.count)
+        XCTAssertEqual(19208, array2.possibleAdapterConfigurations())
     }
 
 

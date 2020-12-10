@@ -47,35 +47,31 @@ struct AdapterArray {
         return (currentJoltage, chain, oneDeltas, threeDeltas)
     }
 
+    func possibleAdapterConfigurations() -> Int {
+        possibleConfigs(for: 0, starting: 0, data: adapters.sorted())
+    }
+
+    func possibleConfigs(for value: Int, starting: Int, data: [Int]) -> Int {
+        let choices = data.suffix(from: starting).prefix(while: { (value...value + 3).contains($0) })
+        guard choices.count > 0 else { return 1 } // end of the line
+
+        return choices.reduce(0) { (result, choice) -> Int in
+            guard choice != value, let idx = data.firstIndex(of: choice) else { return result }
+            return result + possibleConfigs(for: choice, starting: idx.advanced(by: 1), data: data)
+        }
+    }
+
     func possibleAdapterChains() -> [[Int]] {
         possiblities(for: 0, starting: 0, data: adapters.sorted(), accumulation: [0])
     }
 
     func possiblities(for value: Int, starting: Int, data: [Int], accumulation: [Int]) -> [[Int]] {
         let choices = data.suffix(from: starting).prefix(while: { (value...value + 3).contains($0) })
-        // print("\nChoices for \(value) starting from \(starting): \(choices) | Acc: \(accumulation)")
-        // print(data.suffix(from: starting))
 
-        if choices.count == 0 {
-            // print("Hit the end of the line...")
-            return [accumulation + [value + 3]] // add the final joltage
-        }
-
-//        var possibilites = [[Int]]()
-//        for choice in choices {
-//            guard choice != value, let idx = data.firstIndex(of: choice) else { continue }
-//            // print("\tChoice \(choice) @ \(idx)")
-//            let subPossibilities = possiblities(for: choice, starting: idx.advanced(by: 1), data: data, accumulation: accumulation + [choice])
-//            // print("\tSubPoss: \(subPossibilities)")
-//            possibilites.append(contentsOf: subPossibilities)
-//        }
-//
-//        // print("Found these possibilites for \(value) @ \(starting): \(possibilites)")
-//        return possibilites
+        guard choices.count > 0 else { return [accumulation + [value + 3]] } // add the final joltage
 
         return choices.flatMap { (choice: Int) -> [[Int]] in
             guard choice != value, let idx = data.firstIndex(of: choice) else { return [] }
-            // print("\tChoice \(choice) @ \(idx)")
             return possiblities(for: choice, starting: idx.advanced(by: 1), data: data, accumulation: accumulation + [choice])
         }
     }
