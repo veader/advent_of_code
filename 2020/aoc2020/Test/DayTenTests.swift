@@ -27,6 +27,17 @@ class DayTenTests: XCTestCase {
         XCTAssertEqual(10, answer2.deltaThree)
     }
 
+    func testFindingAdapterPossibilities() {
+        let array = AdapterArray(adapters: testSampleOne.split(separator: "\n").map(String.init).compactMap(Int.init))
+        let possibilities = array.possibleAdapterChains()
+        print(possibilities.map({ "\($0)" }).joined(separator: "\n"))
+        XCTAssertEqual(8, possibilities.count)
+
+        let array2 = AdapterArray(adapters: testSampleTwo.split(separator: "\n").map(String.init).compactMap(Int.init))
+        let possibilities2 = array2.possibleAdapterChains()
+        XCTAssertEqual(19208, possibilities2.count)
+    }
+
 
     let testSampleOne = """
         16
