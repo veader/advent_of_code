@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C59C89CC2584041D00453AE9 /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89CB2584041D00453AE9 /* SeatMap.swift */; };
+		C59C89CD2584041D00453AE9 /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89CB2584041D00453AE9 /* SeatMap.swift */; };
+		C59C89D32584092700453AE9 /* DayElevenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89D22584092700453AE9 /* DayElevenTests.swift */; };
+		C59C89D7258410D900453AE9 /* SeatMapModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89D6258410D900453AE9 /* SeatMapModeler.swift */; };
+		C59C89DF258415E500453AE9 /* SeatMapModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89D6258410D900453AE9 /* SeatMapModeler.swift */; };
+		C59C89E3258419C200453AE9 /* DayEleven.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89E2258419C200453AE9 /* DayEleven.swift */; };
+		C59C89E4258419C200453AE9 /* DayEleven.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89E2258419C200453AE9 /* DayEleven.swift */; };
 		C5B06B752576945C0031D307 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B742576945C0031D307 /* main.swift */; };
 		C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B7C2576949C0031D307 /* AdventDay.swift */; };
 		C5B06B852576953B0031D307 /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B842576953B0031D307 /* DayOne.swift */; };
@@ -82,6 +89,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C59C89C92583367200453AE9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C59C89CA2583378500453AE9 /* day11input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day11input.txt; sourceTree = "<group>"; };
+		C59C89CB2584041D00453AE9 /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
+		C59C89D22584092700453AE9 /* DayElevenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayElevenTests.swift; sourceTree = "<group>"; };
+		C59C89D6258410D900453AE9 /* SeatMapModeler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMapModeler.swift; sourceTree = "<group>"; };
+		C59C89E2258419C200453AE9 /* DayEleven.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEleven.swift; sourceTree = "<group>"; };
 		C5B06B712576945C0031D307 /* aoc2020 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = aoc2020; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B06B742576945C0031D307 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C5B06B7C2576949C0031D307 /* AdventDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDay.swift; sourceTree = "<group>"; };
@@ -161,6 +174,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C59C89C82583366700453AE9 /* day11 */ = {
+			isa = PBXGroup;
+			children = (
+				C59C89C92583367200453AE9 /* README.md */,
+				C59C89E2258419C200453AE9 /* DayEleven.swift */,
+				C59C89CB2584041D00453AE9 /* SeatMap.swift */,
+				C59C89D6258410D900453AE9 /* SeatMapModeler.swift */,
+			);
+			path = day11;
+			sourceTree = "<group>";
+		};
 		C5B06B682576945C0031D307 = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +218,7 @@
 				C5B06DEA257F400D0031D307 /* day08 */,
 				C5B06E2625809AC80031D307 /* day09 */,
 				C5B06E9E2581FFEE0031D307 /* day10 */,
+				C59C89C82583366700453AE9 /* day11 */,
 				C5B06B742576945C0031D307 /* main.swift */,
 				C5B06B7C2576949C0031D307 /* AdventDay.swift */,
 				C5B06B7F257694CA0031D307 /* EmptyDay.swift */,
@@ -223,6 +248,7 @@
 				C5B06DFA257F42170031D307 /* day8input.txt */,
 				C5B06E2F25809D040031D307 /* day9input.txt */,
 				C5B06EA0258202270031D307 /* day10input.txt */,
+				C59C89CA2583378500453AE9 /* day11input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -261,6 +287,7 @@
 				C5B06E07257F48350031D307 /* DayEightTests.swift */,
 				C5B06E352580A26A0031D307 /* DayNineTests.swift */,
 				C5B06EAB2582028E0031D307 /* DayTenTests.swift */,
+				C59C89D22584092700453AE9 /* DayElevenTests.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -446,8 +473,11 @@
 				C5B06D92257B5D510031D307 /* DayFive.swift in Sources */,
 				C5B06EB0258202950031D307 /* DayTen.swift in Sources */,
 				C5B06E3A2580A6520031D307 /* DayNine.swift in Sources */,
+				C59C89E3258419C200453AE9 /* DayEleven.swift in Sources */,
 				C5B06D012579D80F0031D307 /* DayThree.swift in Sources */,
 				C5B06DD1257E847F0031D307 /* DaySeven.swift in Sources */,
+				C59C89D7258410D900453AE9 /* SeatMapModeler.swift in Sources */,
+				C59C89CC2584041D00453AE9 /* SeatMap.swift in Sources */,
 				C5B06E0C257F4E7E0031D307 /* DayEight.swift in Sources */,
 				C5B06DE6257EACE70031D307 /* Array.swift in Sources */,
 				C5B06D082579D8520031D307 /* Forest.swift in Sources */,
@@ -476,14 +506,17 @@
 				C5B06DBD257D15540031D307 /* CustomsForm.swift in Sources */,
 				C5B06DD9257E851F0031D307 /* LuggageRule.swift in Sources */,
 				C5B06D26257A94110031D307 /* Passport.swift in Sources */,
+				C59C89E4258419C200453AE9 /* DayEleven.swift in Sources */,
 				C5B06DB1257D10210031D307 /* DaySixTests.swift in Sources */,
 				C5B06C8F25782BC60031D307 /* String.swift in Sources */,
+				C59C89CD2584041D00453AE9 /* SeatMap.swift in Sources */,
 				C5B06C7B25782AEB0031D307 /* Test.swift in Sources */,
 				C5B06E08257F48350031D307 /* DayEightTests.swift in Sources */,
 				C5B06EA82582023E0031D307 /* AdapterArray.swift in Sources */,
 				C5B06EAC2582028E0031D307 /* DayTenTests.swift in Sources */,
 				C5B06DAB257D0FEC0031D307 /* DaySix.swift in Sources */,
 				C5B06D93257B5D510031D307 /* DayFive.swift in Sources */,
+				C59C89DF258415E500453AE9 /* SeatMapModeler.swift in Sources */,
 				C5B06C8625782B040031D307 /* DayTwo.swift in Sources */,
 				C5B06C9A257831250031D307 /* PasswordPolicy.swift in Sources */,
 				C5B06E0D257F4E7E0031D307 /* DayEight.swift in Sources */,
@@ -497,6 +530,7 @@
 				C5B06C8925782B9A0031D307 /* AdventDay.swift in Sources */,
 				C5B06D0F2579DC440031D307 /* DayThreeTests.swift in Sources */,
 				C5B06DE7257EACE70031D307 /* Array.swift in Sources */,
+				C59C89D32584092700453AE9 /* DayElevenTests.swift in Sources */,
 				C5B06C8325782AFE0031D307 /* DayTwoTests.swift in Sources */,
 				C5B06D2A257AAB6D0031D307 /* DayFourTests.swift in Sources */,
 				C5B06E362580A26A0031D307 /* DayNineTests.swift in Sources */,
