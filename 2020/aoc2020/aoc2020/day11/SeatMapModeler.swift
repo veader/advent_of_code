@@ -14,15 +14,14 @@ class SeatMapModeler {
         self.map = map
     }
 
-    func findFinalGeneration() -> SeatMap {
+    func findFinalGeneration(visible: Bool = false) -> SeatMap {
         var interimMap = map
-        var nextGen = nextGeneration(map: interimMap)
-        var count = 1
+        var nextGen = nextGeneration(map: interimMap, visible: visible)
+        var count = 2
 
         repeat {
-            print("Generations: \(count)...")
             interimMap = nextGen
-            nextGen = nextGeneration(map: interimMap)
+            nextGen = nextGeneration(map: interimMap, visible: visible)
             count += 1
         } while nextGen != interimMap
 
@@ -33,7 +32,7 @@ class SeatMapModeler {
     ///
     /// - If a seat is empty (L) and there are no occupied seats adjacent to it, the seat becomes occupied.
     /// - If a seat is occupied (#) and four or more seats adjacent to it are also occupied, the seat becomes empty.
-    func nextGeneration(map theMap: SeatMap) -> SeatMap {
+    func nextGeneration(map theMap: SeatMap, visible: Bool = false) -> SeatMap {
         var newMap = theMap.map
 
         for (y, row) in newMap.enumerated() {
@@ -42,11 +41,15 @@ class SeatMapModeler {
                 case .floor:
                     continue // do nothing
                 case .emptySeat:
-                    if theMap.nearbyOccupiedSeats(x: x, y: y) == 0 {
+                    if (visible && theMap.visibleOccupiedSeats(x: x, y: y) == 0)
+                        || (!visible && theMap.nearbyOccupiedSeats(x: x, y: y) == 0) {
+
                         newMap[y][x] = .occupiedSeat
                     }
                 case .occupiedSeat:
-                    if theMap.nearbyOccupiedSeats(x: x, y: y) >= 4 {
+                    if (visible && theMap.visibleOccupiedSeats(x: x, y: y) >= 5)
+                        || (!visible && theMap.nearbyOccupiedSeats(x: x, y: y) >= 4) {
+
                         newMap[y][x] = .emptySeat
                     }
                 }

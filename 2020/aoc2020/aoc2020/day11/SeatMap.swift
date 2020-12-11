@@ -14,6 +14,39 @@ struct SeatMap: Equatable {
         case occupiedSeat = "#"
     }
 
+    enum Slope: CaseIterable {
+        case upLeft
+        case up
+        case upRight
+        case right
+        case downRight
+        case down
+        case downLeft
+        case left
+
+        var rise: Int {
+            switch self {
+            case .up, .upLeft, .upRight:
+                return -1
+            case .left, .right:
+                return 0
+            case .down, .downLeft, .downRight:
+                return 1
+            }
+        }
+
+        var run: Int {
+            switch self {
+            case .upLeft, .left, .downLeft:
+                return -1
+            case .up, .down:
+                return 0
+            case .upRight, .right, .downRight:
+                return 1
+            }
+        }
+    }
+
     let map: [[Space]]
 
     var rows: Int {
@@ -58,6 +91,39 @@ struct SeatMap: Equatable {
 
                 return rowResult + 1
             }
+        }
+    }
+
+    func visibleOccupiedSeats(x: Int, y: Int) -> Int {
+        Slope.allCases.reduce(0) { (result, slope) -> Int in
+            guard let answer = visibleSeat(x: x, y: y, slope: slope) else { return result }
+            if case .occupiedSeat = answer.space {
+                return result + 1
+            } else {
+                return result
+            }
+        }
+    }
+
+    /// Look along the given slope from the given coordinate and find the first non-floor space (if any)
+    func visibleSeat(x: Int, y: Int, slope: Slope) -> (space: Space, x: Int, y: Int)? {
+        var offsetX = x + slope.run
+        var offsetY = y + slope.rise
+        var nextSpace = spaceAt(x: offsetX, y: offsetY)
+
+        while nextSpace != nil, case .floor = nextSpace {
+            // print("Looked @ (\(offsetX),\(offsetY))")
+            offsetX += slope.run
+            offsetY += slope.rise
+            nextSpace = spaceAt(x: offsetX, y: offsetY)
+        }
+
+        // print("Found something @ (\(offsetX),\(offsetY))")
+
+        if let space = nextSpace {
+            return (space, offsetX, offsetY)
+        } else {
+            return nil
         }
     }
 }

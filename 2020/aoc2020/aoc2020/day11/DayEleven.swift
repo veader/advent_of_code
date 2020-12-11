@@ -24,6 +24,7 @@ struct DayEleven: AdventDay {
     func partTwo(input: String?) -> Any {
         guard let map = parse(input) else { return -1 }
         let modeler = SeatMapModeler(map: map)
-        return 0
+        let finalGen = modeler.findFinalGeneration(visible: true)
+        return finalGen.occupiedSeats
     }
 }
