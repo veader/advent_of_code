@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C503F86C2587E4FB00E5EF6C /* BusSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C503F86B2587E4FB00E5EF6C /* BusSchedule.swift */; };
+		C503F86D2587E4FB00E5EF6C /* BusSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C503F86B2587E4FB00E5EF6C /* BusSchedule.swift */; };
+		C503F8732587F02600E5EF6C /* DayThirteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C503F8722587F02600E5EF6C /* DayThirteenTests.swift */; };
+		C503F8772587F31400E5EF6C /* DayThirteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C503F8762587F31400E5EF6C /* DayThirteen.swift */; };
+		C503F8782587F31400E5EF6C /* DayThirteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C503F8762587F31400E5EF6C /* DayThirteen.swift */; };
+		C503F87E2587F4A800E5EF6C /* day13input.txt in Resources */ = {isa = PBXBuildFile; fileRef = C503F87D2587F4A800E5EF6C /* day13input.txt */; };
 		C59C89CC2584041D00453AE9 /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89CB2584041D00453AE9 /* SeatMap.swift */; };
 		C59C89CD2584041D00453AE9 /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89CB2584041D00453AE9 /* SeatMap.swift */; };
 		C59C89D32584092700453AE9 /* DayElevenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89D22584092700453AE9 /* DayElevenTests.swift */; };
@@ -95,6 +101,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C503F86A25873D7100E5EF6C /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C503F86B2587E4FB00E5EF6C /* BusSchedule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BusSchedule.swift; sourceTree = "<group>"; };
+		C503F8722587F02600E5EF6C /* DayThirteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThirteenTests.swift; sourceTree = "<group>"; };
+		C503F8762587F31400E5EF6C /* DayThirteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThirteen.swift; sourceTree = "<group>"; };
+		C503F87D2587F4A800E5EF6C /* day13input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day13input.txt; sourceTree = "<group>"; };
 		C59C89C92583367200453AE9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C59C89CA2583378500453AE9 /* day11input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day11input.txt; sourceTree = "<group>"; };
 		C59C89CB2584041D00453AE9 /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
@@ -185,6 +196,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C503F86925873D6500E5EF6C /* day13 */ = {
+			isa = PBXGroup;
+			children = (
+				C503F86A25873D7100E5EF6C /* README.md */,
+				C503F8762587F31400E5EF6C /* DayThirteen.swift */,
+				C503F86B2587E4FB00E5EF6C /* BusSchedule.swift */,
+			);
+			path = day13;
+			sourceTree = "<group>";
+		};
 		C59C89C82583366700453AE9 /* day11 */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,6 +262,7 @@
 				C5B06E9E2581FFEE0031D307 /* day10 */,
 				C59C89C82583366700453AE9 /* day11 */,
 				C59C89E92586A4AD00453AE9 /* day12 */,
+				C503F86925873D6500E5EF6C /* day13 */,
 				C5B06B742576945C0031D307 /* main.swift */,
 				C5B06B7C2576949C0031D307 /* AdventDay.swift */,
 				C5B06B7F257694CA0031D307 /* EmptyDay.swift */,
@@ -272,6 +294,7 @@
 				C5B06EA0258202270031D307 /* day10input.txt */,
 				C59C89CA2583378500453AE9 /* day11input.txt */,
 				C59C89EB2586A5D800453AE9 /* day12input.txt */,
+				C503F87D2587F4A800E5EF6C /* day13input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -312,6 +335,7 @@
 				C5B06EAB2582028E0031D307 /* DayTenTests.swift */,
 				C59C89D22584092700453AE9 /* DayElevenTests.swift */,
 				C59C89F62586A82D00453AE9 /* DayTwelveTests.swift */,
+				C503F8722587F02600E5EF6C /* DayThirteenTests.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -477,6 +501,7 @@
 			files = (
 				C5B06EA1258202270031D307 /* day10input.txt in Resources */,
 				C59C89EC2586A5D800453AE9 /* day12input.txt in Resources */,
+				C503F87E2587F4A800E5EF6C /* day13input.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -494,11 +519,13 @@
 				C5B06D25257A94110031D307 /* Passport.swift in Sources */,
 				C5B06EA72582023E0031D307 /* AdapterArray.swift in Sources */,
 				C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */,
+				C503F86C2587E4FB00E5EF6C /* BusSchedule.swift in Sources */,
 				C5B06B752576945C0031D307 /* main.swift in Sources */,
 				C5B06D92257B5D510031D307 /* DayFive.swift in Sources */,
 				C5B06EB0258202950031D307 /* DayTen.swift in Sources */,
 				C5B06E3A2580A6520031D307 /* DayNine.swift in Sources */,
 				C59C89E3258419C200453AE9 /* DayEleven.swift in Sources */,
+				C503F8772587F31400E5EF6C /* DayThirteen.swift in Sources */,
 				C59C89F22586A60A00453AE9 /* Ferry.swift in Sources */,
 				C5B06D012579D80F0031D307 /* DayThree.swift in Sources */,
 				C5B06DD1257E847F0031D307 /* DaySeven.swift in Sources */,
@@ -543,6 +570,7 @@
 				C5B06E08257F48350031D307 /* DayEightTests.swift in Sources */,
 				C5B06EA82582023E0031D307 /* AdapterArray.swift in Sources */,
 				C5B06EAC2582028E0031D307 /* DayTenTests.swift in Sources */,
+				C503F8732587F02600E5EF6C /* DayThirteenTests.swift in Sources */,
 				C5B06DAB257D0FEC0031D307 /* DaySix.swift in Sources */,
 				C5B06D93257B5D510031D307 /* DayFive.swift in Sources */,
 				C59C89DF258415E500453AE9 /* SeatMapModeler.swift in Sources */,
@@ -556,11 +584,13 @@
 				C5B06EB1258202950031D307 /* DayTen.swift in Sources */,
 				C5B06D9A257B5F170031D307 /* BoardingPass.swift in Sources */,
 				C5B06E2A25809CE70031D307 /* XMASCypher.swift in Sources */,
+				C503F8782587F31400E5EF6C /* DayThirteen.swift in Sources */,
 				C59C89F72586A82D00453AE9 /* DayTwelveTests.swift in Sources */,
 				C5B06C8925782B9A0031D307 /* AdventDay.swift in Sources */,
 				C5B06D0F2579DC440031D307 /* DayThreeTests.swift in Sources */,
 				C5B06DE7257EACE70031D307 /* Array.swift in Sources */,
 				C59C89D32584092700453AE9 /* DayElevenTests.swift in Sources */,
+				C503F86D2587E4FB00E5EF6C /* BusSchedule.swift in Sources */,
 				C5B06C8325782AFE0031D307 /* DayTwoTests.swift in Sources */,
 				C5B06D2A257AAB6D0031D307 /* DayFourTests.swift in Sources */,
 				C5B06E362580A26A0031D307 /* DayNineTests.swift in Sources */,
