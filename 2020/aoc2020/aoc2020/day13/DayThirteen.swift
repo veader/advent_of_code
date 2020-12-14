@@ -16,7 +16,7 @@ struct DayThirteen: AdventDay {
 
     func partOne(input: String?) -> Any {
         guard let schedule = parse(input) else { return -1 }
-        let answer = schedule.findEarliestBus(brute: true)
+        let answer = schedule.findEarliestBus()
         let delta = answer.time - schedule.earliestDepartureTime
         return delta * answer.bus
     }

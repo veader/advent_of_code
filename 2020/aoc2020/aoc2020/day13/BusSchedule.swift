@@ -10,18 +10,11 @@ import Foundation
 struct BusSchedule {
     let buses: [Int]
     let earliestDepartureTime: Int
+    let offsetIndex: [Int]
 
     typealias DepartureInfo = (time: Int, bus: Int)
 
-    func findEarliestBus(brute: Bool = false) -> DepartureInfo {
-        if brute {
-            return bruteForceMethod()
-        } else {
-            return (0,0)
-        }
-    }
-
-    private func bruteForceMethod() -> DepartureInfo {
+    func findEarliestBus() -> DepartureInfo {
         var done = false // are we done yet?
         var time = earliestDepartureTime - 10
         var bus: Int = 0
@@ -75,8 +68,32 @@ extension BusSchedule {
             let busesStr = lines.last
             else { return nil }
 
-        let buses = busesStr.split(separator: ",").map(String.init).compactMap(Int.init)
+        let busDetails = parseBusDetails(busesStr)
 
-        return BusSchedule(buses: buses, earliestDepartureTime: earliestTime)
+        return BusSchedule(buses: busDetails.buses, earliestDepartureTime: earliestTime, offsetIndex: busDetails.offsets)
+    }
+
+    /// Parse the input to give create a BusSchedule
+    ///
+    /// Format:
+    /// - First line: List of buses (some are `x` if out of order)
+    static func parseBuses(_ input: String?) -> BusSchedule? {
+        guard let input = input else { return nil }
+
+        let busDetails = parseBusDetails(input)
+        return BusSchedule(buses: busDetails.buses, earliestDepartureTime: 0, offsetIndex: busDetails.offsets)
+    }
+
+    private static func parseBusDetails(_ input: String) -> (buses: [Int], offsets: [Int]) {
+        var buses = [Int]()
+        var busIndexes = [Int]()
+        input.split(separator: ",").map(String.init).enumerated().forEach { (idx, busIDStr) in
+            if let busID = Int(busIDStr) {
+                buses.append(busID)
+                busIndexes.append(idx)
+            }
+        }
+
+        return (buses, busIndexes)
     }
 }
