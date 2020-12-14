@@ -22,6 +22,9 @@ struct DayTwelve: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 1
+        guard let navInstructions = parse(input) else { return -1 }
+        let ferry = Ferry(instructions: navInstructions)
+        ferry.followWaypoint()
+        return ferry.distanceToOrigin()
     }
 }

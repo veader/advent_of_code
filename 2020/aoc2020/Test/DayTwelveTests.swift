@@ -66,6 +66,14 @@ class DayTwelveTests: XCTestCase {
         XCTAssertEqual(25, ferry.distanceToOrigin())
     }
 
+    func testFerryFollowWaypoint() {
+        let day = DayTwelve()
+        let navInstructions = day.parse(testNavigationInput)
+        let ferry = Ferry(instructions: navInstructions!)
+        ferry.followWaypoint()
+        XCTAssertEqual(286, ferry.distanceToOrigin())
+    }
+
     let testNavigationInput = """
         F10
         N3
