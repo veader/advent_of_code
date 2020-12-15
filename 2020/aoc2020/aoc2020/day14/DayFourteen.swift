@@ -17,6 +17,8 @@ struct DayFourteen: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return -1
+        let dockingProgram = DockingProgram()
+        dockingProgram.initialize(input, version: 2)
+        return dockingProgram.memorySum
     }
 }
