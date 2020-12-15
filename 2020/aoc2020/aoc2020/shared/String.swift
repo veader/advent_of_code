@@ -36,4 +36,15 @@ extension String {
 
         return (match: matchString, captures)
     }
+
+    /// Returns a new String padded to the appropriate length with the given padding string.
+    func padded(with padding: String, length: Int) -> String {
+        var copy = self
+
+        while copy.count < length {
+            copy = padding + copy
+        }
+
+        return copy
+    }
 }
