@@ -79,8 +79,7 @@ class Ferry {
     func navigate() {
         // print("-: Facing: \(facing.rawValue) @ \(location)")
 
-        for (idx, nav) in navigationInstructions.enumerated() {
-
+        for nav in navigationInstructions {
             switch nav {
             case .moveNorth(distance: let distance):
                 move(direction: .north, distance: distance)
@@ -97,8 +96,6 @@ class Ferry {
             case .turnRight(degrees: let degrees):
                 turn(degrees: degrees)
             }
-
-            // print("\(idx): Facing: \(facing.rawValue) @ \(location)")
         }
     }
 
@@ -162,8 +159,7 @@ class Ferry {
     func followWaypoint() {
         // print("-: Ship: \(location) == Waypoint: \(waypoint)")
 
-        for (idx, nav) in navigationInstructions.enumerated() {
-
+        for nav in navigationInstructions {
             switch nav {
             case .moveNorth(distance: let distance):
                 moveWaypoint(direction: .north, distance: distance)
@@ -182,8 +178,6 @@ class Ferry {
             case .turnRight(degrees: let degrees):
                 rotateWaypoint(degrees: degrees)
             }
-
-            // print("\(idx): Ship: \(location) == Waypoint: \(waypoint)")
         }
     }
 

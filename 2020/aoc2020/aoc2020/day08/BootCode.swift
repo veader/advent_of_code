@@ -133,8 +133,6 @@ class BootCode {
 
     /// Detect any loop and attempt to fix it by swapping last failing instruction
     func fixLoop() {
-        let originalInstructions = instructions // grab a copy, just in case
-
         var hasInfiniteLoop = true
         var failedSwapIndices = [Int]()
         var originalInst: BootInstruction?

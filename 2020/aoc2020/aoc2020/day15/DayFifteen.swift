@@ -22,10 +22,14 @@ struct DayFifteen: AdventDay {
         let game = MemoryGame(initial: initialNumbers)
         game.play()
 
-        return game.numbers.last ?? -1
+        return game.lastNumberPlayed
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let initialNumbers = parse(input)
+        let game = MemoryGame(initial: initialNumbers)
+        game.play(turnCount: 30_000_000, optimized: true)
+
+        return game.lastNumberPlayed
     }
 }
