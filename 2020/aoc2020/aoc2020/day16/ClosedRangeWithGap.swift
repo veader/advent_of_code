@@ -45,6 +45,10 @@ struct ClosedRangeWithGap {
 
         return allInCount == elementCount && excludedCount == 0
     }
+
+    func excludedValues(_ elements: [Int]) -> [Int] {
+        Array(Set(gapRange).intersection(Set(elements))).sorted()
+    }
 }
 
 extension ClosedRangeWithGap: CustomDebugStringConvertible {

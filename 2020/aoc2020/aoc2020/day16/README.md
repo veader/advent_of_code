@@ -97,3 +97,5 @@ the third position must be seat; you can conclude that in **your ticket**, class
 
 Once you work out which field is which, look for the six fields on **your ticket** that start with the word departure. 
 **What do you get if you multiply those six values together?**
+
+Your puzzle answer was `3765150732757`.

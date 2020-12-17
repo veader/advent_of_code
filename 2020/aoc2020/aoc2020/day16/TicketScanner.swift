@@ -70,17 +70,8 @@ struct TicketScanner {
     /// Find any valid entry in the given ticket.
     func findValidEntries(ticket: Ticket) -> [Int] {
         ticket.filter { (int: Int) -> Bool in
+            // confirm at least one of the ranges contains
             fields.values.first(where: { $0.contains(int) }) != nil
-//            var foundField = false
-//
-//            for (_, range) in fields {
-//                if ranges.contains(where: { $0.contains(int) }) {
-//                    foundField = true
-//                    break
-//                }
-//            }
-//
-//            return foundField
         }
     }
 
@@ -105,39 +96,70 @@ struct TicketScanner {
     func buildFieldPositionMap() -> [String: Int] {
         let tickets = validTickets() + [yourTicket]
         let width = tickets.first?.count ?? 0
-        print("Valid Tickets: \(tickets.count)")
-        print("Width: \(width)")
-        print("Fields: \(fields.keys.count)")
 
+        // Final resulting map of field to index (column within ticket)
         var map = [String: Int]()
 
-        // for each position, find the matching field
+        // Mapping from indicies to possible field names
+        var possibilitiesMap = [Int: [String]]()
+
         for idx in 0..<width {
             let slice = tickets.map { $0[idx] }
-            // print("Slice @ \(idx): \(slice)")
-            if let field = findFieldFor(entries: slice, excluding: Array(map.keys)) {
-                // print("Matching field => \(field)")
-                if map[field] != nil {
-                    print("*** Field \(field) already has an index...")
-                }
-                map[field] = idx
-            } else {
-                print("No field found for \(slice.sorted())")
-            }
+            let possible = findPossibleFieldsFor(entries: slice)
+            possibilitiesMap[idx] = possible
         }
 
-        // print("Map: \(map)")
-        print("Map Size: \(map.keys.count)")
+        // chew threw through the possible mappings looking for ones that can only be assigned to a single field
+        while !possibilitiesMap.isEmpty {
+            // remove any empty possibilities
+            possibilitiesMap = possibilitiesMap.filter { $1.count != 0 }
+
+            // find any entries with a single mapping
+            let singles = possibilitiesMap.filter { $1.count == 1 }
+
+            for (idx, flds) in singles {
+                let theField = flds.first!
+
+                // store the mapping
+                map[theField] = idx
+
+                // remove this as a choice in all other columns
+                possibilitiesMap.forEach { (idx, pFields) in
+                    possibilitiesMap[idx] = pFields.filter { $0 != theField }
+                }
+            }
+        }
 
         return map
     }
 
+    func printMap(_ map: [String: Int]) {
+        map.sorted(by: { $0.value < $1.value }).forEach { (field, idx) in
+            print("\(idx): \(field)")
+        }
+    }
+
+    func printFields() {
+        let maxFieldName = fields.keys.map({ $0.count }).max() ?? 10
+        for (field, range) in fields {
+            print("\(field.padded(with: " ", length: maxFieldName)):  \(range)")
+        }
+    }
+
+    func findPossibleFieldsFor(entries: [Int]) -> [String] {
+        let matches = fields.filter { (_, range) in
+            range.containsAll(entries)
+        }
+
+        return Array(matches.keys)
+    }
+
     /// Find field (if any) that matches all the values
     func findFieldFor(entries: [Int], excluding: [String]) -> String? {
-        // print("\n**** Finding field for \(entries.sorted())")
+//        print("\n**** Finding field for \(entries.sorted())")
         return fields.first(where: { (field, range) in
             guard !excluding.contains(field) else { return false }
-            // print("\tChecking \(field): \(range)")
+//            print("\tChecking \(field): \(range)")
 
             let answer = range.containsAll(entries)
 
@@ -147,6 +169,10 @@ struct TicketScanner {
 //                // ranges.first(where: { range in range.contains(entry) }) != nil
 //            }
 
+//            if !answer {
+//                let excluded = range.excludedValues(entries)
+//                print("\t\(field) doesn't include \(excluded)")
+//            }
             // print("\t\(answer ? "Yup" : "Nope")")
             return answer
         })?.key
@@ -159,7 +185,7 @@ struct TicketScanner {
 
     /// All tickets with no errors
     func validTickets() -> [Ticket] {
-        nearbyTickets.filter({ isValid(ticket: $0) })
+        nearbyTickets.filter{ isValid(ticket: $0) }
     }
 
 

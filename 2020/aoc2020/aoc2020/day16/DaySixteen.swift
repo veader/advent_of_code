@@ -19,13 +19,8 @@ struct DaySixteen: AdventDay {
 
     func partTwo(input: String?) -> Any {
         let scanner = TicketScanner(input ?? "")
+        let departureValues = scanner.findDepartureFieldsInMyTicket()
 
-        let map = scanner.buildFieldPositionMap()
-        print(map)
-
-//        let departureValues = scanner.findDepartureFieldsInMyTicket()
-//        print(departureValues)
-        
-        return -1
+        return departureValues.reduce(1, *)
     }
 }
