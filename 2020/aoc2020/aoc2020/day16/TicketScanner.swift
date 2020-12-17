@@ -9,7 +9,7 @@ import Foundation
 
 struct TicketScanner {
     typealias Ticket = [Int]
-    let fields: [String: [ClosedRange<Int>]]
+    let fields: [String: ClosedRangeWithGap]
     let yourTicket: Ticket
     let nearbyTickets: [Ticket]
 
@@ -21,7 +21,7 @@ struct TicketScanner {
 
     init(_ input: String) {
         var area: InputArea = .fields
-        var tmpFields = [String: [ClosedRange<Int>]]()
+        var tmpFields = [String: ClosedRangeWithGap]()
         var tmpMyTicket = Ticket()
         var tmpNearbyTickets = [Ticket]()
 
@@ -40,8 +40,10 @@ struct TicketScanner {
 
             switch area {
             case .fields:
-                if let fieldData = TicketScanner.parseField(line) {
-                    tmpFields[fieldData.field] = fieldData.ranges
+                if let fieldData = TicketScanner.parseField(line),
+                   let range = ClosedRangeWithGap(fieldData.ranges) {
+
+                    tmpFields[fieldData.field] = range
                 }
             case .personal:
                 tmpMyTicket = TicketScanner.parseTicket(line)
@@ -68,25 +70,96 @@ struct TicketScanner {
     /// Find any valid entry in the given ticket.
     func findValidEntries(ticket: Ticket) -> [Int] {
         ticket.filter { (int: Int) -> Bool in
-            var foundField = false
-
-            for (fieldName, ranges) in fields {
-                if ranges.contains(where: { $0.contains(int) }) {
-                    // print("Field \(fieldName): matches \(int)")
-                    foundField = true
-                    break
-                } else {
-                    // print("Field \(fieldName): does NOT matches \(int)")
-                }
-            }
-
-            return foundField
+            fields.values.first(where: { $0.contains(int) }) != nil
+//            var foundField = false
+//
+//            for (_, range) in fields {
+//                if ranges.contains(where: { $0.contains(int) }) {
+//                    foundField = true
+//                    break
+//                }
+//            }
+//
+//            return foundField
         }
     }
 
     /// Find any errors in the given tickent
     func findErrors(ticket: Ticket) -> [Int] {
         Array(Set(ticket).subtracting(Set(findValidEntries(ticket: ticket))))
+    }
+
+
+    // MARK: - Part Two
+
+    func findDepartureFieldsInMyTicket() -> [Int] {
+        let map = buildFieldPositionMap()
+        let departureFields = fields.filter( { $0.key.contains("departure")} ).keys
+        return departureFields.compactMap { field in
+            guard let idx = map[field] else { return nil }
+            return yourTicket[idx]
+        }
+    }
+
+    /// Build mapping of field name to index within Ticket
+    func buildFieldPositionMap() -> [String: Int] {
+        let tickets = validTickets() + [yourTicket]
+        let width = tickets.first?.count ?? 0
+        print("Valid Tickets: \(tickets.count)")
+        print("Width: \(width)")
+        print("Fields: \(fields.keys.count)")
+
+        var map = [String: Int]()
+
+        // for each position, find the matching field
+        for idx in 0..<width {
+            let slice = tickets.map { $0[idx] }
+            // print("Slice @ \(idx): \(slice)")
+            if let field = findFieldFor(entries: slice, excluding: Array(map.keys)) {
+                // print("Matching field => \(field)")
+                if map[field] != nil {
+                    print("*** Field \(field) already has an index...")
+                }
+                map[field] = idx
+            } else {
+                print("No field found for \(slice.sorted())")
+            }
+        }
+
+        // print("Map: \(map)")
+        print("Map Size: \(map.keys.count)")
+
+        return map
+    }
+
+    /// Find field (if any) that matches all the values
+    func findFieldFor(entries: [Int], excluding: [String]) -> String? {
+        // print("\n**** Finding field for \(entries.sorted())")
+        return fields.first(where: { (field, range) in
+            guard !excluding.contains(field) else { return false }
+            // print("\tChecking \(field): \(range)")
+
+            let answer = range.containsAll(entries)
+
+//            let answer = entries.allSatisfy { entry in
+//                range.contains(entry)
+//                // determine if at least one of the ranges for the field includes this entry
+//                // ranges.first(where: { range in range.contains(entry) }) != nil
+//            }
+
+            // print("\t\(answer ? "Yup" : "Nope")")
+            return answer
+        })?.key
+    }
+
+    /// Is the ticket valid?
+    func isValid(ticket: Ticket) -> Bool {
+        findErrors(ticket: ticket).count == 0
+    }
+
+    /// All tickets with no errors
+    func validTickets() -> [Ticket] {
+        nearbyTickets.filter({ isValid(ticket: $0) })
     }
 
 

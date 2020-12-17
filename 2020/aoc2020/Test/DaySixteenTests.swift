@@ -17,8 +17,13 @@ class DaySixteenTests: XCTestCase {
 
         let field = scanner.fields["class"]
         XCTAssertNotNil(field)
-        XCTAssert(field!.contains(1...3))
-        XCTAssert(field!.contains(5...7))
+        XCTAssert(field!.contains(1))
+        XCTAssert(field!.contains(2))
+        XCTAssert(field!.contains(3))
+        XCTAssertFalse(field!.contains(4))
+        XCTAssert(field!.contains(5))
+        XCTAssert(field!.contains(6))
+        XCTAssert(field!.contains(7))
 
         var ticket: TicketScanner.Ticket?
         ticket = scanner.yourTicket
@@ -66,6 +71,27 @@ class DaySixteenTests: XCTestCase {
         XCTAssertEqual(71, answer.reduce(0, +))
     }
 
+    func testScannerValidTickets() {
+        var scanner: TicketScanner
+        var tickets: [TicketScanner.Ticket]
+
+        scanner = TicketScanner(testInput)
+        tickets = scanner.validTickets()
+        XCTAssertEqual(1, tickets.count)
+
+        scanner = TicketScanner(testInput2)
+        tickets = scanner.validTickets()
+        XCTAssertEqual(3, tickets.count)
+    }
+
+    func testScannerFieldMap() {
+        let scanner = TicketScanner(testInput2)
+        let map = scanner.buildFieldPositionMap()
+        XCTAssertEqual(0, map["row"])
+        XCTAssertEqual(1, map["class"])
+        XCTAssertEqual(2, map["seat"])
+    }
+
     let testInput = """
         class: 1-3 or 5-7
         row: 6-11 or 33-44
@@ -79,5 +105,19 @@ class DaySixteenTests: XCTestCase {
         40,4,50
         55,2,20
         38,6,12
+        """
+
+    let testInput2 = """
+        class: 0-1 or 4-19
+        row: 0-5 or 8-19
+        seat: 0-13 or 16-19
+
+        your ticket:
+        11,12,13
+
+        nearby tickets:
+        3,9,18
+        15,1,5
+        5,14,9
         """
 }

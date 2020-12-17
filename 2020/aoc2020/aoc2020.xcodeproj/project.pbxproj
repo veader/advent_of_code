@@ -45,6 +45,8 @@
 		C5A38FB4258A9C9D0033028E /* DaySixteenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FB3258A9C9D0033028E /* DaySixteenTests.swift */; };
 		C5A38FB8258B109D0033028E /* DaySixteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FB7258B109D0033028E /* DaySixteen.swift */; };
 		C5A38FB9258B109D0033028E /* DaySixteen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FB7258B109D0033028E /* DaySixteen.swift */; };
+		C5A38FBF258B22120033028E /* ClosedRangeWithGap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FBE258B22120033028E /* ClosedRangeWithGap.swift */; };
+		C5A38FC0258B22120033028E /* ClosedRangeWithGap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FBE258B22120033028E /* ClosedRangeWithGap.swift */; };
 		C5B06B752576945C0031D307 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B742576945C0031D307 /* main.swift */; };
 		C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B7C2576949C0031D307 /* AdventDay.swift */; };
 		C5B06B852576953B0031D307 /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B842576953B0031D307 /* DayOne.swift */; };
@@ -152,6 +154,7 @@
 		C5A38FAE258A92260033028E /* TicketScanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketScanner.swift; sourceTree = "<group>"; };
 		C5A38FB3258A9C9D0033028E /* DaySixteenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySixteenTests.swift; sourceTree = "<group>"; };
 		C5A38FB7258B109D0033028E /* DaySixteen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySixteen.swift; sourceTree = "<group>"; };
+		C5A38FBE258B22120033028E /* ClosedRangeWithGap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeWithGap.swift; sourceTree = "<group>"; };
 		C5B06B712576945C0031D307 /* aoc2020 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = aoc2020; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B06B742576945C0031D307 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C5B06B7C2576949C0031D307 /* AdventDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDay.swift; sourceTree = "<group>"; };
@@ -289,6 +292,7 @@
 				C5A38FA7258A686F0033028E /* README.md */,
 				C5A38FB7258B109D0033028E /* DaySixteen.swift */,
 				C5A38FAE258A92260033028E /* TicketScanner.swift */,
+				C5A38FBE258B22120033028E /* ClosedRangeWithGap.swift */,
 			);
 			path = day16;
 			sourceTree = "<group>";
@@ -594,6 +598,7 @@
 				C5B06DAA257D0FEC0031D307 /* DaySix.swift in Sources */,
 				C5B06D20257A93CB0031D307 /* DayFour.swift in Sources */,
 				C5B06D25257A94110031D307 /* Passport.swift in Sources */,
+				C5A38FBF258B22120033028E /* ClosedRangeWithGap.swift in Sources */,
 				C5B06EA72582023E0031D307 /* AdapterArray.swift in Sources */,
 				C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */,
 				C503F86C2587E4FB00E5EF6C /* BusSchedule.swift in Sources */,
@@ -655,6 +660,7 @@
 				C5B06D26257A94110031D307 /* Passport.swift in Sources */,
 				C5A38F9025895DE50033028E /* MemoryGame.swift in Sources */,
 				C59C89E4258419C200453AE9 /* DayEleven.swift in Sources */,
+				C5A38FC0258B22120033028E /* ClosedRangeWithGap.swift in Sources */,
 				C5B06DB1257D10210031D307 /* DaySixTests.swift in Sources */,
 				C5B06C8F25782BC60031D307 /* String.swift in Sources */,
 				C59C89CD2584041D00453AE9 /* SeatMap.swift in Sources */,
