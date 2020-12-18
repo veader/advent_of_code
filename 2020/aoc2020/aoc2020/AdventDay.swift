@@ -97,6 +97,8 @@ class Advent {
             return DaySixteen()
         case 17:
             return DaySeventeen()
+        case 18:
+            return DayEighteen()
         default:
             return nil
         }
