@@ -52,11 +52,17 @@
 		C5A38FCF258BAB9F0033028E /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FCD258BAB9F0033028E /* PowerSource.swift */; };
 		C5A38FD3258BABBB0033028E /* ConwayCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FD2258BABBB0033028E /* ConwayCube.swift */; };
 		C5A38FD4258BABBB0033028E /* ConwayCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FD2258BABBB0033028E /* ConwayCube.swift */; };
-		C5A38FD8258BABF20033028E /* 3DCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FD7258BABF20033028E /* 3DCoordinate.swift */; };
-		C5A38FD9258BABF20033028E /* 3DCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FD7258BABF20033028E /* 3DCoordinate.swift */; };
+		C5A38FD8258BABF20033028E /* TreeDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FD7258BABF20033028E /* TreeDCoordinate.swift */; };
+		C5A38FD9258BABF20033028E /* TreeDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A38FD7258BABF20033028E /* TreeDCoordinate.swift */; };
 		C5A39074258C309C0033028E /* DaySeventeenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A39073258C309C0033028E /* DaySeventeenTests.swift */; };
 		C5A39078258C39690033028E /* DaySeventeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A39077258C39690033028E /* DaySeventeen.swift */; };
 		C5A39079258C39690033028E /* DaySeventeen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A39077258C39690033028E /* DaySeventeen.swift */; };
+		C5A3907F258C3AE80033028E /* FourDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3907E258C3AE80033028E /* FourDCoordinate.swift */; };
+		C5A39080258C3AE80033028E /* FourDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3907E258C3AE80033028E /* FourDCoordinate.swift */; };
+		C5A3908D258C3C840033028E /* PowerSourceCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3908C258C3C840033028E /* PowerSourceCoordinate.swift */; };
+		C5A3908E258C3C840033028E /* PowerSourceCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3908C258C3C840033028E /* PowerSourceCoordinate.swift */; };
+		C5A39092258C3D4E0033028E /* ExperimentalPowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A39091258C3D4E0033028E /* ExperimentalPowerSource.swift */; };
+		C5A39093258C3D4E0033028E /* ExperimentalPowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A39091258C3D4E0033028E /* ExperimentalPowerSource.swift */; };
 		C5B06B752576945C0031D307 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B742576945C0031D307 /* main.swift */; };
 		C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B7C2576949C0031D307 /* AdventDay.swift */; };
 		C5B06B852576953B0031D307 /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B842576953B0031D307 /* DayOne.swift */; };
@@ -169,9 +175,12 @@
 		C5A38FC7258BAA460033028E /* day17input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day17input.txt; sourceTree = "<group>"; };
 		C5A38FCD258BAB9F0033028E /* PowerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSource.swift; sourceTree = "<group>"; };
 		C5A38FD2258BABBB0033028E /* ConwayCube.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConwayCube.swift; sourceTree = "<group>"; };
-		C5A38FD7258BABF20033028E /* 3DCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = 3DCoordinate.swift; sourceTree = "<group>"; };
+		C5A38FD7258BABF20033028E /* TreeDCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeDCoordinate.swift; sourceTree = "<group>"; };
 		C5A39073258C309C0033028E /* DaySeventeenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeenTests.swift; sourceTree = "<group>"; };
 		C5A39077258C39690033028E /* DaySeventeen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeen.swift; sourceTree = "<group>"; };
+		C5A3907E258C3AE80033028E /* FourDCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourDCoordinate.swift; sourceTree = "<group>"; };
+		C5A3908C258C3C840033028E /* PowerSourceCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSourceCoordinate.swift; sourceTree = "<group>"; };
+		C5A39091258C3D4E0033028E /* ExperimentalPowerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalPowerSource.swift; sourceTree = "<group>"; };
 		C5B06B712576945C0031D307 /* aoc2020 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = aoc2020; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B06B742576945C0031D307 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C5B06B7C2576949C0031D307 /* AdventDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDay.swift; sourceTree = "<group>"; };
@@ -320,8 +329,11 @@
 				C5A38FC6258BA6440033028E /* README.md */,
 				C5A39077258C39690033028E /* DaySeventeen.swift */,
 				C5A38FCD258BAB9F0033028E /* PowerSource.swift */,
+				C5A39091258C3D4E0033028E /* ExperimentalPowerSource.swift */,
 				C5A38FD2258BABBB0033028E /* ConwayCube.swift */,
-				C5A38FD7258BABF20033028E /* 3DCoordinate.swift */,
+				C5A38FD7258BABF20033028E /* TreeDCoordinate.swift */,
+				C5A3907E258C3AE80033028E /* FourDCoordinate.swift */,
+				C5A3908C258C3C840033028E /* PowerSourceCoordinate.swift */,
 			);
 			path = day17;
 			sourceTree = "<group>";
@@ -636,6 +648,7 @@
 				C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */,
 				C503F86C2587E4FB00E5EF6C /* BusSchedule.swift in Sources */,
 				C5B06B752576945C0031D307 /* main.swift in Sources */,
+				C5A3908D258C3C840033028E /* PowerSourceCoordinate.swift in Sources */,
 				C5B06D92257B5D510031D307 /* DayFive.swift in Sources */,
 				C5A38FB8258B109D0033028E /* DaySixteen.swift in Sources */,
 				C5B06EB0258202950031D307 /* DayTen.swift in Sources */,
@@ -663,11 +676,13 @@
 				C5B06C6F257828720031D307 /* String.swift in Sources */,
 				C5B06DDD257E88810031D307 /* LuggageRuleSet.swift in Sources */,
 				C5A38FD3258BABBB0033028E /* ConwayCube.swift in Sources */,
+				C5A3907F258C3AE80033028E /* FourDCoordinate.swift in Sources */,
 				C5A38F84258870350033028E /* DayFourteen.swift in Sources */,
-				C5A38FD8258BABF20033028E /* 3DCoordinate.swift in Sources */,
+				C5A38FD8258BABF20033028E /* TreeDCoordinate.swift in Sources */,
 				C5B06DD8257E851F0031D307 /* LuggageRule.swift in Sources */,
 				C5B06DB5257D129C0031D307 /* CustomsForm.swift in Sources */,
 				C5B06B852576953B0031D307 /* DayOne.swift in Sources */,
+				C5A39092258C3D4E0033028E /* ExperimentalPowerSource.swift in Sources */,
 				C5A38F9A258974D60033028E /* DayFifteen.swift in Sources */,
 				C5B06C052577E76C0031D307 /* DayTwo.swift in Sources */,
 			);
@@ -681,8 +696,9 @@
 				C59C89FC2586ADD400453AE9 /* DayTwelve.swift in Sources */,
 				C59C89F32586A60A00453AE9 /* Ferry.swift in Sources */,
 				C5A38F9B258974D60033028E /* DayFifteen.swift in Sources */,
+				C5A39080258C3AE80033028E /* FourDCoordinate.swift in Sources */,
 				C5B06DE2257E9B600031D307 /* DaySevenTests.swift in Sources */,
-				C5A38FD9258BABF20033028E /* 3DCoordinate.swift in Sources */,
+				C5A38FD9258BABF20033028E /* TreeDCoordinate.swift in Sources */,
 				C5A38FD4258BABBB0033028E /* ConwayCube.swift in Sources */,
 				C5A38FB4258A9C9D0033028E /* DaySixteenTests.swift in Sources */,
 				C5B06E3B2580A6520031D307 /* DayNine.swift in Sources */,
@@ -693,6 +709,7 @@
 				C5B06E04257F44160031D307 /* BootCode.swift in Sources */,
 				C5B06DBD257D15540031D307 /* CustomsForm.swift in Sources */,
 				C5A38F9625896F4F0033028E /* DayFifteenTests.swift in Sources */,
+				C5A39093258C3D4E0033028E /* ExperimentalPowerSource.swift in Sources */,
 				C5A38FB0258A92260033028E /* TicketScanner.swift in Sources */,
 				C5B06DD9257E851F0031D307 /* LuggageRule.swift in Sources */,
 				C53FFCF52588660700B64A7A /* DayFourteenTests.swift in Sources */,
@@ -710,6 +727,7 @@
 				C5B06EAC2582028E0031D307 /* DayTenTests.swift in Sources */,
 				C503F8732587F02600E5EF6C /* DayThirteenTests.swift in Sources */,
 				C5B06DAB257D0FEC0031D307 /* DaySix.swift in Sources */,
+				C5A3908E258C3C840033028E /* PowerSourceCoordinate.swift in Sources */,
 				C5B06D93257B5D510031D307 /* DayFive.swift in Sources */,
 				C5A39074258C309C0033028E /* DaySeventeenTests.swift in Sources */,
 				C59C89DF258415E500453AE9 /* SeatMapModeler.swift in Sources */,

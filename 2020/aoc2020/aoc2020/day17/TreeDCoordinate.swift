@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  TreeDCoordinate.swift
 //  aoc2020
 //
 //  Created by Shawn Veader on 12/17/20.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct TreeDCoordinate: Equatable, Hashable {
+struct TreeDCoordinate: PowerSourceCoordinate, Equatable, Hashable {
     let x: Int
     let y: Int
     let z: Int

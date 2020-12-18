@@ -34,6 +34,12 @@ class DaySeventeenTests: XCTestCase {
         XCTAssertEqual(112, source.activeCubes)
     }
 
+    func testExperimentalPowerSource() {
+//        let source = ExperimentalPowerSource(testInput)
+//        source.run(cycles: 6, shouldPrint: false)
+//        XCTAssertEqual(848, source.activeCubes)
+    }
+
     let testInput = """
         .#.
         ..#

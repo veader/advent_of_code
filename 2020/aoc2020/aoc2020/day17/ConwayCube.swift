@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct ConwayCube {
-    let coordinate: TreeDCoordinate
+struct ConwayCube<CoordinateType> {
+    let coordinate: CoordinateType
     let isActive: Bool
 
     /// Return a new Conway Cube that has the active status flipped

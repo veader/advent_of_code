@@ -12,14 +12,13 @@ struct DaySeventeen: AdventDay {
 
     func partOne(input: String?) -> Any {
         let source = PowerSource(input ?? "")
-        source.run(cycles: 6, shouldPrint: true)
+        source.run(cycles: 6, shouldPrint: false)
         return source.activeCubes
     }
 
     func partTwo(input: String?) -> Any {
-        let scanner = TicketScanner(input ?? "")
-        let departureValues = scanner.findDepartureFieldsInMyTicket()
-
-        return departureValues.reduce(1, *)
+        let source = ExperimentalPowerSource(input ?? "")
+        source.run(cycles: 6, shouldPrint: false)
+        return source.activeCubes
     }
 }

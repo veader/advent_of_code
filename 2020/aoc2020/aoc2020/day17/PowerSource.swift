@@ -9,7 +9,7 @@ import Foundation
 
 class PowerSource {
     /// Map of the pocket dimension where the 3D coordinate locates the ConwayCube
-    var pocketDimension: [TreeDCoordinate: ConwayCube]
+    var pocketDimension: [TreeDCoordinate: ConwayCube<TreeDCoordinate>]
 
     var xRange: ClosedRange<Int> {
         range { $0.x }
@@ -28,7 +28,7 @@ class PowerSource {
     }
 
     init(_ input: String) {
-        var pocketMap = [TreeDCoordinate: ConwayCube]()
+        var pocketMap = [TreeDCoordinate: ConwayCube<TreeDCoordinate>]()
 
         let lines = input.split(separator: "\n").map(String.init)
         for (y, line) in lines.enumerated() {
@@ -71,7 +71,7 @@ class PowerSource {
         let expandedYRange = (theYRange.lowerBound - 1)...(theYRange.upperBound + 1)
         let expandedZRange = (theZRange.lowerBound - 1)...(theZRange.upperBound + 1)
 
-        var pocketMap = [TreeDCoordinate: ConwayCube]()
+        var pocketMap = [TreeDCoordinate: ConwayCube<TreeDCoordinate>]()
 
         for z in expandedZRange {
             for y in expandedYRange {
@@ -105,7 +105,6 @@ class PowerSource {
     }
 
     private func range(dimension: (TreeDCoordinate) -> Int) -> ClosedRange<Int> {
-        // TODO: is that active check needed?
         let dimensions = pocketDimension.filter({ $0.value.isActive }).keys.map({ dimension($0) })
         let min = dimensions.min() ?? 0
         let max = dimensions.max() ?? 0
