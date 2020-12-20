@@ -7,7 +7,7 @@
 
 import Foundation
 
-let dayNum = 18
+let dayNum = 19
 let partNum = 1
 
 let day = Advent.day(dayNum)
