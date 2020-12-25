@@ -16,11 +16,12 @@ struct DayTwentyOne: AdventDay {
 
     func partOne(input: String?) -> Any {
         let groceries = parse(input)
-        // groceries.findSafeIngredients()
         return groceries.safeIngredientAppearanceCount()
     }
 
     func partTwo(input: String?) -> Any {
-        return -1
+        let groceries = parse(input)
+        let dangerous = groceries.findDangerousIngredients()
+        return dangerous.joined(separator: ",")
     }
 }

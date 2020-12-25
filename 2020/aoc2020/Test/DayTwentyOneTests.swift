@@ -35,11 +35,22 @@ class DayTwentyOneTests: XCTestCase {
         XCTAssertEqual(7, groceries.ingredients.count)
     }
 
-    func testGroceryFindSafeIngredients() {
+    func testGroceryFindSafeIngredientsCount() {
         let groceries = Groceries(testInput)
-        // groceries.findSafeIngredients()
         let count = groceries.safeIngredientAppearanceCount()
         XCTAssertEqual(5, count)
+    }
+
+    func testGroceriesSafeIngredients() {
+        let groceries = Groceries(testInput)
+        let safe = groceries.findSafeIngredients()
+        XCTAssertEqual(4, safe.count)
+    }
+
+    func testGroceriesDangerousIngredients() {
+        let groceries = Groceries(testInput)
+//        let dangerous = groceries.findDangerousIngredients()
+//        XCTAssertEqual(3, dangerous.count)
     }
 
     let testInput = """

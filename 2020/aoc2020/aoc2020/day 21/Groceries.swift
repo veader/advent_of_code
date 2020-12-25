@@ -41,6 +41,14 @@ class Groceries {
     }
 
     func findSafeIngredients() -> [String] {
+        let potentiallyDangerousIngredients = findPotentiallyDangerousIngredients()
+        let allIngredients = ingredients.keys
+        let safeIngredients = Set(allIngredients).subtracting(potentiallyDangerousIngredients)
+
+        return Array(safeIngredients)
+    }
+
+    func findPotentiallyDangerousIngredients() -> [String] {
         // find foods that only have a single allergen
         let singleAllergenFoods = foods.filter { $0.knownAllergens.count == 1 }
         let singleAllergens = singleAllergenFoods.flatMap({ $0.knownAllergens }).unique()
@@ -51,17 +59,11 @@ class Groceries {
             var initialSet = Set<String>()
             var ingredientSet = Set<String>()
 
-//            print(allergen)
             let matchingFoodIDs = allergens[allergen] ?? []
             let food = matchingFoodIDs.compactMap { findFood(with: $0) }
-//            print("Number of foods with this allergen: \(food.count)")
-//            print(food)
 
             // what ingredient(s) do all of these food have in common?
-            // let ingredientSets = food.map { Set($0.ingredients) }
             let singleFoods = food.filter { $0.knownAllergens.count == 1 }
-//            print("Number of single allergen foods: \(singleFoods.count)")
-//            print(singleFoods)
             initialSet = singleFoods.reduce(initialSet, { (result, food) in
                 if result.count == 0 {
                     return Set(food.ingredients)
@@ -69,30 +71,25 @@ class Groceries {
                     return result.intersection(Set(food.ingredients))
                 }
             })
-//            print("Initial Ingredients: \(initialSet)")
+
             ingredientSet = food.reduce(initialSet, { (result, food) in
                 result.intersection(Set(food.ingredients))
             })
-//            print("Ingredients: \(ingredientSet)")
-//            print("\n-------")
 
             possiblyDangerousIngredients.append(contentsOf: ingredientSet)
         }
 
-        possiblyDangerousIngredients = possiblyDangerousIngredients.unique()
-//        print("\nDangerous Ingredients: \(possiblyDangerousIngredients)")
+        return possiblyDangerousIngredients.unique().sorted()
+    }
 
-        let allIngredients = Array(ingredients.keys)
-        let safeIngredients = Set(allIngredients).subtracting(possiblyDangerousIngredients)
-//        print("Safe Ingredients: \(safeIngredients)")
-
-        return Array(safeIngredients)
+    /// Find the dangerous ingredients. Removing safe ingredients helps isolate the dangerous ones.
+    func findDangerousIngredients() -> [String] {
+        let safeIngredients = findSafeIngredients()
+        return []
     }
 
     func safeIngredientAppearanceCount() -> Int {
         let safeIngredients = findSafeIngredients()
-//        print(safeIngredients)
-//        print(allergens)
         return safeIngredients.reduce(0) { $0 + (ingredients[$1] ?? []).count }
     }
 }
