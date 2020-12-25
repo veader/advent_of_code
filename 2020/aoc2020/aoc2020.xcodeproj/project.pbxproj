@@ -39,6 +39,7 @@
 		C583323D2591CA7E0059FAB0 /* SatelliteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C583323C2591CA7E0059FAB0 /* SatelliteImage.swift */; };
 		C583323E2591CA7E0059FAB0 /* SatelliteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C583323C2591CA7E0059FAB0 /* SatelliteImage.swift */; };
 		C58332482591CCCC0059FAB0 /* day20input.txt in Resources */ = {isa = PBXBuildFile; fileRef = C58332472591CCCC0059FAB0 /* day20input.txt */; };
+		C583324E2591D20B0059FAB0 /* day21input.txt in Resources */ = {isa = PBXBuildFile; fileRef = C583324D2591D20B0059FAB0 /* day21input.txt */; };
 		C59C89CC2584041D00453AE9 /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89CB2584041D00453AE9 /* SeatMap.swift */; };
 		C59C89CD2584041D00453AE9 /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89CB2584041D00453AE9 /* SeatMap.swift */; };
 		C59C89D32584092700453AE9 /* DayElevenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C59C89D22584092700453AE9 /* DayElevenTests.swift */; };
@@ -84,6 +85,13 @@
 		C5A3908E258C3C840033028E /* PowerSourceCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A3908C258C3C840033028E /* PowerSourceCoordinate.swift */; };
 		C5A39092258C3D4E0033028E /* ExperimentalPowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A39091258C3D4E0033028E /* ExperimentalPowerSource.swift */; };
 		C5A39093258C3D4E0033028E /* ExperimentalPowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A39091258C3D4E0033028E /* ExperimentalPowerSource.swift */; };
+		C5ABB00D2593022B00A7A1B0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABB00C2593022B00A7A1B0 /* Food.swift */; };
+		C5ABB00E2593022B00A7A1B0 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABB00C2593022B00A7A1B0 /* Food.swift */; };
+		C5ABB0122593050100A7A1B0 /* DayTwentyOneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABB0112593050100A7A1B0 /* DayTwentyOneTests.swift */; };
+		C5ABB0162595454300A7A1B0 /* Groceries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABB0152595454300A7A1B0 /* Groceries.swift */; };
+		C5ABB01C25954B6500A7A1B0 /* Groceries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABB0152595454300A7A1B0 /* Groceries.swift */; };
+		C5ABB0212595679700A7A1B0 /* DayTwentyOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABB0202595679700A7A1B0 /* DayTwentyOne.swift */; };
+		C5ABB0222595679700A7A1B0 /* DayTwentyOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5ABB0202595679700A7A1B0 /* DayTwentyOne.swift */; };
 		C5B06B752576945C0031D307 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B742576945C0031D307 /* main.swift */; };
 		C5B06B7D2576949C0031D307 /* AdventDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B7C2576949C0031D307 /* AdventDay.swift */; };
 		C5B06B852576953B0031D307 /* DayOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B06B842576953B0031D307 /* DayOne.swift */; };
@@ -186,6 +194,8 @@
 		C56A04EF25902BAF00D74D34 /* DayTwentyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyTests.swift; sourceTree = "<group>"; };
 		C583323C2591CA7E0059FAB0 /* SatelliteImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SatelliteImage.swift; sourceTree = "<group>"; };
 		C58332472591CCCC0059FAB0 /* day20input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day20input.txt; sourceTree = "<group>"; };
+		C583324C2591D1240059FAB0 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C583324D2591D20B0059FAB0 /* day21input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day21input.txt; sourceTree = "<group>"; };
 		C59C89C92583367200453AE9 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C59C89CA2583378500453AE9 /* day11input.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = day11input.txt; sourceTree = "<group>"; };
 		C59C89CB2584041D00453AE9 /* SeatMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
@@ -219,6 +229,10 @@
 		C5A3907E258C3AE80033028E /* FourDCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourDCoordinate.swift; sourceTree = "<group>"; };
 		C5A3908C258C3C840033028E /* PowerSourceCoordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerSourceCoordinate.swift; sourceTree = "<group>"; };
 		C5A39091258C3D4E0033028E /* ExperimentalPowerSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExperimentalPowerSource.swift; sourceTree = "<group>"; };
+		C5ABB00C2593022B00A7A1B0 /* Food.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		C5ABB0112593050100A7A1B0 /* DayTwentyOneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyOneTests.swift; sourceTree = "<group>"; };
+		C5ABB0152595454300A7A1B0 /* Groceries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Groceries.swift; sourceTree = "<group>"; };
+		C5ABB0202595679700A7A1B0 /* DayTwentyOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyOne.swift; sourceTree = "<group>"; };
 		C5B06B712576945C0031D307 /* aoc2020 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = aoc2020; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5B06B742576945C0031D307 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		C5B06B7C2576949C0031D307 /* AdventDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDay.swift; sourceTree = "<group>"; };
@@ -351,6 +365,17 @@
 			path = day20;
 			sourceTree = "<group>";
 		};
+		C583324B2591D1150059FAB0 /* day 21 */ = {
+			isa = PBXGroup;
+			children = (
+				C583324C2591D1240059FAB0 /* README.md */,
+				C5ABB0202595679700A7A1B0 /* DayTwentyOne.swift */,
+				C5ABB00C2593022B00A7A1B0 /* Food.swift */,
+				C5ABB0152595454300A7A1B0 /* Groceries.swift */,
+			);
+			path = "day 21";
+			sourceTree = "<group>";
+		};
 		C59C89C82583366700453AE9 /* day11 */ = {
 			isa = PBXGroup;
 			children = (
@@ -451,6 +476,7 @@
 				C56A04AD258CF95B00D74D34 /* day18 */,
 				C56A04C0258ED37900D74D34 /* day19 */,
 				C56A04E02590210F00D74D34 /* day20 */,
+				C583324B2591D1150059FAB0 /* day 21 */,
 				C5B06B742576945C0031D307 /* main.swift */,
 				C5B06B7C2576949C0031D307 /* AdventDay.swift */,
 				C5B06B7F257694CA0031D307 /* EmptyDay.swift */,
@@ -490,6 +516,7 @@
 				C56A04AF258CFB5F00D74D34 /* day18input.txt */,
 				C56A04C9258ED6EE00D74D34 /* day19input.txt */,
 				C58332472591CCCC0059FAB0 /* day20input.txt */,
+				C583324D2591D20B0059FAB0 /* day21input.txt */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -538,6 +565,7 @@
 				C56A04B7258D5BB100D74D34 /* DayEighteenTests.swift */,
 				C56A04CD258EDC4C00D74D34 /* DayNineteenTests.swift */,
 				C56A04EF25902BAF00D74D34 /* DayTwentyTests.swift */,
+				C5ABB0112593050100A7A1B0 /* DayTwentyOneTests.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -705,6 +733,7 @@
 				C5B06EA1258202270031D307 /* day10input.txt in Resources */,
 				C59C89EC2586A5D800453AE9 /* day12input.txt in Resources */,
 				C503F87E2587F4A800E5EF6C /* day13input.txt in Resources */,
+				C583324E2591D20B0059FAB0 /* day21input.txt in Resources */,
 				C58332482591CCCC0059FAB0 /* day20input.txt in Resources */,
 				C56A04CA258ED6EE00D74D34 /* day19input.txt in Resources */,
 				C5A38FC8258BAA460033028E /* day17input.txt in Resources */,
@@ -740,6 +769,7 @@
 				C56A04BC258D5CEC00D74D34 /* DayEighteen.swift in Sources */,
 				C59C89E3258419C200453AE9 /* DayEleven.swift in Sources */,
 				C5A38FCE258BAB9F0033028E /* PowerSource.swift in Sources */,
+				C5ABB00D2593022B00A7A1B0 /* Food.swift in Sources */,
 				C503F8772587F31400E5EF6C /* DayThirteen.swift in Sources */,
 				C59C89F22586A60A00453AE9 /* Ferry.swift in Sources */,
 				C5B06D012579D80F0031D307 /* DayThree.swift in Sources */,
@@ -763,8 +793,10 @@
 				C56A04E92590282500D74D34 /* DayTwenty.swift in Sources */,
 				C5A38FD3258BABBB0033028E /* ConwayCube.swift in Sources */,
 				C5A3907F258C3AE80033028E /* FourDCoordinate.swift in Sources */,
+				C5ABB0162595454300A7A1B0 /* Groceries.swift in Sources */,
 				C5A38F84258870350033028E /* DayFourteen.swift in Sources */,
 				C5A38FD8258BABF20033028E /* TreeDCoordinate.swift in Sources */,
+				C5ABB0212595679700A7A1B0 /* DayTwentyOne.swift in Sources */,
 				C56A04C3258ED5C200D74D34 /* MessageRule.swift in Sources */,
 				C56A04D2258EDF6C00D74D34 /* RuleParser.swift in Sources */,
 				C583323D2591CA7E0059FAB0 /* SatelliteImage.swift in Sources */,
@@ -789,6 +821,7 @@
 				C56A04D3258EDF6C00D74D34 /* RuleParser.swift in Sources */,
 				C5A39080258C3AE80033028E /* FourDCoordinate.swift in Sources */,
 				C56A04E3259023BF00D74D34 /* SatelliteImageTile.swift in Sources */,
+				C5ABB0222595679700A7A1B0 /* DayTwentyOne.swift in Sources */,
 				C5B06DE2257E9B600031D307 /* DaySevenTests.swift in Sources */,
 				C5A38FD9258BABF20033028E /* TreeDCoordinate.swift in Sources */,
 				C5A38FD4258BABBB0033028E /* ConwayCube.swift in Sources */,
@@ -813,6 +846,7 @@
 				C5B06DB1257D10210031D307 /* DaySixTests.swift in Sources */,
 				C5B06C8F25782BC60031D307 /* String.swift in Sources */,
 				C59C89CD2584041D00453AE9 /* SeatMap.swift in Sources */,
+				C5ABB00E2593022B00A7A1B0 /* Food.swift in Sources */,
 				C5B06C7B25782AEB0031D307 /* Test.swift in Sources */,
 				C5B06E08257F48350031D307 /* DayEightTests.swift in Sources */,
 				C5B06EA82582023E0031D307 /* AdapterArray.swift in Sources */,
@@ -848,11 +882,13 @@
 				C503F86D2587E4FB00E5EF6C /* BusSchedule.swift in Sources */,
 				C5B06C8325782AFE0031D307 /* DayTwoTests.swift in Sources */,
 				C5B06D2A257AAB6D0031D307 /* DayFourTests.swift in Sources */,
+				C5ABB0122593050100A7A1B0 /* DayTwentyOneTests.swift in Sources */,
 				C583323E2591CA7E0059FAB0 /* SatelliteImage.swift in Sources */,
 				C5A39079258C39690033028E /* DaySeventeen.swift in Sources */,
 				C53FFCEF2588651D00B64A7A /* Int.swift in Sources */,
 				C56A04C4258ED5C200D74D34 /* MessageRule.swift in Sources */,
 				C56A04B2258CFCF300D74D34 /* MathEquation.swift in Sources */,
+				C5ABB01C25954B6500A7A1B0 /* Groceries.swift in Sources */,
 				C5B06E362580A26A0031D307 /* DayNineTests.swift in Sources */,
 				C5B06D022579D80F0031D307 /* DayThree.swift in Sources */,
 			);
