@@ -38,25 +38,13 @@ protocol AdventDay {
 extension AdventDay {
     var id: String { "\(year):\(dayNumber)" }
 
-    /// Returns the contents of the data file for this day.
+    /// Returns the contents of the data file for this day from the asset catalog
     var defaultInput: String? {
         guard
             let asset = NSDataAsset(name: "\(year)_day\(String(format: "%02d", dayNumber))"),
             let output = String(data: asset.data, encoding: .utf8)
         else { return nil }
         return output
-//        let path = "\(dataPath)/day\(dayNumber)input.txt"
-//        return try? String(contentsOfFile: path, encoding: .utf8)
-    }
-
-    /// Return the data path.
-    private var dataPath: String {
-        guard let dir = ProcessInfo.processInfo.environment["PROJECT_DIR"] else {
-            print("Day \(dayNumber): 💥 NO PROJECT DIR")
-            exit(11)
-        }
-
-        return "\(dir)/AdventOfCode/\(year)/Data"
     }
 
     @discardableResult func run(part: Int? = 1, _ input: String? = nil) -> Any {

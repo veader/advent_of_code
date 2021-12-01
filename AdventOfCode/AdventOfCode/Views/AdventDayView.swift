@@ -55,9 +55,9 @@ struct AdventDayView: View {
             }
         }
     }
-//    func run(part: Int) async throws -> String {
-//
-//    }
+
+    // TODO: Consider on macOS 12+
+//    func run(part: Int) async throws -> String { }
 }
 
 struct AdventDayView_Previews: PreviewProvider {
