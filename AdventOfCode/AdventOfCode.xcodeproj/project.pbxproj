@@ -14,6 +14,120 @@
 		C516C77E275815080038AB8A /* DayTwo2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C77C275815080038AB8A /* DayTwo2021.swift */; };
 		C516C781275907430038AB8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C780275907430038AB8A /* String.swift */; };
 		C516C782275907430038AB8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C780275907430038AB8A /* String.swift */; };
+		C516C789275948A30038AB8A /* DayOne2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C786275948A30038AB8A /* DayOne2020.swift */; };
+		C516C78A275948A30038AB8A /* DayOne2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C786275948A30038AB8A /* DayOne2020.swift */; };
+		C516C78F275949F30038AB8A /* PasswordPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C78C275949F30038AB8A /* PasswordPolicy.swift */; };
+		C516C790275949F30038AB8A /* PasswordPolicy.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C78C275949F30038AB8A /* PasswordPolicy.swift */; };
+		C516C793275949F30038AB8A /* DayTwo2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C78E275949F30038AB8A /* DayTwo2020.swift */; };
+		C516C794275949F30038AB8A /* DayTwo2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C78E275949F30038AB8A /* DayTwo2020.swift */; };
+		C516C79927594AF00038AB8A /* DayThree2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C79627594AF00038AB8A /* DayThree2020.swift */; };
+		C516C79A27594AF00038AB8A /* DayThree2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C79627594AF00038AB8A /* DayThree2020.swift */; };
+		C516C79B27594AF00038AB8A /* Forest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C79727594AF00038AB8A /* Forest.swift */; };
+		C516C79C27594AF00038AB8A /* Forest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C79727594AF00038AB8A /* Forest.swift */; };
+		C516C7A027594B4A0038AB8A /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C79F27594B4A0038AB8A /* Coordinate.swift */; };
+		C516C7A127594B4A0038AB8A /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C79F27594B4A0038AB8A /* Coordinate.swift */; };
+		C516C7A827594B7C0038AB8A /* DayFour2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7A427594B7C0038AB8A /* DayFour2020.swift */; };
+		C516C7A927594B7C0038AB8A /* DayFour2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7A427594B7C0038AB8A /* DayFour2020.swift */; };
+		C516C7AA27594B7C0038AB8A /* Passport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7A527594B7C0038AB8A /* Passport.swift */; };
+		C516C7AB27594B7C0038AB8A /* Passport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7A527594B7C0038AB8A /* Passport.swift */; };
+		C516C7B227594C040038AB8A /* BoardingPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7AE27594C040038AB8A /* BoardingPass.swift */; };
+		C516C7B327594C040038AB8A /* BoardingPass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7AE27594C040038AB8A /* BoardingPass.swift */; };
+		C516C7B427594C040038AB8A /* DayFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7AF27594C040038AB8A /* DayFive.swift */; };
+		C516C7B527594C040038AB8A /* DayFive.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7AF27594C040038AB8A /* DayFive.swift */; };
+		C516C7BA27594D2B0038AB8A /* CustomsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7B727594D2B0038AB8A /* CustomsForm.swift */; };
+		C516C7BB27594D2B0038AB8A /* CustomsForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7B727594D2B0038AB8A /* CustomsForm.swift */; };
+		C516C7BE27594D2B0038AB8A /* DaySix2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7B927594D2B0038AB8A /* DaySix2020.swift */; };
+		C516C7BF27594D2B0038AB8A /* DaySix2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7B927594D2B0038AB8A /* DaySix2020.swift */; };
+		C516C7C627594E0B0038AB8A /* LuggageRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7C227594E0B0038AB8A /* LuggageRule.swift */; };
+		C516C7C727594E0B0038AB8A /* LuggageRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7C227594E0B0038AB8A /* LuggageRule.swift */; };
+		C516C7C827594E0B0038AB8A /* LuggageRuleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7C327594E0B0038AB8A /* LuggageRuleSet.swift */; };
+		C516C7C927594E0B0038AB8A /* LuggageRuleSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7C327594E0B0038AB8A /* LuggageRuleSet.swift */; };
+		C516C7CC27594E0B0038AB8A /* DaySeven2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7C527594E0B0038AB8A /* DaySeven2020.swift */; };
+		C516C7CD27594E0B0038AB8A /* DaySeven2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7C527594E0B0038AB8A /* DaySeven2020.swift */; };
+		C516C7CF27594E780038AB8A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7CE27594E780038AB8A /* Array.swift */; };
+		C516C7D027594E780038AB8A /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7CE27594E780038AB8A /* Array.swift */; };
+		C516C7D527594EA10038AB8A /* DayEight2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7D227594EA10038AB8A /* DayEight2020.swift */; };
+		C516C7D627594EA10038AB8A /* DayEight2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7D227594EA10038AB8A /* DayEight2020.swift */; };
+		C516C7D927594EA10038AB8A /* BootCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7D427594EA10038AB8A /* BootCode.swift */; };
+		C516C7DA27594EA10038AB8A /* BootCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7D427594EA10038AB8A /* BootCode.swift */; };
+		C516C7DF27594F1E0038AB8A /* DayNine2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7DC27594F1E0038AB8A /* DayNine2020.swift */; };
+		C516C7E027594F1E0038AB8A /* DayNine2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7DC27594F1E0038AB8A /* DayNine2020.swift */; };
+		C516C7E127594F1E0038AB8A /* XMASCypher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7DD27594F1E0038AB8A /* XMASCypher.swift */; };
+		C516C7E227594F1E0038AB8A /* XMASCypher.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7DD27594F1E0038AB8A /* XMASCypher.swift */; };
+		C516C7EB2759542C0038AB8A /* DayTen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7E72759542C0038AB8A /* DayTen2020.swift */; };
+		C516C7EC2759542C0038AB8A /* DayTen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7E72759542C0038AB8A /* DayTen2020.swift */; };
+		C516C7ED2759542C0038AB8A /* AdapterArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7E82759542C0038AB8A /* AdapterArray.swift */; };
+		C516C7EE2759542C0038AB8A /* AdapterArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7E82759542C0038AB8A /* AdapterArray.swift */; };
+		C516C7F42759553E0038AB8A /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7F02759553E0038AB8A /* SeatMap.swift */; };
+		C516C7F52759553E0038AB8A /* SeatMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7F02759553E0038AB8A /* SeatMap.swift */; };
+		C516C7F82759553E0038AB8A /* DayEleven2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7F22759553E0038AB8A /* DayEleven2020.swift */; };
+		C516C7F92759553E0038AB8A /* DayEleven2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7F22759553E0038AB8A /* DayEleven2020.swift */; };
+		C516C7FA2759553E0038AB8A /* SeatMapModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7F32759553E0038AB8A /* SeatMapModeler.swift */; };
+		C516C7FB2759553E0038AB8A /* SeatMapModeler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7F32759553E0038AB8A /* SeatMapModeler.swift */; };
+		C516C800275956140038AB8A /* DayTwelve2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7FD275956140038AB8A /* DayTwelve2020.swift */; };
+		C516C801275956140038AB8A /* DayTwelve2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7FD275956140038AB8A /* DayTwelve2020.swift */; };
+		C516C804275956140038AB8A /* Ferry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7FF275956140038AB8A /* Ferry.swift */; };
+		C516C805275956140038AB8A /* Ferry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7FF275956140038AB8A /* Ferry.swift */; };
+		C516C80A275956790038AB8A /* DayThirteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C807275956790038AB8A /* DayThirteen2020.swift */; };
+		C516C80B275956790038AB8A /* DayThirteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C807275956790038AB8A /* DayThirteen2020.swift */; };
+		C516C80E275956790038AB8A /* BusSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C809275956790038AB8A /* BusSchedule.swift */; };
+		C516C80F275956790038AB8A /* BusSchedule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C809275956790038AB8A /* BusSchedule.swift */; };
+		C516C817275957B00038AB8A /* DockingProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C812275957B00038AB8A /* DockingProgram.swift */; };
+		C516C818275957B00038AB8A /* DockingProgram.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C812275957B00038AB8A /* DockingProgram.swift */; };
+		C516C819275957B00038AB8A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C813275957B00038AB8A /* Int.swift */; };
+		C516C81A275957B00038AB8A /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C813275957B00038AB8A /* Int.swift */; };
+		C516C81B275957B00038AB8A /* DayFourteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C814275957B00038AB8A /* DayFourteen2020.swift */; };
+		C516C81C275957B00038AB8A /* DayFourteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C814275957B00038AB8A /* DayFourteen2020.swift */; };
+		C516C823275957F60038AB8A /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C81F275957F50038AB8A /* MemoryGame.swift */; };
+		C516C824275957F60038AB8A /* MemoryGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C81F275957F50038AB8A /* MemoryGame.swift */; };
+		C516C825275957F60038AB8A /* DayFifteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C820275957F50038AB8A /* DayFifteen2020.swift */; };
+		C516C826275957F60038AB8A /* DayFifteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C820275957F50038AB8A /* DayFifteen2020.swift */; };
+		C516C82E275958390038AB8A /* ClosedRangeWithGap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C829275958390038AB8A /* ClosedRangeWithGap.swift */; };
+		C516C82F275958390038AB8A /* ClosedRangeWithGap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C829275958390038AB8A /* ClosedRangeWithGap.swift */; };
+		C516C830275958390038AB8A /* DaySixteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C82A275958390038AB8A /* DaySixteen2020.swift */; };
+		C516C831275958390038AB8A /* DaySixteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C82A275958390038AB8A /* DaySixteen2020.swift */; };
+		C516C832275958390038AB8A /* TicketScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C82B275958390038AB8A /* TicketScanner.swift */; };
+		C516C833275958390038AB8A /* TicketScanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C82B275958390038AB8A /* TicketScanner.swift */; };
+		C516C83F2759587B0038AB8A /* PowerSourceCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8362759587A0038AB8A /* PowerSourceCoordinate.swift */; };
+		C516C8402759587B0038AB8A /* PowerSourceCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8362759587A0038AB8A /* PowerSourceCoordinate.swift */; };
+		C516C8412759587B0038AB8A /* TreeDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8372759587A0038AB8A /* TreeDCoordinate.swift */; };
+		C516C8422759587B0038AB8A /* TreeDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8372759587A0038AB8A /* TreeDCoordinate.swift */; };
+		C516C8432759587B0038AB8A /* DaySeventeen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8382759587B0038AB8A /* DaySeventeen2020.swift */; };
+		C516C8442759587B0038AB8A /* DaySeventeen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8382759587B0038AB8A /* DaySeventeen2020.swift */; };
+		C516C8452759587B0038AB8A /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8392759587B0038AB8A /* PowerSource.swift */; };
+		C516C8462759587B0038AB8A /* PowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8392759587B0038AB8A /* PowerSource.swift */; };
+		C516C8472759587B0038AB8A /* ExperimentalPowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C83A2759587B0038AB8A /* ExperimentalPowerSource.swift */; };
+		C516C8482759587B0038AB8A /* ExperimentalPowerSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C83A2759587B0038AB8A /* ExperimentalPowerSource.swift */; };
+		C516C8492759587B0038AB8A /* FourDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C83B2759587B0038AB8A /* FourDCoordinate.swift */; };
+		C516C84A2759587B0038AB8A /* FourDCoordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C83B2759587B0038AB8A /* FourDCoordinate.swift */; };
+		C516C84B2759587B0038AB8A /* ConwayCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C83C2759587B0038AB8A /* ConwayCube.swift */; };
+		C516C84C2759587B0038AB8A /* ConwayCube.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C83C2759587B0038AB8A /* ConwayCube.swift */; };
+		C516C851275958C70038AB8A /* DayEighteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C84E275958C70038AB8A /* DayEighteen2020.swift */; };
+		C516C852275958C70038AB8A /* DayEighteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C84E275958C70038AB8A /* DayEighteen2020.swift */; };
+		C516C853275958C70038AB8A /* MathEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C84F275958C70038AB8A /* MathEquation.swift */; };
+		C516C854275958C70038AB8A /* MathEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C84F275958C70038AB8A /* MathEquation.swift */; };
+		C516C85C2759592F0038AB8A /* MessageRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8582759592F0038AB8A /* MessageRule.swift */; };
+		C516C85D2759592F0038AB8A /* MessageRule.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8582759592F0038AB8A /* MessageRule.swift */; };
+		C516C8602759592F0038AB8A /* RuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C85A2759592F0038AB8A /* RuleParser.swift */; };
+		C516C8612759592F0038AB8A /* RuleParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C85A2759592F0038AB8A /* RuleParser.swift */; };
+		C516C8622759592F0038AB8A /* DayNineteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C85B2759592F0038AB8A /* DayNineteen2020.swift */; };
+		C516C8632759592F0038AB8A /* DayNineteen2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C85B2759592F0038AB8A /* DayNineteen2020.swift */; };
+		C516C869275959770038AB8A /* SatelliteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C865275959760038AB8A /* SatelliteImage.swift */; };
+		C516C86A275959770038AB8A /* SatelliteImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C865275959760038AB8A /* SatelliteImage.swift */; };
+		C516C86D275959770038AB8A /* SatelliteImageTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C867275959760038AB8A /* SatelliteImageTile.swift */; };
+		C516C86E275959770038AB8A /* SatelliteImageTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C867275959760038AB8A /* SatelliteImageTile.swift */; };
+		C516C86F275959770038AB8A /* DayTwenty2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C868275959770038AB8A /* DayTwenty2020.swift */; };
+		C516C870275959770038AB8A /* DayTwenty2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C868275959770038AB8A /* DayTwenty2020.swift */; };
+		C516C878275959C60038AB8A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C873275959C60038AB8A /* Food.swift */; };
+		C516C879275959C60038AB8A /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C873275959C60038AB8A /* Food.swift */; };
+		C516C87A275959C60038AB8A /* Groceries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C874275959C60038AB8A /* Groceries.swift */; };
+		C516C87B275959C60038AB8A /* Groceries.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C874275959C60038AB8A /* Groceries.swift */; };
+		C516C87C275959C60038AB8A /* DayTwentyOne2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C875275959C60038AB8A /* DayTwentyOne2020.swift */; };
+		C516C87D275959C60038AB8A /* DayTwentyOne2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C875275959C60038AB8A /* DayTwentyOne2020.swift */; };
+		C516C88227595A310038AB8A /* DayTwentyTwo2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C87F27595A310038AB8A /* DayTwentyTwo2020.swift */; };
+		C516C88327595A310038AB8A /* DayTwentyTwo2020.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C87F27595A310038AB8A /* DayTwentyTwo2020.swift */; };
+		C516C88627595A310038AB8A /* CombatGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C88127595A310038AB8A /* CombatGame.swift */; };
+		C516C88727595A310038AB8A /* CombatGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C88127595A310038AB8A /* CombatGame.swift */; };
 		C556EF682757B454009B3078 /* AdventOfCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF672757B454009B3078 /* AdventOfCodeApp.swift */; };
 		C556EF6A2757B454009B3078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF692757B454009B3078 /* ContentView.swift */; };
 		C556EF6C2757B455009B3078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -54,6 +168,85 @@
 		C516C77B275814F10038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C516C77C275815080038AB8A /* DayTwo2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwo2021.swift; sourceTree = "<group>"; };
 		C516C780275907430038AB8A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		C516C785275948A30038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C786275948A30038AB8A /* DayOne2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayOne2020.swift; sourceTree = "<group>"; };
+		C516C78C275949F30038AB8A /* PasswordPolicy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordPolicy.swift; sourceTree = "<group>"; };
+		C516C78D275949F30038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C78E275949F30038AB8A /* DayTwo2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTwo2020.swift; sourceTree = "<group>"; };
+		C516C79627594AF00038AB8A /* DayThree2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayThree2020.swift; sourceTree = "<group>"; };
+		C516C79727594AF00038AB8A /* Forest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forest.swift; sourceTree = "<group>"; };
+		C516C79827594AF00038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C79F27594B4A0038AB8A /* Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		C516C7A327594B7C0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7A427594B7C0038AB8A /* DayFour2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFour2020.swift; sourceTree = "<group>"; };
+		C516C7A527594B7C0038AB8A /* Passport.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Passport.swift; sourceTree = "<group>"; };
+		C516C7AD27594C040038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7AE27594C040038AB8A /* BoardingPass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardingPass.swift; sourceTree = "<group>"; };
+		C516C7AF27594C040038AB8A /* DayFive.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFive.swift; sourceTree = "<group>"; };
+		C516C7B727594D2B0038AB8A /* CustomsForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomsForm.swift; sourceTree = "<group>"; };
+		C516C7B827594D2B0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7B927594D2B0038AB8A /* DaySix2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySix2020.swift; sourceTree = "<group>"; };
+		C516C7C227594E0B0038AB8A /* LuggageRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageRule.swift; sourceTree = "<group>"; };
+		C516C7C327594E0B0038AB8A /* LuggageRuleSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuggageRuleSet.swift; sourceTree = "<group>"; };
+		C516C7C427594E0B0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7C527594E0B0038AB8A /* DaySeven2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySeven2020.swift; sourceTree = "<group>"; };
+		C516C7CE27594E780038AB8A /* Array.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		C516C7D227594EA10038AB8A /* DayEight2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEight2020.swift; sourceTree = "<group>"; };
+		C516C7D327594EA10038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7D427594EA10038AB8A /* BootCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BootCode.swift; sourceTree = "<group>"; };
+		C516C7DC27594F1E0038AB8A /* DayNine2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayNine2020.swift; sourceTree = "<group>"; };
+		C516C7DD27594F1E0038AB8A /* XMASCypher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XMASCypher.swift; sourceTree = "<group>"; };
+		C516C7DE27594F1E0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7E62759542C0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7E72759542C0038AB8A /* DayTen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTen2020.swift; sourceTree = "<group>"; };
+		C516C7E82759542C0038AB8A /* AdapterArray.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdapterArray.swift; sourceTree = "<group>"; };
+		C516C7F02759553E0038AB8A /* SeatMap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatMap.swift; sourceTree = "<group>"; };
+		C516C7F12759553E0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7F22759553E0038AB8A /* DayEleven2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEleven2020.swift; sourceTree = "<group>"; };
+		C516C7F32759553E0038AB8A /* SeatMapModeler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeatMapModeler.swift; sourceTree = "<group>"; };
+		C516C7FD275956140038AB8A /* DayTwelve2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTwelve2020.swift; sourceTree = "<group>"; };
+		C516C7FE275956140038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C7FF275956140038AB8A /* Ferry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ferry.swift; sourceTree = "<group>"; };
+		C516C807275956790038AB8A /* DayThirteen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayThirteen2020.swift; sourceTree = "<group>"; };
+		C516C808275956790038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C809275956790038AB8A /* BusSchedule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusSchedule.swift; sourceTree = "<group>"; };
+		C516C811275957B00038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C812275957B00038AB8A /* DockingProgram.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DockingProgram.swift; sourceTree = "<group>"; };
+		C516C813275957B00038AB8A /* Int.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
+		C516C814275957B00038AB8A /* DayFourteen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFourteen2020.swift; sourceTree = "<group>"; };
+		C516C81E275957F50038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C81F275957F50038AB8A /* MemoryGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MemoryGame.swift; sourceTree = "<group>"; };
+		C516C820275957F50038AB8A /* DayFifteen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayFifteen2020.swift; sourceTree = "<group>"; };
+		C516C828275958390038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C829275958390038AB8A /* ClosedRangeWithGap.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClosedRangeWithGap.swift; sourceTree = "<group>"; };
+		C516C82A275958390038AB8A /* DaySixteen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySixteen2020.swift; sourceTree = "<group>"; };
+		C516C82B275958390038AB8A /* TicketScanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TicketScanner.swift; sourceTree = "<group>"; };
+		C516C8352759587A0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C8362759587A0038AB8A /* PowerSourceCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSourceCoordinate.swift; sourceTree = "<group>"; };
+		C516C8372759587A0038AB8A /* TreeDCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TreeDCoordinate.swift; sourceTree = "<group>"; };
+		C516C8382759587B0038AB8A /* DaySeventeen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DaySeventeen2020.swift; sourceTree = "<group>"; };
+		C516C8392759587B0038AB8A /* PowerSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerSource.swift; sourceTree = "<group>"; };
+		C516C83A2759587B0038AB8A /* ExperimentalPowerSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExperimentalPowerSource.swift; sourceTree = "<group>"; };
+		C516C83B2759587B0038AB8A /* FourDCoordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FourDCoordinate.swift; sourceTree = "<group>"; };
+		C516C83C2759587B0038AB8A /* ConwayCube.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConwayCube.swift; sourceTree = "<group>"; };
+		C516C84E275958C70038AB8A /* DayEighteen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayEighteen2020.swift; sourceTree = "<group>"; };
+		C516C84F275958C70038AB8A /* MathEquation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MathEquation.swift; sourceTree = "<group>"; };
+		C516C850275958C70038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C8582759592F0038AB8A /* MessageRule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageRule.swift; sourceTree = "<group>"; };
+		C516C8592759592F0038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C85A2759592F0038AB8A /* RuleParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RuleParser.swift; sourceTree = "<group>"; };
+		C516C85B2759592F0038AB8A /* DayNineteen2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayNineteen2020.swift; sourceTree = "<group>"; };
+		C516C865275959760038AB8A /* SatelliteImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatelliteImage.swift; sourceTree = "<group>"; };
+		C516C866275959760038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C867275959760038AB8A /* SatelliteImageTile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SatelliteImageTile.swift; sourceTree = "<group>"; };
+		C516C868275959770038AB8A /* DayTwenty2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTwenty2020.swift; sourceTree = "<group>"; };
+		C516C872275959C60038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C873275959C60038AB8A /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
+		C516C874275959C60038AB8A /* Groceries.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Groceries.swift; sourceTree = "<group>"; };
+		C516C875275959C60038AB8A /* DayTwentyOne2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTwentyOne2020.swift; sourceTree = "<group>"; };
+		C516C87F27595A310038AB8A /* DayTwentyTwo2020.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DayTwentyTwo2020.swift; sourceTree = "<group>"; };
+		C516C88027595A310038AB8A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C88127595A310038AB8A /* CombatGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombatGame.swift; sourceTree = "<group>"; };
 		C556EF642757B454009B3078 /* AdventOfCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventOfCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C556EF672757B454009B3078 /* AdventOfCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventOfCodeApp.swift; sourceTree = "<group>"; };
 		C556EF692757B454009B3078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,9 +302,270 @@
 		C516C77F275907380038AB8A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				C516C7CE27594E780038AB8A /* Array.swift */,
 				C516C780275907430038AB8A /* String.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C516C783275946620038AB8A /* 2020 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C784275948900038AB8A /* Day01 */,
+				C516C78B275949BA0038AB8A /* Day02 */,
+				C516C79527594AE20038AB8A /* Day03 */,
+				C516C7A227594B6C0038AB8A /* Day04 */,
+				C516C7AC27594BF70038AB8A /* Day05 */,
+				C516C7B627594D200038AB8A /* Day06 */,
+				C516C7C127594DFC0038AB8A /* Day07 */,
+				C516C7D127594E920038AB8A /* Day08 */,
+				C516C7DB27594F140038AB8A /* Day09 */,
+				C516C7E5275954190038AB8A /* Day10 */,
+				C516C7EF275955130038AB8A /* Day11 */,
+				C516C7FC275956050038AB8A /* Day12 */,
+				C516C8062759566B0038AB8A /* Day13 */,
+				C516C8102759579F0038AB8A /* Day14 */,
+				C516C81D275957EA0038AB8A /* Day15 */,
+				C516C8272759582C0038AB8A /* Day16 */,
+				C516C8342759586C0038AB8A /* Day17 */,
+				C516C84D275958BB0038AB8A /* Day18 */,
+				C516C857275959230038AB8A /* Day19 */,
+				C516C8642759596A0038AB8A /* Day20 */,
+				C516C871275959BB0038AB8A /* Day21 */,
+				C516C87E27595A230038AB8A /* Day22 */,
+			);
+			path = 2020;
+			sourceTree = "<group>";
+		};
+		C516C784275948900038AB8A /* Day01 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C785275948A30038AB8A /* README.md */,
+				C516C786275948A30038AB8A /* DayOne2020.swift */,
+			);
+			path = Day01;
+			sourceTree = "<group>";
+		};
+		C516C78B275949BA0038AB8A /* Day02 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C78D275949F30038AB8A /* README.md */,
+				C516C78E275949F30038AB8A /* DayTwo2020.swift */,
+				C516C78C275949F30038AB8A /* PasswordPolicy.swift */,
+			);
+			path = Day02;
+			sourceTree = "<group>";
+		};
+		C516C79527594AE20038AB8A /* Day03 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C79827594AF00038AB8A /* README.md */,
+				C516C79627594AF00038AB8A /* DayThree2020.swift */,
+				C516C79727594AF00038AB8A /* Forest.swift */,
+			);
+			path = Day03;
+			sourceTree = "<group>";
+		};
+		C516C7A227594B6C0038AB8A /* Day04 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7A327594B7C0038AB8A /* README.md */,
+				C516C7A427594B7C0038AB8A /* DayFour2020.swift */,
+				C516C7A527594B7C0038AB8A /* Passport.swift */,
+			);
+			path = Day04;
+			sourceTree = "<group>";
+		};
+		C516C7AC27594BF70038AB8A /* Day05 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7AD27594C040038AB8A /* README.md */,
+				C516C7AF27594C040038AB8A /* DayFive.swift */,
+				C516C7AE27594C040038AB8A /* BoardingPass.swift */,
+			);
+			path = Day05;
+			sourceTree = "<group>";
+		};
+		C516C7B627594D200038AB8A /* Day06 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7B827594D2B0038AB8A /* README.md */,
+				C516C7B927594D2B0038AB8A /* DaySix2020.swift */,
+				C516C7B727594D2B0038AB8A /* CustomsForm.swift */,
+			);
+			path = Day06;
+			sourceTree = "<group>";
+		};
+		C516C7C127594DFC0038AB8A /* Day07 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7C427594E0B0038AB8A /* README.md */,
+				C516C7C527594E0B0038AB8A /* DaySeven2020.swift */,
+				C516C7C227594E0B0038AB8A /* LuggageRule.swift */,
+				C516C7C327594E0B0038AB8A /* LuggageRuleSet.swift */,
+			);
+			path = Day07;
+			sourceTree = "<group>";
+		};
+		C516C7D127594E920038AB8A /* Day08 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7D327594EA10038AB8A /* README.md */,
+				C516C7D227594EA10038AB8A /* DayEight2020.swift */,
+				C516C7D427594EA10038AB8A /* BootCode.swift */,
+			);
+			path = Day08;
+			sourceTree = "<group>";
+		};
+		C516C7DB27594F140038AB8A /* Day09 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7DE27594F1E0038AB8A /* README.md */,
+				C516C7DC27594F1E0038AB8A /* DayNine2020.swift */,
+				C516C7DD27594F1E0038AB8A /* XMASCypher.swift */,
+			);
+			path = Day09;
+			sourceTree = "<group>";
+		};
+		C516C7E5275954190038AB8A /* Day10 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7E62759542C0038AB8A /* README.md */,
+				C516C7E72759542C0038AB8A /* DayTen2020.swift */,
+				C516C7E82759542C0038AB8A /* AdapterArray.swift */,
+			);
+			path = Day10;
+			sourceTree = "<group>";
+		};
+		C516C7EF275955130038AB8A /* Day11 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7F12759553E0038AB8A /* README.md */,
+				C516C7F22759553E0038AB8A /* DayEleven2020.swift */,
+				C516C7F02759553E0038AB8A /* SeatMap.swift */,
+				C516C7F32759553E0038AB8A /* SeatMapModeler.swift */,
+			);
+			path = Day11;
+			sourceTree = "<group>";
+		};
+		C516C7FC275956050038AB8A /* Day12 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C7FE275956140038AB8A /* README.md */,
+				C516C7FD275956140038AB8A /* DayTwelve2020.swift */,
+				C516C7FF275956140038AB8A /* Ferry.swift */,
+			);
+			path = Day12;
+			sourceTree = "<group>";
+		};
+		C516C8062759566B0038AB8A /* Day13 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C808275956790038AB8A /* README.md */,
+				C516C807275956790038AB8A /* DayThirteen2020.swift */,
+				C516C809275956790038AB8A /* BusSchedule.swift */,
+			);
+			path = Day13;
+			sourceTree = "<group>";
+		};
+		C516C8102759579F0038AB8A /* Day14 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C811275957B00038AB8A /* README.md */,
+				C516C814275957B00038AB8A /* DayFourteen2020.swift */,
+				C516C812275957B00038AB8A /* DockingProgram.swift */,
+				C516C813275957B00038AB8A /* Int.swift */,
+			);
+			path = Day14;
+			sourceTree = "<group>";
+		};
+		C516C81D275957EA0038AB8A /* Day15 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C81E275957F50038AB8A /* README.md */,
+				C516C820275957F50038AB8A /* DayFifteen2020.swift */,
+				C516C81F275957F50038AB8A /* MemoryGame.swift */,
+			);
+			path = Day15;
+			sourceTree = "<group>";
+		};
+		C516C8272759582C0038AB8A /* Day16 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C828275958390038AB8A /* README.md */,
+				C516C82A275958390038AB8A /* DaySixteen2020.swift */,
+				C516C829275958390038AB8A /* ClosedRangeWithGap.swift */,
+				C516C82B275958390038AB8A /* TicketScanner.swift */,
+			);
+			path = Day16;
+			sourceTree = "<group>";
+		};
+		C516C8342759586C0038AB8A /* Day17 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C8352759587A0038AB8A /* README.md */,
+				C516C8382759587B0038AB8A /* DaySeventeen2020.swift */,
+				C516C83C2759587B0038AB8A /* ConwayCube.swift */,
+				C516C83A2759587B0038AB8A /* ExperimentalPowerSource.swift */,
+				C516C83B2759587B0038AB8A /* FourDCoordinate.swift */,
+				C516C8392759587B0038AB8A /* PowerSource.swift */,
+				C516C8362759587A0038AB8A /* PowerSourceCoordinate.swift */,
+				C516C8372759587A0038AB8A /* TreeDCoordinate.swift */,
+			);
+			path = Day17;
+			sourceTree = "<group>";
+		};
+		C516C84D275958BB0038AB8A /* Day18 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C850275958C70038AB8A /* README.md */,
+				C516C84E275958C70038AB8A /* DayEighteen2020.swift */,
+				C516C84F275958C70038AB8A /* MathEquation.swift */,
+			);
+			path = Day18;
+			sourceTree = "<group>";
+		};
+		C516C857275959230038AB8A /* Day19 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C8592759592F0038AB8A /* README.md */,
+				C516C85B2759592F0038AB8A /* DayNineteen2020.swift */,
+				C516C8582759592F0038AB8A /* MessageRule.swift */,
+				C516C85A2759592F0038AB8A /* RuleParser.swift */,
+			);
+			path = Day19;
+			sourceTree = "<group>";
+		};
+		C516C8642759596A0038AB8A /* Day20 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C866275959760038AB8A /* README.md */,
+				C516C868275959770038AB8A /* DayTwenty2020.swift */,
+				C516C865275959760038AB8A /* SatelliteImage.swift */,
+				C516C867275959760038AB8A /* SatelliteImageTile.swift */,
+			);
+			path = Day20;
+			sourceTree = "<group>";
+		};
+		C516C871275959BB0038AB8A /* Day21 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C872275959C60038AB8A /* README.md */,
+				C516C875275959C60038AB8A /* DayTwentyOne2020.swift */,
+				C516C873275959C60038AB8A /* Food.swift */,
+				C516C874275959C60038AB8A /* Groceries.swift */,
+			);
+			path = Day21;
+			sourceTree = "<group>";
+		};
+		C516C87E27595A230038AB8A /* Day22 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C88027595A310038AB8A /* README.md */,
+				C516C87F27595A310038AB8A /* DayTwentyTwo2020.swift */,
+				C516C88127595A310038AB8A /* CombatGame.swift */,
+			);
+			path = Day22;
 			sourceTree = "<group>";
 		};
 		C556EF5B2757B454009B3078 = {
@@ -138,6 +592,7 @@
 			isa = PBXGroup;
 			children = (
 				C556EF932757B597009B3078 /* Shared */,
+				C516C783275946620038AB8A /* 2020 */,
 				C556EF922757B461009B3078 /* 2021 */,
 				C556EF672757B454009B3078 /* AdventOfCodeApp.swift */,
 				C556EFA72757C9D1009B3078 /* Views */,
@@ -188,6 +643,7 @@
 				C516C77F275907380038AB8A /* Extensions */,
 				C556EF942757B6D4009B3078 /* AdventDay.swift */,
 				C556EFA12757C78B009B3078 /* AdventYear.swift */,
+				C516C79F27594B4A0038AB8A /* Coordinate.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -343,16 +799,73 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C516C81B275957B00038AB8A /* DayFourteen2020.swift in Sources */,
 				C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */,
+				C516C7CC27594E0B0038AB8A /* DaySeven2020.swift in Sources */,
 				C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */,
+				C516C78F275949F30038AB8A /* PasswordPolicy.swift in Sources */,
+				C516C851275958C70038AB8A /* DayEighteen2020.swift in Sources */,
+				C516C7BE27594D2B0038AB8A /* DaySix2020.swift in Sources */,
+				C516C8412759587B0038AB8A /* TreeDCoordinate.swift in Sources */,
+				C516C7AA27594B7C0038AB8A /* Passport.swift in Sources */,
+				C516C86F275959770038AB8A /* DayTwenty2020.swift in Sources */,
+				C516C817275957B00038AB8A /* DockingProgram.swift in Sources */,
+				C516C7B427594C040038AB8A /* DayFive.swift in Sources */,
+				C516C800275956140038AB8A /* DayTwelve2020.swift in Sources */,
+				C516C87A275959C60038AB8A /* Groceries.swift in Sources */,
+				C516C84B2759587B0038AB8A /* ConwayCube.swift in Sources */,
+				C516C878275959C60038AB8A /* Food.swift in Sources */,
+				C516C7A027594B4A0038AB8A /* Coordinate.swift in Sources */,
+				C516C80A275956790038AB8A /* DayThirteen2020.swift in Sources */,
+				C516C7DF27594F1E0038AB8A /* DayNine2020.swift in Sources */,
+				C516C8492759587B0038AB8A /* FourDCoordinate.swift in Sources */,
+				C516C7C827594E0B0038AB8A /* LuggageRuleSet.swift in Sources */,
+				C516C87C275959C60038AB8A /* DayTwentyOne2020.swift in Sources */,
+				C516C7CF27594E780038AB8A /* Array.swift in Sources */,
+				C516C7A827594B7C0038AB8A /* DayFour2020.swift in Sources */,
 				C516C781275907430038AB8A /* String.swift in Sources */,
+				C516C7ED2759542C0038AB8A /* AdapterArray.swift in Sources */,
+				C516C825275957F60038AB8A /* DayFifteen2020.swift in Sources */,
 				C516C7782757D0EA0038AB8A /* AdventDayView.swift in Sources */,
+				C516C7F82759553E0038AB8A /* DayEleven2020.swift in Sources */,
+				C516C830275958390038AB8A /* DaySixteen2020.swift in Sources */,
+				C516C88227595A310038AB8A /* DayTwentyTwo2020.swift in Sources */,
 				C556EFA52757C9C9009B3078 /* AdventDayCell.swift in Sources */,
+				C516C8472759587B0038AB8A /* ExperimentalPowerSource.swift in Sources */,
+				C516C79B27594AF00038AB8A /* Forest.swift in Sources */,
+				C516C7D527594EA10038AB8A /* DayEight2020.swift in Sources */,
+				C516C8432759587B0038AB8A /* DaySeventeen2020.swift in Sources */,
+				C516C86D275959770038AB8A /* SatelliteImageTile.swift in Sources */,
+				C516C7F42759553E0038AB8A /* SeatMap.swift in Sources */,
+				C516C793275949F30038AB8A /* DayTwo2020.swift in Sources */,
+				C516C832275958390038AB8A /* TicketScanner.swift in Sources */,
+				C516C8452759587B0038AB8A /* PowerSource.swift in Sources */,
+				C516C83F2759587B0038AB8A /* PowerSourceCoordinate.swift in Sources */,
 				C556EF9F2757C3AD009B3078 /* DayOne2021.swift in Sources */,
+				C516C85C2759592F0038AB8A /* MessageRule.swift in Sources */,
+				C516C853275958C70038AB8A /* MathEquation.swift in Sources */,
+				C516C789275948A30038AB8A /* DayOne2020.swift in Sources */,
+				C516C88627595A310038AB8A /* CombatGame.swift in Sources */,
+				C516C8602759592F0038AB8A /* RuleParser.swift in Sources */,
+				C516C79927594AF00038AB8A /* DayThree2020.swift in Sources */,
+				C516C7D927594EA10038AB8A /* BootCode.swift in Sources */,
+				C516C8622759592F0038AB8A /* DayNineteen2020.swift in Sources */,
 				C556EF6A2757B454009B3078 /* ContentView.swift in Sources */,
+				C516C7B227594C040038AB8A /* BoardingPass.swift in Sources */,
+				C516C819275957B00038AB8A /* Int.swift in Sources */,
 				C556EF682757B454009B3078 /* AdventOfCodeApp.swift in Sources */,
+				C516C7BA27594D2B0038AB8A /* CustomsForm.swift in Sources */,
+				C516C869275959770038AB8A /* SatelliteImage.swift in Sources */,
+				C516C82E275958390038AB8A /* ClosedRangeWithGap.swift in Sources */,
+				C516C7EB2759542C0038AB8A /* DayTen2020.swift in Sources */,
+				C516C823275957F60038AB8A /* MemoryGame.swift in Sources */,
+				C516C7C627594E0B0038AB8A /* LuggageRule.swift in Sources */,
 				C556EFA22757C78B009B3078 /* AdventYear.swift in Sources */,
+				C516C80E275956790038AB8A /* BusSchedule.swift in Sources */,
 				C556EF952757B6D4009B3078 /* AdventDay.swift in Sources */,
+				C516C804275956140038AB8A /* Ferry.swift in Sources */,
+				C516C7E127594F1E0038AB8A /* XMASCypher.swift in Sources */,
+				C516C7FA2759553E0038AB8A /* SeatMapModeler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,13 +873,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C516C88327595A310038AB8A /* DayTwentyTwo2020.swift in Sources */,
+				C516C7D627594EA10038AB8A /* DayEight2020.swift in Sources */,
 				C516C77E275815080038AB8A /* DayTwo2021.swift in Sources */,
+				C516C8612759592F0038AB8A /* RuleParser.swift in Sources */,
+				C516C7FB2759553E0038AB8A /* SeatMapModeler.swift in Sources */,
 				C556EFA02757C3AD009B3078 /* DayOne2021.swift in Sources */,
+				C516C7F92759553E0038AB8A /* DayEleven2020.swift in Sources */,
+				C516C826275957F60038AB8A /* DayFifteen2020.swift in Sources */,
 				C556EF962757B6D4009B3078 /* AdventDay.swift in Sources */,
+				C516C7EE2759542C0038AB8A /* AdapterArray.swift in Sources */,
+				C516C854275958C70038AB8A /* MathEquation.swift in Sources */,
 				C556EFA32757C78B009B3078 /* AdventYear.swift in Sources */,
+				C516C7C727594E0B0038AB8A /* LuggageRule.swift in Sources */,
+				C516C7A927594B7C0038AB8A /* DayFour2020.swift in Sources */,
+				C516C818275957B00038AB8A /* DockingProgram.swift in Sources */,
+				C516C7DA27594EA10038AB8A /* BootCode.swift in Sources */,
+				C516C7D027594E780038AB8A /* Array.swift in Sources */,
+				C516C86A275959770038AB8A /* SatelliteImage.swift in Sources */,
+				C516C879275959C60038AB8A /* Food.swift in Sources */,
+				C516C7CD27594E0B0038AB8A /* DaySeven2020.swift in Sources */,
+				C516C852275958C70038AB8A /* DayEighteen2020.swift in Sources */,
+				C516C8442759587B0038AB8A /* DaySeventeen2020.swift in Sources */,
 				C516C782275907430038AB8A /* String.swift in Sources */,
+				C516C84C2759587B0038AB8A /* ConwayCube.swift in Sources */,
+				C516C8422759587B0038AB8A /* TreeDCoordinate.swift in Sources */,
+				C516C87B275959C60038AB8A /* Groceries.swift in Sources */,
+				C516C833275958390038AB8A /* TicketScanner.swift in Sources */,
+				C516C794275949F30038AB8A /* DayTwo2020.swift in Sources */,
+				C516C79C27594AF00038AB8A /* Forest.swift in Sources */,
+				C516C805275956140038AB8A /* Ferry.swift in Sources */,
+				C516C79A27594AF00038AB8A /* DayThree2020.swift in Sources */,
+				C516C87D275959C60038AB8A /* DayTwentyOne2020.swift in Sources */,
+				C516C82F275958390038AB8A /* ClosedRangeWithGap.swift in Sources */,
+				C516C7C927594E0B0038AB8A /* LuggageRuleSet.swift in Sources */,
+				C516C831275958390038AB8A /* DaySixteen2020.swift in Sources */,
+				C516C80F275956790038AB8A /* BusSchedule.swift in Sources */,
+				C516C81C275957B00038AB8A /* DayFourteen2020.swift in Sources */,
+				C516C86E275959770038AB8A /* SatelliteImageTile.swift in Sources */,
+				C516C824275957F60038AB8A /* MemoryGame.swift in Sources */,
+				C516C81A275957B00038AB8A /* Int.swift in Sources */,
+				C516C790275949F30038AB8A /* PasswordPolicy.swift in Sources */,
+				C516C8482759587B0038AB8A /* ExperimentalPowerSource.swift in Sources */,
+				C516C7B327594C040038AB8A /* BoardingPass.swift in Sources */,
+				C516C7E227594F1E0038AB8A /* XMASCypher.swift in Sources */,
+				C516C85D2759592F0038AB8A /* MessageRule.swift in Sources */,
+				C516C7A127594B4A0038AB8A /* Coordinate.swift in Sources */,
+				C516C8632759592F0038AB8A /* DayNineteen2020.swift in Sources */,
+				C516C7E027594F1E0038AB8A /* DayNine2020.swift in Sources */,
+				C516C7F52759553E0038AB8A /* SeatMap.swift in Sources */,
+				C516C7EC2759542C0038AB8A /* DayTen2020.swift in Sources */,
+				C516C7BB27594D2B0038AB8A /* CustomsForm.swift in Sources */,
 				C556EF7A2757B455009B3078 /* AdventOfCodeTests.swift in Sources */,
+				C516C7AB27594B7C0038AB8A /* Passport.swift in Sources */,
+				C516C80B275956790038AB8A /* DayThirteen2020.swift in Sources */,
+				C516C870275959770038AB8A /* DayTwenty2020.swift in Sources */,
+				C516C84A2759587B0038AB8A /* FourDCoordinate.swift in Sources */,
+				C516C801275956140038AB8A /* DayTwelve2020.swift in Sources */,
+				C516C8462759587B0038AB8A /* PowerSource.swift in Sources */,
+				C516C8402759587B0038AB8A /* PowerSourceCoordinate.swift in Sources */,
+				C516C88727595A310038AB8A /* CombatGame.swift in Sources */,
 				C556EFA62757C9C9009B3078 /* AdventDayCell.swift in Sources */,
+				C516C7B527594C040038AB8A /* DayFive.swift in Sources */,
+				C516C78A275948A30038AB8A /* DayOne2020.swift in Sources */,
+				C516C7BF27594D2B0038AB8A /* DaySix2020.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

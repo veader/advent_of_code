@@ -10,6 +10,7 @@ import SwiftUI
 struct AdventDayView: View {
     let day: AdventDay
     @State var runOutput: String = ""
+    @State var running: Bool = false
 
     var body: some View {
         VStack(alignment: .leading) {
@@ -17,6 +18,7 @@ struct AdventDayView: View {
                 .font(.title)
 
             Divider()
+
             HStack {
                 Button(action: runPartOne) {
                     Label("Part 1", systemImage: "play")
@@ -26,6 +28,7 @@ struct AdventDayView: View {
                     Label("Part 2", systemImage: "play")
                 }
             }
+            .padding(.vertical)
 
             TextEditor(text: $runOutput)
                 .lineSpacing(5)
@@ -35,15 +38,25 @@ struct AdventDayView: View {
             Spacer()
         }
         .padding()
+        .toolbar {
+            ToolbarItem {
+                if running {
+                    ProgressView()
+                        .scaleEffect(0.5, anchor: .center)
+                }
+            }
+        }
     }
 
     func runPartOne() {
         runOutput = "Running part one..."
+        running = true
         run(part: 1)
     }
 
     func runPartTwo() {
         runOutput = "Running part two..."
+        running = true
         run(part: 2)
     }
 
@@ -52,6 +65,7 @@ struct AdventDayView: View {
             let output = day.run(part: part)
             DispatchQueue.main.async {
                 runOutput = "\(output)"
+                running = false
             }
         }
     }

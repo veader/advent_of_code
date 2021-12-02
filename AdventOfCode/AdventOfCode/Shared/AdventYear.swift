@@ -21,8 +21,33 @@ enum AdventYear: String, CaseIterable, Identifiable {
                 DayOne2021(),
                 DayTwo2021(),
             ]
-        default:
-            return []
+        case .year2020:
+            return [
+                DayOne2020(),
+                DayTwo2020(),
+                DayThree2020(),
+                DayFour2020(),
+                DayFive2020(),
+                DaySix2020(),
+                DaySeven2020(),
+                DayEight2020(),
+                DayNine2020(),
+                DayTen2020(),
+                DayEleven2020(),
+                DayTwelve2020(),
+                DayThirteen2020(),
+                DayFourteen2020(),
+                DayFifteen2020(),
+                DaySixteen2020(),
+                DaySeventeen2020(),
+                DayEighteen2020(),
+                DayNineteen2020(),
+                DayTwenty2020(),
+                DayTwentyOne2020(),
+                DayTwentyTwo2020(),
+            ]
+//        default:
+//            return []
         }
     }
 }
