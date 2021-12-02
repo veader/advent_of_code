@@ -10,6 +10,10 @@
 		C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7752757CFE20038AB8A /* AdventCommands.swift */; };
 		C516C7782757D0EA0038AB8A /* AdventDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7772757D0EA0038AB8A /* AdventDayView.swift */; };
 		C516C7792757E98C0038AB8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
+		C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C77C275815080038AB8A /* DayTwo2021.swift */; };
+		C516C77E275815080038AB8A /* DayTwo2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C77C275815080038AB8A /* DayTwo2021.swift */; };
+		C516C781275907430038AB8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C780275907430038AB8A /* String.swift */; };
+		C516C782275907430038AB8A /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C780275907430038AB8A /* String.swift */; };
 		C556EF682757B454009B3078 /* AdventOfCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF672757B454009B3078 /* AdventOfCodeApp.swift */; };
 		C556EF6A2757B454009B3078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF692757B454009B3078 /* ContentView.swift */; };
 		C556EF6C2757B455009B3078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -47,6 +51,9 @@
 /* Begin PBXFileReference section */
 		C516C7752757CFE20038AB8A /* AdventCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventCommands.swift; sourceTree = "<group>"; };
 		C516C7772757D0EA0038AB8A /* AdventDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDayView.swift; sourceTree = "<group>"; };
+		C516C77B275814F10038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C77C275815080038AB8A /* DayTwo2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwo2021.swift; sourceTree = "<group>"; };
+		C516C780275907430038AB8A /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		C556EF642757B454009B3078 /* AdventOfCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventOfCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C556EF672757B454009B3078 /* AdventOfCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventOfCodeApp.swift; sourceTree = "<group>"; };
 		C556EF692757B454009B3078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -90,6 +97,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C516C77A275814DE0038AB8A /* Day02 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C77B275814F10038AB8A /* README.md */,
+				C516C77C275815080038AB8A /* DayTwo2021.swift */,
+			);
+			path = Day02;
+			sourceTree = "<group>";
+		};
+		C516C77F275907380038AB8A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C516C780275907430038AB8A /* String.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C556EF5B2757B454009B3078 = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				C556EF972757B6E1009B3078 /* Day01 */,
+				C516C77A275814DE0038AB8A /* Day02 */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -160,6 +185,7 @@
 		C556EF932757B597009B3078 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				C516C77F275907380038AB8A /* Extensions */,
 				C556EF942757B6D4009B3078 /* AdventDay.swift */,
 				C556EFA12757C78B009B3078 /* AdventYear.swift */,
 			);
@@ -317,7 +343,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */,
 				C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */,
+				C516C781275907430038AB8A /* String.swift in Sources */,
 				C516C7782757D0EA0038AB8A /* AdventDayView.swift in Sources */,
 				C556EFA52757C9C9009B3078 /* AdventDayCell.swift in Sources */,
 				C556EF9F2757C3AD009B3078 /* DayOne2021.swift in Sources */,
@@ -332,9 +360,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C516C77E275815080038AB8A /* DayTwo2021.swift in Sources */,
 				C556EFA02757C3AD009B3078 /* DayOne2021.swift in Sources */,
 				C556EF962757B6D4009B3078 /* AdventDay.swift in Sources */,
 				C556EFA32757C78B009B3078 /* AdventYear.swift in Sources */,
+				C516C782275907430038AB8A /* String.swift in Sources */,
 				C556EF7A2757B455009B3078 /* AdventOfCodeTests.swift in Sources */,
 				C556EFA62757C9C9009B3078 /* AdventDayCell.swift in Sources */,
 			);
