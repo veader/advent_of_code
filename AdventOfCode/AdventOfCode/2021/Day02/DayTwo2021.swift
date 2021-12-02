@@ -11,7 +11,7 @@ struct DayTwo2021: AdventDay {
     var year = 2021
     var dayNumber = 2
     var dayTitle = "Dive!"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> [Submarine.Command] {
         (input ?? "")
@@ -22,13 +22,16 @@ struct DayTwo2021: AdventDay {
 
     func partOne(input: String?) -> Any {
         let commands = parse(input)
-        let sub = Submarine(commands: commands)
+        let sub = Submarine(commands: commands, mode: .simple)
         sub.dive()
         return sub.output
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let commands = parse(input)
+        let sub = Submarine(commands: commands, mode: .useAim)
+        sub.dive()
+        return sub.output
     }
 
     class Submarine {
@@ -65,14 +68,22 @@ struct DayTwo2021: AdventDay {
             }
         }
 
+        enum Mode {
+            case simple
+            case useAim
+        }
+
         var commands: [Command]
+        var mode: Mode
         var depth: Int = 0
         var distance: Int = 0
+        var aim: Int = 0
 
         var output: Int { depth * distance }
 
-        init(commands: [Command]) {
+        init(commands: [Command], mode: Mode = .useAim) {
             self.commands = commands
+            self.mode = mode
         }
 
         /// Run the current set of commands
@@ -81,10 +92,21 @@ struct DayTwo2021: AdventDay {
                 switch cmd {
                 case .forward(distance: let d):
                     distance += d
+                    if case .useAim = mode {
+                        depth += (aim * d)
+                    }
                 case .down(depth: let d):
-                    depth += d
+                    if case .simple = mode {
+                        depth += d
+                    } else {
+                        aim += d
+                    }
                 case .up(depth: let d):
-                    depth -= d
+                    if case .simple = mode {
+                        depth -= d
+                    } else {
+                        aim -= d
+                    }
                 }
             }
         }
