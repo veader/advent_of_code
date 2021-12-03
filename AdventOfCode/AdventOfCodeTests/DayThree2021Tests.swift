@@ -32,12 +32,22 @@ class DayThree2021Tests: XCTestCase {
         XCTAssertEqual([0,1,0,1,0], parsed.last)
     }
 
+    // part 1
     func testRateCalculations() {
         let day = DayThree2021()
         let reports = day.parse(sampleInput)
         let rates = day.calcualtePartOne(reports)
         XCTAssertEqual(22, rates.gamma)
         XCTAssertEqual(9, rates.epsilon)
+    }
+
+    // part 2
+    func testRatingCalculations() {
+        let day = DayThree2021()
+        let reports = day.parse(sampleInput)
+        let ratings = day.calculatePartTwo(reports)
+        XCTAssertEqual(23, ratings.ohTwo)
+        XCTAssertEqual(10, ratings.seeOhTwo)
     }
 
 }
