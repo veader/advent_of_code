@@ -11,7 +11,7 @@ struct DayFour2021: AdventDay {
     var year = 2021
     var dayNumber = 4
     var dayTitle = "Giant Squid"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> BingoGame? {
         guard let input = input else { return nil }
@@ -26,7 +26,7 @@ struct DayFour2021: AdventDay {
 
     func partTwo(input: String?) -> Any {
         guard let game = parse(input) else { return Int.min }
-        game.play()
-        return Int.min
+        game.play(pickLast: true)
+        return game.finalScore
     }
 }

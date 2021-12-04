@@ -12,21 +12,37 @@ class BingoGame {
     var boards: [BingoBoard] = [BingoBoard]()
     var finalScore: Int = 0
 
-    func play() {
+    func play(pickLast: Bool = false) {
+        // indices of winning boards
+        var winningBoards = Set<Int>()
+
         for draw in draws {
             print("Drew \(draw)...")
             boards.forEach { $0.mark(draw) }
 
             print("Current state:")
-            for board in boards {
+            for (idx, board) in boards.enumerated() {
                 print(board)
 
                 // if any board has BINGO, the game is over
                 if board.hasBingo() {
-                    print("WINNER!")
-                    // calculate score
-                    finalScore = board.sum() * draw
-                    return
+
+                    if pickLast {
+                        guard !winningBoards.contains(idx) else { continue } // skip boards that have already won
+                        print("WINNER!")
+                        print("Winning board count: \(winningBoards.count)")
+                        if winningBoards.count == (boards.count - 1) {
+                            finalScore = board.sum() * draw
+                            return
+                        } else {
+                            winningBoards.insert(idx)
+                        }
+                    } else {
+                        print("WINNER!")
+                        // calculate score
+                        finalScore = board.sum() * draw
+                        return
+                    }
                 }
                 print("----------")
             }

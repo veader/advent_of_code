@@ -88,4 +88,10 @@ class DayFour2021Tests: XCTestCase {
         game.play()
         XCTAssertEqual(4512, game.finalScore)
     }
+
+    func testGamePlayPickingLast() {
+        let game = BingoGame.parse(sampleGameInput)
+        game.play(pickLast: true)
+        XCTAssertEqual(1924, game.finalScore)
+    }
 }
