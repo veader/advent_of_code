@@ -8,6 +8,17 @@
 import Foundation
 
 struct Line {
+    enum Direction {
+        case left
+        case right
+        case up
+        case down
+        case upLeft
+        case upRight
+        case downLeft
+        case downRight
+    }
+
     let start: Coordinate
     let end: Coordinate
 
@@ -23,21 +34,71 @@ struct Line {
         !(isVertical || isHorizontal)
     }
 
+    var direction: Direction {
+        if start.x == end.x { // straight
+            if start.y < end.y {
+                return .down
+            } else {
+                return .up
+            }
+        } else if start.x < end.x { // right
+            if start.y == end.y { // straight
+                return .right
+            } else if start.y < end.y { // down
+                return .downRight
+            } else { // up
+                return .upRight
+            }
+        } else { // left
+            if start.y == end.y { // straight
+                return .left
+            } else if start.y < end.y { // down
+                return .downLeft
+            } else { // up
+                return .upLeft
+            }
+        }
+    }
+
     /// Return all points along this line
     func points() -> [Coordinate] {
         var coordinates = [Coordinate]()
-        // TODO: handle diagnoals
-        if isDiagonal {
-            return []
-        } else {
-            let xs = [start.x, end.x]
-            let ys = [start.y, end.y]
-            (xs.min()!...xs.max()!).forEach { x in
-                (ys.min()!...ys.max()!).forEach { y in
-                    coordinates.append(Coordinate(x: x, y: y))
-                }
-            }
+
+        var xOffset = 0
+        var yOffset = 0
+        switch direction {
+        case .up:
+            xOffset = 0
+            yOffset = -1
+        case .down:
+            xOffset = 0
+            yOffset = 1
+        case .left:
+            xOffset = -1
+            yOffset = 0
+        case .right:
+            xOffset = 1
+            yOffset = 0
+        case .downLeft:
+            xOffset = -1
+            yOffset = 1
+        case .downRight:
+            xOffset = 1
+            yOffset = 1
+        case .upRight:
+            xOffset = 1
+            yOffset = -1
+        case .upLeft:
+            xOffset = -1
+            yOffset = -1
         }
+
+        var point = start
+        while point != end {
+            coordinates.append(point)
+            point = point.moving(xOffset: xOffset, yOffset: yOffset)
+        }
+        coordinates.append(end)
         return coordinates
     }
 

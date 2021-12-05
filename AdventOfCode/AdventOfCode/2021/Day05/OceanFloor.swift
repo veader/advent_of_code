@@ -18,8 +18,7 @@ class OceanFloor {
 
     func createMap(ignoreDiagonals: Bool) {
         ventLines.forEach { line in
-            if ignoreDiagonals && !line.isVertical && !line.isHorizontal {
-                print("Ignoring diagonal line: \(line)")
+            if ignoreDiagonals && line.isDiagonal {
                 return
             }
 

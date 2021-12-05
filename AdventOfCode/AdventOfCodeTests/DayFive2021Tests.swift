@@ -64,16 +64,44 @@ class DayFive2021Tests: XCTestCase {
         XCTAssertTrue(line!.isDiagonal)
     }
 
+    func testLineDirection() {
+        var line = Line.parse("0,0 -> 0,1")
+        XCTAssertEqual(.down, line!.direction)
+
+        line = Line.parse("0,2 -> 0,0")
+        XCTAssertEqual(.up, line!.direction)
+
+        line = Line.parse("0,0 -> 2,0")
+        XCTAssertEqual(.right, line!.direction)
+
+        line = Line.parse("4,0 -> 2,0")
+        XCTAssertEqual(.left, line!.direction)
+
+        line = Line.parse("0,0 -> 2,2")
+        XCTAssertEqual(.downRight, line!.direction)
+
+        line = Line.parse("2,2 -> 0,4")
+        XCTAssertEqual(.downLeft, line!.direction)
+
+        line = Line.parse("2,2 -> 4,0")
+        XCTAssertEqual(.upRight, line!.direction)
+
+        line = Line.parse("2,2 -> 0,0")
+        XCTAssertEqual(.upLeft, line!.direction)
+    }
+
     func testLinePoints() {
         var line = Line.parse("0,1 -> 0,10")
         var points = line!.points()
-        print(points)
         XCTAssertEqual(10, points.count)
 
         line = Line.parse("0,1 -> 8,1")
         points = line!.points()
-        print(points)
         XCTAssertEqual(9, points.count)
+
+        line = Line.parse("0,0 -> 4,4")
+        points = line!.points()
+        XCTAssertEqual(5, points.count)
     }
 
     func testOceanFloor() {
@@ -91,7 +119,6 @@ class DayFive2021Tests: XCTestCase {
         XCTAssertNil(floor.floorMap[Coordinate(x: 0, y: 0)])
         XCTAssertEqual(1, floor.floorMap[Coordinate(x: 7, y: 0)])
         XCTAssertEqual(2, floor.floorMap[Coordinate(x: 0, y: 9)])
-        print(floor)
     }
 
     func testOceanFloorOverlap() {
@@ -99,5 +126,12 @@ class DayFive2021Tests: XCTestCase {
         let lines = day.parse(sampleInput)
         let floor = OceanFloor(lines: lines)
         XCTAssertEqual(5, floor.overlapPoints().count)
+    }
+
+    func testOceanFloorOverlapWithDiagonals() {
+        let day = DayFive2021()
+        let lines = day.parse(sampleInput)
+        let floor = OceanFloor(lines: lines, ignoreDiagonals: false)
+        XCTAssertEqual(12, floor.overlapPoints().count)
     }
 }
