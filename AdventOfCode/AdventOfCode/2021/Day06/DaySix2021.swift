@@ -7,11 +7,17 @@
 
 import Foundation
 
+extension Dictionary where Key == Int, Value == Int {
+    mutating func incrementing(_ key: Int, by update: Int) {
+        self[key] = (self[key] ?? 0) + update
+    }
+}
+
 struct DaySix2021: AdventDay {
     var year = 2021
     var dayNumber = 6
     var dayTitle = "Lanternfish"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> [Int] {
         (input ?? "").trimmingCharacters(in: .newlines)
@@ -20,7 +26,7 @@ struct DaySix2021: AdventDay {
                      .compactMap(Int.init)
     }
 
-    func model(days: Int, fish: [Int], debugPrints: Bool = false) -> [Int] {
+    func model(days: Int, fish: [Int], debugPrints: Bool = false) -> Int {
         var finalFish = fish
         (0..<days).forEach { d in
             if debugPrints {
@@ -43,16 +49,47 @@ struct DaySix2021: AdventDay {
             finalFish.append(contentsOf: Array(repeating: 8, count: appendedFishCount))
         }
 
-        return finalFish
+        return finalFish.count
+    }
+
+    func betterModeling(days: Int, fish: [Int], debugPrints: Bool = false) -> Int {
+        var buckets = [Int: Int]()
+        fish.forEach { buckets.incrementing($0, by: 1) }
+
+        (0..<days).forEach { d in
+            if debugPrints {
+                print("After \(d) days: \(buckets.values.reduce(0, +))")
+            }
+
+            var updatedBuckets = [Int: Int]()
+            buckets.forEach { time, count in
+                if time == 0 {
+                    // add fish
+                    updatedBuckets.incrementing(8, by: count)
+                    // reset ourselves in the 6 bucket
+                    updatedBuckets.incrementing(6, by: count)
+                } else {
+                    // set ourselves in the next time down bucket
+                    updatedBuckets.incrementing((time - 1), by: count)
+                }
+            }
+
+            buckets = updatedBuckets
+        }
+
+        return buckets.values.reduce(0, +)
     }
 
     func partOne(input: String?) -> Any {
         let fish = parse(input)
-        let finalFish = model(days: 80, fish: fish)
-        return finalFish.count
+        // let finalFishCount = model(days: 80, fish: fish)
+        let finalFishCount = betterModeling(days: 80, fish: fish)
+        return finalFishCount
     }
 
     func partTwo(input: String?) -> Any {
-        return Int.min
+        let fish = parse(input)
+        let finalFishCount = betterModeling(days: 256, fish: fish)
+        return finalFishCount
     }
 }
