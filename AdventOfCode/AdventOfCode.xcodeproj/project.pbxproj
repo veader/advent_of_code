@@ -145,6 +145,9 @@
 		C516C8A9275D04360038AB8A /* DayFive2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8A8275D04360038AB8A /* DayFive2021Tests.swift */; };
 		C516C8AB275D050C0038AB8A /* OceanFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8AA275D050C0038AB8A /* OceanFloor.swift */; };
 		C516C8AC275D050C0038AB8A /* OceanFloor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8AA275D050C0038AB8A /* OceanFloor.swift */; };
+		C516C8B0275DD2B70038AB8A /* DaySix2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8AF275DD2B70038AB8A /* DaySix2021.swift */; };
+		C516C8B1275DD2B70038AB8A /* DaySix2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8AF275DD2B70038AB8A /* DaySix2021.swift */; };
+		C516C8B3275DD5940038AB8A /* DaySix2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8B2275DD5940038AB8A /* DaySix2021Tests.swift */; };
 		C556EF682757B454009B3078 /* AdventOfCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF672757B454009B3078 /* AdventOfCodeApp.swift */; };
 		C556EF6A2757B454009B3078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF692757B454009B3078 /* ContentView.swift */; };
 		C556EF6C2757B455009B3078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -277,6 +280,9 @@
 		C516C8A5275D02FC0038AB8A /* Line.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Line.swift; sourceTree = "<group>"; };
 		C516C8A8275D04360038AB8A /* DayFive2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFive2021Tests.swift; sourceTree = "<group>"; };
 		C516C8AA275D050C0038AB8A /* OceanFloor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OceanFloor.swift; sourceTree = "<group>"; };
+		C516C8AE275DD2AD0038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C8AF275DD2B70038AB8A /* DaySix2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySix2021.swift; sourceTree = "<group>"; };
+		C516C8B2275DD5940038AB8A /* DaySix2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySix2021Tests.swift; sourceTree = "<group>"; };
 		C556EF642757B454009B3078 /* AdventOfCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventOfCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C556EF672757B454009B3078 /* AdventOfCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventOfCodeApp.swift; sourceTree = "<group>"; };
 		C556EF692757B454009B3078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -629,6 +635,15 @@
 			path = Day05;
 			sourceTree = "<group>";
 		};
+		C516C8AD275DD29D0038AB8A /* Day06 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C8AE275DD2AD0038AB8A /* README.md */,
+				C516C8AF275DD2B70038AB8A /* DaySix2021.swift */,
+			);
+			path = Day06;
+			sourceTree = "<group>";
+		};
 		C556EF5B2757B454009B3078 = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +694,7 @@
 				C516C88D2759F1490038AB8A /* DayThree2021Tests.swift */,
 				C516C89E275BC98A0038AB8A /* DayFour2021Tests.swift */,
 				C516C8A8275D04360038AB8A /* DayFive2021Tests.swift */,
+				C516C8B2275DD5940038AB8A /* DaySix2021Tests.swift */,
 			);
 			path = AdventOfCodeTests;
 			sourceTree = "<group>";
@@ -700,6 +716,7 @@
 				C516C8882759ECE90038AB8A /* Day03 */,
 				C516C892275BC38C0038AB8A /* Day 04 */,
 				C516C8A0275C808E0038AB8A /* Day05 */,
+				C516C8AD275DD29D0038AB8A /* Day06 */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -870,6 +887,7 @@
 				C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */,
 				C516C7CC27594E0B0038AB8A /* DaySeven2020.swift in Sources */,
 				C516C8AB275D050C0038AB8A /* OceanFloor.swift in Sources */,
+				C516C8B0275DD2B70038AB8A /* DaySix2021.swift in Sources */,
 				C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */,
 				C516C78F275949F30038AB8A /* PasswordPolicy.swift in Sources */,
 				C516C851275958C70038AB8A /* DayEighteen2020.swift in Sources */,
@@ -951,6 +969,7 @@
 				C516C7D627594EA10038AB8A /* DayEight2020.swift in Sources */,
 				C516C77E275815080038AB8A /* DayTwo2021.swift in Sources */,
 				C516C8AC275D050C0038AB8A /* OceanFloor.swift in Sources */,
+				C516C8B1275DD2B70038AB8A /* DaySix2021.swift in Sources */,
 				C516C8612759592F0038AB8A /* RuleParser.swift in Sources */,
 				C516C89D275BC7A30038AB8A /* BingoBoard.swift in Sources */,
 				C516C89F275BC98A0038AB8A /* DayFour2021Tests.swift in Sources */,
@@ -976,6 +995,7 @@
 				C516C88C2759ED010038AB8A /* DayThree2021.swift in Sources */,
 				C516C782275907430038AB8A /* String.swift in Sources */,
 				C516C8A9275D04360038AB8A /* DayFive2021Tests.swift in Sources */,
+				C516C8B3275DD5940038AB8A /* DaySix2021Tests.swift in Sources */,
 				C516C84C2759587B0038AB8A /* ConwayCube.swift in Sources */,
 				C516C8422759587B0038AB8A /* TreeDCoordinate.swift in Sources */,
 				C516C87B275959C60038AB8A /* Groceries.swift in Sources */,
