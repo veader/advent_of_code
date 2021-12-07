@@ -7,12 +7,6 @@
 
 import Foundation
 
-extension Dictionary where Key == Int, Value == Int {
-    mutating func incrementing(_ key: Int, by update: Int) {
-        self[key] = (self[key] ?? 0) + update
-    }
-}
-
 struct DaySix2021: AdventDay {
     var year = 2021
     var dayNumber = 6
