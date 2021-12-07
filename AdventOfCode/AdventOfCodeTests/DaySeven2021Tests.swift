@@ -25,10 +25,27 @@ class DaySeven2021Tests: XCTestCase {
         XCTAssertEqual(2, median)
     }
 
+    func testMeanCalculation() {
+        let day = DaySeven2021()
+        let nums = day.parse(sampleInput)
+        let mean = day.mean(of: nums)
+        XCTAssertEqual(5, mean)
+
+        let mean2 = day.mean(of: [1,2,7])
+        XCTAssertEqual(3, mean2)
+    }
+
     func testCostCalculation() {
         let day = DaySeven2021()
         let nums = day.parse(sampleInput)
         let cost = day.calculcateCost(destination: 2, positions: nums)
         XCTAssertEqual(37, cost)
+    }
+
+    func testCostCalculationIncreasingCost() {
+        let day = DaySeven2021()
+        let nums = day.parse(sampleInput)
+        let cost = day.calculcateCost(destination: 5, positions: nums, constantCost: false)
+        XCTAssertEqual(168, cost)
     }
 }
