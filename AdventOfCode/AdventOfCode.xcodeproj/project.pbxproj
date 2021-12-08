@@ -156,6 +156,8 @@
 		C516C8CB27610D670038AB8A /* DayEight2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CA27610D670038AB8A /* DayEight2021.swift */; };
 		C516C8CC27610D670038AB8A /* DayEight2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CA27610D670038AB8A /* DayEight2021.swift */; };
 		C516C8CE27612C5D0038AB8A /* DayEight2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CD27612C5D0038AB8A /* DayEight2021Tests.swift */; };
+		C516C8D0276137600038AB8A /* SegmentedDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CF276137600038AB8A /* SegmentedDisplay.swift */; };
+		C516C8D1276137600038AB8A /* SegmentedDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CF276137600038AB8A /* SegmentedDisplay.swift */; };
 		C556EF682757B454009B3078 /* AdventOfCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF672757B454009B3078 /* AdventOfCodeApp.swift */; };
 		C556EF6A2757B454009B3078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF692757B454009B3078 /* ContentView.swift */; };
 		C556EF6C2757B455009B3078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -298,6 +300,7 @@
 		C516C8C927610D5C0038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C516C8CA27610D670038AB8A /* DayEight2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEight2021.swift; sourceTree = "<group>"; };
 		C516C8CD27612C5D0038AB8A /* DayEight2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEight2021Tests.swift; sourceTree = "<group>"; };
+		C516C8CF276137600038AB8A /* SegmentedDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedDisplay.swift; sourceTree = "<group>"; };
 		C556EF642757B454009B3078 /* AdventOfCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventOfCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C556EF672757B454009B3078 /* AdventOfCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventOfCodeApp.swift; sourceTree = "<group>"; };
 		C556EF692757B454009B3078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -674,6 +677,7 @@
 			children = (
 				C516C8C927610D5C0038AB8A /* README.md */,
 				C516C8CA27610D670038AB8A /* DayEight2021.swift */,
+				C516C8CF276137600038AB8A /* SegmentedDisplay.swift */,
 			);
 			path = Day08;
 			sourceTree = "<group>";
@@ -942,6 +946,7 @@
 				C516C800275956140038AB8A /* DayTwelve2020.swift in Sources */,
 				C516C87A275959C60038AB8A /* Groceries.swift in Sources */,
 				C516C84B2759587B0038AB8A /* ConwayCube.swift in Sources */,
+				C516C8D0276137600038AB8A /* SegmentedDisplay.swift in Sources */,
 				C516C878275959C60038AB8A /* Food.swift in Sources */,
 				C516C7A027594B4A0038AB8A /* Coordinate.swift in Sources */,
 				C516C80A275956790038AB8A /* DayThirteen2020.swift in Sources */,
@@ -1035,6 +1040,7 @@
 				C516C7CD27594E0B0038AB8A /* DaySeven2020.swift in Sources */,
 				C516C852275958C70038AB8A /* DayEighteen2020.swift in Sources */,
 				C516C8442759587B0038AB8A /* DaySeventeen2020.swift in Sources */,
+				C516C8D1276137600038AB8A /* SegmentedDisplay.swift in Sources */,
 				C516C88C2759ED010038AB8A /* DayThree2021.swift in Sources */,
 				C516C782275907430038AB8A /* String.swift in Sources */,
 				C516C8A9275D04360038AB8A /* DayFive2021Tests.swift in Sources */,

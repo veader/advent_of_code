@@ -10,23 +10,23 @@ import XCTest
 class DayEight2021Tests: XCTestCase {
 
     func testSegmentedDisplayParsing() {
-        var segment = DayEight2021.SegmentedDisplay.parse("be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe")
+        var segment = SegmentedDisplay.parse("be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe")
         XCTAssertNotNil(segment)
-        XCTAssertEqual(10, segment!.signalPatterns.count)
+        XCTAssertEqual(10, segment!.patterns.count)
         XCTAssertEqual(4, segment!.outputValues.count)
 
-        segment = DayEight2021.SegmentedDisplay.parse("dg debg edgfc afbgcd efdbgc gdc bfdceag bfdec febcad gfaec | dcg bdaegfc egbd dcgfe")
+        segment = SegmentedDisplay.parse("dg debg edgfc afbgcd efdbgc gdc bfdceag bfdec febcad gfaec | dcg bdaegfc egbd dcgfe")
         XCTAssertNotNil(segment)
-        XCTAssertEqual(10, segment!.signalPatterns.count)
+        XCTAssertEqual(10, segment!.patterns.count)
         XCTAssertEqual(4, segment!.outputValues.count)
 
         // ---- failing cases...
         // does not have a pipe
-        segment = DayEight2021.SegmentedDisplay.parse("dg debg edgfc afbgcd efdbgc gdc bfdceag bfdec febcad gfaec dcg bdaegfc egbd gcbe")
+        segment = SegmentedDisplay.parse("dg debg edgfc afbgcd efdbgc gdc bfdceag bfdec febcad gfaec dcg bdaegfc egbd gcbe")
         XCTAssertNil(segment)
 
         // does not have 4 output values
-        segment = DayEight2021.SegmentedDisplay.parse("dg debg edgfc afbgcd efdbgc gdc bfdceag bfdec febcad gfaec | dcg bdaegfc egbd")
+        segment = SegmentedDisplay.parse("dg debg edgfc afbgcd efdbgc gdc bfdceag bfdec febcad gfaec | dcg bdaegfc egbd")
         XCTAssertNil(segment)
     }
 
@@ -49,5 +49,20 @@ class DayEight2021Tests: XCTestCase {
         XCTAssertEqual(10, segments.count)
         let easyCount = day.countEasyValues(displays: segments)
         XCTAssertEqual(26, easyCount)
+    }
+
+    func testDisplayMapBuilding() {
+        let segment = SegmentedDisplay.parse("be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe")
+        let map = SegmentedDisplay.buildMap(patterns: segment!.patterns)
+        XCTAssertEqual(1, map["be"])
+        XCTAssertEqual(7, map["bde"])
+        XCTAssertEqual(4, map["bceg"])
+        XCTAssertEqual(8, map["abcdefg"])
+    }
+
+    func testSegmentedDisplayFinalOutput() {
+        let segment = SegmentedDisplay.parse("acedgfb cdfbe gcdfa fbcad dab cefabd cdfgeb eafb cagedb ab | cdfeb fcadb cdfeb cdbaf")
+        let final = segment?.finalOutput
+        XCTAssertEqual(5353, final)
     }
 }

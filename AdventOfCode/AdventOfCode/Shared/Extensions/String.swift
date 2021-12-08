@@ -47,4 +47,9 @@ extension String {
 
         return copy
     }
+
+    /// Alphabetically sort the characters in the string and return a new string
+    func sortedString() -> String {
+        sorted().map(String.init).joined()
+    }
 }
