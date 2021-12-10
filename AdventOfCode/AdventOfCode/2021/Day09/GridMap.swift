@@ -37,10 +37,14 @@ struct GridMap<Element> {
         item(at: Coordinate(x: x, y: y))
     }
 
-    /// Return all items adjacent to the given item.
+    /// Return all coordinates adjacent to the given coordinate.
+    func adjacentCoordinates(to coordinate: Coordinate) -> [Coordinate] {
+        coordinate.adjacent(xBounds: ClosedRange(xBounds), yBounds: ClosedRange(yBounds))
+    }
+
+    /// Return all items adjacent to the given coordinate.
     func adjacentItems(to coordinate: Coordinate) -> [Element] {
-        let adjCoordinates = coordinate.adjacent(xBounds: ClosedRange(xBounds), yBounds: ClosedRange(yBounds))
-        return adjCoordinates.compactMap { item(at: $0) }
+        adjacentCoordinates(to: coordinate).compactMap { item(at: $0) }
     }
 
     /// All available coordinates in the grid space.
@@ -59,5 +63,9 @@ struct GridMap<Element> {
             guard let item = item(at: c) else { return false }
             return filterBlock(c, item)
         }
+    }
+
+    func printSize() {
+        print("Grid: \(xBounds.upperBound)x\(yBounds.upperBound)")
     }
 }

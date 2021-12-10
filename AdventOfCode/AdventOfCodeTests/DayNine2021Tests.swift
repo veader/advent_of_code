@@ -91,4 +91,29 @@ class DayNine2021Tests: XCTestCase {
         XCTAssertEqual(15, answer)
     }
 
+    func testBasinFinding() {
+        let day = DayNine2021()
+        let grid = GridMap<Int>(items: day.parse(sampleInput))
+        var c = Coordinate(x: 1, y: 0)
+        var basin = day.findBasin(grid: grid, consider: [c])
+        XCTAssertEqual(3, basin.count)
+
+        c = Coordinate(x: 9, y: 0)
+        basin = day.findBasin(grid: grid, consider: [c])
+        XCTAssertEqual(9, basin.count)
+
+        c = Coordinate(x: 2, y: 2)
+        basin = day.findBasin(grid: grid, consider: [c])
+        XCTAssertEqual(14, basin.count)
+
+        c = Coordinate(x: 6, y: 4)
+        basin = day.findBasin(grid: grid, consider: [c])
+        XCTAssertEqual(9, basin.count)
+    }
+
+    func testPartTwo() {
+        let day = DayNine2021()
+        let answer = day.partTwo(input: sampleInput) as? Int
+        XCTAssertEqual(1134, answer)
+    }
 }
