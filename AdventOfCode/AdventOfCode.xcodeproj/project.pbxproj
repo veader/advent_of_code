@@ -158,6 +158,8 @@
 		C516C8CE27612C5D0038AB8A /* DayEight2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CD27612C5D0038AB8A /* DayEight2021Tests.swift */; };
 		C516C8D0276137600038AB8A /* SegmentedDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CF276137600038AB8A /* SegmentedDisplay.swift */; };
 		C516C8D1276137600038AB8A /* SegmentedDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8CF276137600038AB8A /* SegmentedDisplay.swift */; };
+		C516C8D527623C540038AB8A /* DayNine2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8D427623C540038AB8A /* DayNine2021.swift */; };
+		C516C8D627623C540038AB8A /* DayNine2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C8D427623C540038AB8A /* DayNine2021.swift */; };
 		C556EF682757B454009B3078 /* AdventOfCodeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF672757B454009B3078 /* AdventOfCodeApp.swift */; };
 		C556EF6A2757B454009B3078 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EF692757B454009B3078 /* ContentView.swift */; };
 		C556EF6C2757B455009B3078 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -173,6 +175,9 @@
 		C556EFA32757C78B009B3078 /* AdventYear.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EFA12757C78B009B3078 /* AdventYear.swift */; };
 		C556EFA52757C9C9009B3078 /* AdventDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EFA42757C9C9009B3078 /* AdventDayCell.swift */; };
 		C556EFA62757C9C9009B3078 /* AdventDayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C556EFA42757C9C9009B3078 /* AdventDayCell.swift */; };
+		C57773BB276243B1006E5ADA /* DayNine2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773BA276243B1006E5ADA /* DayNine2021Tests.swift */; };
+		C57773BD27630405006E5ADA /* GridMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773BC27630405006E5ADA /* GridMap.swift */; };
+		C57773BE27630405006E5ADA /* GridMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773BC27630405006E5ADA /* GridMap.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -301,6 +306,8 @@
 		C516C8CA27610D670038AB8A /* DayEight2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEight2021.swift; sourceTree = "<group>"; };
 		C516C8CD27612C5D0038AB8A /* DayEight2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEight2021Tests.swift; sourceTree = "<group>"; };
 		C516C8CF276137600038AB8A /* SegmentedDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedDisplay.swift; sourceTree = "<group>"; };
+		C516C8D327623C4A0038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C516C8D427623C540038AB8A /* DayNine2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNine2021.swift; sourceTree = "<group>"; };
 		C556EF642757B454009B3078 /* AdventOfCode.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdventOfCode.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C556EF672757B454009B3078 /* AdventOfCodeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventOfCodeApp.swift; sourceTree = "<group>"; };
 		C556EF692757B454009B3078 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -317,6 +324,8 @@
 		C556EF9E2757C3AD009B3078 /* DayOne2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOne2021.swift; sourceTree = "<group>"; };
 		C556EFA12757C78B009B3078 /* AdventYear.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventYear.swift; sourceTree = "<group>"; };
 		C556EFA42757C9C9009B3078 /* AdventDayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDayCell.swift; sourceTree = "<group>"; };
+		C57773BA276243B1006E5ADA /* DayNine2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNine2021Tests.swift; sourceTree = "<group>"; };
+		C57773BC27630405006E5ADA /* GridMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridMap.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -682,6 +691,16 @@
 			path = Day08;
 			sourceTree = "<group>";
 		};
+		C516C8D227623C3D0038AB8A /* Day09 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C8D327623C4A0038AB8A /* README.md */,
+				C516C8D427623C540038AB8A /* DayNine2021.swift */,
+				C57773BC27630405006E5ADA /* GridMap.swift */,
+			);
+			path = Day09;
+			sourceTree = "<group>";
+		};
 		C556EF5B2757B454009B3078 = {
 			isa = PBXGroup;
 			children = (
@@ -735,6 +754,7 @@
 				C516C8B2275DD5940038AB8A /* DaySix2021Tests.swift */,
 				C516C8C3275F2F220038AB8A /* DaySeven2021Tests.swift */,
 				C516C8CD27612C5D0038AB8A /* DayEight2021Tests.swift */,
+				C57773BA276243B1006E5ADA /* DayNine2021Tests.swift */,
 			);
 			path = AdventOfCodeTests;
 			sourceTree = "<group>";
@@ -759,6 +779,7 @@
 				C516C8AD275DD29D0038AB8A /* Day06 */,
 				C516C8BE275F2BE00038AB8A /* Day07 */,
 				C516C8C827610D510038AB8A /* Day08 */,
+				C516C8D227623C3D0038AB8A /* Day09 */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -934,6 +955,7 @@
 				C516C8B0275DD2B70038AB8A /* DaySix2021.swift in Sources */,
 				C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */,
 				C516C78F275949F30038AB8A /* PasswordPolicy.swift in Sources */,
+				C516C8D527623C540038AB8A /* DayNine2021.swift in Sources */,
 				C516C851275958C70038AB8A /* DayEighteen2020.swift in Sources */,
 				C516C7BE27594D2B0038AB8A /* DaySix2020.swift in Sources */,
 				C516C89C275BC7A30038AB8A /* BingoBoard.swift in Sources */,
@@ -1000,6 +1022,7 @@
 				C556EFA22757C78B009B3078 /* AdventYear.swift in Sources */,
 				C516C80E275956790038AB8A /* BusSchedule.swift in Sources */,
 				C516C88B2759ED010038AB8A /* DayThree2021.swift in Sources */,
+				C57773BD27630405006E5ADA /* GridMap.swift in Sources */,
 				C556EF952757B6D4009B3078 /* AdventDay.swift in Sources */,
 				C516C804275956140038AB8A /* Ferry.swift in Sources */,
 				C516C7E127594F1E0038AB8A /* XMASCypher.swift in Sources */,
@@ -1019,6 +1042,7 @@
 				C516C8612759592F0038AB8A /* RuleParser.swift in Sources */,
 				C516C89D275BC7A30038AB8A /* BingoBoard.swift in Sources */,
 				C516C89F275BC98A0038AB8A /* DayFour2021Tests.swift in Sources */,
+				C516C8D627623C540038AB8A /* DayNine2021.swift in Sources */,
 				C516C7FB2759553E0038AB8A /* SeatMapModeler.swift in Sources */,
 				C556EFA02757C3AD009B3078 /* DayOne2021.swift in Sources */,
 				C516C7F92759553E0038AB8A /* DayEleven2020.swift in Sources */,
@@ -1067,6 +1091,7 @@
 				C516C790275949F30038AB8A /* PasswordPolicy.swift in Sources */,
 				C516C8482759587B0038AB8A /* ExperimentalPowerSource.swift in Sources */,
 				C516C7B327594C040038AB8A /* BoardingPass.swift in Sources */,
+				C57773BE27630405006E5ADA /* GridMap.swift in Sources */,
 				C516C7E227594F1E0038AB8A /* XMASCypher.swift in Sources */,
 				C516C85D2759592F0038AB8A /* MessageRule.swift in Sources */,
 				C516C7A127594B4A0038AB8A /* Coordinate.swift in Sources */,
@@ -1091,6 +1116,7 @@
 				C516C7B527594C040038AB8A /* DayFive.swift in Sources */,
 				C516C8A7275D02FC0038AB8A /* Line.swift in Sources */,
 				C516C78A275948A30038AB8A /* DayOne2020.swift in Sources */,
+				C57773BB276243B1006E5ADA /* DayNine2021Tests.swift in Sources */,
 				C516C7BF27594D2B0038AB8A /* DaySix2020.swift in Sources */,
 				C516C8C2275F2BFB0038AB8A /* DaySeven2021.swift in Sources */,
 			);
