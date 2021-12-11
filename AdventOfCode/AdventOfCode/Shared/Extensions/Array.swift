@@ -14,4 +14,11 @@ extension Array where Element: Equatable {
             result.contains(element) ? result : result + [element]
         }
     }
+
+    /// Return the middle index of the given array based on length.
+    ///
+    /// - note: Array with even number of elements might be considered "off"
+    var middleIndex: Int {
+        return count / 2
+    }
 }

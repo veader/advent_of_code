@@ -76,10 +76,34 @@ struct NavSysCmd {
         }
     }
 
-    let command: String
+    struct ParseResult {
+        let isOpen: Bool
+        let isCorrupt: Bool
+        let corruptIndex: Int?
+        let corruptValue: String?
+        let openChunks: [ChunkDelimiter]
+    }
 
-    /// Is the command corrupted? And if so, what was the failing character
-    func isCorrupted() -> (Bool, String?) {
+    let command: String
+    let parseResult: ParseResult
+
+    /// Is the command corrupted? (ie: has a closing character out of place)
+    var isCorrupted: Bool {
+        parseResult.isCorrupt
+    }
+
+    /// Is the command open? (ie: not terminated correctly)
+    var isOpen: Bool {
+        parseResult.isOpen
+    }
+
+    init(command: String) {
+        self.command = command
+        self.parseResult = NavSysCmd.parse(command: command)
+    }
+
+    /// Parse the command and determine if it is valid, "open", or corrupt.
+    static func parse(command: String) -> ParseResult {
         var openChunks = [ChunkDelimiter]()
 
         for (i,s) in command.map(String.init).enumerated() {
@@ -90,19 +114,36 @@ struct NavSysCmd {
             } else {
                 // if it's closing, see if it matches the last open delimiter
                 guard let last = openChunks.last else {
-                    print("\(s) @ \(i) : No open chunks! ")
-                    return (true, s)
+                    // print("\(s) @ \(i) : No open chunks! ")
+                    return ParseResult(isOpen: false, isCorrupt: true, corruptIndex: i, corruptValue: s, openChunks: openChunks)
                 }
 
                 if delimiter.sameType(as: last) {
                     _ = openChunks.removeLast()
                 } else {
-                    print("\(s) @ \(i) : Does not match open chunk! ")
-                    return (true, s)
+                    // print("\(s) @ \(i) : Does not match open chunk! ")
+                    return ParseResult(isOpen: false, isCorrupt: true, corruptIndex: i, corruptValue: s, openChunks: openChunks)
                 }
             }
         }
 
-        return (false, nil)
+        return ParseResult(isOpen: !openChunks.isEmpty, isCorrupt: false, corruptIndex: nil, corruptValue: nil, openChunks: openChunks)
+    }
+
+    func closingString() -> String {
+        parseResult.openChunks.reversed().map { delimiter -> String in
+            switch delimiter {
+            case .parens:
+                return ")"
+            case .squareBrackets:
+                return "]"
+            case .curlyBraces:
+                return "}"
+            case .angles:
+                return ">"
+            default:
+                return "*"
+            }
+        }.joined()
     }
 }
