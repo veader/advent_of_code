@@ -80,4 +80,11 @@ class DayEleven2021Tests: XCTestCase {
         let flashes = day.countFlashes(grid: grid, stepCount: 100)
         XCTAssertEqual(1656, flashes)
     }
+
+    func testAllFlashFinding() {
+        let day = DayEleven2021()
+        let grid = day.parse(sampleInput)
+        let step = day.firstAllFlashed(grid: grid)
+        XCTAssertEqual(195, step)
+    }
 }
