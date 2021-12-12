@@ -183,6 +183,9 @@
 		C57773C52763956B006E5ADA /* NavSysCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773C42763956B006E5ADA /* NavSysCmd.swift */; };
 		C57773C62763956B006E5ADA /* NavSysCmd.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773C42763956B006E5ADA /* NavSysCmd.swift */; };
 		C57773C82763976B006E5ADA /* DayTen2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773C72763976B006E5ADA /* DayTen2021Tests.swift */; };
+		C57773CC276532CB006E5ADA /* DayEleven2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773CB276532CB006E5ADA /* DayEleven2021.swift */; };
+		C57773CD276532CB006E5ADA /* DayEleven2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773CB276532CB006E5ADA /* DayEleven2021.swift */; };
+		C57773CF27665EC8006E5ADA /* DayEleven2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57773CE27665EC8006E5ADA /* DayEleven2021Tests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -335,6 +338,9 @@
 		C57773C127639301006E5ADA /* DayTen2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTen2021.swift; sourceTree = "<group>"; };
 		C57773C42763956B006E5ADA /* NavSysCmd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavSysCmd.swift; sourceTree = "<group>"; };
 		C57773C72763976B006E5ADA /* DayTen2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTen2021Tests.swift; sourceTree = "<group>"; };
+		C57773CA276532C2006E5ADA /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C57773CB276532CB006E5ADA /* DayEleven2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEleven2021.swift; sourceTree = "<group>"; };
+		C57773CE27665EC8006E5ADA /* DayEleven2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEleven2021Tests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -705,7 +711,6 @@
 			children = (
 				C516C8D327623C4A0038AB8A /* README.md */,
 				C516C8D427623C540038AB8A /* DayNine2021.swift */,
-				C57773BC27630405006E5ADA /* GridMap.swift */,
 			);
 			path = Day09;
 			sourceTree = "<group>";
@@ -756,15 +761,8 @@
 		C556EF782757B455009B3078 /* AdventOfCodeTests */ = {
 			isa = PBXGroup;
 			children = (
+				C57773D027665ED0006E5ADA /* 2021 */,
 				C556EF792757B455009B3078 /* AdventOfCodeTests.swift */,
-				C516C88D2759F1490038AB8A /* DayThree2021Tests.swift */,
-				C516C89E275BC98A0038AB8A /* DayFour2021Tests.swift */,
-				C516C8A8275D04360038AB8A /* DayFive2021Tests.swift */,
-				C516C8B2275DD5940038AB8A /* DaySix2021Tests.swift */,
-				C516C8C3275F2F220038AB8A /* DaySeven2021Tests.swift */,
-				C516C8CD27612C5D0038AB8A /* DayEight2021Tests.swift */,
-				C57773BA276243B1006E5ADA /* DayNine2021Tests.swift */,
-				C57773C72763976B006E5ADA /* DayTen2021Tests.swift */,
 			);
 			path = AdventOfCodeTests;
 			sourceTree = "<group>";
@@ -791,6 +789,7 @@
 				C516C8C827610D510038AB8A /* Day08 */,
 				C516C8D227623C3D0038AB8A /* Day09 */,
 				C57773BF276392E5006E5ADA /* Day10 */,
+				C57773C9276532B0006E5ADA /* Day 11 */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -802,6 +801,7 @@
 				C556EF942757B6D4009B3078 /* AdventDay.swift */,
 				C556EFA12757C78B009B3078 /* AdventYear.swift */,
 				C516C79F27594B4A0038AB8A /* Coordinate.swift */,
+				C57773BC27630405006E5ADA /* GridMap.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -834,6 +834,31 @@
 				C57773C42763956B006E5ADA /* NavSysCmd.swift */,
 			);
 			path = Day10;
+			sourceTree = "<group>";
+		};
+		C57773C9276532B0006E5ADA /* Day 11 */ = {
+			isa = PBXGroup;
+			children = (
+				C57773CA276532C2006E5ADA /* README.md */,
+				C57773CB276532CB006E5ADA /* DayEleven2021.swift */,
+			);
+			path = "Day 11";
+			sourceTree = "<group>";
+		};
+		C57773D027665ED0006E5ADA /* 2021 */ = {
+			isa = PBXGroup;
+			children = (
+				C516C88D2759F1490038AB8A /* DayThree2021Tests.swift */,
+				C516C89E275BC98A0038AB8A /* DayFour2021Tests.swift */,
+				C516C8A8275D04360038AB8A /* DayFive2021Tests.swift */,
+				C516C8B2275DD5940038AB8A /* DaySix2021Tests.swift */,
+				C516C8C3275F2F220038AB8A /* DaySeven2021Tests.swift */,
+				C516C8CD27612C5D0038AB8A /* DayEight2021Tests.swift */,
+				C57773BA276243B1006E5ADA /* DayNine2021Tests.swift */,
+				C57773C72763976B006E5ADA /* DayTen2021Tests.swift */,
+				C57773CE27665EC8006E5ADA /* DayEleven2021Tests.swift */,
+			);
+			path = 2021;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1043,6 +1068,7 @@
 				C516C823275957F60038AB8A /* MemoryGame.swift in Sources */,
 				C516C7C627594E0B0038AB8A /* LuggageRule.swift in Sources */,
 				C556EFA22757C78B009B3078 /* AdventYear.swift in Sources */,
+				C57773CC276532CB006E5ADA /* DayEleven2021.swift in Sources */,
 				C516C80E275956790038AB8A /* BusSchedule.swift in Sources */,
 				C516C88B2759ED010038AB8A /* DayThree2021.swift in Sources */,
 				C57773BD27630405006E5ADA /* GridMap.swift in Sources */,
@@ -1059,6 +1085,7 @@
 			files = (
 				C516C88327595A310038AB8A /* DayTwentyTwo2020.swift in Sources */,
 				C516C7D627594EA10038AB8A /* DayEight2020.swift in Sources */,
+				C57773CF27665EC8006E5ADA /* DayEleven2021Tests.swift in Sources */,
 				C516C77E275815080038AB8A /* DayTwo2021.swift in Sources */,
 				C516C8AC275D050C0038AB8A /* OceanFloor.swift in Sources */,
 				C516C8B1275DD2B70038AB8A /* DaySix2021.swift in Sources */,
@@ -1140,6 +1167,7 @@
 				C516C88727595A310038AB8A /* CombatGame.swift in Sources */,
 				C556EFA62757C9C9009B3078 /* AdventDayCell.swift in Sources */,
 				C516C7B527594C040038AB8A /* DayFive.swift in Sources */,
+				C57773CD276532CB006E5ADA /* DayEleven2021.swift in Sources */,
 				C516C8A7275D02FC0038AB8A /* Line.swift in Sources */,
 				C516C78A275948A30038AB8A /* DayOne2020.swift in Sources */,
 				C57773BB276243B1006E5ADA /* DayNine2021Tests.swift in Sources */,
