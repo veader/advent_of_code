@@ -9,6 +9,16 @@ import XCTest
 
 class DayTwelve2021Tests: XCTestCase {
 
+    let sampleInput0 = """
+        start-A
+        start-b
+        A-c
+        A-b
+        b-d
+        A-end
+        b-end
+        """
+
     let sampleInput1 = """
         dc-end
         HN-start
@@ -65,21 +75,33 @@ class DayTwelve2021Tests: XCTestCase {
     }
 
     func testCaveSizeMethod() {
-        let map = CaveMap(paths: [])
-        XCTAssertTrue(map.isSmall(cave: "start"))
-        XCTAssertTrue(map.isSmall(cave: "end"))
-        XCTAssertTrue(map.isSmall(cave: "dc"))
-        XCTAssertFalse(map.isSmall(cave: "HN"))
-        XCTAssertFalse(map.isSmall(cave: "GA"))
+        XCTAssertTrue(CaveMap.isSmall(cave: "start"))
+        XCTAssertTrue(CaveMap.isSmall(cave: "end"))
+        XCTAssertTrue(CaveMap.isSmall(cave: "dc"))
+        XCTAssertFalse(CaveMap.isSmall(cave: "HN"))
+        XCTAssertFalse(CaveMap.isSmall(cave: "GA"))
+        XCTAssertFalse(CaveMap.isSmall(cave: "Ga"))
     }
 
-    func testCavePathing() {
+    func testDoubleSmallCaveMethod() {
         let day = DayTwelve2021()
         var map = CaveMap(paths: day.parse(sampleInput1))
+        XCTAssertFalse(map.containsDoubleSmallVisit(path: ["start", "end", "HN", "HN", "HN"]))
+        XCTAssertFalse(map.containsDoubleSmallVisit(path: ["start", "end", "dc", "HN", "HN"]))
+        XCTAssertFalse(map.containsDoubleSmallVisit(path: ["start", "end", "dc", "sa", "HN"]))
+        XCTAssertFalse(map.containsDoubleSmallVisit(path: ["start", "end", "dc", "sa", "kj"]))
+        XCTAssertTrue(map.containsDoubleSmallVisit(path: ["start", "end", "dc", "dc", "HN"]))
+        XCTAssertTrue(map.containsDoubleSmallVisit(path: ["start", "end", "dc", "dc", "sa"]))
+    }
+
+    func testCavePathingNoDupes() {
+        let day = DayTwelve2021()
+        var map = CaveMap(paths: day.parse(sampleInput0))
         var paths = map.findAllPaths(debugPrint: false)
-//        paths.sorted(by: { $0.count < $1.count }).forEach { path in
-//            print(path.joined(separator: ","))
-//        }
+        XCTAssertEqual(10, paths.count)
+
+        map = CaveMap(paths: day.parse(sampleInput1))
+        paths = map.findAllPaths(debugPrint: false)
         XCTAssertEqual(19, paths.count)
 
         map = CaveMap(paths: day.parse(sampleInput2))
@@ -88,5 +110,23 @@ class DayTwelve2021Tests: XCTestCase {
 //            print(path.joined(separator: ","))
 //        }
         XCTAssertEqual(226, paths.count)
+    }
+
+    func testCavePathingAllowingDupes() {
+        let day = DayTwelve2021()
+        var map = CaveMap(paths: day.parse(sampleInput0))
+        var paths = map.findAllPaths(allowDoubleSmall:true, debugPrint: false)
+        XCTAssertEqual(36, paths.count)
+
+        map = CaveMap(paths: day.parse(sampleInput1))
+        paths = map.findAllPaths(allowDoubleSmall:true, debugPrint: false)
+//        paths.sorted(by: { $0.count < $1.count }).forEach { path in
+//            print(path.joined(separator: ","))
+//        }
+        XCTAssertEqual(103, paths.count)
+
+        map = CaveMap(paths: day.parse(sampleInput2))
+        paths = map.findAllPaths(allowDoubleSmall:true, debugPrint: false)
+        XCTAssertEqual(3509, paths.count)
     }
 }

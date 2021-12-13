@@ -11,7 +11,7 @@ struct DayTwelve2021: AdventDay {
     var year = 2021
     var dayNumber = 12
     var dayTitle = "Passage Pathing"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> [CavePath] {
         (input ?? "").split(separator: "\n").map(String.init).compactMap { CavePath($0) }
@@ -29,6 +29,13 @@ struct DayTwelve2021: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return Int.min
+        let map = CaveMap(paths: parse(input))
+        let paths = map.findAllPaths(allowDoubleSmall: true)
+
+//        paths.sorted(by: { $0.count < $1.count }).forEach { path in
+//            print(path.joined(separator: ","))
+//        }
+
+        return paths.count
     }
 }
