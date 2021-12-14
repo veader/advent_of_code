@@ -11,7 +11,7 @@ struct DayThirteen2021: AdventDay {
     var year = 2021
     var dayNumber = 13
     var dayTitle = "Transparent Origami"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> TransparentPaper {
         TransparentPaper.parse(input: input ?? "")
