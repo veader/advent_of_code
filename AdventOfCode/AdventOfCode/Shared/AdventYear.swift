@@ -30,6 +30,7 @@ enum AdventYear: String, CaseIterable, Identifiable {
                 DayTen2021(),
                 DayEleven2021(),
                 DayTwelve2021(),
+                DayThirteen2021(),
             ]
         case .year2020:
             return [

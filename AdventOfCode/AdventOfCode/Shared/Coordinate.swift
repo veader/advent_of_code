@@ -29,6 +29,20 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         self.name = name
     }
 
+    /// Parse a given line of input to create a `Coordinate`.
+    ///
+    /// - note: Format of line should be `x,y`
+    static func parse(_ input: String) -> Coordinate? {
+        let pieces = input.split(separator: ",").map(String.init)
+        guard
+            pieces.count == 2,
+            let xStr = pieces.first, let x = Int(xStr),
+            let yStr = pieces.last, let y = Int(yStr)
+        else { return nil }
+
+        return Coordinate(x: x, y: y)
+    }
+
     /// Returns the Manhattan distance between two coordinates.
     func distance(to coordB: Coordinate) -> Int {
         return abs(x - coordB.x) + abs(y - coordB.y)
@@ -44,21 +58,6 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         let theXBounds = xBounds ?? (0...Int.max)
         let theYBounds = yBounds ?? (0...Int.max)
         return adjacent(minX: theXBounds.lowerBound, maxX: theXBounds.upperBound, minY: theYBounds.lowerBound, maxY: theYBounds.upperBound)
-//        let searchXBounds = (x-1)...(x+1)
-//        let searchYBounds = (y-1)...(y+1)
-//
-//        guard
-//            theXBounds.contains(x),
-//            theYBounds.contains(y),
-//        else { return [] }
-//
-//        return theYBounds.flatMap { dY in
-//            theXBounds.compactMap { dX in
-//                let c = Coordinate(x: dX, y: dY)
-//                guard c != self else { return nil }
-//                return c
-//            }
-//        }
     }
 
     /// Return all adjacent coordinates to this coordinate
