@@ -26,7 +26,10 @@ struct DayThirteen2021: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return Int.min
+        let paper = parse(input)
+        paper.followInstructions()
+        print(paper.debugDescription)
+        return "See system output..."
     }
 
 }
