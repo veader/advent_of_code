@@ -52,4 +52,13 @@ extension String {
     func sortedString() -> String {
         sorted().map(String.init).joined()
     }
+
+    /// Create a histogram for the number of occurances of each character within the string.
+    func histogram() -> [String: Int] {
+        var gram = [String: Int]()
+        self.forEach { c in
+            gram.incrementing(String(c), by: 1)
+        }
+        return gram
+    }
 }
