@@ -27,6 +27,16 @@ struct DayFourteen2021: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return Int.min
+        let polymer = Polymer.parse(input ?? "")
+        polymer.run(steps: 40)
+        let histogram = polymer.histogram()
+        print(histogram)
+
+        let values = histogram.values.sorted()
+        let max = values.max() ?? 0
+        let min = values.min() ?? 0
+        print("Max: \(max) | Min: \(min)")
+        print(Int.max)
+        return max - min
     }
 }

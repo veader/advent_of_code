@@ -41,10 +41,12 @@ class Polymer {
         }
 
         (0..<steps).forEach { i in
+            print("Starting run \(i+1) @ \(Date())")
             processRules(debugPrint: debugPrint)
             if debugPrint {
                 print("After step \(i+1):\t\(current.joined())")
             }
+            print("\tEnd run \(i+1) @ \(Date())")
         }
     }
 
