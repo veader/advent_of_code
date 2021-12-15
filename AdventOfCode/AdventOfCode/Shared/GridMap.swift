@@ -63,8 +63,12 @@ class GridMap<Element> {
     }
 
     /// Return all coordinates adjacent to the given coordinate.
-    func adjacentCoordinates(to coordinate: Coordinate) -> [Coordinate] {
-        coordinate.adjacent(xBounds: ClosedRange(xBounds), yBounds: ClosedRange(yBounds))
+    func adjacentCoordinates(to coordinate: Coordinate, allowDiagonals: Bool = true) -> [Coordinate] {
+        if allowDiagonals {
+            return coordinate.adjacent(xBounds: ClosedRange(xBounds), yBounds: ClosedRange(yBounds))
+        } else {
+            return coordinate.adjacentWithoutDiagonals(xBounds: ClosedRange(xBounds), yBounds: ClosedRange(yBounds))
+        }
     }
 
     /// Return all items adjacent to the given coordinate.

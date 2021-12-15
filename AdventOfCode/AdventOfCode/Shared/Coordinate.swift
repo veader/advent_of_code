@@ -53,6 +53,27 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         Coordinate(x: x + xOffset, y: y + yOffset)
     }
 
+    /// Return adjacent coordinates to this coordinate (without allowing diagonals). Bounds are considered.
+    func adjacentWithoutDiagonals(xBounds: ClosedRange<Int>?, yBounds: ClosedRange<Int>?) -> [Coordinate] {
+        let theXBounds = xBounds ?? (0...Int.max)
+        let theYBounds = yBounds ?? (0...Int.max)
+
+        var adj = [Coordinate]()
+        if theYBounds.contains(y - 1) { // up
+            adj.append(Coordinate(x: x, y: y - 1))
+        }
+        if theYBounds.contains(y + 1) { // down
+            adj.append(Coordinate(x: x, y: y + 1))
+        }
+        if theXBounds.contains(x - 1) { // left
+            adj.append(Coordinate(x: x - 1, y: y))
+        }
+        if theXBounds.contains(x + 1) { // right
+            adj.append(Coordinate(x: x + 1, y: y))
+        }
+        return adj
+    }
+
     /// Return all adjacent coordinates to this coordinate taking bounds into account
     func adjacent(xBounds: ClosedRange<Int>?, yBounds: ClosedRange<Int>?) -> [Coordinate] {
         let theXBounds = xBounds ?? (0...Int.max)
