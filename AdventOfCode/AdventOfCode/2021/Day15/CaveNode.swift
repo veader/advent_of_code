@@ -13,10 +13,12 @@ class CaveNode {
     var minDistance: Int
     var shortedPath: [Coordinate]
     var visited: Bool
+    var trackPath: Bool
 
-    init(location: Coordinate, cost: Int) {
+    init(location: Coordinate, cost: Int, trackPath: Bool = false) {
         self.location = location
         self.cost = cost
+        self.trackPath = trackPath
 
         minDistance = Int.max // start with highest amount
         shortedPath = [Coordinate]()
@@ -30,7 +32,10 @@ class CaveNode {
         let newMinDistance = distance + cost
         guard newMinDistance < minDistance else { return }
         minDistance = newMinDistance
-        shortedPath = path + [location]
+
+        if trackPath {
+            shortedPath = path + [location]
+        }
     }
 
     /// Mark this node as visited.

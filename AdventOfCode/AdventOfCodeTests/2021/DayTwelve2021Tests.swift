@@ -85,7 +85,7 @@ class DayTwelve2021Tests: XCTestCase {
 
     func testDoubleSmallCaveMethod() {
         let day = DayTwelve2021()
-        var map = CaveMap(paths: day.parse(sampleInput1))
+        let map = CaveMap(paths: day.parse(sampleInput1))
         XCTAssertFalse(map.containsDoubleSmallVisit(path: ["start", "end", "HN", "HN", "HN"]))
         XCTAssertFalse(map.containsDoubleSmallVisit(path: ["start", "end", "dc", "HN", "HN"]))
         XCTAssertFalse(map.containsDoubleSmallVisit(path: ["start", "end", "dc", "sa", "HN"]))

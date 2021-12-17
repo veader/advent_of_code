@@ -61,7 +61,8 @@ struct AdventDayView: View {
     }
 
     func run(part: Int) {
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .userInitiated).async {
+//        DispatchQueue.global(qos: .background).async {
             let output = day.run(part: part)
             DispatchQueue.main.async {
                 runOutput = "\(output)"
