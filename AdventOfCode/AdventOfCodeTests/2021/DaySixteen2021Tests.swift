@@ -81,7 +81,40 @@ class DaySixteen2021Tests: XCTestCase {
         tx = BITSTransmission(hex: "A0016C880162017C3686B18A3D4780")
         tx.parse()
         XCTAssertEqual(31, tx.packetVersionSum())
-
     }
 
+    func testBITSTransmissionComputedSum() {
+        var tx = BITSTransmission(hex: "C200B40A82")
+        tx.parse()
+        XCTAssertEqual(3, tx.packetComputedValue())
+
+        tx = BITSTransmission(hex: "04005AC33890")
+        tx.parse()
+        XCTAssertEqual(54, tx.packetComputedValue())
+
+        tx = BITSTransmission(hex: "880086C3E88112")
+        tx.parse()
+        XCTAssertEqual(7, tx.packetComputedValue())
+
+        tx = BITSTransmission(hex: "CE00C43D881120")
+        tx.parse()
+        XCTAssertEqual(9, tx.packetComputedValue())
+
+        tx = BITSTransmission(hex: "D8005AC2A8F0")
+        tx.parse()
+        XCTAssertEqual(1, tx.packetComputedValue())
+
+        tx = BITSTransmission(hex: "F600BC2D8F")
+        tx.parse()
+        XCTAssertEqual(0, tx.packetComputedValue())
+
+        tx = BITSTransmission(hex: "9C005AC2F8F0")
+        tx.parse()
+        XCTAssertEqual(0, tx.packetComputedValue())
+
+        tx = BITSTransmission(hex: "9C0141080250320F1802104A08")
+        tx.parse()
+        XCTAssertEqual(1, tx.packetComputedValue())
+
+    }
 }

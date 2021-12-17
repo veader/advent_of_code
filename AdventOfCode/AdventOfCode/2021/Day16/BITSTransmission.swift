@@ -23,6 +23,36 @@ class BITSTransmission {
                 sum + p.versionSum
             }
         }
+
+        var computedValue: Int {
+            switch typeID {
+            case 0:
+                guard let packets = packets else { return Int.min }
+                return packets.map(\.computedValue).reduce(0, +)
+            case 1:
+                guard let packets = packets else { return Int.min }
+                return packets.map(\.computedValue).reduce(1, *)
+            case 2:
+                guard let packets = packets else { return Int.min }
+                return packets.map(\.computedValue).min() ?? Int.min
+            case 3:
+                guard let packets = packets else { return Int.min }
+                return packets.map(\.computedValue).max() ?? Int.min
+            case 4:
+                return value ?? 0
+            case 5:
+                guard let packets = packets, packets.count == 2, let one = packets.first, let two = packets.last else { return Int.min }
+                return one.computedValue > two.computedValue ? 1 : 0
+            case 6:
+                guard let packets = packets, packets.count == 2, let one = packets.first, let two = packets.last else { return Int.min }
+                return one.computedValue < two.computedValue ? 1 : 0
+            case 7:
+                guard let packets = packets, packets.count == 2, let one = packets.first, let two = packets.last else { return Int.min }
+                return one.computedValue == two.computedValue ? 1 : 0
+            default:
+                return 0
+            }
+        }
     }
 
     var packets: [BITSPacket] = []
@@ -54,11 +84,19 @@ class BITSTransmission {
         }
     }
 
+    /// Traverse the packet heirarchy calculating the computed sum
+    func packetComputedValue() -> Int {
+        // not really needed since there should only be on exterior packet but ¯\_(ツ)_/¯
+        packets.reduce(0) { sum, p in
+            sum + p.computedValue
+        }
+    }
+
 
     // MARK: - Private
 
     private func parsePacket(index: inout String.Index) -> BITSPacket {
-        print("Binary: \(binary[index...])")
+//        print("Binary: \(binary[index...])")
 
         let versionBinary = readBits(count: 3, index: &index)
         let version = Int(versionBinary, radix: 2) ?? 0
@@ -82,7 +120,7 @@ class BITSTransmission {
 
     /// Parse the literal value from the given index.
     private func parseLiteral(index: inout String.Index) -> Int {
-        print("\tLiteral: \(binary[index...])")
+//        print("\tLiteral: \(binary[index...])")
 
         var bits = ""
         var groupBit = peakBit(index: index)
@@ -97,7 +135,7 @@ class BITSTransmission {
         index = binary.index(after: index) // increment index
         bits += readBits(count: 4, index: &index)
 
-        print("\t   Bits: \(bits)")
+//        print("\t   Bits: \(bits)")
 
         return Int(bits, radix: 2) ?? 0
     }
@@ -111,7 +149,7 @@ class BITSTransmission {
         switch lengthTypeID {
         case "0": // read sub-packets based on length read
             guard let packetLength = Int(readBits(count: 15, index: &index), radix: 2) else { return nil }
-            print("\tSub-packet length: \(packetLength)")
+//            print("\tSub-packet length: \(packetLength)")
 
             let subPacketStartIdx = index // where we started
             while binary.distance(from: subPacketStartIdx, to: index) < packetLength {
@@ -120,7 +158,7 @@ class BITSTransmission {
             }
         case "1": // read sub-packets based on number
             guard let packetCount = Int(readBits(count: 11, index: &index), radix: 2) else { return nil }
-            print("\tSub-packet count: \(packetCount)")
+//            print("\tSub-packet count: \(packetCount)")
             while packets.count < packetCount {
                 let subPacket = parsePacket(index: &index)
                 packets.append(subPacket)

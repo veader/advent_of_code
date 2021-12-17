@@ -11,7 +11,7 @@ struct DaySixteen2021: AdventDay {
     var year = 2021
     var dayNumber = 16
     var dayTitle = "Packet Decoder"
-    var stars = 1
+    var stars = 2
 
     func partOne(input: String?) -> Any {
         let tx = BITSTransmission(hex: input ?? "")
@@ -20,6 +20,8 @@ struct DaySixteen2021: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return Int.min
+        let tx = BITSTransmission(hex: input ?? "")
+        tx.parse()
+        return tx.packetComputedValue()
     }
 }
