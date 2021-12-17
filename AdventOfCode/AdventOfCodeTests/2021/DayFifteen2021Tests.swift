@@ -29,8 +29,6 @@ class DayFifteen2021Tests: XCTestCase {
         XCTAssertNotNil(final)
         XCTAssertEqual(Coordinate(x: 9, y: 9), final!.location)
         XCTAssertEqual(40, final!.minDistance)
-
-        print("=================")
         print(final!)
     }
 
@@ -40,23 +38,6 @@ class DayFifteen2021Tests: XCTestCase {
         let final = day.dijkstrasAlgoV2(grid: grid)
         XCTAssertEqual(40, final)
     }
-
-//    func testBuildingLargerBoard() {
-//        let day = DayFifteen2021()
-//        let grid = day.parse(sampleInput)
-//        let larger = day.buildLarger(grid: grid)
-//        larger.printSize()
-//        larger.printGrid()
-//    }
-
-//    func testDijkstrasAlgoLarger() {
-//        let day = DayFifteen2021()
-//        let grid = day.parse(sampleInput)
-//        let largerGrid = day.buildLarger(grid: grid)
-//        let final = day.dijkstrasAlgo(grid: largerGrid)
-//        XCTAssertNotNil(final)
-//        XCTAssertEqual(315, final!.minDistance)
-//    }
 
     func testDijkstrasAlgoV2Large() {
         let day = DayFifteen2021()

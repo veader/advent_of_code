@@ -141,34 +141,6 @@ struct DayFifteen2021: AdventDay {
         return newValue
     }
 
-//    func buildLarger(grid: GridMap<Int>) -> GridMap<Int> {
-//        let xSize = grid.xBounds.upperBound
-//        let ySize = grid.yBounds.upperBound
-//        let maxX = xSize * 5
-//        let maxY = ySize * 5
-//
-//        let updateGridData = (0..<maxY).map { y -> [Int] in
-//            let yDistance = y / ySize
-//            let readY = y % ySize
-//
-//            return (0..<maxX).map { x -> Int in
-//                let xDistance = x / xSize
-//                let readX = x % xSize
-//                let ogValue = grid.itemAt(x: readX, y: readY) ?? 0
-//                var newValue = (ogValue + (yDistance + xDistance)) % 9
-//                if newValue == 0 {
-//                    newValue = 9
-//                }
-//                return newValue
-//            }
-//        }
-//
-//        let newGrid = GridMap(items: updateGridData)
-////        newGrid.printSize()
-////        newGrid.printGrid()
-//        return newGrid
-//    }
-
     func partOne(input: String?) -> Any {
         let grid = parse(input)
         grid.printSize()
