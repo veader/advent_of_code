@@ -11,7 +11,7 @@ struct DavSeventeen2021: AdventDay {
     var year = 2021
     var dayNumber = 17
     var dayTitle = "Trick Shot"
-    var stars = 0
+    var stars = 2
 
     // Puzzle Input
     // target area: x=265..287, y=-103..-58
