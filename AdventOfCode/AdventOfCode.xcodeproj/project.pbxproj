@@ -185,6 +185,11 @@
 		C55F0842276CC56D00EEEFA2 /* TrickShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0841276CC56D00EEEFA2 /* TrickShot.swift */; };
 		C55F0843276CC56D00EEEFA2 /* TrickShot.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0841276CC56D00EEEFA2 /* TrickShot.swift */; };
 		C55F0845276D83B600EEEFA2 /* DaySeventeen2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0844276D83B600EEEFA2 /* DaySeventeen2021Tests.swift */; };
+		C55F0849276F805D00EEEFA2 /* DayEighteen2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0848276F805D00EEEFA2 /* DayEighteen2021.swift */; };
+		C55F084A276F805D00EEEFA2 /* DayEighteen2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0848276F805D00EEEFA2 /* DayEighteen2021.swift */; };
+		C55F084C276F841200EEEFA2 /* SnailfishNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */; };
+		C55F084D276F841200EEEFA2 /* SnailfishNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */; };
+		C55F084F276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F084E276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift */; };
 		C571C3B12769808B000BEF76 /* Polymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B02769808B000BEF76 /* Polymer.swift */; };
 		C571C3B22769808B000BEF76 /* Polymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B02769808B000BEF76 /* Polymer.swift */; };
 		C571C3B4276982D6000BEF76 /* DayFourteen2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B3276982D6000BEF76 /* DayFourteen2021Tests.swift */; };
@@ -370,6 +375,10 @@
 		C55F083E276CC0E200EEEFA2 /* DavSeventeen2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DavSeventeen2021.swift; sourceTree = "<group>"; };
 		C55F0841276CC56D00EEEFA2 /* TrickShot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrickShot.swift; sourceTree = "<group>"; };
 		C55F0844276D83B600EEEFA2 /* DaySeventeen2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DaySeventeen2021Tests.swift; sourceTree = "<group>"; };
+		C55F0847276F805300EEEFA2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C55F0848276F805D00EEEFA2 /* DayEighteen2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteen2021.swift; sourceTree = "<group>"; };
+		C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnailfishNumber.swift; sourceTree = "<group>"; };
+		C55F084E276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteen2021Tests.swift; sourceTree = "<group>"; };
 		C571C3B02769808B000BEF76 /* Polymer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polymer.swift; sourceTree = "<group>"; };
 		C571C3B3276982D6000BEF76 /* DayFourteen2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFourteen2021Tests.swift; sourceTree = "<group>"; };
 		C571C3B6276A20E8000BEF76 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -850,6 +859,7 @@
 				C571C3B5276A20DD000BEF76 /* Day15 */,
 				C55F0832276C442A00EEEFA2 /* Day16 */,
 				C55F083C276CC0CB00EEEFA2 /* Day17 */,
+				C55F0846276F804900EEEFA2 /* Day18 */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -906,6 +916,16 @@
 			path = Day17;
 			sourceTree = "<group>";
 		};
+		C55F0846276F804900EEEFA2 /* Day18 */ = {
+			isa = PBXGroup;
+			children = (
+				C55F0847276F805300EEEFA2 /* README.md */,
+				C55F0848276F805D00EEEFA2 /* DayEighteen2021.swift */,
+				C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */,
+			);
+			path = Day18;
+			sourceTree = "<group>";
+		};
 		C571C3B5276A20DD000BEF76 /* Day15 */ = {
 			isa = PBXGroup;
 			children = (
@@ -953,6 +973,7 @@
 				C571C3BD276A3E7A000BEF76 /* DayFifteen2021Tests.swift */,
 				C55F083A276C499900EEEFA2 /* DaySixteen2021Tests.swift */,
 				C55F0844276D83B600EEEFA2 /* DaySeventeen2021Tests.swift */,
+				C55F084E276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -1140,6 +1161,7 @@
 				C516C8CB27610D670038AB8A /* DayEight2021.swift in Sources */,
 				C516C817275957B00038AB8A /* DockingProgram.swift in Sources */,
 				C516C7B427594C040038AB8A /* DayFive.swift in Sources */,
+				C55F084C276F841200EEEFA2 /* SnailfishNumber.swift in Sources */,
 				C516C800275956140038AB8A /* DayTwelve2020.swift in Sources */,
 				C516C87A275959C60038AB8A /* Groceries.swift in Sources */,
 				C516C84B2759587B0038AB8A /* ConwayCube.swift in Sources */,
@@ -1193,6 +1215,7 @@
 				C57773E82768E47C006E5ADA /* DayFourteen2021.swift in Sources */,
 				C516C8622759592F0038AB8A /* DayNineteen2020.swift in Sources */,
 				C556EF6A2757B454009B3078 /* ContentView.swift in Sources */,
+				C55F0849276F805D00EEEFA2 /* DayEighteen2021.swift in Sources */,
 				C516C898275BC78A0038AB8A /* BingoGame.swift in Sources */,
 				C516C7B227594C040038AB8A /* BoardingPass.swift in Sources */,
 				C516C819275957B00038AB8A /* Int.swift in Sources */,
@@ -1235,6 +1258,7 @@
 				C57773E92768E47C006E5ADA /* DayFourteen2021.swift in Sources */,
 				C571C3BC276A2B1E000BEF76 /* CaveNode.swift in Sources */,
 				C516C89F275BC98A0038AB8A /* DayFour2021Tests.swift in Sources */,
+				C55F084F276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift in Sources */,
 				C516C8D627623C540038AB8A /* DayNine2021.swift in Sources */,
 				C516C7FB2759553E0038AB8A /* SeatMapModeler.swift in Sources */,
 				C556EFA02757C3AD009B3078 /* DayOne2021.swift in Sources */,
@@ -1263,6 +1287,7 @@
 				C516C88C2759ED010038AB8A /* DayThree2021.swift in Sources */,
 				C516C782275907430038AB8A /* String.swift in Sources */,
 				C516C8A9275D04360038AB8A /* DayFive2021Tests.swift in Sources */,
+				C55F084D276F841200EEEFA2 /* SnailfishNumber.swift in Sources */,
 				C516C8B3275DD5940038AB8A /* DaySix2021Tests.swift in Sources */,
 				C516C84C2759587B0038AB8A /* ConwayCube.swift in Sources */,
 				C516C8422759587B0038AB8A /* TreeDCoordinate.swift in Sources */,
@@ -1313,6 +1338,7 @@
 				C516C870275959770038AB8A /* DayTwenty2020.swift in Sources */,
 				C571C3B9276A2106000BEF76 /* DayFifteen2021.swift in Sources */,
 				C516C84A2759587B0038AB8A /* FourDCoordinate.swift in Sources */,
+				C55F084A276F805D00EEEFA2 /* DayEighteen2021.swift in Sources */,
 				C516C801275956140038AB8A /* DayTwelve2020.swift in Sources */,
 				C516C8C7275F2F710038AB8A /* Dictionary.swift in Sources */,
 				C516C8462759587B0038AB8A /* PowerSource.swift in Sources */,
