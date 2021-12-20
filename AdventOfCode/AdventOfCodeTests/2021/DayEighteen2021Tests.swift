@@ -127,6 +127,13 @@ class DayEighteen2021Tests: XCTestCase {
         let snAdded0 = SnailfishNumber.add(sn1!, sn2!)
         snAdded0.reduce()
         XCTAssertEqual("[[[[4,0],[5,4]],[[7,7],[6,0]]],[[8,[7,7]],[[7,9],[5,0]]]]", snAdded0.description)
+
+        let sn3 = SnailfishNumber.parse("[[2,[[7,7],7]],[[5,8],[[9,3],[0,2]]]]")
+        let sn4 = SnailfishNumber.parse("[[[0,[5,8]],[[1,7],[9,6]]],[[4,[1,2]],[[1,4],2]]]")
+        let snAdded1 = SnailfishNumber.add(sn3!, sn4!)
+        snAdded1.reduce()
+        XCTAssertEqual("[[[[7,8],[6,6]],[[6,0],[7,7]]],[[[7,8],[8,8]],[[7,9],[0,6]]]]", snAdded1.description)
+        XCTAssertEqual(3993, snAdded1.magnitude())
     }
 
     func testSnailfishNumberMagnitude() {
@@ -181,5 +188,11 @@ class DayEighteen2021Tests: XCTestCase {
         let sn = day.add(numbers: numbers)
         XCTAssertEqual("[[[[6,6],[7,6]],[[7,7],[7,0]]],[[[7,7],[7,7]],[[7,8],[9,9]]]]", sn.description)
         XCTAssertEqual(4140, sn.magnitude())
+    }
+
+    func testDayEighteenPart2() {
+        let day = DayEighteen2021()
+        let largest = day.partTwo(input: sampleInput) as? Int
+        XCTAssertEqual(3993, largest)
     }
 }

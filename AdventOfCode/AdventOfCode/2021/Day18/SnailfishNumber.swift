@@ -81,13 +81,13 @@ class SnailfishNumber {
 
     /// Reduce the given number down by exploding and splitting as necessary.
     func reduce(passes: Int = Int.max) {
-        print("Initial: \(self)")
+//        print("Initial: \(self)")
         var changesMade = true
         var iterationCount = 0
 
         while changesMade {
             iterationCount += 1
-            print("[\(iterationCount)]: \(self)")
+//            print("[\(iterationCount)]: \(self)")
 
             let bfsList = self.createBFSList()
             let explodeResult = explode(currentDepth: 0, bfsList: bfsList)
@@ -99,18 +99,18 @@ class SnailfishNumber {
                     }
                 }
 
-                print("\tExplosion detected... \(iterationCount)")
+//                print("\tExplosion detected... \(iterationCount)")
             } else if split() {
-                print("\tSplit detected... \(iterationCount)")
+//                print("\tSplit detected... \(iterationCount)")
             } else {
-                print("\tNo changes needed.")
+//                print("\tNo changes needed.")
                 changesMade = false
             }
 
             guard iterationCount < passes else { break }
         }
 
-        print("Final: \(self)")
+//        print("Final: \(self)")
     }
 
 
@@ -343,5 +343,13 @@ extension SnailfishNumber {
         } else {
             return false
         }
+    }
+}
+
+// MARK: - Hashable
+extension SnailfishNumber: Hashable {
+    /// Hash based on UUID
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(uuid)
     }
 }
