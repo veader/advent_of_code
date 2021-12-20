@@ -208,3 +208,6 @@ The magnitude of this final sum is `4140`.
 Add up all of the snailfish numbers from the homework assignment in the order they 
 appear. **What is the magnitude of the final sum?**
 
+Your puzzle answer was `4017`.
+
+---
