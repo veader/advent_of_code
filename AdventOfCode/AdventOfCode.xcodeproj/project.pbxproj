@@ -190,6 +190,8 @@
 		C55F084C276F841200EEEFA2 /* SnailfishNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */; };
 		C55F084D276F841200EEEFA2 /* SnailfishNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */; };
 		C55F084F276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F084E276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift */; };
+		C55F08532770FF1A00EEEFA2 /* DayNineteen2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F08522770FF1A00EEEFA2 /* DayNineteen2021.swift */; };
+		C55F08542770FF1A00EEEFA2 /* DayNineteen2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F08522770FF1A00EEEFA2 /* DayNineteen2021.swift */; };
 		C571C3B12769808B000BEF76 /* Polymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B02769808B000BEF76 /* Polymer.swift */; };
 		C571C3B22769808B000BEF76 /* Polymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B02769808B000BEF76 /* Polymer.swift */; };
 		C571C3B4276982D6000BEF76 /* DayFourteen2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B3276982D6000BEF76 /* DayFourteen2021Tests.swift */; };
@@ -379,6 +381,8 @@
 		C55F0848276F805D00EEEFA2 /* DayEighteen2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteen2021.swift; sourceTree = "<group>"; };
 		C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnailfishNumber.swift; sourceTree = "<group>"; };
 		C55F084E276FAD8F00EEEFA2 /* DayEighteen2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEighteen2021Tests.swift; sourceTree = "<group>"; };
+		C55F08512770FF1100EEEFA2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C55F08522770FF1A00EEEFA2 /* DayNineteen2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNineteen2021.swift; sourceTree = "<group>"; };
 		C571C3B02769808B000BEF76 /* Polymer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polymer.swift; sourceTree = "<group>"; };
 		C571C3B3276982D6000BEF76 /* DayFourteen2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFourteen2021Tests.swift; sourceTree = "<group>"; };
 		C571C3B6276A20E8000BEF76 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -860,6 +864,7 @@
 				C55F0832276C442A00EEEFA2 /* Day16 */,
 				C55F083C276CC0CB00EEEFA2 /* Day17 */,
 				C55F0846276F804900EEEFA2 /* Day18 */,
+				C55F08502770FEFA00EEEFA2 /* Day19 */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -924,6 +929,15 @@
 				C55F084B276F841200EEEFA2 /* SnailfishNumber.swift */,
 			);
 			path = Day18;
+			sourceTree = "<group>";
+		};
+		C55F08502770FEFA00EEEFA2 /* Day19 */ = {
+			isa = PBXGroup;
+			children = (
+				C55F08512770FF1100EEEFA2 /* README.md */,
+				C55F08522770FF1A00EEEFA2 /* DayNineteen2021.swift */,
+			);
+			path = Day19;
 			sourceTree = "<group>";
 		};
 		C571C3B5276A20DD000BEF76 /* Day15 */ = {
@@ -1177,6 +1191,7 @@
 				C516C87C275959C60038AB8A /* DayTwentyOne2020.swift in Sources */,
 				C516C7CF27594E780038AB8A /* Array.swift in Sources */,
 				C516C7A827594B7C0038AB8A /* DayFour2020.swift in Sources */,
+				C55F08532770FF1A00EEEFA2 /* DayNineteen2021.swift in Sources */,
 				C516C781275907430038AB8A /* String.swift in Sources */,
 				C516C7ED2759542C0038AB8A /* AdapterArray.swift in Sources */,
 				C516C825275957F60038AB8A /* DayFifteen2020.swift in Sources */,
@@ -1253,6 +1268,7 @@
 				C55F083B276C499900EEEFA2 /* DaySixteen2021Tests.swift in Sources */,
 				C516C8612759592F0038AB8A /* RuleParser.swift in Sources */,
 				C516C89D275BC7A30038AB8A /* BingoBoard.swift in Sources */,
+				C55F08542770FF1A00EEEFA2 /* DayNineteen2021.swift in Sources */,
 				C57773D72766EABD006E5ADA /* DayTwelve2021Tests.swift in Sources */,
 				C57773C327639301006E5ADA /* DayTen2021.swift in Sources */,
 				C57773E92768E47C006E5ADA /* DayFourteen2021.swift in Sources */,
