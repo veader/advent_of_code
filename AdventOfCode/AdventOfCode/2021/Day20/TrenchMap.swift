@@ -86,6 +86,9 @@ class TrenchMap {
     func enhanceImage(count: Int = 1) {
         var step = 0
         while step < count {
+            if step % 10 == 0 {
+                print("Enhancement: \(step) @ \(Date())")
+            }
             let pixelSpace = stretchedBounds(by: 1) // extend by 1 above/below current space
 
             var newLitPixels = Set<Coordinate>()

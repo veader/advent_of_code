@@ -73,5 +73,15 @@ class DayTwenty2021Tests: XCTestCase {
         trenchMap.enhanceImage()
         trenchMap.printImage()
         print("      ")
+
+        XCTAssertEqual(35, trenchMap.litPixels.count)
+    }
+
+    func testImageEnhancementLarger() {
+        let day = DayTwenty2021()
+        let trenchMap = day.parse(sampleInput)
+        trenchMap.enhanceImage(count: 50)
+        trenchMap.printImage()
+        XCTAssertEqual(3351, trenchMap.litPixels.count)
     }
 }
