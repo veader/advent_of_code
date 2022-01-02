@@ -10,15 +10,15 @@ import Foundation
 class CuboidGrid {
     let instructions: [CuboidInstruction]
     var cubesOn = Set<ThreeDCoordinate>()
-    let xRange: ClosedRange<Int>
-    let yRange: ClosedRange<Int>
-    let zRange: ClosedRange<Int>
+    let restrictedSpace: Bool
 
-    init(instructions: [CuboidInstruction], xRange: ClosedRange<Int> = -50...50, yRange: ClosedRange<Int> = -50...50, zRange: ClosedRange<Int> = -50...50) {
+    let xRange: ClosedRange<Int> = -50...50
+    let yRange: ClosedRange<Int> = -50...50
+    let zRange: ClosedRange<Int> = -50...50
+
+    init(instructions: [CuboidInstruction], restricted: Bool = true) {
         self.instructions = instructions
-        self.xRange = xRange
-        self.yRange = yRange
-        self.zRange = zRange
+        self.restrictedSpace = restricted
     }
 
     func run() {
@@ -43,19 +43,26 @@ class CuboidGrid {
 
     /// Return only the valid coordinates for this cuboid instruction
     func coordinates(for instruction: CuboidInstruction) -> [ThreeDCoordinate] {
-        guard
-            instruction.xRange.overlaps(xRange),
-            instruction.yRange.overlaps(yRange),
-            instruction.zRange.overlaps(zRange)
-        else { return [] }
+        if restrictedSpace {
+            guard
+                instruction.xRange.overlaps(xRange),
+                instruction.yRange.overlaps(yRange),
+                instruction.zRange.overlaps(zRange)
+            else { return [] }
 
-        return instruction.xRange.clamped(to: xRange).flatMap { x -> [ThreeDCoordinate] in
-//            guard xRange.contains(x) else { return [] }
-            return instruction.yRange.clamped(to: yRange).flatMap { y -> [ThreeDCoordinate] in
-//                guard yRange.contains(y) else { return [] }
-                return instruction.zRange.clamped(to: zRange).compactMap { z -> ThreeDCoordinate? in
-//                    guard zRange.contains(z) else { return nil }
-                    return ThreeDCoordinate(x: x, y: y, z: z)
+            return instruction.xRange.clamped(to: xRange).flatMap { x -> [ThreeDCoordinate] in
+                instruction.yRange.clamped(to: yRange).flatMap { y -> [ThreeDCoordinate] in
+                    instruction.zRange.clamped(to: zRange).compactMap { z -> ThreeDCoordinate? in
+                        ThreeDCoordinate(x: x, y: y, z: z)
+                    }
+                }
+            }
+        } else {
+            return instruction.xRange.flatMap { x -> [ThreeDCoordinate] in
+                instruction.yRange.flatMap { y -> [ThreeDCoordinate] in
+                    instruction.zRange.compactMap { z -> ThreeDCoordinate? in
+                        ThreeDCoordinate(x: x, y: y, z: z)
+                    }
                 }
             }
         }
@@ -63,8 +70,12 @@ class CuboidGrid {
 
     /// Remove any coordinate that isn't in our proper range
     func valid(coordinates: [ThreeDCoordinate]) -> [ThreeDCoordinate] {
-        coordinates.filter { c in
-            xRange.contains(c.x) && yRange.contains(c.y) && zRange.contains(c.z)
+        if restrictedSpace {
+            return coordinates.filter { c in
+                xRange.contains(c.x) && yRange.contains(c.y) && zRange.contains(c.z)
+            }
+        } else {
+            return coordinates
         }
     }
 }
