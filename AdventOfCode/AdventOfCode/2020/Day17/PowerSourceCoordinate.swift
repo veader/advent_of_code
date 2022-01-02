@@ -10,3 +10,7 @@ import Foundation
 protocol PowerSourceCoordinate {
     
 }
+
+extension ThreeDCoordinate: PowerSourceCoordinate {
+    
+}
