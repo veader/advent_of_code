@@ -209,6 +209,8 @@
 		C55F0872277AE24100EEEFA2 /* DayTwentyTwo2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0871277AE24100EEEFA2 /* DayTwentyTwo2021Tests.swift */; };
 		C55F0874277AE49D00EEEFA2 /* CuboidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0873277AE49D00EEEFA2 /* CuboidGrid.swift */; };
 		C55F0875277AE49D00EEEFA2 /* CuboidGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F0873277AE49D00EEEFA2 /* CuboidGrid.swift */; };
+		C55F087927817C1000EEEFA2 /* DayTwentyThree2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F087827817C1000EEEFA2 /* DayTwentyThree2021.swift */; };
+		C55F087A27817C1000EEEFA2 /* DayTwentyThree2021.swift in Sources */ = {isa = PBXBuildFile; fileRef = C55F087827817C1000EEEFA2 /* DayTwentyThree2021.swift */; };
 		C571C3B12769808B000BEF76 /* Polymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B02769808B000BEF76 /* Polymer.swift */; };
 		C571C3B22769808B000BEF76 /* Polymer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B02769808B000BEF76 /* Polymer.swift */; };
 		C571C3B4276982D6000BEF76 /* DayFourteen2021Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C571C3B3276982D6000BEF76 /* DayFourteen2021Tests.swift */; };
@@ -413,6 +415,8 @@
 		C55F086E277ADE7500EEEFA2 /* CuboidInstruction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuboidInstruction.swift; sourceTree = "<group>"; };
 		C55F0871277AE24100EEEFA2 /* DayTwentyTwo2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyTwo2021Tests.swift; sourceTree = "<group>"; };
 		C55F0873277AE49D00EEEFA2 /* CuboidGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CuboidGrid.swift; sourceTree = "<group>"; };
+		C55F087727817C0600EEEFA2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C55F087827817C1000EEEFA2 /* DayTwentyThree2021.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTwentyThree2021.swift; sourceTree = "<group>"; };
 		C571C3B02769808B000BEF76 /* Polymer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Polymer.swift; sourceTree = "<group>"; };
 		C571C3B3276982D6000BEF76 /* DayFourteen2021Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFourteen2021Tests.swift; sourceTree = "<group>"; };
 		C571C3B6276A20E8000BEF76 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -897,6 +901,7 @@
 				C55F085527719C3100EEEFA2 /* Day20 */,
 				C55F085F27743DFB00EEEFA2 /* Day21 */,
 				C55F08692779FD4500EEEFA2 /* Day22 */,
+				C55F087627817BF600EEEFA2 /* Day23 */,
 			);
 			path = 2021;
 			sourceTree = "<group>";
@@ -1002,6 +1007,15 @@
 				C55F0873277AE49D00EEEFA2 /* CuboidGrid.swift */,
 			);
 			path = Day22;
+			sourceTree = "<group>";
+		};
+		C55F087627817BF600EEEFA2 /* Day23 */ = {
+			isa = PBXGroup;
+			children = (
+				C55F087727817C0600EEEFA2 /* README.md */,
+				C55F087827817C1000EEEFA2 /* DayTwentyThree2021.swift */,
+			);
+			path = Day23;
 			sourceTree = "<group>";
 		};
 		C571C3B5276A20DD000BEF76 /* Day15 */ = {
@@ -1317,6 +1331,7 @@
 				C516C823275957F60038AB8A /* MemoryGame.swift in Sources */,
 				C516C7C627594E0B0038AB8A /* LuggageRule.swift in Sources */,
 				C556EFA22757C78B009B3078 /* AdventYear.swift in Sources */,
+				C55F087927817C1000EEEFA2 /* DayTwentyThree2021.swift in Sources */,
 				C55F083F276CC0E200EEEFA2 /* DavSeventeen2021.swift in Sources */,
 				C57773CC276532CB006E5ADA /* DayEleven2021.swift in Sources */,
 				C516C80E275956790038AB8A /* BusSchedule.swift in Sources */,
@@ -1342,6 +1357,7 @@
 				C516C8B1275DD2B70038AB8A /* DaySix2021.swift in Sources */,
 				C55F083B276C499900EEEFA2 /* DaySixteen2021Tests.swift in Sources */,
 				C516C8612759592F0038AB8A /* RuleParser.swift in Sources */,
+				C55F087A27817C1000EEEFA2 /* DayTwentyThree2021.swift in Sources */,
 				C516C89D275BC7A30038AB8A /* BingoBoard.swift in Sources */,
 				C55F08542770FF1A00EEEFA2 /* DayNineteen2021.swift in Sources */,
 				C57773D72766EABD006E5ADA /* DayTwelve2021Tests.swift in Sources */,
