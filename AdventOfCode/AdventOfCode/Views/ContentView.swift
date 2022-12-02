@@ -10,45 +10,54 @@ import SwiftUI
 // https://developer.apple.com/tutorials/swiftui/creating-a-macos-app
 
 struct ContentView: View {
-    @State var year: AdventYear = .year2021
-    @State var selectedDay: AdventDay?
+    @State var year: AdventYear = .year2022
+    @State var selectedProxy: AdventDayProxy?
 
-    var days: [AdventDay] { year.days }
+    var days: [AdventDayProxy] { year.days.map { AdventDayProxy(day: $0) } }
     var title: String { year.rawValue }
 
     var body: some View {
-        NavigationView {
-            List {
-                ForEach(days, id: \.id) { day in
-                    NavigationLink {
-                        AdventDayView(day: day)
-                    } label: {
-                        AdventDayCell(day: day)
-                    }
-                }
+        NavigationSplitView {
+            List(AdventYear.allCases, selection: $year) { year in
+                Label(year.rawValue, systemImage: "calendar")
             }
-            .navigationTitle(title)
-            .frame(minWidth: 300)
-            .toolbar {
-                ToolbarItem {
-                    Menu {
-                        Picker("Year", selection: $year) {
-                            ForEach(AdventYear.allCases) { theYear in
-                                Text(theYear.rawValue).tag(theYear)
-                            }
-                        }
-                        .pickerStyle(.inline)
-                    } label: {
-                        Text(title)
-                        //Label(title, systemImage: "slider.horizontal.3")
+        } content: {
+            List(days) { proxy in
+                Button {
+                    withAnimation {
+                        selectedProxy = proxy
                     }
+                } label: {
+                    AdventDayCell(day: proxy.day, selected: proxy == selectedProxy)
                 }
+                .buttonStyle(.plain)
             }
-
-            Text("Select a day")
+        } detail: {
+            if let selectedProxy {
+                AdventDayView(day: selectedProxy.day)
+            } else {
+                Text("Select day")
+            }
         }
+        .navigationSplitViewStyle(.prominentDetail)
     }
 }
+
+// silly proxy wrapper so that the days are Hashable and Identifiable without the protocol mess
+struct AdventDayProxy: Identifiable, Hashable {
+    var id: String { day.id }
+
+    let day: AdventDay
+
+    static func == (lhs: AdventDayProxy, rhs: AdventDayProxy) -> Bool {
+        lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
+}
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

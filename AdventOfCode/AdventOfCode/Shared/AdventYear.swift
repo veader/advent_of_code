@@ -11,11 +11,16 @@ enum AdventYear: String, CaseIterable, Identifiable {
 
     case year2020 = "2020"
     case year2021 = "2021"
+    case year2022 = "2022"
 
     var id: AdventYear { self }
 
-    var days: [AdventDay] {
+    var days: [any AdventDay] {
         switch self {
+        case .year2022:
+            return [
+                DayOne2022(),
+            ]
         case .year2021:
             return [
                 DayOne2021(),
