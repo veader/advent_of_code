@@ -60,6 +60,8 @@ struct DayOne2022: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let elves = parse(input).sorted(by: { $0.totalCalories > $1.totalCalories })
+        let topThree = elves.prefix(upTo: 3)
+        return topThree.reduce(0, { $0 + $1.totalCalories })
     }
 }

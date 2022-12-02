@@ -50,8 +50,13 @@ final class DayOne2022Tests: XCTestCase {
 
     func testMaxCalories() {
         let day = DayOne2022()
-
         let answer = day.partOne(input: sampleInput)
         XCTAssertEqual(24000, answer as! Int)
+    }
+
+    func testTopThreeCalories() {
+        let day = DayOne2022()
+        let answer = day.partTwo(input: sampleInput)
+        XCTAssertEqual(45000, answer as! Int)
     }
 }
