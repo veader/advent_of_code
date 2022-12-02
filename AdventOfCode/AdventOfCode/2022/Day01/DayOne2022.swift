@@ -11,7 +11,7 @@ struct DayOne2022: AdventDay {
     var year = 2022
     var dayNumber = 1
     var dayTitle = "Calorie Counting"
-    var stars = 0
+    var stars = 2
 
     struct HungryElf {
         let id = UUID()
