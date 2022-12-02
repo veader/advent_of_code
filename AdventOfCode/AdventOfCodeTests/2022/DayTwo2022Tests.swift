@@ -21,16 +21,16 @@ final class DayTwo2022Tests: XCTestCase {
         XCTAssertEqual(3, output.count)
 
         let firstHand = output.first!
-        XCTAssertEqual(DayTwo2022.RoshamboRound.Hand.rock, firstHand.player1Hand)
-        XCTAssertEqual(DayTwo2022.RoshamboRound.Hand.paper, firstHand.player2Hand)
+        XCTAssertEqual(RoshamboRound.Hand.rock, firstHand.player1Hand)
+        XCTAssertEqual(RoshamboRound.Hand.paper, firstHand.player2Hand)
 
         let secondHand = output[1]
-        XCTAssertEqual(DayTwo2022.RoshamboRound.Hand.paper, secondHand.player1Hand)
-        XCTAssertEqual(DayTwo2022.RoshamboRound.Hand.rock, secondHand.player2Hand)
+        XCTAssertEqual(RoshamboRound.Hand.paper, secondHand.player1Hand)
+        XCTAssertEqual(RoshamboRound.Hand.rock, secondHand.player2Hand)
 
         let thirdHand = output.last!
-        XCTAssertEqual(DayTwo2022.RoshamboRound.Hand.scissor, thirdHand.player1Hand)
-        XCTAssertEqual(DayTwo2022.RoshamboRound.Hand.scissor, thirdHand.player2Hand)
+        XCTAssertEqual(RoshamboRound.Hand.scissor, thirdHand.player1Hand)
+        XCTAssertEqual(RoshamboRound.Hand.scissor, thirdHand.player2Hand)
     }
 
     func testScoring() {
@@ -39,6 +39,14 @@ final class DayTwo2022Tests: XCTestCase {
         XCTAssertEqual(8, output[0].scoreRound())
         XCTAssertEqual(1, output[1].scoreRound())
         XCTAssertEqual(6, output[2].scoreRound())
+    }
+
+    func testCalculating() {
+        let output = DayTwo2022().parse(sampleInput)
+
+        XCTAssertEqual(4, output[0].scoreCalculatedRound())
+        XCTAssertEqual(1, output[1].scoreCalculatedRound())
+        XCTAssertEqual(7, output[2].scoreCalculatedRound())
     }
 
     func testFirstStar() {
