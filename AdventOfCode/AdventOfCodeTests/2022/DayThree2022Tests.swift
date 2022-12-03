@@ -58,4 +58,10 @@ final class DayThree2022Tests: XCTestCase {
         let answer = day.partOne(input: sampleInput)
         XCTAssertEqual(157, answer as! Int)
     }
+
+    func testPartTwo() {
+        let day = DayThree2022()
+        let answer = day.partTwo(input: sampleInput)
+        XCTAssertEqual(70, answer as! Int)
+    }
 }

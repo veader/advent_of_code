@@ -11,7 +11,7 @@ struct DayThree2022: AdventDay {
     var year = 2022
     var dayNumber = 3
     var dayTitle = "Rucksack Reorganization"
-    var stars = 1
+    var stars = 2
 
     struct Rucksack {
         let compartment1: [String]
@@ -25,6 +25,10 @@ struct DayThree2022: AdventDay {
 
             compartment1 = frontHalf.map(String.init)
             compartment2 = backHalf.map(String.init)
+        }
+
+        var allItems: Set<String> {
+            Set(compartment1).union(Set(compartment2))
         }
 
         func misplacedItem() -> String? {
@@ -65,6 +69,15 @@ struct DayThree2022: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let rucksacks = parse(input)
+        return stride(from: rucksacks.startIndex, to: rucksacks.endIndex, by: 3)
+            .compactMap { idx in
+                let sacks = rucksacks[idx..<rucksacks.index(idx, offsetBy: 3)]
+                guard sacks.count == 3 else { return nil }
+                let common = sacks.reduce(sacks.first!.allItems) { $0.intersection($1.allItems) }
+                return common.first
+            }
+            .map { priority(of: $0) }
+            .reduce(0, +)
     }
 }
