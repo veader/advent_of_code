@@ -12,7 +12,7 @@ struct DayFour2022: AdventDay {
     var year = 2022
     var dayNumber = 4
     var dayTitle = "Camp Cleanup"
-    var stars = 1
+    var stars = 2
 
     static let sideRegex = Regex {
         Capture {
@@ -51,6 +51,11 @@ struct DayFour2022: AdventDay {
             elf2 = side2Start...side2End
         }
 
+        func overlaps() -> Bool {
+            let overlap = Set(elf1.sorted()).intersection(Set(elf2.sorted()))
+            return !overlap.isEmpty
+        }
+
         func fullyOverlaps() -> Bool {
             let ranges = [elf1, elf2].sorted(by: { $0.count > $1.count })
             return ranges[0].contains(ranges[1])
@@ -67,6 +72,7 @@ struct DayFour2022: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let sections = parse(input)
+        return sections.filter { $0.overlaps() }.count
     }
 }

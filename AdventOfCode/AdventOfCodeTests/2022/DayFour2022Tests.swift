@@ -34,7 +34,7 @@ final class DayFour2022Tests: XCTestCase {
         XCTAssertEqual(8, last.elf2.last)
     }
 
-    func testOverlap() {
+    func testFullyOverlaps() {
         let noOverlapEasy = DayFour2022.CampSections("2-4,6-8")!
         XCTAssertFalse(noOverlapEasy.fullyOverlaps())
 
@@ -51,8 +51,24 @@ final class DayFour2022Tests: XCTestCase {
         XCTAssertTrue(overlaps.fullyOverlaps())
     }
 
+    func testOverlaps() {
+        let noOverlapEasy = DayFour2022.CampSections("2-4,6-8")!
+        XCTAssertFalse(noOverlapEasy.overlaps())
+
+        let partialOverlap = DayFour2022.CampSections("2-6,4-8")!
+        XCTAssertTrue(partialOverlap.overlaps())
+
+        let fullyOverlaps = DayFour2022.CampSections("2-8,3-7")!
+        XCTAssertTrue(fullyOverlaps.overlaps())
+    }
+
     func testPartOne() {
         let answer = DayFour2022().partOne(input: sampleInput)
         XCTAssertEqual(2, answer as! Int)
+    }
+
+    func testPartTwo() {
+        let answer = DayFour2022().partTwo(input: sampleInput)
+        XCTAssertEqual(4, answer as! Int)
     }
 }
