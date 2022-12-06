@@ -103,6 +103,16 @@ final class DayFive2022Tests: XCTestCase {
         XCTAssertEqual(0, map.topIndex(column: 2))
     }
 
+    func testAllGroupedInstructions() {
+        var map = SupplyCrateMap.parse(sampleInput)
+        map.followAllInstructions(grouped: true)
+
+        XCTAssertEqual(3, map.topIndex(column: 0))
+        XCTAssertEqual(3, map.topIndex(column: 1))
+        XCTAssertEqual(0, map.topIndex(column: 2))
+        map.printStack()
+    }
+
     func testTopBoxes() {
         var map = SupplyCrateMap.parse(sampleInput)
         map.followAllInstructions()
@@ -116,5 +126,30 @@ final class DayFive2022Tests: XCTestCase {
         let day = DayFive2022()
         let answer = day.partOne(input: sampleInput)
         XCTAssertEqual("CMZ", answer as! String)
+    }
+
+    func testGetTopBoxes() {
+        let map = SupplyCrateMap.parse(sampleInput)
+
+        let boxes = map.getTop(1, in: 0)
+        XCTAssertEqual(1, boxes.count)
+        XCTAssertEqual(Coordinate(x: 1, y: 0), boxes[0])
+
+        let moreBoxes = map.getTop(2, in: 0)
+        XCTAssertEqual(2, moreBoxes.count)
+        XCTAssertEqual(Coordinate(x: 2, y: 0), moreBoxes.last)
+
+        let mostBoxes = map.getTop(3, in: 0)
+        XCTAssertEqual(2, mostBoxes.count)
+        XCTAssertEqual(Coordinate(x: 2, y: 0), mostBoxes.last)
+
+        XCTAssertEqual(3, map.getTop(4, in: 1).count)
+        XCTAssertEqual(1, map.getTop(1, in: 2).count)
+    }
+
+    func testPartTwo() {
+        let day = DayFive2022()
+        let answer = day.partTwo(input: sampleInput)
+        XCTAssertEqual("MCD", answer as! String)
     }
 }

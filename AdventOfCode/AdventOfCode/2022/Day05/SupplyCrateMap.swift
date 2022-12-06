@@ -54,13 +54,17 @@ struct SupplyCrateMap {
 
     // MARK: - Methods
 
-    mutating func followAllInstructions() {
+    mutating func followAllInstructions(grouped: Bool = false) {
         for instruction in instructions {
-            follow(instruction: instruction)
+            if grouped {
+                followUsingGroup(instruction: instruction)
+            } else {
+                follow(instruction: instruction)
+            }
         }
     }
 
-    /// Follow the given instruction and move the necessary pieces
+    /// Follow the given instruction and move the necessary pieces (one at a time)
     mutating func follow(instruction: Instruction) {
         // confirm our instruction is valid
         guard   let firstRow = stack.first,
@@ -88,6 +92,34 @@ struct SupplyCrateMap {
         }
     }
 
+    /// Follow the given instruction and move the necessary pieces (as a group)
+    mutating func followUsingGroup(instruction: Instruction) {
+        // confirm our instruction is valid
+        guard   let firstRow = stack.first,
+                firstRow.count > instruction.originIdx,
+                firstRow.count > instruction.destinationIdx
+        else { return }
+
+        var topDest = topIndex(column: instruction.destinationIdx)
+
+        if topDest - instruction.moveAmount < 0 {
+            let addedRowCount = instruction.moveAmount - topDest
+            stack = Array(repeating: emptyRow(), count: addedRowCount) + stack // prepend some rows to the top
+            topDest = topIndex(column: instruction.destinationIdx) // refetch the updated top destination coord
+        }
+
+        let topOrigin = topIndex(column: instruction.originIdx)
+
+        let coordsToMove = getTop(instruction.moveAmount, in: instruction.originIdx).reversed()
+        for (idx, originCoord) in coordsToMove.enumerated() {
+            let destCoord = Coordinate(x: topDest - (idx + 1), y: instruction.destinationIdx)
+
+            guard let box = value(at: originCoord) else { print("NO BOX!"); return }
+            assign(destCoord, box: box)
+            clear(originCoord)
+        }
+    }
+
     /// What is the value at the given within the stacks?
     func value(at coord: Coordinate) -> SupplyBox? {
         guard valid(coordinate: coord) else { return nil }
@@ -104,6 +136,13 @@ struct SupplyCrateMap {
     /// Find the index of the top of this column. Returns 0 if stack not found
     func topIndex(column y: Int) -> Int {
         column(y).enumerated().first(where: { value(at: $0.element) != .empty })?.offset ?? height
+    }
+
+    /// Get the top (x) Coordinates from the given column
+    func getTop(_ count: Int, in column: Int) -> [Coordinate] {
+        let topIdx = topIndex(column: column)
+        return (topIdx..<topIdx + count).map { Coordinate(x: $0, y: column) }.filter { valid(coordinate: $0) }
+        //return coordinates.compactMap { value(at: $0) }.filter { $0 != .empty }
     }
 
     /// Get a new empty row that is the proper width

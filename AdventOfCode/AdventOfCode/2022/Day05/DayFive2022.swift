@@ -11,7 +11,7 @@ struct DayFive2022: AdventDay {
     var year = 2022
     var dayNumber = 5
     var dayTitle = "Supply Stacks"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> SupplyCrateMap {
         SupplyCrateMap.parse(input)
@@ -27,6 +27,11 @@ struct DayFive2022: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        var stackMap = parse(input)
+        stackMap.followAllInstructions(grouped: true)
+        return stackMap.topBoxes().compactMap { box -> String? in
+            guard case .box(let name) = box else { return nil }
+            return name
+        }.joined()
     }
 }
