@@ -14,25 +14,47 @@ final class DaySix2022Tests: XCTestCase {
     let sample4 = "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg"
     let sample5 = "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
 
-    func testReadWindow() {
+    func testFindPacketMarker() {
         var radio = DaySix2022.RadioStream(data: sample1)
-        var answer = radio.findStartPacketMarker()
+        var answer = radio.findMarker(.packet)
         XCTAssertEqual(7, answer?.end)
 
         radio = DaySix2022.RadioStream(data: sample2)
-        answer = radio.findStartPacketMarker()
+        answer = radio.findMarker(.packet)
         XCTAssertEqual(5, answer?.end)
 
         radio = DaySix2022.RadioStream(data: sample3)
-        answer = radio.findStartPacketMarker()
+        answer = radio.findMarker(.packet)
         XCTAssertEqual(6, answer?.end)
 
         radio = DaySix2022.RadioStream(data: sample4)
-        answer = radio.findStartPacketMarker()
+        answer = radio.findMarker(.packet)
         XCTAssertEqual(10, answer?.end)
 
         radio = DaySix2022.RadioStream(data: sample5)
-        answer = radio.findStartPacketMarker()
+        answer = radio.findMarker(.packet)
         XCTAssertEqual(11, answer?.end)
+    }
+
+    func testFindMessageMarker() {
+        var radio = DaySix2022.RadioStream(data: sample1)
+        var answer = radio.findMarker(.message)
+        XCTAssertEqual(19, answer?.end)
+
+        radio = DaySix2022.RadioStream(data: sample2)
+        answer = radio.findMarker(.message)
+        XCTAssertEqual(23, answer?.end)
+
+        radio = DaySix2022.RadioStream(data: sample3)
+        answer = radio.findMarker(.message)
+        XCTAssertEqual(23, answer?.end)
+
+        radio = DaySix2022.RadioStream(data: sample4)
+        answer = radio.findMarker(.message)
+        XCTAssertEqual(29, answer?.end)
+
+        radio = DaySix2022.RadioStream(data: sample5)
+        answer = radio.findMarker(.message)
+        XCTAssertEqual(26, answer?.end)
     }
 }
