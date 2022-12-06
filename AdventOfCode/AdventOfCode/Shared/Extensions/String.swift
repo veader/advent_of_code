@@ -61,4 +61,26 @@ extension String {
         }
         return gram
     }
+
+    /// Structure defining a moving read window within a string
+    struct ReadWindow {
+        var start: Int
+        var length: Int
+
+        var end: Int {
+            start + length
+        }
+
+        mutating func move() {
+            start += 1
+        }
+    }
+
+    /// Return a `Substring` using the provided `ReadWindow`
+    func substring(at window: ReadWindow) -> Substring? {
+        guard window.end < count else { return nil }
+        let startIdx = index(startIndex, offsetBy: window.start)
+        let endIdx = index(startIndex, offsetBy: window.end)
+        return self[startIdx..<endIdx]
+    }
 }
