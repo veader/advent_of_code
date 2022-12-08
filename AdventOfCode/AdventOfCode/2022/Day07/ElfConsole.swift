@@ -12,20 +12,28 @@ protocol FilesystemObject {
     var name: String { get }
 }
 
-struct FilesystemDirectory: FilesystemObject {
-    let parent: String?
+class FilesystemDirectory: FilesystemObject {
     let name: String
-    let children: [FilesystemObject] // collection of directories or files
+    let parent: FilesystemDirectory?
+    var children: [FilesystemObject] // collection of directories or files
+    var size: Int
 
-    func replacing(children newChildren: [FilesystemObject]) -> FilesystemDirectory {
-        FilesystemDirectory(parent: parent, name: name, children: newChildren)
+    init(name: String, parent: FilesystemDirectory?) {
+        self.name = name
+        self.parent = parent
+        self.children = []
+        self.size = 0
     }
 }
 
-struct FilesystemFile: FilesystemObject {
-    let parent: String?
+class FilesystemFile: FilesystemObject {
     let name: String
     let size: Int
+
+    init(name: String, size: Int) {
+        self.name = name
+        self.size = size
+    }
 }
 
 class ElfConsole {
@@ -37,74 +45,48 @@ class ElfConsole {
 
     let output: String
 
-    /// Mapping of directories within our filesystem
-    var fileSystemMap = [String: FilesystemDirectory]()
-
-    /// Map from the directory name to size of all items in its heirarchy
-    var directorySizeMap = [String: Int]()
+    var filesystem = FilesystemDirectory(name: "/", parent: nil)
 
     init(output: String?) {
         self.output = output ?? ""
     }
 
     func run() {
-        var currentDirName: String?
-        var currentDirItems = [FilesystemObject]()
-        var listingDirContents = false
+        var currentDir: FilesystemDirectory = filesystem // start at the root
 
         for outputType in parse() {
             switch outputType {
             case .file(name: let name, size: let size):
-                guard listingDirContents else { print("Got a file when not listing..."); continue }
-                let file = FilesystemFile(parent: currentDirName, name: name, size: size)
-                currentDirItems.append(file)
+                let file = FilesystemFile(name: name, size: size)
+                currentDir.children.append(file)
             case .directory(name: let name):
-                guard listingDirContents else { print("Got a directory when not listing..."); continue }
-                let dir = FilesystemDirectory(parent: currentDirName, name: name, children: [])
-                currentDirItems.append(dir)
+                let dir = FilesystemDirectory(name: name, parent: currentDir)
+                currentDir.children.append(dir)
             case .command(name: let name, options: let options):
                 switch name {
                 case "cd":
-                    print("Change dir to '\(options ?? "")'")
-                    print("\tCurrent things: \(currentDirName ?? "") | [\(currentDirItems.count)]")
-
-                    // wrap up any current dir, if we have one
-                    if let dirName = currentDirName {
-                        updateMap(directory: dirName, children: currentDirItems)
-                    }
-
-                    // turn off listing
-                    listingDirContents = false
-                    currentDirItems = [FilesystemObject]() // clear the list
-
                     // change dir name
                     if options == ".." { // ".." is a special case and we need to migrate up a level
-                        if let dirName = currentDirName, let dir = fileSystemMap[dirName] {
-                            print("\tOne up: \(dir.parent)")
-                            currentDirName = dir.parent
+                        if let parentDir = currentDir.parent {
+                            currentDir = parentDir
                         } else {
-                            print("NO DIR UP: \(currentDirName ?? ""): <- cd ..")
-                            currentDirName = "/"
+                            print("\tNothing up from \(currentDir.name)")
+                            currentDir = filesystem // default to root? (or don't switch?
                         }
-                        //else { print("NO DIR UP: '\(currentDirName ?? "")' | TRYING TO GO TO '..'"); continue }
                     } else {
                         if options == "/" {
-                            currentDirName = "/"
-                        } else {
-                            // make sure the directory is a child
-                            guard let dirName = currentDirName, let dir = fileSystemMap[dirName] else { print("?"); continue }
-
-                            if dir.children.contains(where: { $0.name == options }) {
-                                currentDirName = options
+                            currentDir = filesystem // go to root
+                        } else if let options {
+                            let childDir = currentDir.children.first(where: { $0 is FilesystemDirectory && $0.name == options })
+                            if let child = childDir as? FilesystemDirectory {
+                                currentDir = child
                             } else {
-                                print("CD to invalid dir: \(options ?? "|")")
+                                print("\t**NO CHILD BY NAME \(options)")
                             }
                         }
                     }
                 case "ls":
-                    print("List -> \(currentDirName ?? "**")")
-                    currentDirItems = [FilesystemObject]() // clear the list
-                    listingDirContents = true
+                    continue // list of things to follow...
                 default:
                     print("Unknown command: \(name)")
                     continue // NO-OP
@@ -112,23 +94,8 @@ class ElfConsole {
             }
         }
 
-        // handle any dangling dir info
-        if let dirName = currentDirName {
-            updateMap(directory: dirName, children: currentDirItems)
-        }
-    }
-
-    private func updateMap(directory: String, children: [FilesystemObject]) {
-        print("\t\tSaving \(directory) with [\(children.count)]")
-        if let dir = fileSystemMap[directory] {
-            // update an existing directory entry
-            let updatedDir = dir.replacing(children: children) // TODO: Is this true?
-            fileSystemMap[directory] = updatedDir
-        } else {
-            // setup this directory
-            let dir = FilesystemDirectory(parent: nil, name: directory, children: children)
-            fileSystemMap[directory] = dir
-        }
+        // calculate size
+        calculateDirectorySizes()
     }
 
     func parse() -> [OutputType] {
@@ -150,28 +117,43 @@ class ElfConsole {
         }
     }
 
+    func findDirectories(where whereClause: (FilesystemDirectory) -> (Bool)) -> [FilesystemDirectory] {
+        return findDirectories(from: filesystem, where: whereClause)
+    }
+
+    private func findDirectories(from dir: FilesystemDirectory, where whereClause: (FilesystemDirectory) -> (Bool)) -> [FilesystemDirectory] {
+        var collectedDirs = [FilesystemDirectory]()
+        for child in dir.children {
+            guard let childDir = child as? FilesystemDirectory else { continue }
+            collectedDirs.append(contentsOf: findDirectories(from: childDir, where: whereClause))
+        }
+
+        if whereClause(dir) {
+            collectedDirs.append(dir)
+        }
+
+        return collectedDirs
+    }
+
 
     // MARK: - Size Calculations
 
-    func calculateSizeMap() {
-        let totalSize = calculateDirectorySize("/")
-        directorySizeMap["/"] = totalSize
+    private func calculateDirectorySizes() {
+        filesystem.size = calculateSizeOf(directory: filesystem)
     }
 
-    private func calculateDirectorySize(_ dirName: String) -> Int {
-        guard let dir = fileSystemMap[dirName] else { print("Unable to locate '\(dirName)'"); return 0 }
-
+    private func calculateSizeOf(directory: FilesystemDirectory) -> Int {
         var total = 0
-        for child in dir.children {
+        for child in directory.children {
             if let childDir = child as? FilesystemDirectory {
-                total += calculateDirectorySize(childDir.name)
+                total += calculateSizeOf(directory: childDir)
             } else if let childFile = child as? FilesystemFile {
                 total += childFile.size
             }
         }
 
         // set total into map
-        directorySizeMap[dirName] = total
+        directory.size = total
 
         return total // to bubble up to parent dir
     }
@@ -180,21 +162,19 @@ class ElfConsole {
     // MARK: - Print
 
     func printFilesystem() {
-        print(printDirectory("/"))
+        print(printDirectory(filesystem))
     }
 
-    private func printDirectory(_ dirName: String, indent: Int = 0) -> String {
-        guard let dir = fileSystemMap[dirName] else { print("Unable to locate '\(dirName)'"); return "**\(dirName)**\n" }
-
+    private func printDirectory(_ dir: FilesystemDirectory, indent: Int = 0) -> String {
         let mainIndentLevel = Array(repeating: "\t", count: indent).joined()
         let childIndentLevel = Array(repeating: "\t", count: indent + 1).joined()
 
-        var output = "\(mainIndentLevel)- \(dir.name) (dir)\n"
+        var output = "\(mainIndentLevel)- \(dir.name) (dir, size=\(dir.size))\n"
         for child in dir.children {
             if let childDir = child as? FilesystemDirectory {
-                output += printDirectory(childDir.name, indent: indent + 1)
+                output += printDirectory(childDir, indent: indent + 1)
             } else if let childFile = child as? FilesystemFile {
-                output += "\(childIndentLevel)- \(childFile.name) (file, size=\(childFile.size)\n"
+                output += "\(childIndentLevel)- \(childFile.name) (file, size=\(childFile.size))\n"
             } else {
                 print("Not sure what this is: \(child)")
             }

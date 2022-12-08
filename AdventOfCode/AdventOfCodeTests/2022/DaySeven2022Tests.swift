@@ -99,19 +99,24 @@ final class DaySeven2022Tests: XCTestCase {
     func testConsoleRun() {
         let console = ElfConsole(output: sampleInput)
         console.run()
-//        console.printFilesystem()
+        console.printFilesystem()
         // TODO: make this a real test...
     }
 
     func testSizeCalculations() {
         let console = ElfConsole(output: sampleInput)
         console.run()
-        console.calculateSizeMap()
 
-        XCTAssertEqual(584, console.directorySizeMap["e"])
-        XCTAssertEqual(94853, console.directorySizeMap["a"])
-        XCTAssertEqual(24933642, console.directorySizeMap["d"])
-        XCTAssertEqual(48381165, console.directorySizeMap["/"])
+        XCTAssertEqual(48381165, console.filesystem.size)
+
+        let aDir = console.filesystem.children.first(where: { $0.name == "a" }) as? FilesystemDirectory
+        XCTAssertEqual(94853, aDir?.size)
+
+        let eDir = aDir?.children.first(where: { $0.name == "e" }) as? FilesystemDirectory
+        XCTAssertEqual(584, eDir?.size)
+
+        let dDir = console.filesystem.children.first(where: { $0.name == "d" }) as? FilesystemDirectory
+        XCTAssertEqual(24933642, dDir?.size)
     }
 
     func testPartOne() {
