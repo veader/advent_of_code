@@ -11,9 +11,8 @@ struct DaySeven2022: AdventDay {
     var year = 2022
     var dayNumber = 7
     var dayTitle = "No Space Left On Device"
-    var stars = 1
+    var stars = 2
 
-// 392,132
     func partOne(input: String?) -> Any {
         let console = ElfConsole(output: input)
         console.run()
@@ -24,6 +23,16 @@ struct DaySeven2022: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let console = ElfConsole(output: input)
+        console.run()
+        // console.printFilesystem()
+
+        let unusedSpace = 70000000 - console.filesystem.size
+        let neededSpace = 30000000 - unusedSpace
+
+        let candidates = console.findDirectories(where: { $0.size >= neededSpace })
+        let smallest = candidates.sorted(by: {$0.size < $1.size }).first
+
+        return smallest?.size ?? 0
     }
 }
