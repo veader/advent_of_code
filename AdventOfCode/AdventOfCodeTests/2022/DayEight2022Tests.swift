@@ -58,4 +58,16 @@ final class DayEight2022Tests: XCTestCase {
         let answer = DayEight2022().partOne(input: sampleInput)
         XCTAssertEqual(21, answer as! Int)
     }
+
+    func testScenicScores() {
+        let trees = TreeMap(sampleInput)!
+        trees.detectVisibility()
+
+        print("---------------------------------")
+        trees.printVisibility()
+        print("---------------------------------")
+        trees.printVisibilityBits()
+        print("---------------------------------")
+        trees.printScenicScores()
+    }
 }

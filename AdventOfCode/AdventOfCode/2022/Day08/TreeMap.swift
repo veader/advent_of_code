@@ -16,8 +16,17 @@ class TreeMap {
         var up: Bool = false
         var down: Bool = false
 
+        var leftCount: Int = 0
+        var rightCount: Int = 0
+        var upCount: Int = 0
+        var downCount: Int = 0
+
         var canBeSeen: Bool {
             up || down || left || right
+        }
+
+        var scenicScore: Int {
+            [upCount, downCount, leftCount, rightCount].reduce(1, *)
         }
 
         init(size: Int) {
@@ -30,6 +39,10 @@ class TreeMap {
 
         var visibleBits: String {
             "\(up ? "1" : "0")\(down ? "1" : "0")\(left ? "1" : "0")\(right ? "1" : "0")"
+        }
+
+        var scoreDetails: String {
+            "\(upCount)|\(downCount)|\(leftCount)|\(rightCount)|"
         }
     }
 
@@ -82,10 +95,10 @@ class TreeMap {
 //        print("ROW: @\(index) \(row)")
         // handle edge cases (dad joke)
         if index == 0 {
-            row.forEach { $0.up = true }
+            row.forEach { $0.up = true; $0.upCount = 0 }
             return
         } else if index == map.count - 1 {
-            row.forEach { $0.down = true }
+            row.forEach { $0.down = true; $0.downCount = 0 }
             return
         }
 
@@ -93,23 +106,28 @@ class TreeMap {
             // are any trees to the left >= height?
             let leftTrees = row.prefix(upTo: idx)
 //            print("\tTrees left of \(idx): \(leftTrees)")
-            if let _ = leftTrees.first(where: { $0.height >= tree.height }) {
+            if let leftIdx = Array(leftTrees.reversed()).firstIndex(where: { $0.height >= tree.height }) {
                 tree.left = false
+                tree.leftCount = leftIdx + 1
             } else {
                 tree.left = true
+                tree.leftCount = leftTrees.count
             }
 
             if row.indices.contains(idx + 1) {
                 // are any trees to the right >= height?
                 let rightTrees = row.suffix(from: idx + 1)
 //                print("\tTrees right of \(idx): \(rightTrees)")
-                if let _ = rightTrees.first(where: { $0.height >= tree.height }) {
+                if let rightIdx = Array(rightTrees).firstIndex(where: { $0.height >= tree.height }) {
                     tree.right = false
+                    tree.rightCount = rightIdx + 1
                 } else {
                     tree.right = true
+                    tree.rightCount = rightTrees.count
                 }
-            } else {
+            } else { // right edge
                 tree.right = true
+                tree.rightCount = 0
             }
         }
     }
@@ -118,10 +136,10 @@ class TreeMap {
 //        print("COLUMN: @\(index) \(column)")
         // handle edge cases (dad joke)
         if index == 0 {
-            column.forEach { $0.left = true }
+            column.forEach { $0.left = true; $0.leftCount = 0 }
             return
-        } else if index == map.count - 1 {
-            column.forEach { $0.right = true }
+        } else if index == width - 1 {
+            column.forEach { $0.right = true; $0.rightCount = 0 }
             return
         }
 
@@ -129,25 +147,36 @@ class TreeMap {
             // are any trees to the up >= height?
             let upTrees = column.prefix(upTo: idx)
 //            print("\tTrees up of \(idx): \(upTrees)")
-            if let _ = upTrees.first(where: { $0.height >= tree.height }) {
+            if let upIdx = Array(upTrees.reversed()).firstIndex(where: { $0.height >= tree.height }) {
                 tree.up = false
+                tree.upCount = upIdx + 1
             } else {
                 tree.up = true
+                tree.upCount = upTrees.count
             }
 
             if column.indices.contains(idx + 1) {
                 // are any trees to the down >= height?
                 let downTrees = column.suffix(from: idx + 1)
 //                print("\tTrees down of \(idx): \(downTrees)")
-                if let _ = downTrees.first(where: { $0.height >= tree.height }) {
+                if let downIdx = Array(downTrees).firstIndex(where: { $0.height >= tree.height }) {
                     tree.down = false
+                    tree.downCount = downIdx + 1
                 } else {
                     tree.down = true
+                    tree.downCount = downTrees.count
                 }
             } else {
                 tree.down = true
+                tree.downCount = 0
             }
         }
+    }
+
+    func maxScenicScore() -> Int {
+        map.flatMap { row in
+            row.map { $0.scenicScore  }
+        }.max() ?? 0
     }
 
     func visibleCount() -> Int {
@@ -168,6 +197,17 @@ class TreeMap {
     func printVisibilityBits() {
         let output: [String] = map.map { row in
             row.map({ $0.visibleBits }).joined(separator: " ")
+        }
+        print(output.joined(separator: "\n"))
+    }
+
+    func printScenicScores() {
+        let max = maxScenicScore()
+
+        let size = "\(max)".count // find the string width to use
+
+        let output: [String] = map.map { row in
+            row.map({ "\($0.scenicScore)".padded(with: " ", length: size) }).joined(separator: " ")
         }
         print(output.joined(separator: "\n"))
     }
