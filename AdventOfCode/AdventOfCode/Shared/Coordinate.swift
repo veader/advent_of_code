@@ -29,6 +29,11 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         self.name = name
     }
 
+    /// Return a `Coordinate` at the origin (ie: 0,0)
+    static var origin: Coordinate {
+        Coordinate(x: 0, y: 0)
+    }
+
     /// Parse a given line of input to create a `Coordinate`.
     ///
     /// - note: Format of line should be `x,y`
