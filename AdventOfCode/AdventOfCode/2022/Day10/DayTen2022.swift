@@ -11,7 +11,7 @@ struct DayTen2022: AdventDay {
     var year = 2022
     var dayNumber = 10
     var dayTitle = "Cathode-Ray Tube"
-    var stars = 1
+    var stars = 2
 
     func partOne(input: String?) -> Any {
         let cpu = SimpleCPU(input ?? "")
@@ -24,6 +24,10 @@ struct DayTen2022: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
+        let cpu = SimpleCPU(input ?? "")
+        cpu.run()
+        cpu.draw() // check console output
+
         return 0
     }
 }

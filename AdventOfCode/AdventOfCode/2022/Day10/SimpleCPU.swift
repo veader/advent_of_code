@@ -44,6 +44,7 @@ class SimpleCPU {
         // TODO: capture amount of addX instructions and use it to determine size of cycles array
     }
 
+    /// Run the instructions through the CPU and calculate value of `X` after each cycle is run
     func run() {
         var currentCycle = 1
         var currentX = 1 // starts with 1
@@ -65,6 +66,37 @@ class SimpleCPU {
                 currentCycle += 1
             }
         }
+    }
+
+    /// Draw the display. Display is 40 pixels wide and 6 pixels tall.
+    func draw() {
+        let displayWidth = 40
+        let displayHeight = 6
+
+        var start = 1
+        var lines = [String]()
+
+        while start < displayWidth * displayHeight {
+            lines.append(outputRow(start: start, width: displayWidth))
+            start += displayWidth
+        }
+
+        print(lines.joined(separator: "\n"))
+    }
+
+    func outputRow(start: Int, width: Int) -> String {
+        var row = Array(repeating: ".", count: width)
+
+        for (idx, cycle) in (start...(start + width)).enumerated() {
+            let pixelCenter = value(during: cycle)
+            let pixelLocations = [pixelCenter - 1, pixelCenter, pixelCenter + 1] // pixel is 3 wide
+
+            if pixelLocations.contains(idx) {
+                row[idx] = "#"
+            }
+        }
+
+        return row.joined()
     }
 
     /// Get the value of the X register *during* the given cycle.

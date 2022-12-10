@@ -217,4 +217,39 @@ final class DayTen2022Tests: XCTestCase {
         let answer = DayTen2022().partOne(input: largerSampleInput)
         XCTAssertEqual(13140, answer as! Int)
     }
+
+    func testOutputRow() {
+        let cpu = SimpleCPU(largerSampleInput)
+        cpu.run()
+
+        let firstRow = "##..##..##..##..##..##..##..##..##..##.."
+        var displayedRow = cpu.outputRow(start: 1, width: 40)
+        XCTAssertEqual(firstRow, displayedRow)
+
+        let secondRow = "###...###...###...###...###...###...###."
+        displayedRow = cpu.outputRow(start: 41, width: 40)
+        XCTAssertEqual(secondRow, displayedRow)
+
+        let thirdRow = "####....####....####....####....####...."
+        displayedRow = cpu.outputRow(start: 81, width: 40)
+        XCTAssertEqual(thirdRow, displayedRow)
+
+        let fourthRow = "#####.....#####.....#####.....#####....."
+        displayedRow = cpu.outputRow(start: 121, width: 40)
+        XCTAssertEqual(fourthRow, displayedRow)
+
+        let fifthRow = "######......######......######......####"
+        displayedRow = cpu.outputRow(start: 161, width: 40)
+        XCTAssertEqual(fifthRow, displayedRow)
+
+        let sixthRow = "#######.......#######.......#######....."
+        displayedRow = cpu.outputRow(start: 201, width: 40)
+        XCTAssertEqual(sixthRow, displayedRow)
+    }
+
+    func testDisplayOutput() {
+        let cpu = SimpleCPU(largerSampleInput)
+        cpu.run()
+        cpu.draw()
+    }
 }
