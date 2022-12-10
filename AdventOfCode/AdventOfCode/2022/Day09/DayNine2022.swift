@@ -11,7 +11,7 @@ struct DayNine2022: AdventDay {
     var year = 2022
     var dayNumber = 9
     var dayTitle = "Rope Bridge"
-    var stars = 1
+    var stars = 2
 
     func partOne(input: String?) -> Any {
         let sim = RopeSimulator(input ?? "")
@@ -22,6 +22,10 @@ struct DayNine2022: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let sim = RopeSimulator(input ?? "", length: 10)
+        sim.run()
+        sim.printIteration()
+        sim.printIteration(showingVisited: true)
+        return sim.visitedCoordinates.count
     }
 }

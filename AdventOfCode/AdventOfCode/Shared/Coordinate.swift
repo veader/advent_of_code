@@ -17,6 +17,20 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
     let y: Int
     let name: String?
 
+    /// Relative direction used when finding orientation between Coordinates.
+    /// - Note: Uses compass directions assuming y+1 == north, x+1 == east
+    enum RelativeDirection {
+        case north
+        case northEast
+        case east
+        case southEast
+        case south
+        case southWest
+        case west
+        case northWest
+        case same
+    }
+
     init(x: Int, y: Int) {
         self.x = x
         self.y = y
@@ -51,6 +65,37 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
     /// Returns the Manhattan distance between two coordinates.
     func distance(to coordB: Coordinate) -> Int {
         return abs(x - coordB.x) + abs(y - coordB.y)
+    }
+
+    /// Find the relative direction of the given coordinate relative to ourself.
+    func direction(to coordB: Coordinate) -> RelativeDirection {
+        guard self != coordB else { return .same }
+        let dX = coordB.x - self.x
+        let dY = coordB.y - self.y
+
+        if dX == 0 { // moving north/south
+            if dY >= 0 {
+                return .north
+            } else {
+                return .south
+            }
+        } else if dY == 0 { // moving east/west
+            if dX >= 0 {
+                return .east
+            } else {
+                return .west
+            }
+        } else { // moving diagonally
+            if dY >= 0 && dX >= 0 {
+                return .northEast
+            } else if dY >= 0 && dX < 0 {
+                return .northWest
+            } else if dY < 0 && dX >= 0 {
+                return .southEast
+            } else {
+                return .southWest
+            }
+        }
     }
 
     /// Returns a new Coordinate adjusted by the given offsets
