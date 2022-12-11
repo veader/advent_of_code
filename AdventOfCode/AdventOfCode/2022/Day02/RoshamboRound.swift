@@ -124,11 +124,11 @@ struct RoshamboRound {
             return outcome.rawValue + p1.rawValue
         case .win:
             // find our selection to win
-            var p2: Hand! = Hand.allCases.first(where: { $0.defeats(p1) })
+            let p2: Hand! = Hand.allCases.first(where: { $0.defeats(p1) })
             return outcome.rawValue + p2.rawValue
         case .lost:
             // find our selection that lost
-            var p2: Hand! = Hand.allCases.first(where: { p1.defeats($0) })
+            let p2: Hand! = Hand.allCases.first(where: { p1.defeats($0) })
             return outcome.rawValue + p2.rawValue
         }
     }
