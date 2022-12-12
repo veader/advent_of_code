@@ -1,8 +1,8 @@
 //
 //  Int.swift
-//  aoc2020
+//  AdventOfCode
 //
-//  Created by Shawn Veader on 12/14/20.
+//  Created by Shawn Veader on 12/11/22.
 //
 
 import Foundation
@@ -78,5 +78,17 @@ extension Int {
 //        print("Final:\t\(finalBinary)")
 
         return finalBinary
+    }
+
+    /// A quick hack to find some of the first few prime factors of this integer.
+    ///
+    /// - Note: This only covers 2 -> 23 by default for speed and simplicity purposes.
+    ///
+    /// - Parameters:
+    ///     - factorSet: `[Int]` - A list of the first few factors to consider. Intentionally limiting.
+    ///
+    /// - Returns: Common prime factors found for this number.
+    func partialPrimeFactors(factorSet: [Int] = [2,3,5,7,11,13,17,19,23]) -> [Int] {
+        factorSet.filter { self % $0 == 0 }
     }
 }

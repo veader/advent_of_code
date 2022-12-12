@@ -108,4 +108,10 @@ final class DayEleven2022Tests: XCTestCase {
         let answer = DayEleven2022().partOne(input: sampleInput)
         XCTAssertEqual(10605, answer as! Int)
     }
+
+    func xtestAThousandRoundsNoDivide() {
+        let sim = MonkeySim(monkeys: MonkeySim.parse(sampleInput))
+        sim.run(rounds: 1000, divide: false)
+        // BOOM!
+    }
 }

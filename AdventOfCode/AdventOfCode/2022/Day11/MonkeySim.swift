@@ -14,24 +14,38 @@ class MonkeySim {
     var monkeys: [Monkey]
 
     init(monkeys: [Monkey]) {
-        self.monkeys = monkeys.sorted(by: { $0.index < $1.index })
+        self.monkeys = monkeys.sorted(by: { $0.index < $1.index }) // just in case...
     }
 
-    func run(rounds: Int = -1) {
+    func run(rounds: Int = -1, divide: Bool = true) {
         var round = 0
         while rounds == -1 || round < rounds {
             for monkey in monkeys {
-                handle(monkey: monkey)
+                handle(monkey: monkey, divide: divide)
             }
 
             round += 1
+
+            if round % 1000 == 0 {
+                printInspections(round: round)
+            }
         }
     }
 
-    func handle(monkey: Monkey) {
+    func printInspections(round: Int) {
+        print("== After round \(round) ==")
+        for monkey in monkeys {
+            print("Monkey \(monkey.index) inspected items \(monkey.inspectionCount) times.")
+        }
+    }
+
+    func handle(monkey: Monkey, divide: Bool = true) {
         for item in monkey.items {
             var newItem = monkey.update(item: item)
-            newItem /= 3 // divide by 3
+            if divide {
+                newItem /= 3 // divide by 3
+            }
+
             if monkey.test(item: newItem) {
                 monkeys[monkey.testTrueIndex].items.append(newItem)
             } else {
@@ -56,7 +70,7 @@ class MonkeySim {
                 let testFalse = Int(match.7)
             else { return nil }
 
-            let items = String(match.2).split(separator: ", ").map(String.init).compactMap(Int.init)
+            let items = String(match.2).split(separator: ", ").map(String.init).compactMap(UInt.init)
 
             return Monkey(index: index, items: items, operation: op, opInput: opInput, testValue: testValue, trueIndex: testTrue, falseIndex: testFalse)
         }
@@ -87,7 +101,7 @@ class MonkeySim {
         }
 
         let index: Int
-        var items: [Int]
+        var items: [UInt]
 
         let op: OperationOperator
         let opInput: OperationInput
@@ -99,7 +113,7 @@ class MonkeySim {
 
         var inspectionCount: Int = 0
 
-        init(index: Int, items: [Int], operation: OperationOperator, opInput: OperationInput, testValue: Int, trueIndex: Int, falseIndex: Int) {
+        init(index: Int, items: [UInt], operation: OperationOperator, opInput: OperationInput, testValue: Int, trueIndex: Int, falseIndex: Int) {
             self.index = index
             self.items = items
 
@@ -112,15 +126,15 @@ class MonkeySim {
         }
 
         /// Test the given "item" and determine where the monkey will throw.
-        func test(item: Int) -> Bool {
-            item % testValue == 0
+        func test(item: UInt) -> Bool {
+            item % UInt(testValue) == 0
         }
 
         /// Update the given "item" based on the rules for the monkey.
-        func update(item: Int) -> Int {
+        func update(item: UInt) -> UInt {
             var input = item // default to "old"
             if case .digit(let amount) = opInput {
-                input = amount
+                input = UInt(amount)
             }
 
             switch op {
