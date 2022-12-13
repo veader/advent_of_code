@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OrderedCollections
 
 class HillClimbingAlgo {
     let start: Coordinate
@@ -42,54 +43,55 @@ class HillClimbingAlgo {
 
     /// Climb the terrain starting at our start coordinate and finding the shortest path to the end coordinate.
     func climb() -> [Coordinate]? {
-//        map.printGrid()
         ascentHistory = [:] // clear the history
-        return ascend(from: start, to: end, path: [])
+        var coordinatesToCheck = OrderedSet<Coordinate>()
+
+        // setup the start
+        coordinatesToCheck.append(start)
+        saveHistory(for: start, path: [start])
+
+        while !coordinatesToCheck.isEmpty {
+            // pull first one off the ordered set to process
+            let coordinate = coordinatesToCheck.removeFirst()
+            let adjacent = ascend(to: coordinate)
+
+            // push valid adjacent coordinates into the set of ones to check
+            coordinatesToCheck.append(contentsOf: adjacent)
+        }
+
+        let finalPath = ascentHistory[end]
+        return finalPath ?? []
     }
 
-    /// Recursively called method that will start at a source, consider possible adjacent coordinates,
-    ///     and attempt to find the shortest path to the end coordinate.
-    private func ascend(from source: Coordinate, to destination: Coordinate, path: [Coordinate]) -> [Coordinate]? {
-        // check for being at the end
-        if source == destination {
-            print("Found the end! \(path)")
-            return path // we made it to the end
-        }
+    /// Ascend to the given coordinate and determine what possible options there are to go from here.
+    /// - Note: Using a bit of BFS (breadth first search) tactics to scan
+    private func ascend(to coordinate: Coordinate) -> [Coordinate] {
+        let path = ascentHistory[coordinate] ?? []
 
-        var currentPath = path; currentPath.append(source) // why is this necessary?
-//        let currentPath = path + [source]
+        // see if we reached the end
+        guard coordinate != end else { return [] }
 
-        // check that history doesn't have a shorter path to this point
-        guard historySize(at: source) > currentPath.count else {
-            print("Found shorter path in history...")
-            return nil
-        }
-        // if we have a shorter path, then proceed...
+        // determine the value at the current coordinate to help filter adjacent spaces
+        let sourceValue = value(at: coordinate)
+//        let possibleRange = (sourceValue - 1)...(sourceValue + 1) // possible values are +/1 current value
+        let possibleRange = 0...(sourceValue + 1) // possible values are anything lower than +1 of the current pont
 
-        // save current (shorter) path to the history
-        saveHistory(for: source, path: currentPath)
-
-        let sourceValue = value(at: source)
-        let possibleRange = (sourceValue - 1)...(sourceValue + 1) // possible values are +/1 current value
-
-//        print("Examining \(source) of value \(map.item(at: source)) \(sourceValue) : range \(possibleRange)")
-        print("Examining \(source) of \(sourceValue) : range \(possibleRange)")
-        print("\tPath (size): \(currentPath.count)")
-
-        // find adjacent items (up/down/left/right - in bounds)
-        let adjacent = map.adjacentCoordinates(to: source, allowDiagonals: false)
+        // find adjacent spaces and filter based on points not traveled and proper values
+        let adjacent = map.adjacentCoordinates(to: coordinate, allowDiagonals: false)
             .filter { !path.contains($0) } // filter any that are already in our path (no back-tracking)
             .filter { possibleRange.contains(value(at: $0)) } // filter based on height (+/- 1)
-            .sorted(by: { value(at: $0) > value(at: $1) }) // prioritize going up
+            .filter { point in
+                let pointPath = path + [point]
+                if historySize(at: point) > pointPath.count {
+                    saveHistory(for: point, path: pointPath)
+                    return true
+                } else {
+                    return false // shorter path already considered to this place
+                }
+            }
+//            .sorted(by: { value(at: $0) > value(at: $1) }) // prioritize going up
 
-        print("\tPossible adjacent: \(adjacent)")
-
-        // for each possible adjacent square, track it down...
-        let possibilities = adjacent.compactMap { nextCoordinate in
-            ascend(from: nextCoordinate, to: destination, path: currentPath)
-        }
-
-        return possibilities.sorted(by: { $0.count < $1.count }).first
+        return adjacent
     }
 
     private func historySize(at coordinate: Coordinate) -> Int {

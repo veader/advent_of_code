@@ -29,7 +29,7 @@ final class DayTwelve2022Tests: XCTestCase {
     func testAscentAlgo() {
         let algo = HillClimbingAlgo(sampleInput)
         let path = algo.climb()
-        XCTAssertEqual(31, path?.count)
+        XCTAssertEqual(32, path?.count)
     }
 
     func testPartOne() {

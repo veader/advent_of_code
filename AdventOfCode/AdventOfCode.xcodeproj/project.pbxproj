@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760D4235294918CD00ED2842 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4234294918CD00ED2842 /* Collections */; };
+		760D4237294918CD00ED2842 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4236294918CD00ED2842 /* DequeModule */; };
+		760D4239294918CD00ED2842 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4238294918CD00ED2842 /* OrderedCollections */; };
 		76C1414A2939671D00795D93 /* DayOne2022.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C141492939671D00795D93 /* DayOne2022.swift */; };
 		76C1414B2939671D00795D93 /* DayOne2022.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C141492939671D00795D93 /* DayOne2022.swift */; };
 		76C1414E29396A6700795D93 /* DayOne2022Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C1414D29396A6700795D93 /* DayOne2022Tests.swift */; };
@@ -545,6 +548,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				760D4235294918CD00ED2842 /* Collections in Frameworks */,
+				760D4237294918CD00ED2842 /* DequeModule in Frameworks */,
+				760D4239294918CD00ED2842 /* OrderedCollections in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,6 +1377,11 @@
 			dependencies = (
 			);
 			name = AdventOfCode;
+			packageProductDependencies = (
+				760D4234294918CD00ED2842 /* Collections */,
+				760D4236294918CD00ED2842 /* DequeModule */,
+				760D4238294918CD00ED2842 /* OrderedCollections */,
+			);
 			productName = AdventOfCode;
 			productReference = C556EF642757B454009B3078 /* AdventOfCode.app */;
 			productType = "com.apple.product-type.application";
@@ -1443,6 +1454,9 @@
 				Base,
 			);
 			mainGroup = C556EF5B2757B454009B3078;
+			packageReferences = (
+				760D4233294918CD00ED2842 /* XCRemoteSwiftPackageReference "swift-collections" */,
+			);
 			productRefGroup = C556EF652757B454009B3078 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2118,6 +2132,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		760D4233294918CD00ED2842 /* XCRemoteSwiftPackageReference "swift-collections" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-collections.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		760D4234294918CD00ED2842 /* Collections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 760D4233294918CD00ED2842 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = Collections;
+		};
+		760D4236294918CD00ED2842 /* DequeModule */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 760D4233294918CD00ED2842 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = DequeModule;
+		};
+		760D4238294918CD00ED2842 /* OrderedCollections */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 760D4233294918CD00ED2842 /* XCRemoteSwiftPackageReference "swift-collections" */;
+			productName = OrderedCollections;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C556EF5C2757B454009B3078 /* Project object */;
 }

@@ -11,12 +11,18 @@ struct DayTwelve2022: AdventDay {
     var year = 2022
     var dayNumber = 12
     var dayTitle = "Hill Climbing Algorithm"
-    var stars = 0
+    var stars = 1
 
     func partOne(input: String?) -> Any {
         let algo = HillClimbingAlgo(input ?? "")
-        let path = algo.climb()
-        return path?.count ?? 0
+        guard let path = algo.climb() else { return -1 }
+
+        var count = path.count
+        if path.last == algo.end {
+            count -= 1
+        }
+
+        return count
     }
 
     func partTwo(input: String?) -> Any {
