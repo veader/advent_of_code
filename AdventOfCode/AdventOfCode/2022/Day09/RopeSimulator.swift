@@ -66,91 +66,46 @@ class RopeSimulator {
     }
 
     func run() {
-//        print("== Initial State ==")
-//        printIteration()
-
         for instruction in instructions {
             process(instruction)
         }
     }
 
     private func process(_ instruction: SimInstruction) {
-        var letter: String = "*"
         var amount: Int = 0
         var movementOffset: (Int, Int) = (0,0)
 
         switch instruction {
         case .up(let y):
-            letter = "U"
             amount = y
             movementOffset = (0, 1)
         case .down(let y):
-            letter = "D"
             amount = y
             movementOffset = (0, -1)
         case .left(let x):
-            letter = "L"
             amount = x
             movementOffset = (-1, 0)
         case .right(let x):
-            letter = "R"
             amount = x
             movementOffset = (1, 0)
         }
 
-//        print("== \(letter) \(amount) ==")
-
         (0..<amount).forEach { i in
-//            print("\tIteration \(i+1)")
-
-//            var previousLocation: Coordinate?
-
             for (idx, knot) in knots.enumerated() {
                 if idx == 0 { // deal with the "head"
-//                    previousLocation = knot
                     let head = knot.moving(xOffset: movementOffset.0, yOffset: movementOffset.1)
                     knots[idx] = head
                 } else {
-//                    guard let prevLoc = previousLocation else { continue } // bypass if previous knot didn't move
+                    let newCoord = destination(of: idx, following: knots.index(before: idx))
+                    knots[idx] = newCoord
 
-                    // each knot should follow the previous one in the rope
-//                    let previousKnot = knots[knots.index(before: idx)]
-//                    let adjacent = previousKnot.adjacent(minX: Int.min, minY: Int.min)
-
-                    // follow if we are not in the same location and not adjacent to the previous knot
-//                    if knot != previousKnot && !adjacent.contains(knot) {
-//                        let ourPreviousLocation = knot
-                        let newCoord = destination(of: idx, following: knots.index(before: idx))
-                        knots[idx] = newCoord
-//                        previousLocation = ourPreviousLocation // so subsequent knots can follow in our footsteps
-
-                        // record where the "tail" visits
-                        if idx == knots.count - 1 {
-//                            print("Tail moved...")
-                            visitedCoordinates.insert(knots[idx])
-                        }
-//                    }
+                    // record where the "tail" visits
+                    if idx == knots.count - 1 {
+                        visitedCoordinates.insert(knots[idx])
+                    }
                 }
             }
-            /*
-            // move head
-            let currentHead = head
-            head = head.moving(xOffset: movementOffset.0, yOffset: movementOffset.1)
-//            print("\tMoving head... from \(currentHead) to \(head)")
-
-            // follow tail (if not under/near head)
-            let adjacent = head.adjacent(minX: Int.min, minY: Int.min)
-            if tail != head && !adjacent.contains(tail) {
-//                print("\tMoving tail...")
-                tail = currentHead // to follow, the tail ends up where head used to be
-                visitedCoordinates.insert(tail) // keep track of where the tail has been
-            }
-             */
-
-//            printIteration()
         }
-
-//        printIteration()
     }
 
     func destination(of idx: Int, following followIdx: Int) -> Coordinate {

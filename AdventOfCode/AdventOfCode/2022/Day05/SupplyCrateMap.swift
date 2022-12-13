@@ -108,8 +108,6 @@ struct SupplyCrateMap {
             topDest = topIndex(column: instruction.destinationIdx) // refetch the updated top destination coord
         }
 
-        let topOrigin = topIndex(column: instruction.originIdx)
-
         let coordsToMove = getTop(instruction.moveAmount, in: instruction.originIdx).reversed()
         for (idx, originCoord) in coordsToMove.enumerated() {
             let destCoord = Coordinate(x: topDest - (idx + 1), y: instruction.destinationIdx)
