@@ -86,7 +86,7 @@ class GridMap<Element> {
     }
 
     /// Filter the grid by mapping to the coordinate, item pair.
-    /// Returns the coordinate which return true when passed to the given block.
+    /// Returns the coordinates which return true when passed to the given block.
     func filter(by filterBlock: ((Coordinate, Element) -> Bool)) -> [Coordinate] {
         coordinates().filter { c in
             guard let item = item(at: c) else { return false }

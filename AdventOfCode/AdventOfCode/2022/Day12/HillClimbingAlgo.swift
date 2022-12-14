@@ -41,14 +41,32 @@ class HillClimbingAlgo {
         self.ascentHistory = [:]
     }
 
+    /// Find all of the lowest points on the map.
+    func lowestPoints() -> [Coordinate] {
+        map.filter(by: { $1 == Character("a") })
+    }
+
+    /// Find the shortest possible path from any of the lowest points to the end
+    func shortestRoute() -> [Coordinate]? {
+        let lowestPoints = self.lowestPoints()
+        let bestRoutes = lowestPoints.map {
+            climb(start: $0)
+        }.filter { !$0.isEmpty }
+
+        return bestRoutes.sorted(by: { $0.count < $1.count }).first
+    }
+
     /// Climb the terrain starting at our start coordinate and finding the shortest path to the end coordinate.
-    func climb() -> [Coordinate]? {
+    /// - Parameters:
+    ///     - start: `Coordinate` to originate the search from. Defaults to `start`
+    func climb(start startingCoordinate: Coordinate? = nil) -> [Coordinate] {
         ascentHistory = [:] // clear the history
         var coordinatesToCheck = OrderedSet<Coordinate>()
 
-        // setup the start
-        coordinatesToCheck.append(start)
-        saveHistory(for: start, path: [start])
+        // setup
+        let coord = startingCoordinate ?? start
+        coordinatesToCheck.append(coord)
+        saveHistory(for: coord, path: [coord])
 
         while !coordinatesToCheck.isEmpty {
             // pull first one off the ordered set to process
@@ -73,7 +91,6 @@ class HillClimbingAlgo {
 
         // determine the value at the current coordinate to help filter adjacent spaces
         let sourceValue = value(at: coordinate)
-//        let possibleRange = (sourceValue - 1)...(sourceValue + 1) // possible values are +/1 current value
         let possibleRange = 0...(sourceValue + 1) // possible values are anything lower than +1 of the current pont
 
         // find adjacent spaces and filter based on points not traveled and proper values
