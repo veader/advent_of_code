@@ -76,12 +76,6 @@ class DistressSignal {
         return answer
     }
 
-    enum CompareResult {
-        case inOrder
-        case notInOrder
-        case equal
-    }
-
     func compare(left: PacketByte, right: PacketByte, level: Int = 0) -> Bool {
         let shouldPrint = true
         let padding = Array(repeating: "\t", count: level).joined()
