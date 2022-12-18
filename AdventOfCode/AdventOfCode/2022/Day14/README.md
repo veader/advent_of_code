@@ -163,3 +163,6 @@ before falling forever is shown here with `~`:
 Using your scan, simulate the falling sand. **How many units of sand come to rest before 
 sand starts flowing into the abyss below?**
 
+Your puzzle answer was `994`.
+
+---

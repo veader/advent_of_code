@@ -11,10 +11,13 @@ struct DayFourteen2022: AdventDay {
     var year = 2022
     var dayNumber = 14
     var dayTitle = "Regolith Reservoir"
-    var stars = 0
+    var stars = 1
 
     func partOne(input: String?) -> Any {
-        return 0
+        let paths = SandSim.parse(input ?? "")
+        let sim = SandSim(paths: paths)
+        let answer = sim.run()
+        return answer
     }
 
     func partTwo(input: String?) -> Any {

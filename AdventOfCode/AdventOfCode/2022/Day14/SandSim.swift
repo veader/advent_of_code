@@ -8,6 +8,10 @@
 import Foundation
 import RegexBuilder
 
+enum SandSimError: Error {
+    case aboveNothing
+}
+
 class SandSim {
     // parse lines into coordinate pieces (each pair makes a line)
     // make map from lines
@@ -31,34 +35,66 @@ class SandSim {
         findRocks()
     }
 
-    func run(rounds: Int = Int.max) {
+    /// Run the simulation. Each round is a single grain of sand dropping...
+    func run(rounds: Int = Int.max) -> Int {
         var round = 0
         while round < rounds {
-            dropSand()
-            printScan()
+            do {
+                try dropSand()
+            } catch {
+                print("Sand into the void... \(round)")
+                return round
+            }
             round += 1
         }
+
+        return -1 // can take more sand
     }
 
-    func dropSand() {
+    func dropSand() throws {
         var sandPosition = sandStart
         var canMove = true
 
         while canMove {
+            // check that there is *anything* below us
+            if !isSomethingBelow(coordinate: sandPosition) {
+                throw SandSimError.aboveNothing
+            }
+
             // look straight down
             let downOne = sandPosition.moving(xOffset: 0, yOffset: 1)
-            if !rocks.contains(sandPosition) && !sand.contains(sandPosition) {
-                // air, keep falling
-                sandPosition = sandPosition.moving(xOffset: 0, yOffset: +1)
+            if isEmpty(coordinate: downOne) {
+                sandPosition = downOne
             } else {
-                print("Hit something")
-                canMove = false
-                break
+                // look down, left
+                let downLeft = sandPosition.moving(xOffset: -1, yOffset: 1)
+                if isEmpty(coordinate: downLeft) {
+                    sandPosition = downLeft
+                } else {
+                    let downRight = sandPosition.moving(xOffset: 1, yOffset: 1)
+                    if isEmpty(coordinate: downRight) {
+                        sandPosition = downRight
+                    } else {
+                        canMove = false // sand "stuck"
+                    }
+                }
             }
         }
 
         // add resting place to sand collection
         sand.insert(sandPosition)
+    }
+
+    /// Check that somewhere below this point *something* (either sand or rock) exists...
+    private func isSomethingBelow(coordinate: Coordinate) -> Bool {
+        let rocks = rocks.filter { $0.y > coordinate.y } // any rock(s) below the point
+        let sand = sand.filter { $0.y > coordinate.y }   // any sand below the point
+        return !rocks.isEmpty || !sand.isEmpty
+    }
+
+    /// Check that the given coordinate is empty. (Checking both sand and rocks)
+    private func isEmpty(coordinate: Coordinate) -> Bool {
+        !rocks.contains(coordinate) && !sand.contains(coordinate)
     }
 
     func findRocks() {
@@ -108,11 +144,11 @@ class SandSim {
         let minY = min(rockYs.min() ?? 0, sandStart.y) - 2
         let maxY = min(rockYs.max() ?? 0, sandStart.y) + 12
 
-//        print(rockXs)
-//        print(rockYs)
-//        print(sandStart)
-//        print("\(minX)...\(maxX)")
-//        print("\(minY)...\(maxY)")
+        print(rockXs)
+        print(rockYs)
+        print(sandStart)
+        print("\(minX)...\(maxX)")
+        print("\(minY)...\(maxY)")
 
         var output: [String] = []
         for y in minY...maxY {

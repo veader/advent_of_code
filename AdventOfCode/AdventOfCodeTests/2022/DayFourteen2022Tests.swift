@@ -31,6 +31,17 @@ final class DayFourteen2022Tests: XCTestCase {
     func testSandSimulation() {
         let paths = SandSim.parse(sampleInput)
         let sim = SandSim(paths: paths)
-        sim.run(rounds: 1)
+        var answer = sim.run(rounds: 24)
+        XCTAssertEqual(-1, answer) // 24 is fine
+//        sim.printScan()
+
+        answer = sim.run(rounds: 1)
+        XCTAssertEqual(0, answer) // 25 is into the void
+//        sim.printScan()
+    }
+
+    func testPartOne() {
+        let answer = DayFourteen2022().partOne(input: sampleInput)
+        XCTAssertEqual(24, answer as! Int)
     }
 }
