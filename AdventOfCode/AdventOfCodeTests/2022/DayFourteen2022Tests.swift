@@ -18,4 +18,19 @@ final class DayFourteen2022Tests: XCTestCase {
         XCTAssertEqual(2, paths.count)
         print(paths)
     }
+
+    func testSandSimRockFinding() {
+        let paths = SandSim.parse(sampleInput)
+        let sim = SandSim(paths: paths)
+        XCTAssertEqual(2, sim.paths.count)
+        XCTAssertEqual(20, sim.rocks.count)
+
+//        sim.printScan()
+    }
+
+    func testSandSimulation() {
+        let paths = SandSim.parse(sampleInput)
+        let sim = SandSim(paths: paths)
+        sim.run(rounds: 1)
+    }
 }
