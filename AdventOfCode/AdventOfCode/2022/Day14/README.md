@@ -217,3 +217,7 @@ Using your scan, simulate the falling sand until the source of the sand becomes 
 **How many units of sand come to rest?**
 
 Your puzzle answer was `26283`.
+
+Your puzzle answer was `4883971`.
+
+---
