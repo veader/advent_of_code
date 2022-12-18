@@ -44,4 +44,12 @@ final class DayFourteen2022Tests: XCTestCase {
         let answer = DayFourteen2022().partOne(input: sampleInput)
         XCTAssertEqual(24, answer as! Int)
     }
+
+    func testSimWithFloor() {
+        let paths = SandSim.parse(sampleInput)
+        let sim = SandSim(paths: paths)
+        var answer = sim.run(floor: true, rounds: 95)
+        XCTAssertEqual(93, answer)
+        sim.printScan(floor: true)
+    }
 }

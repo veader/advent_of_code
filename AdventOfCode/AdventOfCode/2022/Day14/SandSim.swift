@@ -10,6 +10,7 @@ import RegexBuilder
 
 enum SandSimError: Error {
     case aboveNothing
+    case blockingSand
 }
 
 class SandSim {
@@ -26,6 +27,11 @@ class SandSim {
     var rocks: Set<Coordinate>
     var sand: Set<Coordinate>
 
+    /// The floor is found at 2 more than the highest y value.
+    var floorLocation: Int {
+        (rocks.map(\.y).max() ?? 0) + 2
+    }
+
     init(paths: [[Coordinate]]) {
         self.paths = paths
         self.lines = [] // TODO
@@ -36,14 +42,18 @@ class SandSim {
     }
 
     /// Run the simulation. Each round is a single grain of sand dropping...
-    func run(rounds: Int = Int.max) -> Int {
+    func run(floor: Bool = false, rounds: Int = Int.max) -> Int {
         var round = 0
         while round < rounds {
             do {
-                try dropSand()
+                try dropSand(floor: floor)
             } catch {
-                print("Sand into the void... \(round)")
-                return round
+                if floor {
+                    print("Blocking sand... \(round)")
+                } else {
+                    print("Sand into the void... \(round)")
+                }
+                return round + (floor ? 1 : 0) // if using the floor we want this round that blocked things
             }
             round += 1
         }
@@ -51,34 +61,45 @@ class SandSim {
         return -1 // can take more sand
     }
 
-    func dropSand() throws {
+    func dropSand(floor: Bool) throws {
         var sandPosition = sandStart
         var canMove = true
 
+        var floorY: Int?
+        if floor {
+            floorY = floorLocation
+        }
+
         while canMove {
-            // check that there is *anything* below us
-            if !isSomethingBelow(coordinate: sandPosition) {
-                throw SandSimError.aboveNothing
+            if !floor {
+                // check that there is *anything* below us
+                if !isSomethingBelow(coordinate: sandPosition) {
+                    throw SandSimError.aboveNothing
+                }
             }
 
             // look straight down
             let downOne = sandPosition.moving(xOffset: 0, yOffset: 1)
-            if isEmpty(coordinate: downOne) {
+            if isEmpty(coordinate: downOne, floor: floorY) {
                 sandPosition = downOne
             } else {
                 // look down, left
                 let downLeft = sandPosition.moving(xOffset: -1, yOffset: 1)
-                if isEmpty(coordinate: downLeft) {
+                if isEmpty(coordinate: downLeft, floor: floorY) {
                     sandPosition = downLeft
                 } else {
                     let downRight = sandPosition.moving(xOffset: 1, yOffset: 1)
-                    if isEmpty(coordinate: downRight) {
+                    if isEmpty(coordinate: downRight, floor: floorY) {
                         sandPosition = downRight
                     } else {
                         canMove = false // sand "stuck"
                     }
                 }
             }
+        }
+
+        if floor && sandPosition == sandStart {
+            throw SandSimError.blockingSand
         }
 
         // add resting place to sand collection
@@ -92,9 +113,13 @@ class SandSim {
         return !rocks.isEmpty || !sand.isEmpty
     }
 
-    /// Check that the given coordinate is empty. (Checking both sand and rocks)
-    private func isEmpty(coordinate: Coordinate) -> Bool {
-        !rocks.contains(coordinate) && !sand.contains(coordinate)
+    /// Check that the given coordinate is empty. (Checking both sand, rocks, and potentially the floor [passed in])
+    private func isEmpty(coordinate: Coordinate, floor: Int?) -> Bool {
+        if let floor, coordinate.y == floor {
+            return false
+        }
+
+        return !rocks.contains(coordinate) && !sand.contains(coordinate)
     }
 
     func findRocks() {
@@ -103,9 +128,7 @@ class SandSim {
                 let start = path[path.index(before: idx)]
                 let end = path[idx]
                 let points = pointsInLine(start: start, end: end)
-                points.forEach { rocks.insert($0) }
-//                rocks.append(contentsOf: points)
-                // Optimization? Ignore any rock over 500?
+                points.forEach { rocks.insert($0) } // is this slower than union?
             }
         }
     }
@@ -128,27 +151,16 @@ class SandSim {
         return [] // diagonal line
     }
 
-    func printScan() {
+    func printScan(floor: Bool = false) {
+        let floorY = floorLocation
+
         let rockXs = rocks.map(\.x).sorted().unique()
         let rockYs = rocks.map(\.y).sorted().unique()
-//        let sandXs = sand.map(\.x).sorted()
-//        let sandYs = sand.map(\.y).sorted()
-//
-//        let minX = min(rockXs.min() ?? 0, sandXs.min() ?? 0, sandStart.x) - 10
-//        let maxX = max(rockXs.max() ?? 0, sandXs.max() ?? 0, sandStart.x) + 10
-//        let minY = min(rockYs.min() ?? 0, sandYs.min() ?? 0, sandStart.y) - 10
-//        let maxY = min(rockYs.max() ?? 0, sandYs.max() ?? 0, sandStart.y) + 10
 
         let minX = min(rockXs.min() ?? 0, sandStart.x) - 5
         let maxX = max(rockXs.max() ?? 0, sandStart.x) + 5
-        let minY = min(rockYs.min() ?? 0, sandStart.y) - 2
-        let maxY = min(rockYs.max() ?? 0, sandStart.y) + 12
-
-        print(rockXs)
-        print(rockYs)
-        print(sandStart)
-        print("\(minX)...\(maxX)")
-        print("\(minY)...\(maxY)")
+        let minY = min(rockYs.min() ?? 0, sandStart.y) - 5
+        let maxY = max(rockYs.max() ?? 0, sandStart.y) + 5
 
         var output: [String] = []
         for y in minY...maxY {
@@ -161,6 +173,8 @@ class SandSim {
                     line += "o"
                 } else if pt == sandStart {
                     line += "+"
+                } else if pt.y == floorY {
+                    line += "^"
                 } else {
                     line += "."
                 }
