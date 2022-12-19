@@ -15,13 +15,15 @@ struct DayFifteen2022: AdventDay {
 
     func partOne(input: String?) -> Any {
         let bez = BEZ(input ?? "")
-        print(bez.pairs)
         let occupiedPoints = bez.occupied(on: 2_000_000)
         return occupiedPoints.count
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let bez = BEZ(input ?? "")
+        guard let coordinate = bez.search() else { return 0 }
+        let frequency = (coordinate.x * 4_000_000) + coordinate.y
+        return frequency
     }
 }
 

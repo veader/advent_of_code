@@ -29,13 +29,22 @@ final class DayFifteen2022Tests: XCTestCase {
     func testParsing() {
         let bez = BEZ(sampleInput)
         XCTAssertEqual(14, bez.pairs.count)
-        print(bez.pairs)
     }
 
     func testScanOnY() {
         let bez = BEZ(sampleInput)
         let points = bez.occupied(on: 10)
-        print(points)
         XCTAssertEqual(26, points.count)
+    }
+
+    func testSearch() {
+        let bez = BEZ(sampleInput)
+        let coordinate = bez.search(limit: 20)
+        XCTAssertEqual(Coordinate(x: 14, y: 11), coordinate)
+    }
+
+    func testPartTwo() {
+        let day = DayFifteen2022().partTwo(input: sampleInput)
+        XCTAssertEqual(56000011, day as! Int)
     }
 }

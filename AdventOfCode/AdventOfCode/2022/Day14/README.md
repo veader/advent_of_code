@@ -218,6 +218,4 @@ Using your scan, simulate the falling sand until the source of the sand becomes 
 
 Your puzzle answer was `26283`.
 
-Your puzzle answer was `4883971`.
-
 ---
