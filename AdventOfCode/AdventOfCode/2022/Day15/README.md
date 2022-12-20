@@ -154,3 +154,5 @@ that could have a beacon: `x=14`, `y=11`. The tuning frequency for this distress
 is `56000011`.
 
 Find the only possible position for the distress beacon. **What is its tuning frequency?**
+
+Your puzzle answer was `12691026767556`.

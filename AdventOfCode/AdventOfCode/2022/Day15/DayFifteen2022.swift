@@ -11,7 +11,7 @@ struct DayFifteen2022: AdventDay {
     var year = 2022
     var dayNumber = 15
     var dayTitle = "Beacon Exclusion Zone"
-    var stars = 1
+    var stars = 2
 
     func partOne(input: String?) -> Any {
         let bez = BEZ(input ?? "")

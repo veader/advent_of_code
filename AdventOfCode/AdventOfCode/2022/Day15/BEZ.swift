@@ -61,7 +61,7 @@ class BEZ {
         var points = Set<Int>()
 
         for pair in pairs {
-            if let pts = pair.points(on: y) {
+            if let pts = pair.xValues[y] {
                 points = points.union(Set(pts))
             }
         }
@@ -76,7 +76,49 @@ class BEZ {
         return points
     }
 
+    /// Find and return the gaps on a given `y` value for the sensors.
+    func findGapsInSensors(on y: Int) -> [Int] {
+        var ranges = [ClosedRange<Int>]()
+
+        for pair in pairs {
+            if let range = pair.xValues[y] {
+                ranges.append(range)
+            }
+        }
+
+        // now determine how many overlaps we have and where they don't touch
+        var sortedRanges = ranges.sorted(by: { $0.lowerBound < $1.lowerBound })
+//        print("Found ranges at \(y): \(sortedRanges.map({ "\($0)" }).joined(separator: ", "))")
+        guard sortedRanges.count > 0 else { return [] }
+
+        var largerRanges = [ClosedRange<Int>]()
+        var gaps = [Int]()
+
+        var range: ClosedRange<Int> = sortedRanges.removeFirst()
+        repeat {
+            let r = sortedRanges.removeFirst()
+            if range.overlaps(r) {
+                range = (min(range.lowerBound, r.lowerBound))...(max(range.upperBound, r.upperBound))
+            } else {
+                // gap!
+                // save off this range
+                largerRanges.append(range)
+                // measure and save the gap
+                let gap = (range.upperBound+1)..<r.lowerBound
+                gaps.append(contentsOf: Array(gap))
+                // move to this as the start of the next larger rage
+                range = r
+            }
+        } while sortedRanges.count > 0
+        largerRanges.append(range)
+
+//        print("Found ranges: \(largerRanges.map({ "\($0)" }).joined(separator: ", "))")
+
+        return gaps
+    }
+
     func search(limit: Int = 4_000_000) -> Coordinate? {
+        print("\(#function) \t \(Date.now)")
         var minSensorY = pairs.map({ $0.sensor.y - $0.distance }).min() ?? 0
         var maxSensorY = pairs.map({ $0.sensor.y + $0.distance }).max() ?? 0
 
@@ -94,18 +136,11 @@ class BEZ {
         let searchSpace = (minSensorY...maxSensorY)
 
         for y in searchSpace {
-            let occupiedPoints = occupied(on: y, subtract: false)
-//            let xs = occupiedPoints.map(\.x)
-//            let minX = xs.min() ?? 0
-//            let maxX = xs.max() ?? 0
-//
-//            let occupiedXs = Set<Int>(xs)
-//            let allXs = Set<Int>(Array(minX...maxX))
-//            let empty = allXs.subtracting(occupiedXs)
-//            print("Found \(empty.count) empty spots on y=\(y) between \(minX...maxX)")
-//            if empty.count > 0, let emptyX = empty.first {
-//                return Coordinate(x: emptyX, y: y)
-//            }
+//            print("Searching y=\(y)... \t\(Date.now)")
+            let gaps = findGapsInSensors(on: y)
+            if let gap = gaps.first {
+                return Coordinate(x: gap, y: y)
+            }
         }
 
         print("Must have not found an empty spot...")
