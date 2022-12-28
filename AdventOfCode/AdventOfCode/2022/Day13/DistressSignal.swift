@@ -34,11 +34,12 @@ class DistressSignal {
 
             let pair = linePairs.compactMap { line in
                 var strIdx = line.startIndex
-                return DistressSignal.parse(packet: line, readIndex: &strIdx)
-//                if packet?.debugDescription != line {
-//                    print("PARSING ERROR: \(line) vs \(packet?.debugDescription ?? "")")
-//                }
-//                return packet
+                let packet = DistressSignal.parse(packet: line, readIndex: &strIdx)
+                if let packet, packet.debugDescription != line {
+                    print("PARSING ERROR: \(line) != \(packet.debugDescription)")
+                }
+                assert((packet?.debugDescription ?? "") == line)
+                return packet
             }
 
             guard pair.count == 2 else { return nil }
@@ -85,6 +86,20 @@ class DistressSignal {
         guard case .list(let leftList) = left, case .list(let rightList) = right else {
             print("\(nestedPadding)Something is wrong... \(left) vs \(right)")
             return false
+        }
+
+        if shouldPrint {
+            let indent = "\(padding)\t\t"
+            print("\(padding)\t@ Left: \(leftList.count) vs Right: \(rightList.count)")
+
+            print("\(padding)\tLeft:")
+            for thing in leftList {
+                print("\(indent)\(thing)")
+            }
+            print("\(padding)\tRight:")
+            for thing in rightList {
+                print("\(indent)\(thing)")
+            }
         }
 
         var idx = 0

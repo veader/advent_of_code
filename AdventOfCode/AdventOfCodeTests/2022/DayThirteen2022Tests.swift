@@ -169,4 +169,57 @@ final class DayThirteen2022Tests: XCTestCase {
         let answer = DayThirteen2022().partOne(input: sampleInput)
         XCTAssertEqual(13, answer as! Int)
     }
+
+    func testPair() {
+        let simplePair1 = """
+            [[2,0]]
+            [[[7,2,[],1,2]],[],[[],2,[[0,6,0,6,8]]]]
+            """ // should be false
+        let signal1 = DistressSignal(simplePair1)
+        let answers1 = signal1.compare()
+        XCTAssertEqual(1, answers1.count)
+        XCTAssertFalse(answers1[0])
+
+    }
+
+    func testFailureRedditInput() {
+        // Random sample inputs with supposed appropriate responses from Reddit
+
+        let simplePair1 = """
+            [[8,[[7]]]]
+            [[[[8]]]]
+            """ // should be false
+        let signal1 = DistressSignal(simplePair1)s
+        let answers1 = signal1.compare()
+        XCTAssertEqual(1, answers1.count)
+        XCTAssertFalse(answers1[0])
+
+        let simplePair2 = """
+            [[8,[[7]]]]
+            [[[[8],[3]]]]
+            """ // should be false
+        let signal2 = DistressSignal(simplePair2)
+        let answers2 = signal2.compare()
+        XCTAssertEqual(1, answers2.count)
+        XCTAssertFalse(answers2[0])
+
+//        let simplePair3 = """
+//            [[8,[[7,10,10,5],[8,4,9]],3,5],[[[3,9,4],5,[7,5,5]],[[3,2,5],[10],[5,5],0,[8]]],[4,2,[],[[7,5,6,3,0],[4,4,10,7],6,[8,10,9]]],[[4,[],4],10,1]]
+//            [[[[8],[3,10],[7,6,3,7,4],1,8]]]
+//            """ // should be true
+//
+//        let signal3 = DistressSignal(simplePair3)
+//        let answers3 = signal3.compare()
+//        XCTAssertEqual(1, answers3.count)
+//        XCTAssertTrue(answers3[0]) // we get false here... why?
+
+        let simplePair4 = """
+            [1,2,3,[1,2,3],4,1]
+            [1,2,3,[1,2,3],4,0]
+            """ // should be false
+        let signal4 = DistressSignal(simplePair4)
+        let answers4 = signal4.compare()
+        XCTAssertEqual(1, answers4.count)
+        XCTAssertFalse(answers4[0])
+    }
 }
