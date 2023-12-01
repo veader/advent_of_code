@@ -10,7 +10,7 @@ import SwiftUI
 // https://developer.apple.com/tutorials/swiftui/creating-a-macos-app
 
 struct ContentView: View {
-    @State var year: AdventYear = .year2022
+    @State var year: AdventYear = .year2023
     @State var selectedProxy: AdventDayProxy?
 
     var days: [AdventDayProxy] { year.days.map { AdventDayProxy(day: $0) } }

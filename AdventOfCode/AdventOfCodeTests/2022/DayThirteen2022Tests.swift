@@ -189,7 +189,7 @@ final class DayThirteen2022Tests: XCTestCase {
             [[8,[[7]]]]
             [[[[8]]]]
             """ // should be false
-        let signal1 = DistressSignal(simplePair1)s
+        let signal1 = DistressSignal(simplePair1)
         let answers1 = signal1.compare()
         XCTAssertEqual(1, answers1.count)
         XCTAssertFalse(answers1[0])

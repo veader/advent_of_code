@@ -30,6 +30,9 @@
 		769B10C7294C465600FCF287 /* SandSim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B10C5294C465100FCF287 /* SandSim.swift */; };
 		769B10C8294C465900FCF287 /* DayFourteen2022.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B10C3294C45E500FCF287 /* DayFourteen2022.swift */; };
 		769B10CA294CB0A500FCF287 /* DayFourteen2022Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B10C9294CB0A500FCF287 /* DayFourteen2022Tests.swift */; };
+		76BA9CE22B1A20CF00D12FA3 /* Day1_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */; };
+		76BA9CE32B1A20CF00D12FA3 /* Day1_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */; };
+		76BA9CE52B1A22FB00D12FA3 /* Day1_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA9CE42B1A22FB00D12FA3 /* Day1_2023Tests.swift */; };
 		76C1414A2939671D00795D93 /* DayOne2022.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C141492939671D00795D93 /* DayOne2022.swift */; };
 		76C1414B2939671D00795D93 /* DayOne2022.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C141492939671D00795D93 /* DayOne2022.swift */; };
 		76C1414E29396A6700795D93 /* DayOne2022Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C1414D29396A6700795D93 /* DayOne2022Tests.swift */; };
@@ -353,6 +356,9 @@
 		769B10C3294C45E500FCF287 /* DayFourteen2022.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFourteen2022.swift; sourceTree = "<group>"; };
 		769B10C5294C465100FCF287 /* SandSim.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandSim.swift; sourceTree = "<group>"; };
 		769B10C9294CB0A500FCF287 /* DayFourteen2022Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFourteen2022Tests.swift; sourceTree = "<group>"; };
+		76BA9CE02B1A20BA00D12FA3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1_2023.swift; sourceTree = "<group>"; };
+		76BA9CE42B1A22FB00D12FA3 /* Day1_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1_2023Tests.swift; sourceTree = "<group>"; };
 		76C141482939670F00795D93 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76C141492939671D00795D93 /* DayOne2022.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOne2022.swift; sourceTree = "<group>"; };
 		76C1414D29396A6700795D93 /* DayOne2022Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOne2022Tests.swift; sourceTree = "<group>"; };
@@ -645,6 +651,31 @@
 				769B10C5294C465100FCF287 /* SandSim.swift */,
 			);
 			path = Day14;
+			sourceTree = "<group>";
+		};
+		76BA9CDD2B192C6900D12FA3 /* 2023 */ = {
+			isa = PBXGroup;
+			children = (
+				76BA9CDE2B192C7700D12FA3 /* Day01 */,
+			);
+			path = 2023;
+			sourceTree = "<group>";
+		};
+		76BA9CDE2B192C7700D12FA3 /* Day01 */ = {
+			isa = PBXGroup;
+			children = (
+				76BA9CE02B1A20BA00D12FA3 /* README.md */,
+				76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */,
+			);
+			path = Day01;
+			sourceTree = "<group>";
+		};
+		76BA9CDF2B192C8800D12FA3 /* 2023 */ = {
+			isa = PBXGroup;
+			children = (
+				76BA9CE42B1A22FB00D12FA3 /* Day1_2023Tests.swift */,
+			);
+			path = 2023;
 			sourceTree = "<group>";
 		};
 		76C14146293966EE00795D93 /* 2022 */ = {
@@ -1182,6 +1213,7 @@
 				C516C783275946620038AB8A /* 2020 */,
 				C556EF922757B461009B3078 /* 2021 */,
 				76C14146293966EE00795D93 /* 2022 */,
+				76BA9CDD2B192C6900D12FA3 /* 2023 */,
 				C556EF672757B454009B3078 /* AdventOfCodeApp.swift */,
 				C556EFA72757C9D1009B3078 /* Views */,
 				C556EF6B2757B455009B3078 /* Assets.xcassets */,
@@ -1204,6 +1236,7 @@
 			children = (
 				C57773D027665ED0006E5ADA /* 2021 */,
 				76C1414C29396A5400795D93 /* 2022 */,
+				76BA9CDF2B192C8800D12FA3 /* 2023 */,
 				C556EF792757B455009B3078 /* AdventOfCodeTests.swift */,
 			);
 			path = AdventOfCodeTests;
@@ -1514,7 +1547,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					C556EF632757B454009B3078 = {
 						CreatedOnToolsVersion = 13.1;
@@ -1719,6 +1752,7 @@
 				C516C7E127594F1E0038AB8A /* XMASCypher.swift in Sources */,
 				C516C7FA2759553E0038AB8A /* SeatMapModeler.swift in Sources */,
 				76C14157293A3D8900795D93 /* RoshamboRound.swift in Sources */,
+				76BA9CE22B1A20CF00D12FA3 /* Day1_2023.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1789,6 +1823,7 @@
 				C516C7CD27594E0B0038AB8A /* DaySeven2020.swift in Sources */,
 				769B10C7294C465600FCF287 /* SandSim.swift in Sources */,
 				C516C852275958C70038AB8A /* DayEighteen2020.swift in Sources */,
+				76BA9CE32B1A20CF00D12FA3 /* Day1_2023.swift in Sources */,
 				C516C8442759587B0038AB8A /* DaySeventeen2020.swift in Sources */,
 				76C1414B2939671D00795D93 /* DayOne2022.swift in Sources */,
 				C516C8D1276137600038AB8A /* SegmentedDisplay.swift in Sources */,
@@ -1847,6 +1882,7 @@
 				C57773C62763956B006E5ADA /* NavSysCmd.swift in Sources */,
 				76C14170293E98A600795D93 /* SupplyCrateMap.swift in Sources */,
 				C55F0836276C444C00EEEFA2 /* DaySixteen2021.swift in Sources */,
+				76BA9CE52B1A22FB00D12FA3 /* Day1_2023Tests.swift in Sources */,
 				760D42412949A34700ED2842 /* DistressSignal.swift in Sources */,
 				C516C8632759592F0038AB8A /* DayNineteen2020.swift in Sources */,
 				C516C88E2759F1490038AB8A /* DayThree2021Tests.swift in Sources */,
@@ -1959,6 +1995,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1973,7 +2010,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -2021,6 +2058,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -2029,7 +2067,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -2059,6 +2097,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2088,6 +2127,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCode;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2112,7 +2152,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2138,7 +2178,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MACOSX_DEPLOYMENT_TARGET = 13.5;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
