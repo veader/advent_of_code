@@ -38,8 +38,9 @@ struct Day1_2023: AdventDay {
 
                 let regex = /(1|2|3|4|5|6|7|8|9|one|two|three|four|five|six|seven|eight|nine)/
                 var matches: [String] = []
+                // alternate approach (seen online) reverse string, have reverse spellings in regex, match first.
                 while let match = inputString.firstMatch(of: regex) {
-                    matches.append(String(inputString[match.range]))
+                    matches.append(String(match.output.1))
 
                     let nextIdx = inputString.index(after: match.range.lowerBound)
                     inputString = String(inputString.suffix(from: nextIdx))
