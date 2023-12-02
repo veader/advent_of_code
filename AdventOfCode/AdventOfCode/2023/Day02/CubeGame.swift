@@ -24,6 +24,7 @@ struct CubeGame {
     let turns: [Turn]
 
 
+    /// Is this game valid given the maxes?
     func valid(maxes: Turn) -> Bool {
         let invalid = turns.compactMap { turn -> Turn? in
             guard
@@ -36,6 +37,26 @@ struct CubeGame {
 
         // game is only valid if all turns are valid
         return invalid.isEmpty
+    }
+
+    func minimumCubes() -> Turn {
+        var mins = Turn()
+
+        for turn in turns {
+            for color in CubeColor.allCases {
+                if (turn[color] ?? 0) > (mins[color] ?? 0) {
+                    mins[color] = turn[color]
+                }
+            }
+        }
+
+        return mins
+    }
+
+    var power: Int {
+        minimumCubes().reduce(1) { result, foo in
+            result * foo.value
+        }
     }
 
 

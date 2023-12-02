@@ -11,7 +11,7 @@ struct Day2_2023: AdventDay {
     var year = 2023
     var dayNumber = 2
     var dayTitle = "Cube Conundrum"
-    var stars = 1
+    var stars = 2
 
     enum Day1Error: Error {
         case invalidInput
@@ -33,6 +33,7 @@ struct Day2_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        0
+        let games = parse(input)
+        return games.reduce(0) { $0 + $1.power }
     }
 }

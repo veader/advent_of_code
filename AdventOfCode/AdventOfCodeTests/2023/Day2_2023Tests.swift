@@ -68,4 +68,29 @@ final class Day2_2023Tests: XCTestCase {
         let answer = Day2_2023().run(part: 1, sampleInput)
         XCTAssertEqual(8, answer as? Int)
     }
+
+    func testGameMins() throws {
+        let game = try XCTUnwrap(CubeGame.parse("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"))
+        let mins = game.minimumCubes()
+        XCTAssertEqual(4, mins[.red])
+        XCTAssertEqual(2, mins[.green])
+        XCTAssertEqual(6, mins[.blue])
+    }
+
+    func testGamePower() throws {
+        let game = try XCTUnwrap(CubeGame.parse("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"))
+        XCTAssertEqual(48, game.power)
+
+        let games = Day2_2023().parse(sampleInput)
+        XCTAssertEqual(48, games[0].power)
+        XCTAssertEqual(12, games[1].power)
+        XCTAssertEqual(1560, games[2].power)
+        XCTAssertEqual(630, games[3].power)
+        XCTAssertEqual(36, games[4].power)
+    }
+
+    func testPart2() throws {
+        let answer = Day2_2023().run(part: 2, sampleInput)
+        XCTAssertEqual(2286, answer as? Int)
+    }
 }
