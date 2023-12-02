@@ -41,7 +41,6 @@ struct AdventDayCell: View {
                     }
                 }
             }
-            Divider()
         }
     }
 }

@@ -29,6 +29,7 @@ struct ContentView: View {
                     }
                 } label: {
                     AdventDayCell(day: proxy.day, selected: proxy == selectedProxy)
+                        .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
             }
@@ -37,6 +38,11 @@ struct ContentView: View {
                 AdventDayView(day: selectedProxy.day)
             } else {
                 Text("Select day")
+            }
+        }
+        .onAppear {
+            if let day = days.last {
+                selectedProxy = day
             }
         }
         .navigationSplitViewStyle(.prominentDetail)
