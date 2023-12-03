@@ -12,11 +12,11 @@ struct Day3_2023: AdventDay {
     var year = 2023
     var dayNumber = 3
     var dayTitle = "Gear Ratios"
-    var stars = 1
+    var stars = 2
 
     struct GondolaPart: CustomDebugStringConvertible {
         let partNumber: Int
-        let coordinates: [Coordinate]
+        let coordinates: Set<Coordinate>
 
         public var debugDescription: String { "Part(\(partNumber) @ \(coordinates))" }
     }
@@ -48,7 +48,7 @@ struct Day3_2023: AdventDay {
                 } else {
                     // if we encounter a space or symbole, save any current number and reset it
                     if let partNum = Int(currentPart) {
-                        let part = GondolaPart(partNumber: partNum, coordinates: currentPartCoords)
+                        let part = GondolaPart(partNumber: partNum, coordinates: Set(currentPartCoords))
                         parts.append(part)
                     }
                     currentPart = ""
@@ -63,7 +63,7 @@ struct Day3_2023: AdventDay {
 
             // take care of any part we're building at the end of aline
             if let partNum = Int(currentPart) {
-                let part = GondolaPart(partNumber: partNum, coordinates: currentPartCoords)
+                let part = GondolaPart(partNumber: partNum, coordinates: Set(currentPartCoords))
                 parts.append(part)
             }
         }
@@ -77,8 +77,7 @@ struct Day3_2023: AdventDay {
 
         let validParts = parts.filter { part in
             // get all of the coordinates around a given part
-            let partCoords = Set(part.coordinates)
-            let adjacentCoords = Set(part.coordinates.flatMap({ $0.adjacent() })).subtracting(partCoords)
+            let adjacentCoords = Set(part.coordinates.flatMap({ $0.adjacent() })).subtracting(part.coordinates)
             let intersection = symbolCoordinates.intersection(adjacentCoords)
 
             // a valid part will have at least one coordinate near a symbol
@@ -89,6 +88,27 @@ struct Day3_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        0
+        let (parts, symbols) = parse(input)
+        let possibleGears = symbols.filter { $0.symbol == "*" }
+
+        var mapping: [Coordinate: [GondolaPart]] = [:]
+
+        let validGears = possibleGears.filter { gear in
+            let adjacentCoords = gear.coordinate.adjacent()
+
+            // brute force...
+            let touchingParts = parts.filter { !($0.coordinates.intersection(adjacentCoords)).isEmpty }
+
+            if touchingParts.count == 2 {
+                mapping[gear.coordinate] = touchingParts
+                return true
+            } else {
+                return false
+            }
+        }
+
+        return validGears.compactMap { gear in
+            mapping[gear.coordinate]?.map(\.partNumber).reduce(1, *)
+        }.reduce(0, +)
     }
 }
