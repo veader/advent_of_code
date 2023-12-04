@@ -40,6 +40,11 @@ final class Day1_2023Tests: XCTestCase {
         XCTAssertEqual(142, answer as? Int)
     }
 
+    func testPart1Answer() throws {
+        let answer = Day1_2023().run(part: 1)
+        XCTAssertEqual(55130, answer as? Int)
+    }
+
     func testParsingWithTranslate() {
         let output = Day1_2023().parse(sampleInput2, translate: true)
         XCTAssertEqual(output.count, 7)
@@ -65,5 +70,10 @@ final class Day1_2023Tests: XCTestCase {
     func testPart2() {
         let answer = Day1_2023().run(part: 2, sampleInput2)
         XCTAssertEqual(281, answer as? Int)
+    }
+
+    func testPart2Answer() throws {
+        let answer = Day1_2023().run(part: 2)
+        XCTAssertEqual(54985, answer as? Int)
     }
 }

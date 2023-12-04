@@ -69,6 +69,11 @@ final class Day2_2023Tests: XCTestCase {
         XCTAssertEqual(8, answer as? Int)
     }
 
+    func testPart1Answer() throws {
+        let answer = Day2_2023().run(part: 1)
+        XCTAssertEqual(2505, answer as? Int)
+    }
+
     func testGameMins() throws {
         let game = try XCTUnwrap(CubeGame.parse("Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"))
         let mins = game.minimumCubes()
@@ -92,5 +97,10 @@ final class Day2_2023Tests: XCTestCase {
     func testPart2() throws {
         let answer = Day2_2023().run(part: 2, sampleInput)
         XCTAssertEqual(2286, answer as? Int)
+    }
+
+    func testPart2Answer() throws {
+        let answer = Day2_2023().run(part: 2)
+        XCTAssertEqual(70265, answer as? Int)
     }
 }
