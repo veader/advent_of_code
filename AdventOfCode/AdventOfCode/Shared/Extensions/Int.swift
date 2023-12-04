@@ -91,4 +91,15 @@ extension Int {
     func partialPrimeFactors(factorSet: [Int] = [2,3,5,7,11,13,17,19,23]) -> [Int] {
         factorSet.filter { self % $0 == 0 }
     }
+
+    /// Get the result of this number by the power given.
+    /// ie: 2^2 = 4 -> 2.power(of: 2) = 4
+    ///
+    /// - Parameters:
+    ///     - power: `Int` - Power component of the equation
+    ///
+    /// - Returns: `Double` of the current number raised to the given power. Only double to account for negative values.
+    func power(of power: Int) -> Double {
+        pow(Double(self), Double(power))
+    }
 }
