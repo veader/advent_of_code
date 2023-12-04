@@ -40,4 +40,19 @@ final class Day4_2023Tests: XCTestCase {
         let answer = Day4_2023().run(part: 1, sampleInput)
         XCTAssertEqual(13, answer as? Int)
     }
+
+    func testPart1Answer() throws {
+        let answer = Day4_2023().run(part: 1)
+        XCTAssertEqual(17803, answer as? Int)
+    }
+
+    func testPart2() throws {
+        let answer = Day4_2023().run(part: 2, sampleInput)
+        XCTAssertEqual(30, answer as? Int)
+    }
+
+    func testPart2Answer() throws {
+        let answer = Day4_2023().run(part: 2)
+        XCTAssertEqual(5554894, answer as? Int  )
+    }
 }

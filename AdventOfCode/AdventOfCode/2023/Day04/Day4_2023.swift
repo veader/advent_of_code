@@ -12,7 +12,7 @@ struct Day4_2023: AdventDay {
     var year = 2023
     var dayNumber = 4
     var dayTitle = "Scratchcards"
-    var stars = 1
+    var stars = 2
 
     struct Scratchcard: Identifiable {
         let id: Int
@@ -55,6 +55,24 @@ struct Day4_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        0
+        let cards = parse(input).sorted(by: { $0.id < $1.id })
+
+        // mapping of card ID to number of instances
+        var cardCounts: [Int: Int] = Dictionary(uniqueKeysWithValues: zip(cards.map(\.id), Array(repeating: 1, count: cards.count)))
+
+        for (idx, card) in cards.enumerated() {
+            let duplicates = cardCounts[card.id] ?? 0
+            let wins = card.winningMatches.count
+            guard wins > 0 else { continue }
+
+            var nextIdx = idx + 1
+            while nextIdx <= idx + wins {
+                let id = cards[nextIdx].id
+                cardCounts[id] = (cardCounts[id] ?? 0) + duplicates
+                nextIdx += 1
+            }
+        }
+
+        return cardCounts.values.reduce(0, +)
     }
 }
