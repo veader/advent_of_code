@@ -20,6 +20,14 @@ struct Day5_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
+        let almanac = Almanac.parse(input ?? "")
+
+//        let seedRanges = almanac.seedRanges()
+//        let totalSeeds = seedRanges.map(\.count).reduce(0, +)
+//        print("\(totalSeeds) Seeds") // 1.3B seeds?
+
+        almanac.mergeMaps() // TODO: Here
+
         return 0
     }
 }

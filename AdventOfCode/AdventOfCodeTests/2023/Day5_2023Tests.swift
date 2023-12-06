@@ -128,4 +128,9 @@ final class Day5_2023Tests: XCTestCase {
         let answer = Day5_2023().run(part: 1)
         XCTAssertEqual(240320250, answer as? Int)
     }
+
+    func testBruteForce() throws {
+        let almanac = Almanac.parse(sampleInput)
+        almanac.mergeMaps()
+    }
 }

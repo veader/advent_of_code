@@ -38,6 +38,11 @@
 		769B253E2B1EF672008689CA /* Almanac.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B253C2B1EF672008689CA /* Almanac.swift */; };
 		769B253F2B1EF675008689CA /* Day5_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B253A2B1EF285008689CA /* Day5_2023.swift */; };
 		769B25412B1F558A008689CA /* Day5_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25402B1F558A008689CA /* Day5_2023Tests.swift */; };
+		769B25432B203004008689CA /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25422B203004008689CA /* ClosedRange.swift */; };
+		769B25442B203004008689CA /* ClosedRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25422B203004008689CA /* ClosedRange.swift */; };
+		769B25472B203864008689CA /* ClosedRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25462B203864008689CA /* ClosedRangeTests.swift */; };
+		769B25492B203FE4008689CA /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25482B203FE4008689CA /* Set.swift */; };
+		769B254A2B203FE4008689CA /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25482B203FE4008689CA /* Set.swift */; };
 		76BA9CE22B1A20CF00D12FA3 /* Day1_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */; };
 		76BA9CE32B1A20CF00D12FA3 /* Day1_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */; };
 		76BA9CE52B1A22FB00D12FA3 /* Day1_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA9CE42B1A22FB00D12FA3 /* Day1_2023Tests.swift */; };
@@ -379,6 +384,9 @@
 		769B253A2B1EF285008689CA /* Day5_2023.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5_2023.swift; sourceTree = "<group>"; };
 		769B253C2B1EF672008689CA /* Almanac.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Almanac.swift; sourceTree = "<group>"; };
 		769B25402B1F558A008689CA /* Day5_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5_2023Tests.swift; sourceTree = "<group>"; };
+		769B25422B203004008689CA /* ClosedRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.swift; sourceTree = "<group>"; };
+		769B25462B203864008689CA /* ClosedRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeTests.swift; sourceTree = "<group>"; };
+		769B25482B203FE4008689CA /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
 		76BA9CE02B1A20BA00D12FA3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1_2023.swift; sourceTree = "<group>"; };
 		76BA9CE42B1A22FB00D12FA3 /* Day1_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1_2023Tests.swift; sourceTree = "<group>"; };
@@ -702,6 +710,14 @@
 			path = Day05;
 			sourceTree = "<group>";
 		};
+		769B25452B203856008689CA /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				769B25462B203864008689CA /* ClosedRangeTests.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		76BA9CDD2B192C6900D12FA3 /* 2023 */ = {
 			isa = PBXGroup;
 			children = (
@@ -929,8 +945,10 @@
 			isa = PBXGroup;
 			children = (
 				C516C7CE27594E780038AB8A /* Array.swift */,
+				769B25422B203004008689CA /* ClosedRange.swift */,
 				C516C8C5275F2F710038AB8A /* Dictionary.swift */,
 				76C141AA2946C64C00795D93 /* Int.swift */,
+				769B25482B203FE4008689CA /* Set.swift */,
 				C516C780275907430038AB8A /* String.swift */,
 			);
 			path = Extensions;
@@ -1310,6 +1328,7 @@
 		C556EF782757B455009B3078 /* AdventOfCodeTests */ = {
 			isa = PBXGroup;
 			children = (
+				769B25452B203856008689CA /* Extensions */,
 				C57773D027665ED0006E5ADA /* 2021 */,
 				76C1414C29396A5400795D93 /* 2022 */,
 				76BA9CDF2B192C8800D12FA3 /* 2023 */,
@@ -1743,6 +1762,7 @@
 				C516C8492759587B0038AB8A /* FourDCoordinate.swift in Sources */,
 				C516C7C827594E0B0038AB8A /* LuggageRuleSet.swift in Sources */,
 				C516C87C275959C60038AB8A /* DayTwentyOne2020.swift in Sources */,
+				769B25432B203004008689CA /* ClosedRange.swift in Sources */,
 				C516C7CF27594E780038AB8A /* Array.swift in Sources */,
 				C516C7A827594B7C0038AB8A /* DayFour2020.swift in Sources */,
 				C55F08532770FF1A00EEEFA2 /* DayNineteen2021.swift in Sources */,
@@ -1772,6 +1792,7 @@
 				C516C7F42759553E0038AB8A /* SeatMap.swift in Sources */,
 				C55F086C2779FE1300EEEFA2 /* DayTwentyTwo2021.swift in Sources */,
 				C57773D927678198006E5ADA /* CaveMap.swift in Sources */,
+				769B25492B203FE4008689CA /* Set.swift in Sources */,
 				C516C793275949F30038AB8A /* DayTwo2020.swift in Sources */,
 				C516C832275958390038AB8A /* TicketScanner.swift in Sources */,
 				C57773E12768CC91006E5ADA /* TransparentPaper.swift in Sources */,
@@ -1905,6 +1926,7 @@
 				C516C879275959C60038AB8A /* Food.swift in Sources */,
 				760D4243294A077000ED2842 /* DayThirteen2022Tests.swift in Sources */,
 				C516C7CD27594E0B0038AB8A /* DaySeven2020.swift in Sources */,
+				769B25442B203004008689CA /* ClosedRange.swift in Sources */,
 				769B10C7294C465600FCF287 /* SandSim.swift in Sources */,
 				C516C852275958C70038AB8A /* DayEighteen2020.swift in Sources */,
 				76BA9CE32B1A20CF00D12FA3 /* Day1_2023.swift in Sources */,
@@ -1921,6 +1943,7 @@
 				C55F084D276F841200EEEFA2 /* SnailfishNumber.swift in Sources */,
 				C516C8B3275DD5940038AB8A /* DaySix2021Tests.swift in Sources */,
 				C516C84C2759587B0038AB8A /* ConwayCube.swift in Sources */,
+				769B254A2B203FE4008689CA /* Set.swift in Sources */,
 				769B25412B1F558A008689CA /* Day5_2023Tests.swift in Sources */,
 				76C14193294387BE00795D93 /* RopeSimulator.swift in Sources */,
 				C516C8422759587B0038AB8A /* ThreeDCoordinate.swift in Sources */,
@@ -1991,6 +2014,7 @@
 				C55F0845276D83B600EEEFA2 /* DaySeventeen2021Tests.swift in Sources */,
 				C57773DF2768353F006E5ADA /* DayThirteen2021.swift in Sources */,
 				C57773E42768D21A006E5ADA /* DayThirteen2021Tests.swift in Sources */,
+				769B25472B203864008689CA /* ClosedRangeTests.swift in Sources */,
 				C571C3B22769808B000BEF76 /* Polymer.swift in Sources */,
 				C516C870275959770038AB8A /* DayTwenty2020.swift in Sources */,
 				C571C3B9276A2106000BEF76 /* DayFifteen2021.swift in Sources */,

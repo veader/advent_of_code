@@ -27,6 +27,10 @@ struct Almanac {
 
         let sourceRange: ClosedRange<Int>
 
+        var delta: Int {
+            destination - source 
+        }
+
         init(source: Int, destination: Int, size: Int) {
             self.source = source
             self.destination = destination
@@ -63,6 +67,10 @@ struct Almanac {
         let destination: Source
         let ranges: [MapRange]
 
+        var sortedRanges: [MapRange] {
+            ranges.sorted(by: { $0.sourceRange.lowerBound < $1.sourceRange.lowerBound })
+        }
+
         /// Find the mapped value for the input.
         func map(_ x: Int) -> Int {
             guard let mapping = ranges.first(where: { $0.contains(x) }) else { return x }
@@ -86,7 +94,10 @@ struct Almanac {
         var location = seed
         var source: Source = .seed
 
+//        var route: String = ""
+
         while source != .location {
+//            route += "\(source): \(location) ->"
             guard let map = map(for: source) else {
                 print("Unable to find mapping for \(source)")
                 return nil
@@ -96,9 +107,69 @@ struct Almanac {
             source = map.destination
         }
 
+//        route += "\(source): \(location)"
+//        print(route)
+
         return location
     }
 
+    func mergeMaps() {
+        typealias DeltaMap = (range: ClosedRange<Int>, delta: Int)
+
+        var deltaMaps: [DeltaMap] = []
+
+        var currentLayer: Source = .seed
+
+        while currentLayer != .location {
+            guard let layerMap = map(for: currentLayer) else {
+                print("💥 Error finding map for \(currentLayer)")
+                return
+            }
+
+            if let ranges = map(for: currentLayer)?.sortedRanges {
+                print("\(currentLayer.rawValue.capitalized) ranges (\(ranges.count):")
+                for m in ranges {
+                    // first see if this range is entirely contained in an existing range... this should only be 1
+//                    if let containingMap = deltaMaps.first(where: { $0.range.contains(m.sourceRange) }) {
+//                        print("\(m.sourceRange) contained within \(containingMap.range)")
+//                    } else {
+                        // next find all places where this range overlaps (partially) any existing range
+                        let overlapMaps = deltaMaps.filter({ $0.range.overlaps(m.sourceRange) })
+                        print("\(m.sourceRange) overlaps \(overlapMaps.map(\.range))")
+
+                        if overlapMaps.count > 0 {
+                            // divide things up
+                        } else {
+                            // add this new range?
+                            deltaMaps.append((m.sourceRange, m.delta))
+                        }
+//                    }
+                }
+            }
+
+            deltaMaps = deltaMaps.sorted(by: { $0.range.lowerBound < $1.range.lowerBound })
+            print("* DeltaMaps after applying \(currentLayer): \(deltaMaps)")
+            print("---------------------------------------")
+            currentLayer = layerMap.destination // move down the stack
+        }
+
+        return
+    }
+
+    func seedRanges() -> [ClosedRange<Int>] {
+        var ranges: [ClosedRange<Int>] = []
+        var seedRanges = seeds
+        while !seedRanges.isEmpty {
+            guard seedRanges.count >= 2 else { seedRanges = []; continue }
+
+            let range = seedRanges[0]...(seedRanges[0] + (seedRanges[1]-1))
+            ranges.append(range)
+
+            seedRanges.removeFirst(2)
+        }
+
+        return ranges
+    }
 
     // MARK: -
 
