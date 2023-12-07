@@ -35,4 +35,22 @@ final class Day6_2023Tests: XCTestCase {
         let answer = Day6_2023().run(part: 1)
         XCTAssertEqual(140220, answer as? Int)
     }
+
+    func testPart2() throws {
+        let answer = Day6_2023().run(part: 2, sampleInput)
+        XCTAssertEqual(71503, answer as? Int)
+    }
+
+    func testPart2Answer() throws {
+        let answer = Day6_2023().run(part: 2)
+        XCTAssertEqual(39570185, answer as? Int)
+    }
+
+    func testBinarySearch() throws {
+        var answer = try Day6_2023().calculateAdvancedTimes(for: 30, beating: 200)
+        XCTAssertEqual(9, answer)
+
+        answer = try Day6_2023().calculateAdvancedTimes(for: 15, beating: 40)
+        XCTAssertEqual(8, answer)
+    }
 }
