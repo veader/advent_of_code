@@ -11,7 +11,7 @@ struct Day7_2023: AdventDay {
     var year = 2023
     var dayNumber = 7
     var dayTitle = "Camel Cards"
-    var stars = 1
+    var stars = 2
 
     func partOne(input: String?) -> Any {
         let cards = CamelCards.parse(input ?? "")
@@ -21,7 +21,10 @@ struct Day7_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let cards = CamelCards.parse(input ?? "", useJokers: true)
+        let sorted = cards.sortedRounds
+        let values = sorted.enumerated().map { $0.element.bid * ($0.offset + 1) }
+        return values.reduce(0, +)
     }
 
 }

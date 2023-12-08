@@ -40,6 +40,26 @@ final class Day7_2023Tests: XCTestCase {
         XCTAssertEqual(CamelCards.HandKind.highCard, hand.kind)
     }
 
+    func testHandKindDetectionWithJokers() throws {
+        var hand = try XCTUnwrap(CamelCards.Hand.parse("AAAAA", useJokers: true))
+        XCTAssertEqual(CamelCards.HandKind.fiveOfKind, hand.kind)
+
+        hand = try XCTUnwrap(CamelCards.Hand.parse("32T3K", useJokers: true))
+        XCTAssertEqual(CamelCards.HandKind.onePair, hand.kind)
+
+        hand = try XCTUnwrap(CamelCards.Hand.parse("KK677", useJokers: true))
+        XCTAssertEqual(CamelCards.HandKind.twoPair, hand.kind)
+
+        hand = try XCTUnwrap(CamelCards.Hand.parse("T55J5", useJokers: true))
+        XCTAssertEqual(CamelCards.HandKind.fourOfKind, hand.kind)
+        
+        hand = try XCTUnwrap(CamelCards.Hand.parse("KTJJT", useJokers: true))
+        XCTAssertEqual(CamelCards.HandKind.fourOfKind, hand.kind)
+        
+        hand = try XCTUnwrap(CamelCards.Hand.parse("QQQJA", useJokers: true))
+        XCTAssertEqual(CamelCards.HandKind.fourOfKind, hand.kind)
+    }
+
     func testHandComparisons() throws {
         let hand1 = try XCTUnwrap(CamelCards.Hand.parse("33332"))
         let hand2 = try XCTUnwrap(CamelCards.Hand.parse("2AAAA"))
@@ -74,5 +94,23 @@ final class Day7_2023Tests: XCTestCase {
     func testPart1Answer() throws {
         let answer = Day7_2023().run(part: 1)
         XCTAssertEqual(250254244, answer as? Int)
+    }
+
+    func xtestCamelCardSortingWithJokers() throws {
+        let cards = CamelCards.parse(sampleInput, useJokers: true)
+        let sorted = cards.sortedRounds
+        for (idx, card) in sorted.enumerated() {
+            print("\(idx + 1): \(card)")
+        }
+    }
+
+    func testPart2() throws {
+        let answer = Day7_2023().run(part: 2, sampleInput)
+        XCTAssertEqual(5905, answer as? Int)
+    }
+
+    func testPart2Answser() throws {
+        let answer = Day7_2023().run(part: 2)
+        XCTAssertEqual(250087440, answer as? Int)
     }
 }
