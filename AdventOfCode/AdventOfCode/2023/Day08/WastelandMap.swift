@@ -16,6 +16,7 @@ class WastelandMap {
 
     enum WastelandError: Error {
         case nodeNotFound
+        case pathFollowingError
     }
 
     class WastelandNode: CustomDebugStringConvertible {
@@ -92,7 +93,6 @@ class WastelandMap {
     }
 
     func followDirections() throws -> Int {
-        var stepCount = 0
         var directionIdx = 0
         var directionsTaken = 0
         var current = WastelandMap.start
@@ -112,6 +112,44 @@ class WastelandMap {
         }
 
         return directionsTaken
+    }
+
+    func followGhosts() throws -> Int {
+        let startNodes = startNodes()
+        // print("Start nodes: \(startNodes.joined(separator: ","))")
+
+        var directionIdx = 0
+        var directionsTaken = 0
+        var currentNodes = startNodes
+
+        while !endInZed(nodes: currentNodes) {
+            let direction = directions[directionIdx]
+            // print("\(directionsTaken): [\(currentNodes.joined(separator: ", "))] going \(direction.rawValue)")
+
+            let nextNodes = currentNodes.compactMap {
+                nodes[$0]?.node(to: direction)
+            }
+
+            if nextNodes.count != currentNodes.count {
+                throw WastelandError.pathFollowingError
+            }
+
+            currentNodes = nextNodes
+            directionIdx = (directionIdx + 1) % directions.count
+            directionsTaken += 1
+        }
+
+        return directionsTaken
+    }
+
+    /// Find all nodes that end in A
+    func startNodes() -> [String] {
+        nodes.keys.filter { $0.hasSuffix("A") }
+    }
+
+    /// Do all of the given nodes end in Z?
+    func endInZed(nodes: [String]) -> Bool {
+        nodes.filter({ $0.hasSuffix("Z") }).count == nodes.count
     }
 }
 

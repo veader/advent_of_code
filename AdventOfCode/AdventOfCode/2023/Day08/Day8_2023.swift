@@ -20,7 +20,9 @@ struct Day8_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let wasteland = WastelandMap(input ?? "")
+        let answer = try? wasteland.followGhosts()
+        return answer ?? -1
     }
 
 }

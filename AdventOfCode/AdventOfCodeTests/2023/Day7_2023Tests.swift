@@ -78,13 +78,13 @@ final class Day7_2023Tests: XCTestCase {
         XCTAssertEqual(cards.rounds.first?.bid, 765)
     }
 
-    func xtestCamelCardsSorting() throws {
-        let cards = CamelCards.parse(sampleInput)
-        let sorted = cards.sortedRounds
-        for (idx, card) in sorted.enumerated() {
-            print("\(idx + 1): \(card)")
-        }
-    }
+//    func testCamelCardsSorting() throws {
+//        let cards = CamelCards.parse(sampleInput)
+//        let sorted = cards.sortedRounds
+//        for (idx, card) in sorted.enumerated() {
+//            print("\(idx + 1): \(card)")
+//        }
+//    }
 
     func testPart1() throws {
         let answer = Day7_2023().run(part: 1, sampleInput)
@@ -96,13 +96,13 @@ final class Day7_2023Tests: XCTestCase {
         XCTAssertEqual(250254244, answer as? Int)
     }
 
-    func xtestCamelCardSortingWithJokers() throws {
-        let cards = CamelCards.parse(sampleInput, useJokers: true)
-        let sorted = cards.sortedRounds
-        for (idx, card) in sorted.enumerated() {
-            print("\(idx + 1): \(card)")
-        }
-    }
+//    func testCamelCardSortingWithJokers() throws {
+//        let cards = CamelCards.parse(sampleInput, useJokers: true)
+//        let sorted = cards.sortedRounds
+//        for (idx, card) in sorted.enumerated() {
+//            print("\(idx + 1): \(card)")
+//        }
+//    }
 
     func testPart2() throws {
         let answer = Day7_2023().run(part: 2, sampleInput)

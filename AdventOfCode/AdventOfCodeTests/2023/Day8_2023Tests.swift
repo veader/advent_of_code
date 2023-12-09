@@ -29,6 +29,19 @@ final class Day8_2023Tests: XCTestCase {
         ZZZ = (ZZZ, ZZZ)
         """
 
+    let sampleInput3 = """
+        LR
+
+        11A = (11B, XXX)
+        11B = (XXX, 11Z)
+        11Z = (11B, XXX)
+        22A = (22B, XXX)
+        22B = (22C, 22C)
+        22C = (22Z, 22Z)
+        22Z = (22B, 22B)
+        XXX = (XXX, XXX)
+        """
+
     func testWastelandNodeParsing() throws {
         let node = try XCTUnwrap(WastelandMap.WastelandNode("AAA = (BBB, CCC)"))
         XCTAssertEqual("AAA", node.name)
@@ -71,5 +84,23 @@ final class Day8_2023Tests: XCTestCase {
     func testPart1Answer() throws {
         let answer = Day8_2023().run(part: 1)
         XCTAssertEqual(17873, answer as? Int)
+    }
+
+    func testWastelandStartNodes() throws {
+        let wasteland = WastelandMap(sampleInput3)
+        let starts = wasteland.startNodes().sorted()
+        XCTAssertEqual(2, starts.count)
+        XCTAssertEqual(["11A", "22A"], starts)
+    }
+
+    func testWastelandEndDetection() throws {
+        let wasteland = WastelandMap(sampleInput3)
+        XCTAssertTrue(wasteland.endInZed(nodes: ["11Z", "22Z"]))
+        XCTAssertFalse(wasteland.endInZed(nodes: ["AAA", "ZZZ"]))
+    }
+
+    func testPart2() throws {
+        let answer = Day8_2023().run(part: 2, sampleInput3)
+        XCTAssertEqual(6, answer as? Int)
     }
 }
