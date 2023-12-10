@@ -83,4 +83,9 @@ extension String {
         let endIdx = index(startIndex, offsetBy: window.end)
         return self[startIdx..<endIdx]
     }
+
+    /// Return a collection of Strings created by splitting this string by newline.
+    func lines() -> [String] {
+        split(separator: "\n").map(String.init)
+    }
 }

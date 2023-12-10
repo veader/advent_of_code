@@ -22,3 +22,11 @@ extension Array where Element: Equatable {
         return count / 2
     }
 }
+
+extension Array where Element == Int {
+    /// Does this array only contain zeros?
+    var allZeros: Bool {
+        let set = Set(self)
+        return set.count == 1 && set.contains(0)
+    }
+}
