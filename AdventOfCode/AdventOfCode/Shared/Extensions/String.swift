@@ -88,4 +88,9 @@ extension String {
     func lines() -> [String] {
         split(separator: "\n").map(String.init)
     }
+
+    /// Return a collection of Strings created by splitting this string by each character.
+    func charSplit() -> [String] {
+        split(separator: "").map(String.init)
+    }
 }

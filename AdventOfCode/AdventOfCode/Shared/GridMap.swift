@@ -140,3 +140,21 @@ class GridMap<Element> {
         return true
     }
 }
+
+extension GridMap where Element: Equatable {
+    /// Return the coordinates of the first item in the grid matching by the given closure.
+    ///
+    /// "Search" starts origin (0x0) and goes row by row.
+    func first(where lambda: (Element?) -> Bool) -> Coordinate? {
+        // coordinates().first(where: { lambda(item(at: $0)) })
+        for y in yBounds {
+            for x in xBounds {
+                let c = Coordinate(x: x, y: y)
+                if lambda(item(at: c)) {
+                    return c
+                }
+            }
+        }
+        return nil
+    }
+}

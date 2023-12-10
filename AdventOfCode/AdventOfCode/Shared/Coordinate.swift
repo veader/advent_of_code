@@ -29,6 +29,31 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         case west
         case northWest
         case same
+
+        /// Provide the opposite to this direction?
+        /// Example: North -> South
+        var opposite: RelativeDirection {
+            switch self {
+            case .north:
+                .south
+            case .northEast:
+                .southWest
+            case .east:
+                .west
+            case .southEast:
+                .northWest
+            case .south:
+                .north
+            case .southWest:
+                .northEast
+            case .west:
+                .east
+            case .northWest:
+                .southEast
+            case .same:
+                .same
+            }
+        }
     }
 
     init(x: Int, y: Int) {
@@ -96,6 +121,31 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
                 return .southWest
             }
         }
+    }
+
+    /// Returns a new Coordinate created by following the given direction.
+    func moving(direction: RelativeDirection, originTopLeft: Bool = false) -> Coordinate {
+        var dX = 0
+        switch direction {
+        case .northEast, .east, .southEast:
+            dX = 1
+        case .northWest, .west, .southWest:
+            dX = -1
+        case .north, .south, .same:
+            dX = 0
+        }
+
+        var dY = 0
+        switch direction {
+        case .northWest, .north, .northEast:
+            dY = originTopLeft ? -1 : 1
+        case .southWest, .south, .southEast:
+            dY = originTopLeft ? 1 : -1
+        case .east, .west, .same:
+            dY = 0
+        }
+
+        return moving(xOffset: dX, yOffset: dY)
     }
 
     /// Returns a new Coordinate adjusted by the given offsets
