@@ -11,7 +11,7 @@ struct Day9_2023: AdventDay {
     var year = 2023
     var dayNumber = 9
     var dayTitle = "Mirage Maintenance"
-    var stars = 1
+    var stars = 2
 
     struct OasisReading {
         let readings: [Int]
@@ -55,6 +55,12 @@ struct Day9_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let readings = parse(input)
+        let nexts = readings.compactMap {
+            let arr = $0.process($0.readings.reversed())
+            return arr.last
+        }
+        assert(readings.count == nexts.count)
+        return nexts.reduce(0, +)
     }
 }
