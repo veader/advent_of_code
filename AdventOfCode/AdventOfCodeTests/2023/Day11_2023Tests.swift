@@ -23,26 +23,24 @@ final class Day11_2023Tests: XCTestCase {
         """
 
     func testFindBlankRowsAndColumns() {
-        let day = Day11_2023()
-        let grid = day.parse(sampleInput)
-        let galaxiesBefore = day.findGalaxies(in: grid).sorted(by: { $0.y < $1.y && $0.x < $1.x })
-        XCTAssertEqual(10, grid.xBounds.count)
-        XCTAssertEqual(10, grid.yBounds.count)
+        let system = SolarSystem(sampleInput)
+        let galaxiesBefore = system.findGalaxies()
+        XCTAssertEqual(10, system.spaceMap.xBounds.count)
+        XCTAssertEqual(10, system.spaceMap.yBounds.count)
 
-        day.expand(grid)
-        let galaxiesAfter = day.findGalaxies(in: grid).sorted(by: { $0.y < $1.y && $0.x < $1.x })
-        XCTAssertEqual(13, grid.xBounds.count)
-        XCTAssertEqual(12, grid.yBounds.count)
+        system.simpleExpand()
+        let galaxiesAfter = system.findGalaxies()
+        XCTAssertEqual(13, system.spaceMap.xBounds.count)
+        XCTAssertEqual(12, system.spaceMap.yBounds.count)
 
         XCTAssertNotEqual(galaxiesAfter, galaxiesBefore)
         XCTAssertEqual(galaxiesBefore.count, galaxiesAfter.count)
     }
 
     func testFindGalaxies() {
-        let day = Day11_2023()
-        let grid = day.parse(sampleInput)
-        day.expand(grid)
-        let galaxies = day.findGalaxies(in: grid)//.sorted(by: { $0.y < $1.y && $0.x < $1.x })
+        let system = SolarSystem(sampleInput)
+        system.simpleExpand()
+        let galaxies = system.findGalaxies()
         XCTAssertEqual(9, galaxies.count)
     }
 
@@ -61,10 +59,9 @@ final class Day11_2023Tests: XCTestCase {
     }
 
     func testCalculatingDistances() {
-        let day = Day11_2023()
-        let grid = day.parse(sampleInput)
-        day.expand(grid)
-        let distances = day.calculateDistances(in: grid)
+        let system = SolarSystem(sampleInput)
+        system.simpleExpand()
+        let distances = system.calculateDistances()
         XCTAssertEqual(36, distances.count) // the number of pairs
     }
 
@@ -77,4 +74,32 @@ final class Day11_2023Tests: XCTestCase {
         let answer = Day11_2023().run(part: 1)
         XCTAssertEqual(9918828, answer as? Int)
     }
+
+    func testSolarSystemExpand() {
+        let system = SolarSystem(sampleInput)
+        system.expand()
+
+        let simpleSystem = SolarSystem(sampleInput)
+        simpleSystem.simpleExpand()
+
+        XCTAssertEqual(system.galaxies, simpleSystem.galaxies)
+    }
+
+    func testSolarSystemLargerExpansion() {
+        var system = SolarSystem(sampleInput)
+        system.expand(by: 10)
+        var distances = system.calculateDistances()
+        XCTAssertEqual(1030, distances.reduce(0, +))
+
+        system = SolarSystem(sampleInput)
+        system.expand(by: 100)
+        distances = system.calculateDistances()
+        XCTAssertEqual(8410, distances.reduce(0, +))
+    }
+
+    func testPart2Answer() {
+        let answer = Day11_2023().run(part: 2)
+        XCTAssertEqual(692506533832, answer as? Int)
+    }
+
 }
