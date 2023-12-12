@@ -99,6 +99,109 @@ struct Day10_2023: AdventDay {
         }
     }
 
+    func area(within path: [Coordinate]) -> Int {
+        var lookup: [Int: [Coordinate]] = [:]
+        for c in path {
+            lookup[c.y] = ((lookup[c.y] ?? []) + [c]).sorted(by: { $0.x < $1.x })
+        }
+
+        for y in lookup.keys.sorted() {
+            print("\(y): \(lookup[y]!)")
+        }
+
+        for y in lookup.keys {
+            let values = lookup[y] ?? []
+
+            // remove any consecutive coordinates
+            var toRemove = Set<Coordinate>()
+            var lastC: Coordinate?
+            for c in values {
+                if let last = lastC, last.distance(to: c) == 1 {
+                    // beside the last one, toss both
+                    toRemove.insert(last)
+                    toRemove.insert(c)
+                }
+
+                lastC = c
+            }
+            lookup[y] = Array(Set(values).subtracting(toRemove)).sorted(by: { $0.x < $1.x })
+        }
+
+        print("After removals...")
+        for y in lookup.keys.sorted() {
+            print("\(y): \(lookup[y]!)")
+        }
+
+        return 0
+    }
+
+    func areaByPainting(in grid: GridMap<Pipe>, path: [Coordinate], printGrid: Bool = false) -> Int {
+        let blankGridFiller: [[String]] = grid.yBounds.map { _ in
+            Array(repeating: " ", count: grid.xBounds.count)
+        }
+
+        let paintGrid = GridMap(items: blankGridFiller)
+
+        // first, paint the path within the grid
+        for c in path {
+            paintGrid.update(at: c, with: "#")
+        }
+        
+        if printGrid {
+            paintGrid.printGrid()
+        }
+
+        // TODO: Alternative approach - Is there a way to count number of pipes encountered till you hit "outside"?
+        outsideByPainting(grid: paintGrid)
+
+        if printGrid {
+            print(" ")
+            paintGrid.printGrid()
+        }
+
+        return paintGrid.count(where: { $0 == " " })
+    }
+
+    func outsideByPainting(grid: GridMap<String>) {
+        var grid = grid
+
+        // next, start along the sides and paint anything that's "outside"
+        var outside = Set<Coordinate>()
+        for y in grid.yBounds {
+            var edges = [Coordinate]()
+
+            // special case for the top and bottom
+            if y == grid.yBounds.lowerBound || y == (grid.yBounds.upperBound - 1) {
+                for x in grid.xBounds {
+                    edges.append(Coordinate(x: x, y: y))
+                }
+            }
+
+            // left and right sides
+            edges.append(Coordinate(x: grid.xBounds.lowerBound, y: y))
+            edges.append(Coordinate(x: grid.xBounds.upperBound-1, y: y))
+
+            for c in edges {
+                if grid.item(at: c) != "#" {
+                    grid.update(at: c, with: "O")
+                    outside.insert(c)
+                }
+            }
+        }
+
+
+        while !outside.isEmpty {
+            guard let c = outside.popFirst() else { print("🤯"); continue }
+            let adjacent = grid.adjacentCoordinates(to: c, allowDiagonals: true)
+            for aCoord in adjacent {
+                if grid.item(at: aCoord) == " " {
+                    grid.update(at: aCoord, with: "O")
+                    outside.insert(aCoord)
+                }
+            }
+        }
+    }
+
     func parse(_ input: String?) -> GridMap<Pipe> {
         let pipes = (input ?? "").lines().map { line in
             line.charSplit().compactMap { Pipe(rawValue: $0) }
@@ -123,6 +226,15 @@ struct Day10_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let grid = parse(input)
+
+        do {
+            let path = try pipeLength(grid: grid)
+            let area = areaByPainting(in: grid, path: path, printGrid: true)
+            return area
+        } catch {
+            print("💥 Error: \(error.localizedDescription)")
+            return -1
+        }
     }
 }

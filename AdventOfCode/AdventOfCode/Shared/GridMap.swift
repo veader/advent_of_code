@@ -157,4 +157,18 @@ extension GridMap where Element: Equatable {
         }
         return nil
     }
+
+    /// Return the number of coordinates on the map that match the given closure.
+    func count(where lamda: (Element?) -> Bool) -> Int {
+        var output = 0
+        for y in yBounds {
+            for x in xBounds {
+                let c = Coordinate(x: x, y: y)
+                if lamda(item(at: c)) {
+                    output += 1
+                }
+            }
+        }
+        return output
+    }
 }
