@@ -9,14 +9,15 @@ import Foundation
 
 class GridMap<Element> {
     var items: [[Element]]
-    let xBounds: Range<Int>
-    let yBounds: Range<Int>
+    var xBounds: Range<Int>
+    var yBounds: Range<Int>
 
     init(items: [[Element]]) {
         self.items = items
         self.xBounds = 0..<(items.first ?? []).count
         self.yBounds = 0..<items.count
     }
+
 
     // MARK: -
 
@@ -41,6 +42,12 @@ class GridMap<Element> {
         return items[y]
     }
 
+    /// Return a column at the given x offset.
+    func column(x: Int) -> [Element]? {
+        guard xBounds.contains(x) else { return nil }
+        return yBounds.compactMap { itemAt(x: x, y: $0) }
+    }
+
     /// Update the value at the given coordinate with the new value.
     ///
     /// - returns: Success/failure of the update
@@ -60,6 +67,59 @@ class GridMap<Element> {
         let currentValue = items[coordinate.y][coordinate.x]
         items[coordinate.y][coordinate.x] = updateBlock(currentValue)
         return true
+    }
+
+    /// Insert a row in the grid filled with the given element. All other items beyond this are shifted.
+    ///
+    /// - Note: New y must be within or along edge of current bounds.
+    func insertRow(at y: Int, value: Element) {
+        // TODO: should this throw?
+        guard yBounds.contains(y) || yBounds.upperBound == y else { return }
+
+        yBounds = yBounds.lowerBound..<(yBounds.upperBound + 1) // expand our bounds
+
+        // start by putting an empty row at the end
+        var currentY = yBounds.upperBound - 1
+        items.append([])
+
+        // next copy the row below into the current row
+        while currentY != y {
+            guard let rowToMove = row(y: currentY - 1) else { continue }
+            items[currentY] = rowToMove
+            currentY -= 1 // move down another row
+        }
+
+        // now place empty row at the appropriate spot
+        items[y] = Array(repeating: value, count: xBounds.count)
+    }
+
+    /// Insert a column in the grid filled with the given element. All other items beyond this are shifted.
+    ///
+    /// - Note: New x must be within or along edge of current bounds.
+    func insertColumn(at x: Int, value: Element) {
+        // TODO: should this throw?
+        guard xBounds.contains(x) || xBounds.upperBound == x else { return }
+
+        xBounds = xBounds.lowerBound..<(xBounds.upperBound + 1) // expand our bounds
+
+        // start by putting an empty column at the end
+        var currentX = xBounds.upperBound - 1
+        yBounds.forEach { items[$0].append(value) }
+
+        // next copy the column before into the current column
+        while currentX != x {
+            guard xBounds.contains(currentX - 1) else { continue }
+            for y in yBounds {
+                guard let item = itemAt(x: currentX - 1, y: y) else { continue }
+                update(at: Coordinate(x: currentX, y: y), with: item)
+            }
+            currentX -= 1 // move over another row
+        }
+
+        // now place the empty column at the appropriate spot
+        for y in yBounds {
+            update(at: Coordinate(x: x, y: y), with: value)
+        }
     }
 
     /// Return all coordinates adjacent to the given coordinate.

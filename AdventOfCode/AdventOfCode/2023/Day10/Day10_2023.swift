@@ -163,8 +163,6 @@ struct Day10_2023: AdventDay {
     }
 
     func outsideByPainting(grid: GridMap<String>) {
-        var grid = grid
-
         // next, start along the sides and paint anything that's "outside"
         var outside = Set<Coordinate>()
         for y in grid.yBounds {
