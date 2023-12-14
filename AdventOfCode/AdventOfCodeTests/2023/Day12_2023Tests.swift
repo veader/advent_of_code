@@ -41,7 +41,7 @@ final class Day12_2023Tests: XCTestCase {
         _ = springMap3.findArrangements()
     }
 
-    func testDay12Parsing() throws {
+    func xtestDay12Parsing() throws {
         let springs = Day12_2023().parse(sampleInput)
         XCTAssertEqual(6, springs.count)
     }

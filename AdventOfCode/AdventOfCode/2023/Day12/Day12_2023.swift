@@ -38,6 +38,8 @@ struct Day12_2023: AdventDay {
                 // find all the chunks that have broken or unknown springs
                 let parts = springs.split(separator: .operational)
                 print(parts)
+
+                // for the chunk, if it has any broken (#) it must have at least 1 number, but possibly others
             } else {
                 print("No operational in \(springs)! Calculating...")
             }
