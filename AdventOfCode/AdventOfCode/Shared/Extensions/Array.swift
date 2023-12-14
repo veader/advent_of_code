@@ -21,6 +21,25 @@ extension Array where Element: Equatable {
     var middleIndex: Int {
         return count / 2
     }
+
+    /// Is the given array the same as this array, except for one element?
+    func offByOne(from other: Array) -> Bool {
+        guard count == other.count else { return false } // must be the same size
+        guard self != other else { return false } // must not be equal (completely)
+        
+        var foundOne = false
+        for x in self.indices {
+            if self[x] != other[x] {
+                if !foundOne {
+                    foundOne = true // found first different element
+                } else {
+                    return false // found second different element
+                }
+            }
+        }
+        
+        return true
+    }
 }
 
 extension Array where Element == Int {

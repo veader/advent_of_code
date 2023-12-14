@@ -60,4 +60,22 @@ final class Day13_2023Tests: XCTestCase {
         let answer = Day13_2023().run(part: 1)
         XCTAssertEqual(37975, answer as? Int)
     }
+
+    func testArrayOffByOne() {
+        let arr = [1,2,3,4,5,6,7]
+        XCTAssertFalse(arr.offByOne(from: [1,2,3]))
+        XCTAssertFalse(arr.offByOne(from: arr))
+        XCTAssertFalse(arr.offByOne(from: [1,2,2,3,3,6,7]))
+        XCTAssertTrue( arr.offByOne(from: [1,2,3,3,5,6,7]))
+    }
+
+    func testPart2() throws {
+        let answer = Day13_2023().run(part: 2, sampleInput)
+        XCTAssertEqual(400, answer as? Int)
+    }
+
+    func testPart2Answer() throws {
+        let answer = Day13_2023().run(part: 2)
+        XCTAssertEqual(32497, answer as? Int)
+    }
 }
