@@ -32,6 +32,24 @@ struct ReflectorDish {
         return load
     }
 
+    func spinCycle(count: Int) {
+        var completed = 0
+        while completed < count {
+            spin()
+            completed += 1
+            if (completed % 100_000) == 0 {
+                print("\(Date.now) Spun \(completed)...")
+            }
+        }
+    }
+
+    func spin() {
+        tilt(direction: .north)
+        tilt(direction: .west)
+        tilt(direction: .south)
+        tilt(direction: .east)
+    }
+
     func tilt(direction: Coordinate.RelativeDirection = .north) {
         switch direction {
         case .north:

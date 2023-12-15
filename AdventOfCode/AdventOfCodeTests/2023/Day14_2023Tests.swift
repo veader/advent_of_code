@@ -35,6 +35,32 @@ final class Day14_2023Tests: XCTestCase {
         #....#....
         """
 
+    let sampleAfterSpin1 = """
+        .....#....
+        ....#...O#
+        ...OO##...
+        .OO#......
+        .....OOO#.
+        .O#...O#.#
+        ....O#....
+        ......OOOO
+        #...O###..
+        #..OO#....
+        """
+
+    let sampleAfterSpin3 = """
+        .....#....
+        ....#...O#
+        .....##...
+        ..O#......
+        .....OOO#.
+        .O#...O#.#
+        ....O#...O
+        .......OOO
+        #...O###.O
+        #.OOO#...O
+        """
+
     func convertToMirrorPoints(_ input: String) -> [ReflectorDish.MirrorPoint] {
         input.charSplit().compactMap(ReflectorDish.MirrorPoint.init)
     }
@@ -75,5 +101,31 @@ final class Day14_2023Tests: XCTestCase {
     func testPart1Answer() throws {
         let answer = Day14_2023().run(part: 1)
         XCTAssertEqual(109466, answer as? Int)
+    }
+
+    func testDishSpin() throws {
+        let dish = ReflectorDish(sampleInput)
+        dish.spin()
+
+        let dishAfter = ReflectorDish(sampleAfterSpin1)
+        XCTAssertEqual(dish.data.gridAsString(), dishAfter.data.gridAsString())
+    }
+
+    func testDishSpinMore() throws {
+        let dish = ReflectorDish(sampleInput)
+        dish.spinCycle(count: 3)
+
+        let dishAfter = ReflectorDish(sampleAfterSpin3)
+        XCTAssertEqual(dish.data.gridAsString(), dishAfter.data.gridAsString())
+    }
+
+    func xtestDishLotsOfSpins() throws {
+        let dish = ReflectorDish(sampleInput)
+        print(Date.now)
+        dish.spinCycle(count: 1_000_000_000)
+        // takes too long... 50s/spin cycle
+        print(Date.now)
+        let load = dish.calculateLoad()
+        XCTAssertEqual(64, load)
     }
 }
