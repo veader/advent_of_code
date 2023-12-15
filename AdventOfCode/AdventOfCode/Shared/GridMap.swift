@@ -170,8 +170,15 @@ class GridMap<Element> {
 
     /// Simple print of current grid.
     ///
-    /// - note: Careful on very large grid sizes...
+    /// - Note: Careful on very large grid sizes...
     func printGrid() {
+        print(gridAsString())
+    }
+
+    /// Create a string representation of the current grid.
+    ///
+    /// - Note: Careful on very large grid sizes...
+    func gridAsString() -> String {
         var output = [String]()
         yBounds.forEach { y in
             var row = [String]()
@@ -184,7 +191,8 @@ class GridMap<Element> {
             }
             output.append(row.joined())
         }
-        print(output.joined(separator: "\n") + "\n")
+
+        return output.joined(separator: "\n")
     }
 
     
