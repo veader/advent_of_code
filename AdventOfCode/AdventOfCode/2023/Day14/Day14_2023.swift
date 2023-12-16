@@ -20,7 +20,7 @@ struct Day14_2023: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        let dish = ReflectorDish(input ?? "")
+        let _ = ReflectorDish(input ?? "")
         return 0
     }
 }
