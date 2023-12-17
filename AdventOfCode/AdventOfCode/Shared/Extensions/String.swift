@@ -93,4 +93,20 @@ extension String {
     func charSplit() -> [String] {
         split(separator: "").map(String.init)
     }
+
+    /// Silly, simple "hash" algo from 2023 day 15.
+    var simpleHash: Int {
+        var value = 0
+
+        for char in self {
+            guard let ascii = char.asciiValue else {
+                print("⚠️ Unknown value for \(char)") // TODO: should we throw?
+                continue
+            }
+
+            value = ((value + Int(ascii)) * 17) % 256
+        }
+
+        return value
+    }
 }
