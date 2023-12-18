@@ -86,13 +86,13 @@ final class Day7_2023Tests: XCTestCase {
 //        }
 //    }
 
-    func testPart1() throws {
-        let answer = Day7_2023().run(part: 1, sampleInput)
+    func testPart1() async throws {
+        let answer = await Day7_2023().run(part: 1, sampleInput)
         XCTAssertEqual(6440, answer as? Int)
     }
 
-    func testPart1Answer() throws {
-        let answer = Day7_2023().run(part: 1)
+    func testPart1Answer() async throws {
+        let answer = await Day7_2023().run(part: 1)
         XCTAssertEqual(250254244, answer as? Int)
     }
 
@@ -104,13 +104,13 @@ final class Day7_2023Tests: XCTestCase {
 //        }
 //    }
 
-    func testPart2() throws {
-        let answer = Day7_2023().run(part: 2, sampleInput)
+    func testPart2() async throws {
+        let answer = await Day7_2023().run(part: 2, sampleInput)
         XCTAssertEqual(5905, answer as? Int)
     }
 
-    func testPart2Answser() throws {
-        let answer = Day7_2023().run(part: 2)
+    func testPart2Answser() async throws {
+        let answer = await Day7_2023().run(part: 2)
         XCTAssertEqual(250087440, answer as? Int)
     }
 }

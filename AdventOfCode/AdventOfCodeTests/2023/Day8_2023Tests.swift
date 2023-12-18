@@ -76,13 +76,13 @@ final class Day8_2023Tests: XCTestCase {
         XCTAssertEqual(6, a2)
     }
 
-    func testPart1() throws {
-        let answer = Day8_2023().run(part: 1, sampleInput)
+    func testPart1() async throws {
+        let answer = await Day8_2023().run(part: 1, sampleInput)
         XCTAssertEqual(2, answer as? Int)
     }
 
-    func testPart1Answer() throws {
-        let answer = Day8_2023().run(part: 1)
+    func testPart1Answer() async throws {
+        let answer = await Day8_2023().run(part: 1)
         XCTAssertEqual(17873, answer as? Int)
     }
 
@@ -99,8 +99,8 @@ final class Day8_2023Tests: XCTestCase {
         XCTAssertFalse(wasteland.endInZed(nodes: ["AAA", "ZZZ"]))
     }
 
-    func testPart2() throws {
-        let answer = Day8_2023().run(part: 2, sampleInput3)
+    func testPart2() async throws {
+        let answer = await Day8_2023().run(part: 2, sampleInput3)
         XCTAssertEqual(6, answer as? Int)
     }
 }

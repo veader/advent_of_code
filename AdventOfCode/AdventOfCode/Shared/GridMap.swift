@@ -145,6 +145,11 @@ class GridMap<Element> {
         }
     }
 
+    /// Is this coordinate valid within the grid's coordinate space?
+    func valid(coordinate c: Coordinate) -> Bool {
+        xBounds.contains(c.x) && yBounds.contains(c.y)
+    }
+
     /// Filter the grid by mapping to the coordinate, item pair.
     /// Returns the coordinates which return true when passed to the given block.
     func filter(by filterBlock: ((Coordinate, Element) -> Bool)) -> [Coordinate] {

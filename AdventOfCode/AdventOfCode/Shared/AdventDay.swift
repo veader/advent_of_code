@@ -26,13 +26,13 @@ protocol AdventDay {
     var defaultInput: String? { get }
 
     /// Run the necessary steps to calculate solution for this Advent Day.
-    @discardableResult func run(part: Int?, _ input: String?) -> Any
+    @discardableResult func run(part: Int?, _ input: String?) async -> Any
 
     /// Run part one for this Advent Day.
-    @discardableResult func partOne(input: String?) -> Any
+    @discardableResult func partOne(input: String?) async -> Any
 
     /// Run part two for this Advent Day.
-    @discardableResult func partTwo(input: String?) -> Any
+    @discardableResult func partTwo(input: String?) async -> Any
 }
 
 extension AdventDay {
@@ -47,18 +47,18 @@ extension AdventDay {
         return output
     }
 
-    @discardableResult func run(part: Int? = 1, _ input: String? = nil) -> Any {
+    @discardableResult func run(part: Int? = 1, _ input: String? = nil) async -> Any {
         guard let input = input ?? defaultInput else {
             print("Day \(dayNumber): NO INPUT")
             exit(10)
         }
 
         if part == 1 {
-            let answer = partOne(input: input)
+            let answer = await partOne(input: input)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         } else {
-            let answer = partTwo(input: input)
+            let answer = await partTwo(input: input)
             print("Day \(dayNumber) Part \(part!): Final Answer \(answer)")
             return answer
         }

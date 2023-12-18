@@ -38,23 +38,23 @@ final class Day9_2023Tests: XCTestCase {
         XCTAssertEqual(68, arr?.last)
     }
 
-    func testPart1() throws {
-        let answer = Day9_2023().run(part: 1, sampleInput)
+    func testPart1() async throws {
+        let answer = await Day9_2023().run(part: 1, sampleInput)
         XCTAssertEqual(114, answer as? Int)
     }
 
-    func testPart1Answer() throws {
-        let answer = Day9_2023().run(part: 1)
+    func testPart1Answer() async throws {
+        let answer = await Day9_2023().run(part: 1)
         XCTAssertEqual(2038472161, answer as? Int)
     }
 
-    func testPart2() throws {
-        let answer = Day9_2023().run(part: 2, sampleInput)
+    func testPart2() async throws {
+        let answer = await Day9_2023().run(part: 2, sampleInput)
         XCTAssertEqual(2, answer as? Int)
     }
 
-    func testPart2Answer() throws {
-        let answer = Day9_2023().run(part: 2)
+    func testPart2Answer() async throws {
+        let answer = await Day9_2023().run(part: 2)
         XCTAssertEqual(1091, answer as? Int)
     }
 }

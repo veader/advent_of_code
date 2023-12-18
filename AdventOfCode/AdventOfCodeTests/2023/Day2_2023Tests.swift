@@ -64,13 +64,13 @@ final class Day2_2023Tests: XCTestCase {
         XCTAssertEqual(3, validGames.count)
     }
 
-    func testPart1() throws {
-        let answer = Day2_2023().run(part: 1, sampleInput)
+    func testPart1() async throws {
+        let answer = await Day2_2023().run(part: 1, sampleInput)
         XCTAssertEqual(8, answer as? Int)
     }
 
-    func testPart1Answer() throws {
-        let answer = Day2_2023().run(part: 1)
+    func testPart1Answer() async throws {
+        let answer = await Day2_2023().run(part: 1)
         XCTAssertEqual(2505, answer as? Int)
     }
 
@@ -94,13 +94,13 @@ final class Day2_2023Tests: XCTestCase {
         XCTAssertEqual(36, games[4].power)
     }
 
-    func testPart2() throws {
-        let answer = Day2_2023().run(part: 2, sampleInput)
+    func testPart2() async throws {
+        let answer = await Day2_2023().run(part: 2, sampleInput)
         XCTAssertEqual(2286, answer as? Int)
     }
 
-    func testPart2Answer() throws {
-        let answer = Day2_2023().run(part: 2)
+    func testPart2Answer() async throws {
+        let answer = await Day2_2023().run(part: 2)
         XCTAssertEqual(70265, answer as? Int)
     }
 }

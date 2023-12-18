@@ -65,13 +65,13 @@ final class Day11_2023Tests: XCTestCase {
         XCTAssertEqual(36, distances.count) // the number of pairs
     }
 
-    func testPart1() {
-        let answer = Day11_2023().run(part: 1, sampleInput)
+    func testPart1() async {
+        let answer = await Day11_2023().run(part: 1, sampleInput)
         XCTAssertEqual(374, answer as? Int)
     }
 
-    func testPart1Answer() {
-        let answer = Day11_2023().run(part: 1)
+    func testPart1Answer() async {
+        let answer = await Day11_2023().run(part: 1)
         XCTAssertEqual(9918828, answer as? Int)
     }
 
@@ -97,8 +97,8 @@ final class Day11_2023Tests: XCTestCase {
         XCTAssertEqual(8410, distances.reduce(0, +))
     }
 
-    func testPart2Answer() {
-        let answer = Day11_2023().run(part: 2)
+    func testPart2Answer() async {
+        let answer = await Day11_2023().run(part: 2)
         XCTAssertEqual(692506533832, answer as? Int)
     }
 

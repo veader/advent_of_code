@@ -61,14 +61,19 @@ struct AdventDayView: View {
     }
 
     func run(part: Int) {
-        DispatchQueue.global(qos: .userInitiated).async {
-//        DispatchQueue.global(qos: .background).async {
-            let output = day.run(part: part)
-            DispatchQueue.main.async {
-                runOutput = "\(output)"
-                running = false
-            }
+        Task {
+            let output = await day.run(part: part)
+            runOutput = "\(output)"
+            running = false
         }
+//        DispatchQueue.global(qos: .userInitiated).async {
+////        DispatchQueue.global(qos: .background).async {
+//            let output = day.run(part: part)
+//            DispatchQueue.main.async {
+//                runOutput = "\(output)"
+//                running = false
+//            }
+//        }
     }
 
     // TODO: Consider on macOS 12+

@@ -26,23 +26,23 @@ final class Day6_2023Tests: XCTestCase {
         XCTAssertEqual(distances, [9, 40, 200])
     }
 
-    func testPart1() throws {
-        let answer = Day6_2023().run(part: 1, sampleInput)
+    func testPart1() async throws {
+        let answer = await Day6_2023().run(part: 1, sampleInput)
         XCTAssertEqual(288, answer as? Int)
     }
 
-    func testPart1Answer() throws {
-        let answer = Day6_2023().run(part: 1)
+    func testPart1Answer() async throws {
+        let answer = await Day6_2023().run(part: 1)
         XCTAssertEqual(140220, answer as? Int)
     }
 
-    func testPart2() throws {
-        let answer = Day6_2023().run(part: 2, sampleInput)
+    func testPart2() async throws {
+        let answer = await Day6_2023().run(part: 2, sampleInput)
         XCTAssertEqual(71503, answer as? Int)
     }
 
-    func testPart2Answer() throws {
-        let answer = Day6_2023().run(part: 2)
+    func testPart2Answer() async throws {
+        let answer = await Day6_2023().run(part: 2)
         XCTAssertEqual(39570185, answer as? Int)
     }
 

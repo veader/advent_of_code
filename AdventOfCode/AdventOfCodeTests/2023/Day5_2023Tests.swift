@@ -119,13 +119,13 @@ final class Day5_2023Tests: XCTestCase {
         XCTAssertEqual(mapping.ranges.count, 2)
     }
 
-    func testPart1() throws {
-        let answer = Day5_2023().run(part: 1, sampleInput)
+    func testPart1() async throws {
+        let answer = await Day5_2023().run(part: 1, sampleInput)
         XCTAssertEqual(35, answer as? Int)
     }
 
-    func testPart1Answer() throws {
-        let answer = Day5_2023().run(part: 1)
+    func testPart1Answer() async throws {
+        let answer = await Day5_2023().run(part: 1)
         XCTAssertEqual(240320250, answer as? Int)
     }
 

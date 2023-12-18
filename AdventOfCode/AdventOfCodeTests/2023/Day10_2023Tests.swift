@@ -106,16 +106,16 @@ final class Day10_2023Tests: XCTestCase {
         XCTAssertEqual(16, path.count)
     }
 
-    func testPart1() throws {
-        var answer = Day10_2023().run(part: 1, sampleGrid2)
+    func testPart1() async throws {
+        var answer = await Day10_2023().run(part: 1, sampleGrid2)
         XCTAssertEqual(4, answer as? Int)
 
-        answer = Day10_2023().run(part: 1, sampleGrid4)
+        answer = await Day10_2023().run(part: 1, sampleGrid4)
         XCTAssertEqual(8, answer as? Int)
     }
 
-    func testPart1Answer() throws {
-        let answer = Day10_2023().run(part: 1)
+    func testPart1Answer() async throws {
+        let answer = await Day10_2023().run(part: 1)
         XCTAssertEqual(6956, answer as? Int)
     }
 
