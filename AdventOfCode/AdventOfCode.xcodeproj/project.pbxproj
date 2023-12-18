@@ -756,7 +756,6 @@
 				763029092B2C220B006E5307 /* README.md */,
 				7630290A2B2C2211006E5307 /* Day15_2023.swift */,
 				7630290F2B2EAD33006E5307 /* LensHashMap.swift */,
-				763029162B306C02006E5307 /* LightMap.swift */,
 			);
 			path = Day15;
 			sourceTree = "<group>";
@@ -766,6 +765,7 @@
 			children = (
 				763029132B3068DC006E5307 /* README.md */,
 				763029142B3068E2006E5307 /* Day16_2023.swift */,
+				763029162B306C02006E5307 /* LightMap.swift */,
 			);
 			path = Day16;
 			sourceTree = "<group>";

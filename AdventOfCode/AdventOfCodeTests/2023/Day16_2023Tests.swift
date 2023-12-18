@@ -31,8 +31,8 @@ final class Day16_2023Tests: XCTestCase {
     func testLightMapTracing() async {
         let lm = LightMap(sampleInput)
         XCTAssertEqual(0, lm.energizedPoints.count)
-        await lm.traceLight()
-        XCTAssertEqual(46, lm.energizedPoints.count)
+        let result = await lm.traceLight()
+        XCTAssertEqual(46, result)
     }
 
     func testPart1() async {
@@ -43,5 +43,16 @@ final class Day16_2023Tests: XCTestCase {
     func testPart1Answer() async {
         let answer = await Day16_2023().run(part: 1)
         XCTAssertEqual(7498, answer as? Int)
+    }
+
+    func testFindBestTrace() async {
+        let lm = LightMap(sampleInput)
+        let result = await lm.findBestTrace()
+        XCTAssertEqual(51, result)
+    }
+
+    func testPart2() async {
+        let answer = await Day16_2023().run(part: 2, sampleInput)
+        XCTAssertEqual(51, answer as? Int)
     }
 }

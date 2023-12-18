@@ -32,13 +32,95 @@ class LightMap {
         lightPaths = []
     }
 
-    func traceLight() async {
+    init(_ gm: GridMap<MapObjects>) {
+        data = gm
+        energizedPoints = []
+        lightPaths = []
+    }
+
+    func findBestTrace() async -> Int {
+        let topEdgeCounts = await withTaskGroup(of: Int.self) { group in
+            var counts = [Int]()
+            counts.reserveCapacity(data.xBounds.count)
+
+            for x in data.xBounds {
+                group.addTask {
+                    let lm = LightMap(self.data)
+                    return await lm.traceLight(Coordinate(x: x, y: 0), traveling: .south)
+                }
+            }
+
+            for await count in group {
+                counts.append(count)
+            }
+            return counts
+        }
+
+        let bottomEdgeCounts = await withTaskGroup(of: Int.self) { group in
+            var counts = [Int]()
+            counts.reserveCapacity(data.xBounds.count)
+
+            let y = data.yBounds.upperBound
+            for x in data.xBounds {
+                group.addTask {
+                    let lm = LightMap(self.data)
+                    return await lm.traceLight(Coordinate(x: x, y: y), traveling: .north)
+                }
+            }
+
+            for await count in group {
+                counts.append(count)
+            }
+            return counts
+        }
+
+        let leftEdgeCounts = await withTaskGroup(of: Int.self) { group in
+            var counts = [Int]()
+            counts.reserveCapacity(data.yBounds.count)
+
+            for y in data.yBounds {
+                group.addTask {
+                    let lm = LightMap(self.data)
+                    return await lm.traceLight(Coordinate(x: 0, y: y), traveling: .east)
+                }
+            }
+
+            for await count in group {
+                counts.append(count)
+            }
+            return counts
+        }
+
+        let rightEdgeCounts = await withTaskGroup(of: Int.self) { group in
+            var counts = [Int]()
+            counts.reserveCapacity(data.yBounds.count)
+
+            let x = data.xBounds.upperBound
+            for y in data.yBounds {
+                group.addTask {
+                    let lm = LightMap(self.data)
+                    return await lm.traceLight(Coordinate(x: x, y: y), traveling: .west)
+                }
+            }
+
+            for await count in group {
+                counts.append(count)
+            }
+            return counts
+        }
+
+        return (topEdgeCounts + bottomEdgeCounts + leftEdgeCounts + rightEdgeCounts).max() ?? -1
+    }
+
+    func traceLight(_ location: Coordinate = .origin, traveling: Coordinate.RelativeDirection = .east) async -> Int {
         // reset!
         energizedPoints = []
         lightPaths = []
 
         // trace!
-        await followLight(.origin, traveling: .east)
+        await followLight(location, traveling: traveling)
+
+        return energizedPoints.count
     }
 
     func followLight(_ location: Coordinate, traveling: Coordinate.RelativeDirection) async {
