@@ -35,4 +35,14 @@ struct Day1_2024Tests {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 2164381)
     }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try #require(day.partTwo(input: sampleInput) as? Int)
+        #expect(answer == 31)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 20719933)
+    }
 }

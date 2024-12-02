@@ -14,7 +14,7 @@ struct Day1_2024: AdventDay {
     var year = 2024
     var dayNumber = 1
     var dayTitle = "Historian Hysteria"
-    var stars = 1
+    var stars = 2
 
     enum Day1Error: Error {
         case invalidInput
@@ -50,6 +50,15 @@ struct Day1_2024: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let columns = try? parse(input)
+        guard let columns, columns.left.count == columns.right.count else {
+            print("Bad input")
+            return -1
+        }
+
+        return columns.left.map { left in
+            let count = columns.right.count { $0 == left }
+            return left * count
+        }.reduce(0, +)
     }
 }
