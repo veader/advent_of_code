@@ -20,8 +20,8 @@ struct Day18_2023: AdventDay {
     }
 
     func partOne(input: String?) async -> Any {
-        let instructions = parse(input)
-        let digMap = DigMap(instructions: instructions)
+//        let instructions = parse(input)
+//        let digMap = DigMap(instructions: instructions)
 
 //        var current: Coordinate = .origin // starting coordinate
 //        var coordinates: Set<Coordinate> = [current]

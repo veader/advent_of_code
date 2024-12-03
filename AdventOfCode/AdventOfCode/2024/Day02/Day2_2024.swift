@@ -11,7 +11,7 @@ struct Day2_2024: AdventDay {
     var year = 2024
     var dayNumber = 2
     var dayTitle = "Red-Nosed Reports"
-    var stars = 1
+    var stars = 2
 
     enum Day1Error: Error {
         case invalidInput
@@ -29,6 +29,7 @@ struct Day2_2024: AdventDay {
         case decreasing
     }
 
+    /// Determine the safety of a level given our rule set...
     func safetyCheck(level: [Int]) -> Bool {
         guard level.count > 1, let firstValue = level.first else { return true } // must be safe it it only has 1 value
         var previousValue = firstValue
@@ -39,14 +40,12 @@ struct Day2_2024: AdventDay {
             let value = level[idx]
 
             if value == previousValue {
-                //print("\(value) == \(previousValue) @ \(idx)")
                 return false // neither increasing or decreasing
             } else if value > previousValue {
                 let delta = value - previousValue
-                //print("\(value) > \(previousValue) : \(delta) @ \(idx)")
                 // increasing value when previously decreasing
-                guard direction != .decreasing else { print("direction change"); return false }
-                guard (1...3).contains(delta) else { print("increase too big"); return false }
+                guard direction != .decreasing else { return false }
+                guard (1...3).contains(delta) else { return false }
 
                 if case .unknown = direction {
                     direction = .increasing
@@ -54,10 +53,9 @@ struct Day2_2024: AdventDay {
                 previousValue = value
             } else {
                 let delta = previousValue - value
-                //print("\(value) < \(previousValue) : \(delta) @ \(idx)")
                 // decreasing value when previously increasing
-                guard direction != .increasing else { print("direction change"); return false }
-                guard (1...3).contains(delta) else { print("decrease too big"); return false }
+                guard direction != .increasing else { return false }
+                guard (1...3).contains(delta) else { return false }
 
                 if case .unknown = direction {
                     direction = .decreasing
@@ -71,12 +69,58 @@ struct Day2_2024: AdventDay {
         return true // safety conditions met
     }
 
+    /// Determine the safety of a level given our rule set... by using deltas
+    func safetyCheckDeltas(level: [Int]) -> Bool {
+        // calculate the deltas between each value...
+        let deltas = level.enumerated().compactMap { idx, value -> Int? in
+            guard idx > 0 else { return nil } // skip first one
+            let previous = level[level.index(before: idx)]
+            return previous - value
+        }
+
+        guard deltas.count == level.count - 1 else { print("error calculating deltas..."); return false }
+
+        if deltas.contains(where: { !(1...3).contains(abs($0)) }) {
+            // confirm no delta is out of the 1-3 range
+            print("delta out of bounds: \(deltas)")
+            return false
+        } else if let first = deltas.first, first > 0, deltas.contains(where: { $0 < 0 }) {
+            // confirm positive deltas stay positive
+            print("direction change (+ to -): \(deltas)")
+            return false
+        } else if let first = deltas.first, first < 0, deltas.contains(where: { $0 > 0 }) {
+            // confirm negative deltas stay negative
+            print("direction change (- to +): \(deltas)")
+            return false
+        }
+
+        return true
+    }
+
+    /// Given an unsafe level, determine if removing one of the values can make it safe...
+    func possiblySafe(level: [Int]) -> Bool {
+        // if we're safe already, no need to check further...
+        guard !safetyCheck(level: level) else { return true }
+
+        for idx in level.indices {
+            // create new level removing element at the given index
+            let newLevel = level.enumerated().filter({ $0.offset != idx }).map({ $0.element })
+//            let newLevel = level.prefix(upTo: idx) + (level.count > idx ? level.suffix(from: level.index(after: idx)) : [])
+            if safetyCheck(level: newLevel) {
+                return true
+            }
+        }
+        return false
+    }
+
     func partOne(input: String?) -> Any {
         let levels = parse(input)
         return levels.count(where: safetyCheck)
+        // return levels.count(where: safetyCheckDeltas)
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let levels = parse(input)
+        return levels.count(where: possiblySafe)
     }
 }
