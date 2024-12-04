@@ -19,7 +19,7 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
 
     /// Relative direction used when finding orientation between Coordinates.
     /// - Note: Uses compass directions assuming y+1 == north, x+1 == east
-    enum RelativeDirection {
+    enum RelativeDirection: CaseIterable {
         case north
         case northEast
         case east
