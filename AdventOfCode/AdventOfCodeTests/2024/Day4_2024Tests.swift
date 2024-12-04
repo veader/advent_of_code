@@ -64,4 +64,31 @@ struct Day4_2024Tests {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 2504)
     }
+
+    @Test func testFindingMASXInGrid() async throws {
+        let grid = day.parse(sampleData)
+
+        let coords1 = try #require(day.isMASX(in: grid, centeredOn: Coordinate(x: 2, y: 1)))
+        #expect(!coords1.isEmpty)
+
+        let coords2 = try #require(day.isMASX(in: grid, centeredOn: Coordinate(x: 7, y: 2)))
+        #expect(!coords2.isEmpty)
+    }
+
+    @Test func testFindingMASX() async throws {
+        let grid = day.parse(sampleData)
+        
+        let answers = day.findMASinX(in: grid)
+        #expect(answers.count == 9)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answers = try #require(day.partTwo(input: sampleData) as? Int)
+        #expect(answers == 9)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 1923)
+    }
 }
