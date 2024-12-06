@@ -83,4 +83,30 @@ struct Day5_2024Tests {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 4774)
     }
+
+    @Test func testCorrectingBatch() async throws {
+        let instructions = day.parse(sampleData)
+
+        let batch1 = try #require(instructions.printBatches.last)
+        let correct1 = instructions.fix(batch: batch1)
+        #expect(correct1 == [97,75,47,29,13])
+
+        let batch2 = try #require(instructions.printBatches[3])
+        let correct2 = instructions.fix(batch: batch2)
+        #expect(correct2 == [97,75,47,61,53])
+
+        let batch3 = try #require(instructions.printBatches[4])
+        let correct3 = instructions.fix(batch: batch3)
+        #expect(correct3 == [61,29,13])
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try #require(day.partTwo(input: sampleData) as? Int)
+        #expect(answer == 123)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 6004)
+    }
 }

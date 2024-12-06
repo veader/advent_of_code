@@ -11,7 +11,7 @@ struct Day5_2024: AdventDay {
     var year = 2024
     var dayNumber = 5
     var dayTitle = "Print Queue"
-    var stars = 1
+    var stars = 2
 
     struct PrintInstructions {
         typealias PageOrderInstruction = (page: Int, before: Int)
@@ -27,6 +27,10 @@ struct Day5_2024: AdventDay {
             printBatches.filter { isBatchCorrect($0) }
         }
 
+        func correctedBatches() -> [[Int]] {
+            printBatches.filter { !isBatchCorrect($0) }.map { fix(batch: $0) }
+        }
+
         func isBatchCorrect(_ batch: [Int]) -> Bool {
             for (idx, page) in batch.reversed().enumerated() {
                 guard idx != 0 else { continue } // last one (first in reverse) is always good...
@@ -39,6 +43,38 @@ struct Day5_2024: AdventDay {
             }
 
             return true
+        }
+
+        func fix(batch: [Int]) -> [Int] {
+            var copy = batch
+            var idx = 0
+
+            while idx < copy.count {
+                let after = Set(pagesAfter(copy[idx]))
+                let prefix = Set(copy.prefix(idx))
+
+                let intersection = after.intersection(prefix)
+                if intersection.isEmpty {
+                    idx += 1 // move to next index
+                } else {
+                    // TODO: What if this is more than one? Find the futherest point forward?
+                    if intersection.count > 1 {
+                        print("Found multiple swappablepages: \(intersection)")
+                    }
+
+                    if let missing = intersection.first, let missingIdx = copy.firstIndex(of: missing) {
+                        // swap the pages
+                        copy[missingIdx] = copy[idx]
+                        copy[idx] = missing
+                        // reset index to the page we just moved
+                        idx = missingIdx
+                    } else {
+                        print("Huh?!? \(intersection)")
+                    }
+                }
+            }
+
+            return copy
         }
     }
 
@@ -75,6 +111,12 @@ struct Day5_2024: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let instructions = parse(input)
+        let correctedBatches = instructions.correctedBatches()
+
+        // get the middle values and add them up
+        return correctedBatches.map {
+            $0[$0.middleIndex]
+        }.reduce(0, +)
     }
 }
