@@ -21,6 +21,19 @@ class GridMap<Element> {
 
     // MARK: -
 
+    /// Width of the map based on X coordinate space
+    var width: Int {
+        xBounds.count
+    }
+
+    /// Height of the map based on Y coordinate space
+    var height: Int {
+        yBounds.count
+    }
+
+
+    // MARK: -
+
     /// Return the item at the given coordinate.
     ///
     /// Nil if coordinate not found in grid.

@@ -54,6 +54,30 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
                 .same
             }
         }
+
+        /// rotating direction 90º clockwise...
+        var rotated90: RelativeDirection {
+            switch self {
+            case .north:
+                .east
+            case .northEast:
+                .southEast
+            case .east:
+                .south
+            case .southEast:
+                .southWest
+            case .south:
+                .west
+            case .southWest:
+                .northWest
+            case .west:
+                .north
+            case .northWest:
+                .northEast
+            case .same:
+                .same
+            }
+        }
     }
 
     init(x: Int, y: Int) {
