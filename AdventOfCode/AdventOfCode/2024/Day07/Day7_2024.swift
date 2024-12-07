@@ -28,6 +28,12 @@ struct Day7_2024: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let equations = parse(input)
+
+        return equations.filter { eq in
+            eq.searchForValidOperations(useConcatenation: true).count > 0
+        }.reduce(0) { acc, eq in
+            acc + eq.result
+        }
     }
 }
