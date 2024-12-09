@@ -48,6 +48,19 @@ struct Day8_2024Tests {
         ............
         """
 
+    let sampleData4 = """
+        T.........
+        ...T......
+        .T........
+        ..........
+        ..........
+        ..........
+        ..........
+        ..........
+        ..........
+        ..........
+        """
+
     let day = Day8_2024()
 
     @Test func testGridDeltaMath() async throws {
@@ -104,5 +117,25 @@ struct Day8_2024Tests {
     @Test func testPartOne() async throws {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 329)
+    }
+
+    @Test func testFindingAntinodesWithHarmonics() async throws {
+        let map = day.parse(sampleData4)
+        let nodes = map.findAntinodes(withHarmonics: true)
+        #expect(nodes.count == 9)
+
+        let map2 = day.parse(sampleData3)
+        let nodes2 = map2.findAntinodes(withHarmonics: true)
+        #expect(nodes.count == 34)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let nodes = try #require(day.partTwo(input: sampleData3) as? Int)
+        #expect(nodes == 34)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 1190)
     }
 }

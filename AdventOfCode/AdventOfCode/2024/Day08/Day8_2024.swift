@@ -11,7 +11,7 @@ struct Day8_2024: AdventDay {
     var year = 2024
     var dayNumber = 8
     var dayTitle = "Resonant Collinearity"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> AntennaMap {
         let mapData: [[String]] = (input ?? "").lines().map { $0.map(String.init) }
@@ -26,6 +26,6 @@ struct Day8_2024: AdventDay {
 
     func partTwo(input: String?) -> Any {
         let map = parse(input)
-        return 0
+        return map.findAntinodes(withHarmonics: true).count
     }
 }
