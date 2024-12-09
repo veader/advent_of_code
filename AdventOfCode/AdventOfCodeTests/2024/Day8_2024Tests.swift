@@ -126,7 +126,7 @@ struct Day8_2024Tests {
 
         let map2 = day.parse(sampleData3)
         let nodes2 = map2.findAntinodes(withHarmonics: true)
-        #expect(nodes.count == 34)
+        #expect(nodes2.count == 34)
     }
 
     @Test func testPartTwoWithSampleData() async throws {
