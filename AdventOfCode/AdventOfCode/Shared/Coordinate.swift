@@ -242,3 +242,9 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
+
+extension Coordinate: Comparable {
+    public static func < (lhs: Coordinate, rhs: Coordinate) -> Bool {
+        lhs.x < rhs.x && lhs.y < rhs.y
+    }
+}

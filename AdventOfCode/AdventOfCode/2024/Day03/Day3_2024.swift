@@ -26,7 +26,7 @@ struct Day3_2024: AdventDay {
     typealias MultiplyInstruction = (x: Int, y: Int)
 
     func parse(_ input: String?) -> [String] {
-        (input ?? "").split(separator: "\n").map(String.init)
+        (input ?? "").lines()
     }
 
     /// Parse the given line just looking for `mul` instructions.

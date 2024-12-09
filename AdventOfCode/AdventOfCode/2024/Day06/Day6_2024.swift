@@ -14,7 +14,7 @@ struct Day6_2024: AdventDay {
     var stars = 1
 
     func parse(_ input: String?) -> GridMap<String> {
-        let mapData: [[String]] = (input ?? "").split(separator: "\n").map(String.init).map { $0.map(String.init) }
+        let mapData: [[String]] = (input ?? "").lines().map { $0.map(String.init) }
         return GridMap(items: mapData)
     }
 

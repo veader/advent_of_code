@@ -14,7 +14,7 @@ struct Day7_2024: AdventDay {
     var stars = 0
 
     func parse(_ input: String?) -> [CalibrationEquation] {
-        (input ?? "").split(separator: "\n").map(String.init).compactMap(CalibrationEquation.init)
+        (input ?? "").lines().compactMap(CalibrationEquation.init)
     }
 
     func partOne(input: String?) -> Any {

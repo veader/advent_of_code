@@ -60,6 +60,12 @@
 		7675FA922D047FE800ED1F41 /* Day7_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FA912D047FE800ED1F41 /* Day7_2024Tests.swift */; };
 		7675FA942D04B3FE00ED1F41 /* CalibrationEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FA932D04B3FE00ED1F41 /* CalibrationEquation.swift */; };
 		7675FA952D04B3FE00ED1F41 /* CalibrationEquation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FA932D04B3FE00ED1F41 /* CalibrationEquation.swift */; };
+		7675FA9B2D056AFF00ED1F41 /* Day8_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FA9A2D056AFF00ED1F41 /* Day8_2024.swift */; };
+		7675FA9C2D056AFF00ED1F41 /* Day8_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FA9A2D056AFF00ED1F41 /* Day8_2024.swift */; };
+		7675FA9E2D0637B200ED1F41 /* AntennaMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FA9D2D0637B200ED1F41 /* AntennaMap.swift */; };
+		7675FA9F2D0637B200ED1F41 /* AntennaMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FA9D2D0637B200ED1F41 /* AntennaMap.swift */; };
+		7675FAA12D06A88100ED1F41 /* Day8_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAA02D06A88100ED1F41 /* Day8_2024Tests.swift */; };
+		7675FAA32D06B7CB00ED1F41 /* ArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAA22D06B7CB00ED1F41 /* ArrayTests.swift */; };
 		768B0D382B3A642500273FAB /* Day18_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768B0D372B3A642500273FAB /* Day18_2023.swift */; };
 		768B0D392B3A642500273FAB /* Day18_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768B0D372B3A642500273FAB /* Day18_2023.swift */; };
 		768B0D3B2B3A696D00273FAB /* Day18_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768B0D3A2B3A696D00273FAB /* Day18_2023Tests.swift */; };
@@ -491,6 +497,11 @@
 		7675FA8E2D047FDC00ED1F41 /* Day7_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day7_2024.swift; sourceTree = "<group>"; };
 		7675FA912D047FE800ED1F41 /* Day7_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day7_2024Tests.swift; sourceTree = "<group>"; };
 		7675FA932D04B3FE00ED1F41 /* CalibrationEquation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationEquation.swift; sourceTree = "<group>"; };
+		7675FA972D056AF600ED1F41 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7675FA9A2D056AFF00ED1F41 /* Day8_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8_2024.swift; sourceTree = "<group>"; };
+		7675FA9D2D0637B200ED1F41 /* AntennaMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntennaMap.swift; sourceTree = "<group>"; };
+		7675FAA02D06A88100ED1F41 /* Day8_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8_2024Tests.swift; sourceTree = "<group>"; };
+		7675FAA22D06B7CB00ED1F41 /* ArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTests.swift; sourceTree = "<group>"; };
 		768B0D362B3A641100273FAB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		768B0D372B3A642500273FAB /* Day18_2023.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day18_2023.swift; sourceTree = "<group>"; };
 		768B0D3A2B3A696D00273FAB /* Day18_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day18_2023Tests.swift; sourceTree = "<group>"; };
@@ -881,6 +892,7 @@
 				7675FA752D01DCDB00ED1F41 /* Day05 */,
 				7675FA7E2D032A8F00ED1F41 /* Day06 */,
 				7675FA8A2D047FC500ED1F41 /* Day07 */,
+				7675FA962D056AE900ED1F41 /* Day08 */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -895,6 +907,7 @@
 				7675FA7C2D02808800ED1F41 /* Day5_2024Tests.swift */,
 				7675FA852D032AB400ED1F41 /* Day6_2024Tests.swift */,
 				7675FA912D047FE800ED1F41 /* Day7_2024Tests.swift */,
+				7675FAA02D06A88100ED1F41 /* Day8_2024Tests.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -955,6 +968,16 @@
 			path = Day07;
 			sourceTree = "<group>";
 		};
+		7675FA962D056AE900ED1F41 /* Day08 */ = {
+			isa = PBXGroup;
+			children = (
+				7675FA972D056AF600ED1F41 /* README.md */,
+				7675FA9A2D056AFF00ED1F41 /* Day8_2024.swift */,
+				7675FA9D2D0637B200ED1F41 /* AntennaMap.swift */,
+			);
+			path = Day08;
+			sourceTree = "<group>";
+		};
 		768B0D352B3A640A00273FAB /* Day18 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1010,6 +1033,7 @@
 			isa = PBXGroup;
 			children = (
 				769B25462B203864008689CA /* ClosedRangeTests.swift */,
+				7675FAA22D06B7CB00ED1F41 /* ArrayTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -2131,6 +2155,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7675FA9F2D0637B200ED1F41 /* AntennaMap.swift in Sources */,
 				C516C81B275957B00038AB8A /* DayFourteen2020.swift in Sources */,
 				763029172B306C02006E5307 /* LightMap.swift in Sources */,
 				769B25692B243161008689CA /* Day9_2023.swift in Sources */,
@@ -2154,6 +2179,7 @@
 				769B253B2B1EF285008689CA /* Day5_2023.swift in Sources */,
 				C516C78F275949F30038AB8A /* PasswordPolicy.swift in Sources */,
 				C516C8D527623C540038AB8A /* DayNine2021.swift in Sources */,
+				7675FA9B2D056AFF00ED1F41 /* Day8_2024.swift in Sources */,
 				C516C851275958C70038AB8A /* DayEighteen2020.swift in Sources */,
 				C516C7BE27594D2B0038AB8A /* DaySix2020.swift in Sources */,
 				769B25982B2BCACE008689CA /* ReflectorDish.swift in Sources */,
@@ -2316,6 +2342,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7675FA902D047FDC00ED1F41 /* Day7_2024.swift in Sources */,
+				7675FA9C2D056AFF00ED1F41 /* Day8_2024.swift in Sources */,
 				76C1418B2942D1A300795D93 /* DayEight2022Tests.swift in Sources */,
 				C516C88327595A310038AB8A /* DayTwentyTwo2020.swift in Sources */,
 				C516C7D627594EA10038AB8A /* DayEight2020.swift in Sources */,
@@ -2359,6 +2386,7 @@
 				76C14166293D425800795D93 /* DayFour2022Tests.swift in Sources */,
 				769B25602B235B74008689CA /* Day8_2023.swift in Sources */,
 				769B257A2B27EC4A008689CA /* Day11_2023Tests.swift in Sources */,
+				7675FAA32D06B7CB00ED1F41 /* ArrayTests.swift in Sources */,
 				76320E05294EDCE800B21519 /* DayFifteen2022.swift in Sources */,
 				C516C899275BC78A0038AB8A /* BingoGame.swift in Sources */,
 				7675FA952D04B3FE00ED1F41 /* CalibrationEquation.swift in Sources */,
@@ -2490,6 +2518,7 @@
 				C516C88E2759F1490038AB8A /* DayThree2021Tests.swift in Sources */,
 				7630290E2B2D5C70006E5307 /* Day15_2023.swift in Sources */,
 				C516C7E027594F1E0038AB8A /* DayNine2020.swift in Sources */,
+				7675FA9E2D0637B200ED1F41 /* AntennaMap.swift in Sources */,
 				C516C7F52759553E0038AB8A /* SeatMap.swift in Sources */,
 				769B253F2B1EF675008689CA /* Day5_2023.swift in Sources */,
 				C516C7EC2759542C0038AB8A /* DayTen2020.swift in Sources */,
@@ -2550,6 +2579,7 @@
 				769B25932B2B4662008689CA /* Day14_2023.swift in Sources */,
 				76C1414E29396A6700795D93 /* DayOne2022Tests.swift in Sources */,
 				C516C8C2275F2BFB0038AB8A /* DaySeven2021.swift in Sources */,
+				7675FAA12D06A88100ED1F41 /* Day8_2024Tests.swift in Sources */,
 				769B256C2B24A27E008689CA /* Day9_2023Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

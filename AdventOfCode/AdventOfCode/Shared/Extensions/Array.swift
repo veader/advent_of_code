@@ -13,6 +13,7 @@ extension Array where Element: Equatable {
         reduce([]) { result, element -> [Element] in
             result.contains(element) ? result : result + [element]
         }
+        // Why not just use Set here?...
     }
 
     /// Return the middle index of the given array based on length.
@@ -39,6 +40,21 @@ extension Array where Element: Equatable {
         }
         
         return true
+    }
+
+    /// Return (unique) combination pairs for the items in the array
+    func pairCombinations() -> [[Element]] {
+        guard count > 1 else { return [] } // no combinations
+
+        var combinations: [[Element]] = []
+        enumerated().forEach { (index, element) in
+            var idx = index + 1
+            while idx < count {
+                combinations.append([element, self[idx]])
+                idx+=1
+            }
+        }
+        return combinations
     }
 }
 

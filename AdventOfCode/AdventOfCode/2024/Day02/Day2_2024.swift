@@ -18,7 +18,7 @@ struct Day2_2024: AdventDay {
     }
 
     func parse(_ input: String?) -> [[Int]] {
-        (input ?? "").split(separator: "\n").map { line -> [Int] in
+        (input ?? "").lines().map { line -> [Int] in
             line.split(separator: " ").map(String.init).compactMap(Int.init)
         }
     }

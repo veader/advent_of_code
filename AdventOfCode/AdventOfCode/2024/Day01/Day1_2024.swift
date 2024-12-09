@@ -21,7 +21,7 @@ struct Day1_2024: AdventDay {
         var leftColumn = [Int]()
         var rightColumn = [Int]()
 
-        try (input ?? "").split(separator: "\n").forEach { line in
+        try (input ?? "").lines().forEach { line in
             let nums = line.replacing(/\s+/, with: " ").split(separator: " ").map(String.init).compactMap(Int.init)
             guard nums.count == 2 else {
                 throw Day1Error.invalidInput

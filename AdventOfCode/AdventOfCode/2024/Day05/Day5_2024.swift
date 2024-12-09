@@ -82,8 +82,7 @@ struct Day5_2024: AdventDay {
         var orders = [PrintInstructions.PageOrderInstruction]()
         var batches = [[Int]]()
 
-        let lines = (input ?? "").split(separator: "\n").map(String.init)
-        for line in lines {
+        for line in (input ?? "").lines() {
             if line.contains("|") {
                 let parts = line.split(separator: "|").map(String.init).compactMap(Int.init)
                 if let page = parts.first, let before = parts.last {
