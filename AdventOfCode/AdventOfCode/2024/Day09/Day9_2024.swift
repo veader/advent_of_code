@@ -11,7 +11,7 @@ struct Day9_2024: AdventDay {
     var year = 2024
     var dayNumber = 9
     var dayTitle = "Disk Fragmenter"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> [Int] {
         (input ?? "").charSplit().compactMap(Int.init)
@@ -24,6 +24,8 @@ struct Day9_2024: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        return 0
+        let disk = SimpleDisk(diskMap: parse(input))
+        disk.wholeFileDefrag()
+        return disk.calculateChecksum(basic: false)
     }
 }

@@ -11,7 +11,7 @@ struct Day7_2024: AdventDay {
     var year = 2024
     var dayNumber = 7
     var dayTitle = "Bridge Repair"
-    var stars = 0
+    var stars = 2
 
     func parse(_ input: String?) -> [CalibrationEquation] {
         (input ?? "").lines().compactMap(CalibrationEquation.init)

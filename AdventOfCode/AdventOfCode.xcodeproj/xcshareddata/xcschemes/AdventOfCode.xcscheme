@@ -37,6 +37,11 @@
                BlueprintName = "AdventOfCodeTests"
                ReferencedContainer = "container:AdventOfCode.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "Day9_2024Tests/testPartTwo()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
          <TestableReference
             skipped = "YES">

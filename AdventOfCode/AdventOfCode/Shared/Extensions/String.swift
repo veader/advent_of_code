@@ -91,7 +91,7 @@ extension String {
 
     /// Return a collection of Strings created by splitting this string by each character.
     func charSplit() -> [String] {
-        split(separator: "").map(String.init)
+        self.map(String.init)
     }
 
     /// Silly, simple "hash" algo from 2023 day 15.
