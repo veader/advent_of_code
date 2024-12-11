@@ -11,7 +11,7 @@ struct Day10_2024: AdventDay {
     var year = 2024
     var dayNumber = 10
     var dayTitle = "Hoof It"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> TopoMap {
         let data: [[String]] = (input ?? "").lines().map { $0.charSplit()}
@@ -24,7 +24,9 @@ struct Day10_2024: AdventDay {
         return scores.values.reduce(0, +)
     }
 
-    func partTwo(input: String?) -> Any {
-        return 0
+    func partTwo(input: String?) async -> Any {
+        let map = parse(input)
+        let paths = await map.findRoutes()
+        return paths.count
     }
 }

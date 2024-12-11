@@ -47,6 +47,15 @@ struct Day10_2024Tests {
         10456732
         """
 
+    let sampleData5 = """
+        012345
+        123456
+        234567
+        345678
+        4.6789
+        56789.
+        """
+
     let day = Day10_2024()
 
     @Test func testTopoMapParsing() async throws {
@@ -125,5 +134,29 @@ struct Day10_2024Tests {
     @Test func testPartOne() async throws {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 593)
+    }
+
+    @Test func testScoringBasedOnPaths() async throws {
+        let map2 = day.parse(sampleData2)
+        let paths2 = await map2.findRoutes()
+        #expect(paths2.count == 13)
+
+        let map4 = day.parse(sampleData4)
+        let paths4 = await map4.findRoutes()
+        #expect(paths4.count == 81)
+
+        let map5 = day.parse(sampleData5)
+        let paths5 = await map5.findRoutes()
+        #expect(paths5.count == 227)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try await #require(day.partTwo(input: sampleData4) as? Int)
+        #expect(answer == 81)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 1192)
     }
 }
