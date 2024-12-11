@@ -71,6 +71,11 @@
 		7675FAAC2D078AB700ED1F41 /* SimpleDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAAB2D078AB700ED1F41 /* SimpleDisk.swift */; };
 		7675FAAD2D078AB700ED1F41 /* SimpleDisk.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAAB2D078AB700ED1F41 /* SimpleDisk.swift */; };
 		7675FAAF2D078E8D00ED1F41 /* Day9_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAAE2D078E8D00ED1F41 /* Day9_2024Tests.swift */; };
+		7675FAB52D0814E900ED1F41 /* Day10_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAB42D0814E900ED1F41 /* Day10_2024.swift */; };
+		7675FAB62D0814E900ED1F41 /* Day10_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAB42D0814E900ED1F41 /* Day10_2024.swift */; };
+		7675FAB82D08A7A900ED1F41 /* TopoMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAB72D08A7A900ED1F41 /* TopoMap.swift */; };
+		7675FAB92D08A7A900ED1F41 /* TopoMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FAB72D08A7A900ED1F41 /* TopoMap.swift */; };
+		7675FABB2D08B33400ED1F41 /* Day10_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7675FABA2D08B33400ED1F41 /* Day10_2024Tests.swift */; };
 		768B0D382B3A642500273FAB /* Day18_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768B0D372B3A642500273FAB /* Day18_2023.swift */; };
 		768B0D392B3A642500273FAB /* Day18_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768B0D372B3A642500273FAB /* Day18_2023.swift */; };
 		768B0D3B2B3A696D00273FAB /* Day18_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768B0D3A2B3A696D00273FAB /* Day18_2023Tests.swift */; };
@@ -511,6 +516,10 @@
 		7675FAA82D0786D600ED1F41 /* Day9_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day9_2024.swift; sourceTree = "<group>"; };
 		7675FAAB2D078AB700ED1F41 /* SimpleDisk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleDisk.swift; sourceTree = "<group>"; };
 		7675FAAE2D078E8D00ED1F41 /* Day9_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day9_2024Tests.swift; sourceTree = "<group>"; };
+		7675FAB12D0814DF00ED1F41 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7675FAB42D0814E900ED1F41 /* Day10_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day10_2024.swift; sourceTree = "<group>"; };
+		7675FAB72D08A7A900ED1F41 /* TopoMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopoMap.swift; sourceTree = "<group>"; };
+		7675FABA2D08B33400ED1F41 /* Day10_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day10_2024Tests.swift; sourceTree = "<group>"; };
 		768B0D362B3A641100273FAB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		768B0D372B3A642500273FAB /* Day18_2023.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day18_2023.swift; sourceTree = "<group>"; };
 		768B0D3A2B3A696D00273FAB /* Day18_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day18_2023Tests.swift; sourceTree = "<group>"; };
@@ -903,6 +912,7 @@
 				7675FA8A2D047FC500ED1F41 /* Day07 */,
 				7675FA962D056AE900ED1F41 /* Day08 */,
 				7675FAA42D07853E00ED1F41 /* Day09 */,
+				7675FAB02D0814D300ED1F41 /* Day10 */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -919,6 +929,7 @@
 				7675FA912D047FE800ED1F41 /* Day7_2024Tests.swift */,
 				7675FAA02D06A88100ED1F41 /* Day8_2024Tests.swift */,
 				7675FAAE2D078E8D00ED1F41 /* Day9_2024Tests.swift */,
+				7675FABA2D08B33400ED1F41 /* Day10_2024Tests.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -997,6 +1008,16 @@
 				7675FAAB2D078AB700ED1F41 /* SimpleDisk.swift */,
 			);
 			path = Day09;
+			sourceTree = "<group>";
+		};
+		7675FAB02D0814D300ED1F41 /* Day10 */ = {
+			isa = PBXGroup;
+			children = (
+				7675FAB12D0814DF00ED1F41 /* README.md */,
+				7675FAB42D0814E900ED1F41 /* Day10_2024.swift */,
+				7675FAB72D08A7A900ED1F41 /* TopoMap.swift */,
+			);
+			path = Day10;
 			sourceTree = "<group>";
 		};
 		768B0D352B3A640A00273FAB /* Day18 */ = {
@@ -2303,6 +2324,8 @@
 				C516C8A3275C81AD0038AB8A /* DayFive2021.swift in Sources */,
 				76BA9CE92B1B6CC100D12FA3 /* Day2_2023.swift in Sources */,
 				C516C8602759592F0038AB8A /* RuleParser.swift in Sources */,
+				7675FAB82D08A7A900ED1F41 /* TopoMap.swift in Sources */,
+				7675FAB52D0814E900ED1F41 /* Day10_2024.swift in Sources */,
 				769B253D2B1EF672008689CA /* Almanac.swift in Sources */,
 				C516C79927594AF00038AB8A /* DayThree2020.swift in Sources */,
 				C57773C52763956B006E5ADA /* NavSysCmd.swift in Sources */,
@@ -2577,6 +2600,7 @@
 				C516C801275956140038AB8A /* DayTwelve2020.swift in Sources */,
 				C516C8C7275F2F710038AB8A /* Dictionary.swift in Sources */,
 				769B257D2B2815F6008689CA /* GridMapTests.swift in Sources */,
+				7675FABB2D08B33400ED1F41 /* Day10_2024Tests.swift in Sources */,
 				C516C8462759587B0038AB8A /* PowerSource.swift in Sources */,
 				C516C8402759587B0038AB8A /* PowerSourceCoordinate.swift in Sources */,
 				C57773DA27678198006E5ADA /* CaveMap.swift in Sources */,
@@ -2589,6 +2613,7 @@
 				C57773D5276665A2006E5ADA /* DayTwelve2021.swift in Sources */,
 				C571C3BE276A3E7A000BEF76 /* DayFifteen2021Tests.swift in Sources */,
 				C57773CD276532CB006E5ADA /* DayEleven2021.swift in Sources */,
+				7675FAB62D0814E900ED1F41 /* Day10_2024.swift in Sources */,
 				C516C8A7275D02FC0038AB8A /* Line.swift in Sources */,
 				769B259B2B2BF53C008689CA /* Day14_2023Tests.swift in Sources */,
 				76C141B12947DE5200795D93 /* DayTwelve2022.swift in Sources */,
@@ -2605,6 +2630,7 @@
 				769B25932B2B4662008689CA /* Day14_2023.swift in Sources */,
 				76C1414E29396A6700795D93 /* DayOne2022Tests.swift in Sources */,
 				C516C8C2275F2BFB0038AB8A /* DaySeven2021.swift in Sources */,
+				7675FAB92D08A7A900ED1F41 /* TopoMap.swift in Sources */,
 				7675FAA12D06A88100ED1F41 /* Day8_2024Tests.swift in Sources */,
 				769B256C2B24A27E008689CA /* Day9_2023Tests.swift in Sources */,
 			);
