@@ -24,7 +24,8 @@ struct Day11_2024: AdventDay {
     }
 
     func partTwo(input: String?) async -> Any {
-        let pebbles = parse(input)
         return 0
+//        let pebbles = parse(input)
+//        return pebbles.stoneCount(after: 75)
     }
 }

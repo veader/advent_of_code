@@ -75,4 +75,18 @@ struct Day11_2024Tests {
         #expect(answer == 211306)
     }
 
+    @Test func testStoneCounting() async throws {
+        let pebbles1 = day.parse(sampleData2)
+        let count1 = pebbles1.stoneCount(after: 6)
+        #expect(count1 == 22)
+
+        let count2 = pebbles1.stoneCount(after: 25)
+        #expect(count2 == 55312)
+    }
+
+//    @Test func testPartTwo() async throws {
+//        let answer = try await #require(day.run(part: 2) as? Int)
+//        #expect(answer == 211306)
+//    }
+
 }
