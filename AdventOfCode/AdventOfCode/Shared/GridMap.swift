@@ -213,6 +213,14 @@ class GridMap<Element> {
         return output.joined(separator: "\n")
     }
 
+    /// Iterate over all the locations in the entire grid calling the given block with
+    /// the coordinate and value.
+    ///
+    /// - Warning: This does force unwrap `item(at:)`, you have been warned!
+    func iterate(_ block: ((Coordinate, Element) -> Void)) {
+        coordinates().forEach { block($0, item(at: $0)!) }
+    }
+
     
     // Mark: - Private Methods
 
