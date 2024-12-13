@@ -75,7 +75,6 @@ class GardenPlots {
 
     /// Calculate the costs for a given region. Area * Fences
     func calculateCostFor(region: [Coordinate]) -> Int {
-        let area = region.count
         var fences = 0
         for c in region {
             let adjacent = map.adjacentCoordinates(to: c, allowDiagonals: false)
@@ -86,6 +85,7 @@ class GardenPlots {
             fences += adjacentToCount.count + correction
         }
 
+        let area = region.count
         return area * fences
     }
 
@@ -99,5 +99,64 @@ class GardenPlots {
         }
 
         return cost
+    }
+
+
+    // MARK: - Part Two
+
+    struct FenceSegment {
+        enum FenceSide: CaseIterable {
+            case top
+            case bottom
+            case left
+            case right
+        }
+
+        let location: Coordinate
+        let side: FenceSide
+    }
+
+    // IDEA: find region by following boundary edge. Accumulating continguous sides
+    // and coordiantes within the region. Sort coordinates available (for plant) and
+    // start at the "least" one (closest to origin) looking at the top until we exit
+    // the region, then turn 90º and continue around the perimeter.
+
+    func calculateBulkCostFor(region: [Coordinate]) -> Int {
+        var sides: [FenceSegment] = []
+        for c in region {
+            for side in FenceSegment.FenceSide.allCases {
+                if let segment = examine(side: side, of: c) {
+                    sides.append(segment)
+                }
+            }
+        }
+
+        // TODO: find contiguous segments within sides...
+
+        return 0
+    }
+
+    /// Examine the side of the given coordinate in the region to determine it needs a fence segment.
+    func examine(side: FenceSegment.FenceSide, of coordinate: Coordinate) -> FenceSegment? {
+        guard let thisItem = map.item(at: coordinate) else { return nil }
+
+        var direction: Coordinate.RelativeDirection = .north
+        switch side {
+        case .top:
+            direction = .north
+        case .bottom:
+            direction = .south
+        case .left:
+            direction = .west
+        case .right:
+            direction = .east
+        }
+
+        let inDirection = coordinate.moving(direction: direction, originTopLeft: true)
+
+        // if coordinate is off the grid, it is a side of the region
+        // if the value at does not match, it is a side of the region
+        guard let item = map.item(at: inDirection), item != thisItem else { return nil }
+        return FenceSegment(location: coordinate, side: side)
     }
 }
