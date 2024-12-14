@@ -221,6 +221,12 @@
 		76DF23402D0BE49900C7C017 /* Day12_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF233F2D0BE49900C7C017 /* Day12_2024Tests.swift */; };
 		76DF23422D0BE4A600C7C017 /* GardenPlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF23412D0BE4A600C7C017 /* GardenPlots.swift */; };
 		76DF23432D0BE4A600C7C017 /* GardenPlots.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF23412D0BE4A600C7C017 /* GardenPlots.swift */; };
+		76DF23492D0C779F00C7C017 /* Day13_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF23482D0C779F00C7C017 /* Day13_2024.swift */; };
+		76DF234A2D0C779F00C7C017 /* Day13_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF23482D0C779F00C7C017 /* Day13_2024.swift */; };
+		76DF234E2D0D1E2700C7C017 /* Algorithms in Frameworks */ = {isa = PBXBuildFile; productRef = 76DF234D2D0D1E2700C7C017 /* Algorithms */; };
+		76DF23502D0D1FC600C7C017 /* Day13_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF234F2D0D1FC600C7C017 /* Day13_2024Tests.swift */; };
+		76DF23522D0D241F00C7C017 /* ClawMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF23512D0D241F00C7C017 /* ClawMachine.swift */; };
+		76DF23532D0D241F00C7C017 /* ClawMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF23512D0D241F00C7C017 /* ClawMachine.swift */; };
 		C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7752757CFE20038AB8A /* AdventCommands.swift */; };
 		C516C7782757D0EA0038AB8A /* AdventDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7772757D0EA0038AB8A /* AdventDayView.swift */; };
 		C516C7792757E98C0038AB8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -650,6 +656,10 @@
 		76DF233C2D0BE0BF00C7C017 /* Day12_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day12_2024.swift; sourceTree = "<group>"; };
 		76DF233F2D0BE49900C7C017 /* Day12_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day12_2024Tests.swift; sourceTree = "<group>"; };
 		76DF23412D0BE4A600C7C017 /* GardenPlots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenPlots.swift; sourceTree = "<group>"; };
+		76DF23452D0C779300C7C017 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76DF23482D0C779F00C7C017 /* Day13_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day13_2024.swift; sourceTree = "<group>"; };
+		76DF234F2D0D1FC600C7C017 /* Day13_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day13_2024Tests.swift; sourceTree = "<group>"; };
+		76DF23512D0D241F00C7C017 /* ClawMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClawMachine.swift; sourceTree = "<group>"; };
 		C516C7752757CFE20038AB8A /* AdventCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventCommands.swift; sourceTree = "<group>"; };
 		C516C7772757D0EA0038AB8A /* AdventDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDayView.swift; sourceTree = "<group>"; };
 		C516C77B275814F10038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -836,6 +846,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DF234E2D0D1E2700C7C017 /* Algorithms in Frameworks */,
 				760D4235294918CD00ED2842 /* Collections in Frameworks */,
 				760D4237294918CD00ED2842 /* DequeModule in Frameworks */,
 				760D4239294918CD00ED2842 /* OrderedCollections in Frameworks */,
@@ -933,6 +944,7 @@
 				7675FAB02D0814D300ED1F41 /* Day10 */,
 				7675FABC2D09590200ED1F41 /* Day11 */,
 				76DF23382D0BE0A700C7C017 /* Day12 */,
+				76DF23442D0C778200C7C017 /* Day13 */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -952,6 +964,7 @@
 				7675FABA2D08B33400ED1F41 /* Day10_2024Tests.swift */,
 				7675FAC62D0A356F00ED1F41 /* Day11_2024Tests.swift */,
 				76DF233F2D0BE49900C7C017 /* Day12_2024Tests.swift */,
+				76DF234F2D0D1FC600C7C017 /* Day13_2024Tests.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -1456,6 +1469,23 @@
 			path = Day12;
 			sourceTree = "<group>";
 		};
+		76DF23442D0C778200C7C017 /* Day13 */ = {
+			isa = PBXGroup;
+			children = (
+				76DF23452D0C779300C7C017 /* README.md */,
+				76DF23482D0C779F00C7C017 /* Day13_2024.swift */,
+				76DF23512D0D241F00C7C017 /* ClawMachine.swift */,
+			);
+			path = Day13;
+			sourceTree = "<group>";
+		};
+		76DF234C2D0D1E2700C7C017 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		C516C77A275814DE0038AB8A /* Day02 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1810,6 +1840,7 @@
 				C556EF662757B454009B3078 /* AdventOfCode */,
 				C556EF782757B455009B3078 /* AdventOfCodeTests */,
 				C556EF822757B456009B3078 /* AdventOfCodeUITests */,
+				76DF234C2D0D1E2700C7C017 /* Frameworks */,
 				C556EF652757B454009B3078 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -2120,6 +2151,7 @@
 				760D4234294918CD00ED2842 /* Collections */,
 				760D4236294918CD00ED2842 /* DequeModule */,
 				760D4238294918CD00ED2842 /* OrderedCollections */,
+				76DF234D2D0D1E2700C7C017 /* Algorithms */,
 			);
 			productName = AdventOfCode;
 			productReference = C556EF642757B454009B3078 /* AdventOfCode.app */;
@@ -2195,6 +2227,7 @@
 			mainGroup = C556EF5B2757B454009B3078;
 			packageReferences = (
 				760D4233294918CD00ED2842 /* XCRemoteSwiftPackageReference "swift-collections" */,
+				76DF234B2D0D1DEC00C7C017 /* XCRemoteSwiftPackageReference "swift-algorithms" */,
 			);
 			productRefGroup = C556EF652757B454009B3078 /* Products */;
 			projectDirPath = "";
@@ -2239,12 +2272,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76DF23492D0C779F00C7C017 /* Day13_2024.swift in Sources */,
 				7675FA9F2D0637B200ED1F41 /* AntennaMap.swift in Sources */,
 				C516C81B275957B00038AB8A /* DayFourteen2020.swift in Sources */,
 				763029172B306C02006E5307 /* LightMap.swift in Sources */,
 				769B25692B243161008689CA /* Day9_2023.swift in Sources */,
 				769B25702B2582AE008689CA /* Day10_2023.swift in Sources */,
 				76C141B02947DE5200795D93 /* DayTwelve2022.swift in Sources */,
+				76DF23522D0D241F00C7C017 /* ClawMachine.swift in Sources */,
 				76C1416F293E98A600795D93 /* SupplyCrateMap.swift in Sources */,
 				C516C8C1275F2BFB0038AB8A /* DaySeven2021.swift in Sources */,
 				C571C3BB276A2B1E000BEF76 /* CaveNode.swift in Sources */,
@@ -2469,6 +2504,7 @@
 				C516C7FB2759553E0038AB8A /* SeatMapModeler.swift in Sources */,
 				76C141892942D02800795D93 /* TreeMap.swift in Sources */,
 				769B256A2B243161008689CA /* Day9_2023.swift in Sources */,
+				76DF23502D0D1FC600C7C017 /* Day13_2024Tests.swift in Sources */,
 				760D423E2949878C00ED2842 /* DayThirteen2022.swift in Sources */,
 				C55F0870277ADE7500EEEFA2 /* CuboidInstruction.swift in Sources */,
 				76C141862941B5BE00795D93 /* DayEight2022.swift in Sources */,
@@ -2553,6 +2589,7 @@
 				768B0D3E2B3B2EBC00273FAB /* DigMap.swift in Sources */,
 				C516C8422759587B0038AB8A /* ThreeDCoordinate.swift in Sources */,
 				C516C87B275959C60038AB8A /* Groceries.swift in Sources */,
+				76DF23532D0D241F00C7C017 /* ClawMachine.swift in Sources */,
 				769B25372B1DA435008689CA /* Day4_2023.swift in Sources */,
 				C516C833275958390038AB8A /* TicketScanner.swift in Sources */,
 				C516C794275949F30038AB8A /* DayTwo2020.swift in Sources */,
@@ -2672,6 +2709,7 @@
 				C516C78A275948A30038AB8A /* DayOne2020.swift in Sources */,
 				C57773BB276243B1006E5ADA /* DayNine2021Tests.swift in Sources */,
 				769B25802B28356E008689CA /* SolarSystem.swift in Sources */,
+				76DF234A2D0C779F00C7C017 /* Day13_2024.swift in Sources */,
 				76C1419A2944BA5C00795D93 /* DayTen2022.swift in Sources */,
 				C55F086327743E1500EEEFA2 /* DayTwentyOne2021.swift in Sources */,
 				76BA9CF62B1CBECC00D12FA3 /* Day3_2023Tests.swift in Sources */,
@@ -3038,6 +3076,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		76DF234B2D0D1DEC00C7C017 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-algorithms.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -3055,6 +3101,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 760D4233294918CD00ED2842 /* XCRemoteSwiftPackageReference "swift-collections" */;
 			productName = OrderedCollections;
+		};
+		76DF234D2D0D1E2700C7C017 /* Algorithms */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 76DF234B2D0D1DEC00C7C017 /* XCRemoteSwiftPackageReference "swift-algorithms" */;
+			productName = Algorithms;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
