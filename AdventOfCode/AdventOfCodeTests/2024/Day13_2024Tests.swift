@@ -60,12 +60,17 @@ struct Day13_2024Tests {
     }
 
     @Test func testPartOneWithSampleData() async throws {
-        let cost1 = try #require(day.partOne(input: sampleData) as? Int)
-        #expect(cost1 == 480)
+        let cost = try #require(day.partOne(input: sampleData) as? Int)
+        #expect(cost == 480)
     }
 
     @Test func testPartOne() async throws {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 26810)
     }
+
+//    @Test func testPartTwoWithSampleData() async throws {
+//        let cost = try #require(day.partTwo(input: sampleData) as? Int)
+//        #expect(cost == 0)
+//    }
 }

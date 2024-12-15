@@ -15,9 +15,9 @@ struct Day13_2024: AdventDay {
     var dayTitle = "Claw Contraption"
     var stars = 1
 
-    func parse(_ input: String?) -> [ClawMachine] {
+    func parse(_ input: String?, extra: Int = 0) -> [ClawMachine] {
         (input ?? "").lines().chunks(ofCount: 3).compactMap { chunk in
-            try? ClawMachine(input: chunk.map { String($0) })
+            try? ClawMachine(input: chunk.map { String($0) }, extra: extra)
         }
     }
 
@@ -28,17 +28,16 @@ struct Day13_2024: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        let machines = parse(input)
         return 0
+//        let machines = parse(input, extra: 10_000_000_000_000)
+//        let tokens = play(machines: machines)
+//        return tokens
     }
 
     /// Determine which machines are winnable and how many tokens are required to win at each.
     func play(machines: [ClawMachine]) -> Int {
         var totals: Int = 0
         for machine in machines {
-//            if let tokens = await play(machine: machine) {
-//                totals += tokens
-//            }
             let winners = ClawGameWinners(machine: machine)
             let tokens = searchDeep(machine: machine, winners: winners)
             if tokens != .max {
@@ -46,59 +45,6 @@ struct Day13_2024: AdventDay {
             }
         }
         return totals
-    }
-
-    typealias ClawIteration = (position: Coordinate, a: Int, b: Int)
-
-    func play(machine: ClawMachine) async -> Int? {
-        await iteratePlay(machine: machine, iterations: [ClawIteration(.origin, 0, 0)])
-    }
-
-    private func iteratePlay(machine: ClawMachine, iterations: [ClawIteration], min: Int = .max, found: Bool = false, idx: Int = 0) async -> Int? {
-        print("\(Date.now) Iteration \(idx) - \(iterations.count) | \(min)")
-
-        if iterations.isEmpty {
-            guard found else { return nil }
-            return min
-        }
-
-        var minTokens: Int = min
-        var foundPrize: Bool = found
-
-        let newIterations: [ClawIteration] = iterations.flatMap { iteration -> [ClawIteration] in
-            let cost = iteration.a * 3 + iteration.b
-
-            // did we find the prize?
-            if iteration.position == machine.prize {
-                foundPrize = true
-
-                // is this a "cheaper" winning game?
-                if cost < minTokens {
-                    print("cheapest winner")
-                    minTokens = cost
-                } else {
-                    print("more expensive winner")
-                }
-
-                return [] // no need to proceed
-            } else {
-                guard valid(iteration: iteration, machine: machine) else { return [] }
-
-                return [
-                    // press A
-                    ClawIteration(iteration.position.moving(xOffset: machine.buttonA.x, yOffset:  machine.buttonA.y), iteration.a + 1, iteration.b),
-                    // press B
-                    ClawIteration(iteration.position.moving(xOffset: machine.buttonB.x, yOffset:  machine.buttonB.y), iteration.a, iteration.b + 1),
-                ]
-            }
-        }
-
-        return await iteratePlay(machine: machine, iterations: newIterations, min: minTokens, found: foundPrize, idx: idx + 1)
-    }
-
-    private func valid(iteration: ClawIteration, machine: ClawMachine) -> Bool {
-        iteration.position.x <= machine.prize.x &&
-        iteration.position.y <= machine.prize.y
     }
 
     func searchDeep(machine: ClawMachine, winners: ClawGameWinners, a: Int = 0, b: Int = 0) -> Int {

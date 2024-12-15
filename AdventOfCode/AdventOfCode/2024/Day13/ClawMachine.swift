@@ -18,7 +18,7 @@ struct ClawMachine {
     private let buttonRegex = /Button\s(A|B):\sX\+(\d+),\sY\+(\d+)/
     private let prizeRegex = /Prize:\sX=(\d+),\sY=(\d+)/
 
-    init?(input: [String]) throws {
+    init?(input: [String], extra: Int = 0) throws {
         guard input.count == 3 else { return nil }
 
         var a: ClawButton?
@@ -36,7 +36,7 @@ struct ClawMachine {
                 }
             } else if let match = line.firstMatch(of: prizeRegex) {
                 if let x = Int(match.1), let y = Int(match.2) {
-                    prize = Coordinate(x: x, y: y)
+                    prize = Coordinate(x: x + extra, y: y + extra)
                 } else {
                     print("Unknown prize: \(line)")
                 }
