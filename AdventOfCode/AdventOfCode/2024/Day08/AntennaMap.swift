@@ -75,7 +75,7 @@ class AntennaMap {
 
 extension Coordinate {
     /// The delta between two points (x offset and y offset)
-    struct GridDelta {
+    struct GridDelta: Equatable, Hashable {
         let x: Int
         let y: Int
 

@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		760638CE2D0E73D500C3B16A /* Day14_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638CD2D0E73D500C3B16A /* Day14_2024.swift */; };
+		760638CF2D0E73D900C3B16A /* Day14_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638CD2D0E73D500C3B16A /* Day14_2024.swift */; };
+		760638D12D0F708200C3B16A /* BathroomSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D02D0F708200C3B16A /* BathroomSimulator.swift */; };
+		760638D22D0F708200C3B16A /* BathroomSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D02D0F708200C3B16A /* BathroomSimulator.swift */; };
+		760638D42D0F81A900C3B16A /* Day14_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D32D0F81A900C3B16A /* Day14_2024Tests.swift */; };
 		760D4235294918CD00ED2842 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4234294918CD00ED2842 /* Collections */; };
 		760D4237294918CD00ED2842 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4236294918CD00ED2842 /* DequeModule */; };
 		760D4239294918CD00ED2842 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4238294918CD00ED2842 /* OrderedCollections */; };
@@ -480,6 +485,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		760638CA2D0E73C600C3B16A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		760638CD2D0E73D500C3B16A /* Day14_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14_2024.swift; sourceTree = "<group>"; };
+		760638D02D0F708200C3B16A /* BathroomSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathroomSimulator.swift; sourceTree = "<group>"; };
+		760638D32D0F81A900C3B16A /* Day14_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14_2024Tests.swift; sourceTree = "<group>"; };
 		760D423B2949878000ED2842 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		760D423C2949878900ED2842 /* DayThirteen2022.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThirteen2022.swift; sourceTree = "<group>"; };
 		760D423F2949A34400ED2842 /* DistressSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSignal.swift; sourceTree = "<group>"; };
@@ -870,6 +879,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		760638C92D0E73BF00C3B16A /* Day14 */ = {
+			isa = PBXGroup;
+			children = (
+				760638CA2D0E73C600C3B16A /* README.md */,
+				760638CD2D0E73D500C3B16A /* Day14_2024.swift */,
+				760638D02D0F708200C3B16A /* BathroomSimulator.swift */,
+			);
+			path = Day14;
+			sourceTree = "<group>";
+		};
 		760D423A2949877800ED2842 /* Day13 */ = {
 			isa = PBXGroup;
 			children = (
@@ -945,6 +964,7 @@
 				7675FABC2D09590200ED1F41 /* Day11 */,
 				76DF23382D0BE0A700C7C017 /* Day12 */,
 				76DF23442D0C778200C7C017 /* Day13 */,
+				760638C92D0E73BF00C3B16A /* Day14 */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -965,6 +985,7 @@
 				7675FAC62D0A356F00ED1F41 /* Day11_2024Tests.swift */,
 				76DF233F2D0BE49900C7C017 /* Day12_2024Tests.swift */,
 				76DF234F2D0D1FC600C7C017 /* Day13_2024Tests.swift */,
+				760638D32D0F81A900C3B16A /* Day14_2024Tests.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -2279,10 +2300,12 @@
 				769B25692B243161008689CA /* Day9_2023.swift in Sources */,
 				769B25702B2582AE008689CA /* Day10_2023.swift in Sources */,
 				76C141B02947DE5200795D93 /* DayTwelve2022.swift in Sources */,
+				760638CE2D0E73D500C3B16A /* Day14_2024.swift in Sources */,
 				76DF23522D0D241F00C7C017 /* ClawMachine.swift in Sources */,
 				76C1416F293E98A600795D93 /* SupplyCrateMap.swift in Sources */,
 				C516C8C1275F2BFB0038AB8A /* DaySeven2021.swift in Sources */,
 				C571C3BB276A2B1E000BEF76 /* CaveNode.swift in Sources */,
+				760638D12D0F708200C3B16A /* BathroomSimulator.swift in Sources */,
 				C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */,
 				769B257F2B28356E008689CA /* SolarSystem.swift in Sources */,
 				C55F0835276C444C00EEEFA2 /* DaySixteen2021.swift in Sources */,
@@ -2489,6 +2512,7 @@
 				C57773D72766EABD006E5ADA /* DayTwelve2021Tests.swift in Sources */,
 				769340CE2B32BD030007B0CC /* Day17_2023Tests.swift in Sources */,
 				769B25582B21FD1F008689CA /* Day7_2023Tests.swift in Sources */,
+				760638CF2D0E73D900C3B16A /* Day14_2024.swift in Sources */,
 				C57773C327639301006E5ADA /* DayTen2021.swift in Sources */,
 				769B255B2B21FD6A008689CA /* CamelCards.swift in Sources */,
 				C57773E92768E47C006E5ADA /* DayFourteen2021.swift in Sources */,
@@ -2594,6 +2618,7 @@
 				C516C833275958390038AB8A /* TicketScanner.swift in Sources */,
 				C516C794275949F30038AB8A /* DayTwo2020.swift in Sources */,
 				C55F08682776C91500EEEFA2 /* DiceGame.swift in Sources */,
+				760638D42D0F81A900C3B16A /* Day14_2024Tests.swift in Sources */,
 				76C141A429459A1E00795D93 /* DayEleven2022.swift in Sources */,
 				76C1417E2940E15A00795D93 /* DaySeven2022Tests.swift in Sources */,
 				769B253E2B1EF672008689CA /* Almanac.swift in Sources */,
@@ -2678,6 +2703,7 @@
 				C57773E42768D21A006E5ADA /* DayThirteen2021Tests.swift in Sources */,
 				769B25472B203864008689CA /* ClosedRangeTests.swift in Sources */,
 				769B25992B2BCACE008689CA /* ReflectorDish.swift in Sources */,
+				760638D22D0F708200C3B16A /* BathroomSimulator.swift in Sources */,
 				C571C3B22769808B000BEF76 /* Polymer.swift in Sources */,
 				7675FA7B2D01DCF800ED1F41 /* Day5_2024.swift in Sources */,
 				C516C870275959770038AB8A /* DayTwenty2020.swift in Sources */,
