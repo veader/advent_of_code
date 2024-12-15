@@ -15,16 +15,8 @@ struct ClawMachine {
     let buttonB: ClawButton
     let prize: Coordinate
 
-    var position: Coordinate = .origin
-    var pressedACount: Int = 0
-    var pressedBCount: Int = 0
-
     private let buttonRegex = /Button\s(A|B):\sX\+(\d+),\sY\+(\d+)/
     private let prizeRegex = /Prize:\sX=(\d+),\sY=(\d+)/
-
-    var tokensUsed: Int {
-        pressedACount * 3 + pressedBCount
-    }
 
     init?(input: [String]) throws {
         guard input.count == 3 else { return nil }
@@ -59,23 +51,10 @@ struct ClawMachine {
         self.buttonB = b
         self.prize = prize
     }
-
-    mutating func press(button: String) {
-        switch button {
-        case "A":
-            let newPosition = position.moving(xOffset: buttonA.x, yOffset: buttonA.y)
-            position = newPosition
-            pressedACount += 1
-        default:
-            let newPosition = position.moving(xOffset: buttonB.x, yOffset: buttonB.y)
-            position = newPosition
-            pressedBCount += 1
-        }
-    }
 }
 
 extension ClawMachine: CustomDebugStringConvertible {
     var debugDescription: String {
-        "<ClawMachine: @\(position) prize:\(prize) | pressed A:\(pressedACount) B:\(pressedBCount) | tokens:\(tokensUsed) | buttons A:\(buttonA) B:\(buttonB)>"
+        "<ClawMachine: Prize:\(prize) | A:\(buttonA) | B:\(buttonB)>"
     }
 }

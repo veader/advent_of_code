@@ -25,6 +25,7 @@ struct Day13_2024Tests {
         Button B: X+27, Y+71
         Prize: X=18641, Y=10279
         """
+
     let sampleWinnableMachine = """
         Button A: X+94, Y+34
         Button B: X+22, Y+67
@@ -48,8 +49,23 @@ struct Day13_2024Tests {
 
     @Test func testPlayingWinableMachine() async throws {
         let machines = day.parse(sampleWinnableMachine)
-        let tokens = await day.play(machines: machines)
+        let tokens = day.play(machines: machines)
+        #expect(tokens == 280)
+    }
+
+    @Test func testPlayingWithMachines() async throws {
+        let machines = day.parse(sampleData)
+        let tokens = day.play(machines: machines)
         #expect(tokens == 480)
     }
 
+    @Test func testPartOneWithSampleData() async throws {
+        let cost1 = try #require(day.partOne(input: sampleData) as? Int)
+        #expect(cost1 == 480)
+    }
+
+    @Test func testPartOne() async throws {
+        let answer = try await #require(day.run(part: 1) as? Int)
+        #expect(answer == 26810)
+    }
 }

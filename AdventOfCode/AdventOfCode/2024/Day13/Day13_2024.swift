@@ -13,7 +13,7 @@ struct Day13_2024: AdventDay {
     var year = 2024
     var dayNumber = 13
     var dayTitle = "Claw Contraption"
-    var stars = 0
+    var stars = 1
 
     func parse(_ input: String?) -> [ClawMachine] {
         (input ?? "").lines().chunks(ofCount: 3).compactMap { chunk in
@@ -21,65 +21,148 @@ struct Day13_2024: AdventDay {
         }
     }
 
-    func partOne(input: String?) async-> Any {
+    func partOne(input: String?) -> Any {
         let machines = parse(input)
-        return 0
+        let tokens = play(machines: machines)
+        return tokens
     }
 
-    func partTwo(input: String?) async -> Any {
+    func partTwo(input: String?) -> Any {
         let machines = parse(input)
         return 0
     }
 
     /// Determine which machines are winnable and how many tokens are required to win at each.
-    func play(machines: [ClawMachine]) async -> Int {
+    func play(machines: [ClawMachine]) -> Int {
         var totals: Int = 0
         for machine in machines {
-            if let tokens = await iteratePlay(machine: machine) {
+//            if let tokens = await play(machine: machine) {
+//                totals += tokens
+//            }
+            let winners = ClawGameWinners(machine: machine)
+            let tokens = searchDeep(machine: machine, winners: winners)
+            if tokens != .max {
                 totals += tokens
             }
         }
         return totals
     }
 
-    private func iteratePlay(machine: ClawMachine) async -> Int? {
-        var machines = [machine]
-        var minTokens: Int = .max
-        var foundPrize: Bool = false
+    typealias ClawIteration = (position: Coordinate, a: Int, b: Int)
 
-        while !machines.isEmpty {
-            let m = machines.removeFirst()
+    func play(machine: ClawMachine) async -> Int? {
+        await iteratePlay(machine: machine, iterations: [ClawIteration(.origin, 0, 0)])
+    }
+
+    private func iteratePlay(machine: ClawMachine, iterations: [ClawIteration], min: Int = .max, found: Bool = false, idx: Int = 0) async -> Int? {
+        print("\(Date.now) Iteration \(idx) - \(iterations.count) | \(min)")
+
+        if iterations.isEmpty {
+            guard found else { return nil }
+            return min
+        }
+
+        var minTokens: Int = min
+        var foundPrize: Bool = found
+
+        let newIterations: [ClawIteration] = iterations.flatMap { iteration -> [ClawIteration] in
+            let cost = iteration.a * 3 + iteration.b
 
             // did we find the prize?
-            if m.position == m.prize {
+            if iteration.position == machine.prize {
                 foundPrize = true
 
                 // is this a "cheaper" winning game?
-                if m.tokensUsed < minTokens {
+                if cost < minTokens {
                     print("cheapest winner")
-                    minTokens = m.tokensUsed
+                    minTokens = cost
                 } else {
                     print("more expensive winner")
                 }
 
-            // is this game still valid? (ie: not past the prize or current minimum tokens used)
-            } else if m.position.x <= m.prize.x && m.position.y <= m.prize.x && m.tokensUsed < minTokens {
-                var ma = m
-                ma.press(button: "A")
-
-                var mb = m
-                mb.press(button: "B")
-
-                // check games by pressing either button for here....
-                machines.append(ma)
-                machines.append(mb)
+                return [] // no need to proceed
             } else {
-                print("Invalid...")
-                print(m)
+                guard valid(iteration: iteration, machine: machine) else { return [] }
+
+                return [
+                    // press A
+                    ClawIteration(iteration.position.moving(xOffset: machine.buttonA.x, yOffset:  machine.buttonA.y), iteration.a + 1, iteration.b),
+                    // press B
+                    ClawIteration(iteration.position.moving(xOffset: machine.buttonB.x, yOffset:  machine.buttonB.y), iteration.a, iteration.b + 1),
+                ]
             }
         }
 
-        guard foundPrize else { return nil }
-        return minTokens
+        return await iteratePlay(machine: machine, iterations: newIterations, min: minTokens, found: foundPrize, idx: idx + 1)
+    }
+
+    private func valid(iteration: ClawIteration, machine: ClawMachine) -> Bool {
+        iteration.position.x <= machine.prize.x &&
+        iteration.position.y <= machine.prize.y
+    }
+
+    func searchDeep(machine: ClawMachine, winners: ClawGameWinners, a: Int = 0, b: Int = 0) -> Int {
+        // confirm we haven't considered this combination before...
+        guard !winners.hasConsidered(buttonPushes: ClawGameWinners.ButtonPushes(x: a, y: b)) else { return .max }
+
+        // mark that we've considered this
+        winners.consider(buttonPushes: ClawGameWinners.ButtonPushes(x: a, y: b))
+
+        let position = calcPosition(machine: machine, a: a, b: b)
+        let tokens = a * 3 + b
+
+        if position == machine.prize {
+            // we have a winner!
+            winners.add(winner: ClawGameWinners.Winner(x: a, y: b))
+
+            if winners.fewestTokens > tokens {
+                winners.fewestTokens = tokens
+            }
+
+            return tokens
+        } else if position.x > machine.prize.x || position.y > machine.prize.y {
+            // we've gone too far, this isn't a winner
+            return .max
+        } else if tokens > winners.fewestTokens {
+            // this route is too expensive, abort... (does avoid finding a potential route)
+            return .max
+        } else {
+            let aTokens = searchDeep(machine: machine, winners: winners, a: a + 1, b: b)
+            let bTokens = searchDeep(machine: machine, winners: winners, a: a, b: b + 1)
+
+            return min(aTokens, bTokens)
+        }
+    }
+
+    private func calcPosition(machine: ClawMachine, a:Int , b: Int) -> Coordinate {
+        return Coordinate(x: machine.buttonA.x * a + machine.buttonB.x * b,
+                          y: machine.buttonA.y * a + machine.buttonB.y * b)
+    }
+}
+
+class ClawGameWinners {
+    // co-opting Coordinate to store our A/B values...
+    typealias Winner = Coordinate
+    typealias ButtonPushes = Coordinate
+
+    let machine: ClawMachine
+    var winners: Set<Winner> = []
+    var considered: Set<ButtonPushes> = []
+    var fewestTokens: Int = .max
+
+    init(machine: ClawMachine) {
+        self.machine = machine
+    }
+
+    func consider(buttonPushes: ButtonPushes) {
+        considered.insert(buttonPushes)
+    }
+
+    func hasConsidered(buttonPushes: ButtonPushes) -> Bool {
+        considered.contains(buttonPushes)
+    }
+
+    func add(winner: Winner) {
+        winners.insert(winner)
     }
 }
