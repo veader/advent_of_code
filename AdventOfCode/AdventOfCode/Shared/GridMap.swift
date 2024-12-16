@@ -213,6 +213,25 @@ class GridMap<Element> {
         return output.joined(separator: "\n")
     }
 
+    func gridAsString(transform: (Element?) -> String) -> String {
+        var output = [String]()
+        yBounds.forEach { y in
+            var row = [String]()
+            xBounds.forEach { x in
+                row.append(transform(itemAt(x: x, y: y)))
+//                if let value = itemAt(x: x, y: y) {
+//                    row.append("\(value)")
+//                } else {
+//                    row.append("#")
+//                }
+            }
+            output.append(row.joined())
+        }
+
+        return output.joined(separator: "\n")
+
+    }
+
     /// Iterate over all the locations in the entire grid calling the given block with
     /// the coordinate and value.
     ///

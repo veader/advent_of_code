@@ -26,7 +26,11 @@ struct Day14_2024: AdventDay {
     }
 
     func partTwo(input: String?) async -> Any {
-        let bots = parse(input)
         return 0
+//        let bots = parse(input)
+//        let bathroom = BathroomSimulator(bots: bots, width: 101, height: 103)
+//        bathroom.shouldPrint = true
+//        await bathroom.tick(seconds: 10000)
+//        return bathroom.safetyFactor()
     }
 }

@@ -35,6 +35,7 @@ class BathroomSimulator {
     let width: Int
     let height: Int
 
+    var shouldPrint = false
     typealias BathroomQuadrant = (width: Range<Int>, height: Range<Int>)
 
     init(bots: [BathroomBot], width: Int, height: Int) {
@@ -58,14 +59,33 @@ class BathroomSimulator {
         ]
     }
 
+    func bathroomMap() -> GridMap<Int> {
+        GridMap(items: Array(repeating: Array(repeating:0, count: height), count: width))
+    }
+
     func tick(seconds: Int = 1) async {
         var sec = 0
 
         while sec < seconds {
+            var daMap: GridMap<Int> = GridMap(items: [])
+            if shouldPrint {
+                daMap = bathroomMap()
+            }
+
             for bot in bots {
                 if let position = await move(bot: bot) {
+                    if shouldPrint {
+                        daMap.update(at: position, by: { $0 + 1 })
+                    }
+
                     positions[bot] = position
                 }
+            }
+
+            if shouldPrint {
+                print("----------------------------------------------------")
+                print("SECONDS: \(sec)")
+                printBathroom(map: daMap)
             }
 
             sec += 1
@@ -73,19 +93,24 @@ class BathroomSimulator {
     }
 
     func safetyFactor() -> Int {
-        var factor = 1
-
-        for (qIdx, quad) in quadrants().enumerated() {
-            let quadFactor: Int = quad.width.reduce(0) { width, x in
+        quadrants().reduce(1) { factor, quad in
+            quad.width.reduce(0) { width, x in
                 width + quad.height.reduce(0) { height, y in
                     height + bots(at: Coordinate(x: x, y: y))
                 }
-            }
-            // print("Quad \(qIdx): \(quadFactor)")
-            factor *= quadFactor
+            } * factor
         }
+    }
 
-        return factor
+    @discardableResult
+    func printBathroom(map bathroomMap: GridMap<Int>) -> String {
+        let output = bathroomMap.gridAsString(transform: { item in
+            guard let item, item > 0 else { return "." }
+            return "\(item)"
+        })
+
+        print(output)
+        return output
     }
 
     func bots(at location: Coordinate) -> Int {
@@ -117,6 +142,5 @@ class BathroomSimulator {
 
         // update position
         return Coordinate(x: finalX, y: finalY)
-//        positions[bot] = Coordinate(x: finalX, y: finalY)
     }
 }
