@@ -12,6 +12,11 @@
 		760638D12D0F708200C3B16A /* BathroomSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D02D0F708200C3B16A /* BathroomSimulator.swift */; };
 		760638D22D0F708200C3B16A /* BathroomSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D02D0F708200C3B16A /* BathroomSimulator.swift */; };
 		760638D42D0F81A900C3B16A /* Day14_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D32D0F81A900C3B16A /* Day14_2024Tests.swift */; };
+		760638DA2D0FC84E00C3B16A /* Day15_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D92D0FC84E00C3B16A /* Day15_2024.swift */; };
+		760638DB2D0FC84E00C3B16A /* Day15_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638D92D0FC84E00C3B16A /* Day15_2024.swift */; };
+		760638DD2D0FD12F00C3B16A /* WarehouseSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638DC2D0FD12F00C3B16A /* WarehouseSimulator.swift */; };
+		760638DE2D0FD12F00C3B16A /* WarehouseSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638DC2D0FD12F00C3B16A /* WarehouseSimulator.swift */; };
+		760638E02D10DFBA00C3B16A /* Day15_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638DF2D10DFBA00C3B16A /* Day15_2024Tests.swift */; };
 		760D4235294918CD00ED2842 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4234294918CD00ED2842 /* Collections */; };
 		760D4237294918CD00ED2842 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4236294918CD00ED2842 /* DequeModule */; };
 		760D4239294918CD00ED2842 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4238294918CD00ED2842 /* OrderedCollections */; };
@@ -489,6 +494,10 @@
 		760638CD2D0E73D500C3B16A /* Day14_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14_2024.swift; sourceTree = "<group>"; };
 		760638D02D0F708200C3B16A /* BathroomSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathroomSimulator.swift; sourceTree = "<group>"; };
 		760638D32D0F81A900C3B16A /* Day14_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14_2024Tests.swift; sourceTree = "<group>"; };
+		760638D62D0FC82600C3B16A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		760638D92D0FC84E00C3B16A /* Day15_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day15_2024.swift; sourceTree = "<group>"; };
+		760638DC2D0FD12F00C3B16A /* WarehouseSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseSimulator.swift; sourceTree = "<group>"; };
+		760638DF2D10DFBA00C3B16A /* Day15_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day15_2024Tests.swift; sourceTree = "<group>"; };
 		760D423B2949878000ED2842 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		760D423C2949878900ED2842 /* DayThirteen2022.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThirteen2022.swift; sourceTree = "<group>"; };
 		760D423F2949A34400ED2842 /* DistressSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSignal.swift; sourceTree = "<group>"; };
@@ -889,6 +898,16 @@
 			path = Day14;
 			sourceTree = "<group>";
 		};
+		760638D52D0FC81D00C3B16A /* Day15 */ = {
+			isa = PBXGroup;
+			children = (
+				760638D62D0FC82600C3B16A /* README.md */,
+				760638D92D0FC84E00C3B16A /* Day15_2024.swift */,
+				760638DC2D0FD12F00C3B16A /* WarehouseSimulator.swift */,
+			);
+			path = Day15;
+			sourceTree = "<group>";
+		};
 		760D423A2949877800ED2842 /* Day13 */ = {
 			isa = PBXGroup;
 			children = (
@@ -965,6 +984,7 @@
 				76DF23382D0BE0A700C7C017 /* Day12 */,
 				76DF23442D0C778200C7C017 /* Day13 */,
 				760638C92D0E73BF00C3B16A /* Day14 */,
+				760638D52D0FC81D00C3B16A /* Day15 */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -986,6 +1006,7 @@
 				76DF233F2D0BE49900C7C017 /* Day12_2024Tests.swift */,
 				76DF234F2D0D1FC600C7C017 /* Day13_2024Tests.swift */,
 				760638D32D0F81A900C3B16A /* Day14_2024Tests.swift */,
+				760638DF2D10DFBA00C3B16A /* Day15_2024Tests.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -2330,6 +2351,7 @@
 				C516C89C275BC7A30038AB8A /* BingoBoard.swift in Sources */,
 				769340C82B316B6C0007B0CC /* Day17_2023.swift in Sources */,
 				C516C8412759587B0038AB8A /* ThreeDCoordinate.swift in Sources */,
+				760638DE2D0FD12F00C3B16A /* WarehouseSimulator.swift in Sources */,
 				7675FAC52D0A308400ED1F41 /* Pebbles.swift in Sources */,
 				C516C7AA27594B7C0038AB8A /* Passport.swift in Sources */,
 				76C1419C2944BDC800795D93 /* SimpleCPU.swift in Sources */,
@@ -2443,6 +2465,7 @@
 				C516C7B227594C040038AB8A /* BoardingPass.swift in Sources */,
 				C55F0874277AE49D00EEEFA2 /* CuboidGrid.swift in Sources */,
 				C556EF682757B454009B3078 /* AdventOfCodeApp.swift in Sources */,
+				760638DA2D0FC84E00C3B16A /* Day15_2024.swift in Sources */,
 				769B10C4294C45E500FCF287 /* DayFourteen2022.swift in Sources */,
 				C516C7BA27594D2B0038AB8A /* CustomsForm.swift in Sources */,
 				C55F0838276C48AD00EEEFA2 /* BITSTransmission.swift in Sources */,
@@ -2562,6 +2585,7 @@
 				C516C8CC27610D670038AB8A /* DayEight2021.swift in Sources */,
 				76C14175293F543200795D93 /* DaySix2022.swift in Sources */,
 				769B10CA294CB0A500FCF287 /* DayFourteen2022Tests.swift in Sources */,
+				760638DB2D0FC84E00C3B16A /* Day15_2024.swift in Sources */,
 				76320E0A294F5EF200B21519 /* BEZ.swift in Sources */,
 				C516C7C727594E0B0038AB8A /* LuggageRule.swift in Sources */,
 				C516C7A927594B7C0038AB8A /* DayFour2020.swift in Sources */,
@@ -2604,6 +2628,7 @@
 				C55F084D276F841200EEEFA2 /* SnailfishNumber.swift in Sources */,
 				C516C8B3275DD5940038AB8A /* DaySix2021Tests.swift in Sources */,
 				C516C84C2759587B0038AB8A /* ConwayCube.swift in Sources */,
+				760638DD2D0FD12F00C3B16A /* WarehouseSimulator.swift in Sources */,
 				76DF23432D0BE4A600C7C017 /* GardenPlots.swift in Sources */,
 				769B25632B236E5B008689CA /* WastelandMap.swift in Sources */,
 				769B254A2B203FE4008689CA /* Set.swift in Sources */,
@@ -2633,6 +2658,7 @@
 				76C141B62947E1A200795D93 /* DayTwelve2022Tests.swift in Sources */,
 				76C1416D293E20C100795D93 /* DayFive2022Tests.swift in Sources */,
 				C57773C82763976B006E5ADA /* DayTen2021Tests.swift in Sources */,
+				760638E02D10DFBA00C3B16A /* Day15_2024Tests.swift in Sources */,
 				C516C82F275958390038AB8A /* ClosedRangeWithGap.swift in Sources */,
 				76C14177293F64C900795D93 /* DaySix2022Tests.swift in Sources */,
 				7675FAC22D09591D00ED1F41 /* Day11_2024.swift in Sources */,
