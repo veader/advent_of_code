@@ -20,11 +20,6 @@ class CrucibleRoute {
         destination = Coordinate(x: data.xBounds.upperBound-1, y: data.yBounds.upperBound-1)
     }
 
-    struct PathComponent: Equatable {
-        let location: Coordinate
-        let direction: Coordinate.RelativeDirection
-    }
-
 
     /// Use Dijkstra's Algorithm to find the shortest path from the origin (0,0) to the end (bottom right node)
     func calculateRoute(trackPath: Bool = true) throws -> CityBlock? {
@@ -111,11 +106,11 @@ class CrucibleRoute {
 //            var amounts = [Int]()
 //
 //            group.addTask {
-//                return await self.calculateRoute1(from: .origin, moving: .east, along: [PathComponent(location: .origin, direction: .east)], heatLost: 0)
+//                return await self.calculateRoute1(from: .origin, moving: .east, along: [Vector(location: .origin, direction: .east)], heatLost: 0)
 //            }
 //
 //            group.addTask {
-//                return await self.calculateRoute1(from: .origin, moving: .south, along: [PathComponent(location: .origin, direction: .south)], heatLost: 0)
+//                return await self.calculateRoute1(from: .origin, moving: .south, along: [Vector(location: .origin, direction: .south)], heatLost: 0)
 //            }
 //
 //            for await amount in group {
@@ -127,10 +122,10 @@ class CrucibleRoute {
 //
 //        return heatLostAmounts.min() ?? Int.max
 //        
-////        await calculateRoute1(from: .origin, moving: .east, along: [PathComponent(location: .origin, direction: .east)], heatLost: 0)
+////        await calculateRoute1(from: .origin, moving: .east, along: [Vector(location: .origin, direction: .east)], heatLost: 0)
 //    }
 //
-//    func calculateRoute1(from location: Coordinate, moving direction: Coordinate.RelativeDirection, along path: [PathComponent], heatLost: Int) async -> Int {
+//    func calculateRoute1(from location: Coordinate, moving direction: Coordinate.RelativeDirection, along path: [Vector], heatLost: Int) async -> Int {
 //        // find possible next steps
 //        let possible = possibleRoutes(from: location, moving: direction, along: path)
 //
@@ -177,7 +172,7 @@ class CrucibleRoute {
 //        return possibleAmounts.min() ?? Int.max
 //    }
 //
-//    func possibleRoutes(from location: Coordinate, moving: Coordinate.RelativeDirection, along path: [PathComponent]) -> [PathComponent] {
+//    func possibleRoutes(from location: Coordinate, moving: Coordinate.RelativeDirection, along path: [Vector]) -> [Vector] {
 //        var possibleDirections = [Coordinate.RelativeDirection]()
 //
 //        let adjacent = data.adjacentCoordinates(to: location)
@@ -185,7 +180,7 @@ class CrucibleRoute {
 //
 //        let coordinates = path.map(\.location)
 //
-//        let paths: [PathComponent] = possibleDirections.compactMap { direction in
+//        let paths: [Vector] = possibleDirections.compactMap { direction in
 //            if direction == moving {
 //                // make sure we haven't moved 3 in this direction yet
 //                guard path.suffix(3).filter({$0.direction == direction}).count != 3 else { return nil }
@@ -195,7 +190,7 @@ class CrucibleRoute {
 //            // make sure we don't cross the same point twice
 //            let c = location.moving(direction: direction, originTopLeft: true)
 //            guard data.valid(coordinate: c), !coordinates.contains(c) else { return nil }
-//            return PathComponent(location: c, direction: direction)
+//            return Vector(location: c, direction: direction)
 //        }
 //
 //        return paths

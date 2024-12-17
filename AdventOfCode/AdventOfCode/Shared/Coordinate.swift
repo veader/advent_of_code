@@ -12,73 +12,10 @@ protocol CoordinateLike {
     var y: Int { get }
 }
 
-public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugStringConvertible {
+public struct Coordinate: CoordinateLike, Hashable {
     let x: Int
     let y: Int
     let name: String?
-
-    /// Relative direction used when finding orientation between Coordinates.
-    /// - Note: Uses compass directions assuming y+1 == north, x+1 == east
-    enum RelativeDirection: CaseIterable {
-        case north
-        case northEast
-        case east
-        case southEast
-        case south
-        case southWest
-        case west
-        case northWest
-        case same
-
-        /// Provide the opposite to this direction?
-        /// Example: North -> South
-        var opposite: RelativeDirection {
-            switch self {
-            case .north:
-                .south
-            case .northEast:
-                .southWest
-            case .east:
-                .west
-            case .southEast:
-                .northWest
-            case .south:
-                .north
-            case .southWest:
-                .northEast
-            case .west:
-                .east
-            case .northWest:
-                .southEast
-            case .same:
-                .same
-            }
-        }
-
-        /// rotating direction 90º clockwise...
-        var rotated90: RelativeDirection {
-            switch self {
-            case .north:
-                .east
-            case .northEast:
-                .southEast
-            case .east:
-                .south
-            case .southEast:
-                .southWest
-            case .south:
-                .west
-            case .southWest:
-                .northWest
-            case .west:
-                .north
-            case .northWest:
-                .northEast
-            case .same:
-                .same
-            }
-        }
-    }
 
     init(x: Int, y: Int) {
         self.x = x
@@ -117,16 +54,16 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
     }
 
     /// Find the relative direction of the given coordinate relative to ourself.
-    func direction(to coordB: Coordinate) -> RelativeDirection {
+    func direction(to coordB: Coordinate, originTopLeft: Bool = false) -> RelativeDirection {
         guard self != coordB else { return .same }
         let dX = coordB.x - self.x
         let dY = coordB.y - self.y
 
         if dX == 0 { // moving north/south
             if dY >= 0 {
-                return .north
+                return originTopLeft ? .south : .north
             } else {
-                return .south
+                return originTopLeft ? .north : .south
             }
         } else if dY == 0 { // moving east/west
             if dX >= 0 {
@@ -136,13 +73,13 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
             }
         } else { // moving diagonally
             if dY >= 0 && dX >= 0 {
-                return .northEast
+                return originTopLeft ? .southEast : .northEast
             } else if dY >= 0 && dX < 0 {
-                return .northWest
+                return originTopLeft ? .southWest : .northWest
             } else if dY < 0 && dX >= 0 {
-                return .southEast
+                return originTopLeft ? .northEast : .southEast
             } else {
-                return .southWest
+                return originTopLeft ? .northWest : .southWest
             }
         }
     }
@@ -224,9 +161,43 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
             }
         }
     }
+}
 
-    // MARK: - CustomDebugStringConvertable
+extension Coordinate {
+    /// The delta between two points (x offset and y offset)
+    struct GridDelta: Equatable, Hashable {
+        let x: Int
+        let y: Int
 
+        /// What is the opposite delta of this delta.
+        ///
+        /// Example: (X, Y) -> (-X, -Y) or (X, -Y) -> (-X, Y)
+        var opposite: GridDelta {
+            GridDelta(x: -x, y: -y)
+        }
+    }
+
+    /// The "delta" (meaning x offset and y offset) from this point to another.
+    func delta(to c2: Coordinate, originTopLeft: Bool = false) -> GridDelta {
+        if originTopLeft {
+            GridDelta(x: c2.x - self.x, y: c2.y - self.y)
+        } else {
+            GridDelta(x: self.x - c2.x, y: self.y - c2.y)
+        }
+    }
+
+    /// Apply the "delta" to the given coordinate to find the new coordinate.
+    func applying(delta: GridDelta, originTopLeft: Bool = false) -> Coordinate {
+        if originTopLeft {
+            Coordinate(x: self.x + delta.x, y: self.y + delta.y)
+        } else {
+            Coordinate(x: self.x - delta.x, y: self.y - delta.y)
+        }
+    }
+}
+
+// MARK: - CustomDebugStringConvertible
+extension Coordinate: CustomDebugStringConvertible {
     public var debugDescription: String {
         if let name = name {
             return "Coordinate(\(x)x\(y) '\(name)')"
@@ -234,17 +205,20 @@ public struct Coordinate: CoordinateLike, Hashable, Equatable, CustomDebugString
             return "Coordinate(\(x)x\(y))"
         }
     }
+}
 
-    // MARK: - Equatable
-
+// MARK: - Equatable
+extension Coordinate: Equatable {
     public static func == (lhs: Coordinate, rhs: Coordinate) -> Bool {
         // don't check the name
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 
+// MARK: - Comparable
 extension Coordinate: Comparable {
     public static func < (lhs: Coordinate, rhs: Coordinate) -> Bool {
         lhs.x < rhs.x && lhs.y < rhs.y
     }
 }
+

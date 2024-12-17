@@ -112,7 +112,7 @@ class LightMap {
         return (topEdgeCounts + bottomEdgeCounts + leftEdgeCounts + rightEdgeCounts).max() ?? -1
     }
 
-    func traceLight(_ location: Coordinate = .origin, traveling: Coordinate.RelativeDirection = .east) async -> Int {
+    func traceLight(_ location: Coordinate = .origin, traveling: RelativeDirection = .east) async -> Int {
         // reset!
         energizedPoints = []
         lightPaths = []
@@ -123,7 +123,7 @@ class LightMap {
         return energizedPoints.count
     }
 
-    func followLight(_ location: Coordinate, traveling: Coordinate.RelativeDirection) async {
+    func followLight(_ location: Coordinate, traveling: RelativeDirection) async {
         guard [.north, .south, .east, .west].contains(traveling) else { return } // only using major cardinal directions
 
         var current = location

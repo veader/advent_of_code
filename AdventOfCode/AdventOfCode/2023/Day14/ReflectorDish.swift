@@ -50,7 +50,7 @@ struct ReflectorDish {
         tilt(direction: .east)
     }
 
-    func tilt(direction: Coordinate.RelativeDirection = .north) {
+    func tilt(direction: RelativeDirection = .north) {
         switch direction {
         case .north:
             tiltVertical()

@@ -34,7 +34,7 @@ struct Day10_2023: AdventDay {
 
         var debugDescription: String { rawValue }
 
-        var attachments: [Coordinate.RelativeDirection] {
+        var attachments: [RelativeDirection] {
             switch self {
             case .vert:
                 [.north, .south]
@@ -59,7 +59,7 @@ struct Day10_2023: AdventDay {
     func pipeLength(grid: GridMap<Pipe>) throws -> [Coordinate] {
         guard let start = grid.first(where: { $0 == Pipe.start }) else { throw Day10Error.noStart }
         var current = start
-        var direction = Coordinate.RelativeDirection.same
+        var direction = RelativeDirection.same
         var path: [Coordinate] = [start]
         var atStart = true
 
@@ -84,8 +84,8 @@ struct Day10_2023: AdventDay {
         return path
     }
 
-    typealias PipeConnection = (coordinate: Coordinate, direction: Coordinate.RelativeDirection, pipe: Pipe?)
-    func possiblePaths(from coordinate: Coordinate, traveling direction: Coordinate.RelativeDirection, in grid: GridMap<Pipe>) throws -> [PipeConnection] {
+    typealias PipeConnection = (coordinate: Coordinate, direction: RelativeDirection, pipe: Pipe?)
+    func possiblePaths(from coordinate: Coordinate, traveling direction: RelativeDirection, in grid: GridMap<Pipe>) throws -> [PipeConnection] {
         guard let pipe = grid.item(at: coordinate) else { throw Day10Error.missingPipe }
         
         // find the paths available from the coordinate. found by considering available directions

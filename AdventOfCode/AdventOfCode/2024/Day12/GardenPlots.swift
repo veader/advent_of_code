@@ -140,7 +140,7 @@ class GardenPlots {
     func examine(side: FenceSegment.FenceSide, of coordinate: Coordinate) -> FenceSegment? {
         guard let thisItem = map.item(at: coordinate) else { return nil }
 
-        var direction: Coordinate.RelativeDirection = .north
+        var direction: RelativeDirection = .north
         switch side {
         case .top:
             direction = .north

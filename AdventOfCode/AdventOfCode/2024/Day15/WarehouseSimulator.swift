@@ -22,7 +22,7 @@ class WarehouseSimulator {
         case left = "<"
         case right = ">"
 
-        var direction: Coordinate.RelativeDirection {
+        var direction: RelativeDirection {
             switch self {
                 case .up: return .north
                 case .down: return .south

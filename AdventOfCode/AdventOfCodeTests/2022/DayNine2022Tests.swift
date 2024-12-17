@@ -88,7 +88,7 @@ final class DayNine2022Tests: XCTestCase {
     }
 
     func testRelativeCoordinateDirection() {
-        var answer: Coordinate.RelativeDirection
+        var answer: RelativeDirection
 
         // Same
         answer = Coordinate.origin.direction(to: Coordinate.origin)

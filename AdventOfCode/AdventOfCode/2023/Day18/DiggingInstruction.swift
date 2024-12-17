@@ -14,7 +14,7 @@ struct DiggingInstruction {
         case left = "L"
         case right = "R"
 
-        var direction: Coordinate.RelativeDirection {
+        var direction: RelativeDirection {
             switch self {
             case .up:
                 .north

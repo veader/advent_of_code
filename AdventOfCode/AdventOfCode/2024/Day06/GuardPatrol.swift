@@ -12,7 +12,7 @@ class GuardPatrol {
 
     var guardStartingPosition: Coordinate? = .origin
     var guardCurrentPosition: Coordinate = .origin
-    var guardOrientation: Coordinate.RelativeDirection = .north
+    var guardOrientation: RelativeDirection = .north
 
     init(map: GridMap<String>) {
         self.map = map

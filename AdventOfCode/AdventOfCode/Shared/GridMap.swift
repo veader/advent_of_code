@@ -38,7 +38,7 @@ class GridMap<Element> {
     ///
     /// Nil if coordinate not found in grid.
     func item(at coordinate: Coordinate) -> Element? {
-        guard isValid(coordinate: coordinate) else { return nil }
+        guard valid(coordinate: coordinate) else { return nil }
         return items[coordinate.y][coordinate.x]
     }
 
@@ -66,7 +66,7 @@ class GridMap<Element> {
     /// - returns: Success/failure of the update
     @discardableResult
     func update(at coordinate: Coordinate, with newValue: Element) -> Bool {
-        guard isValid(coordinate: coordinate) else { return false }
+        guard valid(coordinate: coordinate) else { return false }
         items[coordinate.y][coordinate.x] = newValue
         return true
     }
@@ -76,7 +76,7 @@ class GridMap<Element> {
     /// - returns: Success/failure of the update
     @discardableResult
     func update(at coordinate: Coordinate, by updateBlock: (Element) -> Element) -> Bool {
-        guard isValid(coordinate: coordinate) else { return false }
+        guard valid(coordinate: coordinate) else { return false }
         let currentValue = items[coordinate.y][coordinate.x]
         items[coordinate.y][coordinate.x] = updateBlock(currentValue)
         return true
@@ -181,6 +181,17 @@ class GridMap<Element> {
         }
     }
 
+    /// Iterate over all the locations in the entire grid calling the given block with
+    /// the coordinate and value.
+    ///
+    /// - Warning: This does force unwrap `item(at:)`, you have been warned!
+    func iterate(_ block: ((Coordinate, Element) -> Void)) {
+        coordinates().forEach { block($0, item(at: $0)!) }
+    }
+
+
+    // MARK: - Print
+
     /// Print the size (width x height) of the grid.
     func printSize() {
         print("Grid: \(xBounds.upperBound)x\(yBounds.upperBound)")
@@ -219,38 +230,12 @@ class GridMap<Element> {
             var row = [String]()
             xBounds.forEach { x in
                 row.append(transform(itemAt(x: x, y: y)))
-//                if let value = itemAt(x: x, y: y) {
-//                    row.append("\(value)")
-//                } else {
-//                    row.append("#")
-//                }
             }
             output.append(row.joined())
         }
 
         return output.joined(separator: "\n")
 
-    }
-
-    /// Iterate over all the locations in the entire grid calling the given block with
-    /// the coordinate and value.
-    ///
-    /// - Warning: This does force unwrap `item(at:)`, you have been warned!
-    func iterate(_ block: ((Coordinate, Element) -> Void)) {
-        coordinates().forEach { block($0, item(at: $0)!) }
-    }
-
-    
-    // Mark: - Private Methods
-
-    /// Is the given coordinate valid? (ie: within the coordinate space of the grid)
-    private func isValid(coordinate: Coordinate) -> Bool {
-        guard
-            items.indices.contains(coordinate.y),
-            items[coordinate.y].indices.contains(coordinate.x)
-        else { return false }
-
-        return true
     }
 }
 

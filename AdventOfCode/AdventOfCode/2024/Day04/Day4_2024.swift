@@ -27,7 +27,7 @@ struct Day4_2024: AdventDay {
         // find all X's
         let xCoordinates = grid.filter { $1 == "X" }
 
-        let directions = Coordinate.RelativeDirection.allCases.filter { $0 != .same }
+        let directions = RelativeDirection.allCases.filter { $0 != .same }
 
         // for each X determine how many XMASs extend from it (could be multiple)
         for x in xCoordinates {
@@ -41,7 +41,7 @@ struct Day4_2024: AdventDay {
     }
 
     /// Find `XMAS` in our grid starting with the `X` at the origin moving in the given directon.
-    func isXMAS(in grid: GridMap<String>, starting origin: Coordinate, traveling direction: Coordinate.RelativeDirection) -> [Coordinate]? {
+    func isXMAS(in grid: GridMap<String>, starting origin: Coordinate, traveling direction: RelativeDirection) -> [Coordinate]? {
         var point = origin
         var coordinates = [Coordinate]()
         var values = [String]()
