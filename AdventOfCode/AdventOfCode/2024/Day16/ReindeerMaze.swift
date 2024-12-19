@@ -46,7 +46,7 @@ class ReindeerMaze {
         visited[start] = startingScore
 
         while !spotsToCheck.isEmpty {
-            print("Visited: \(visited.count) | To Check: \(spotsToCheck.count)")
+            //print("Visited: \(visited.count) | To Check: \(spotsToCheck.count)")
             let spot = spotsToCheck.removeFirst()
 
             // check adjacent neighbors that are spaces (that haven't been visited?)
@@ -76,9 +76,12 @@ class ReindeerMaze {
                 var updatedScore = false
                 if let spaceCurrentScore = visited[space] {
                     // update this space (even if visited), if this new path is "cheaper"
-                    if spaceCurrentScore.score > newScore.score {
+                    if newScore.score < spaceCurrentScore.score {
                         visited[space] = newScore
                         updatedScore = true
+// Part 2 Idea: Find any place where we get to the same point with the same score?
+//                    } else if spaceCurrentScore.score == newScore.score {
+//                        print("Possible other path along this route...")
                     }
                 } else {
                     visited[space] = newScore
