@@ -201,7 +201,7 @@ class Chronoputer {
         let operand = try readOperand(combo: true)
         let result = operand % 8
         output.append(result)
-        print(result)
+        // print(result)
     }
 
     /// Division: A = A / 2^(combo)

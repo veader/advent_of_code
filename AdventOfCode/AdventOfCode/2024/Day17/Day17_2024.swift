@@ -25,7 +25,16 @@ struct Day17_2024: AdventDay {
 
     func partTwo(input: String?) async -> Any {
         let cpu = parse(input)
-        cpu.execute()
-        return 0
+        var aValue = 0
+
+        while cpu.output != cpu.instructions {
+            aValue += 1 // try the next number
+            
+            cpu.reset()
+            cpu.registerA = aValue
+            cpu.execute()
+        }
+
+        return aValue
     }
 }

@@ -525,6 +525,7 @@
 		760638FA2D13E8E200C3B16A /* Day17_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day17_2024.swift; sourceTree = "<group>"; };
 		760638FD2D13EDD600C3B16A /* Chronoputer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chronoputer.swift; sourceTree = "<group>"; };
 		760639002D13EFA400C3B16A /* Day17_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day17_2024Tests.swift; sourceTree = "<group>"; };
+		760639022D14DBD100C3B16A /* Thoughts.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Thoughts.md; sourceTree = "<group>"; };
 		760D423B2949878000ED2842 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		760D423C2949878900ED2842 /* DayThirteen2022.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThirteen2022.swift; sourceTree = "<group>"; };
 		760D423F2949A34400ED2842 /* DistressSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSignal.swift; sourceTree = "<group>"; };
@@ -951,6 +952,7 @@
 				760638F72D13E8C900C3B16A /* README.md */,
 				760638FA2D13E8E200C3B16A /* Day17_2024.swift */,
 				760638FD2D13EDD600C3B16A /* Chronoputer.swift */,
+				760639022D14DBD100C3B16A /* Thoughts.md */,
 			);
 			path = Day17;
 			sourceTree = "<group>";

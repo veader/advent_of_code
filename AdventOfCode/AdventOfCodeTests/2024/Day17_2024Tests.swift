@@ -6,14 +6,23 @@
 //
 
 import Testing
+import Foundation
 
 struct Day17_2024Tests {
     let sampleData = """
         Register A: 729
         Register B: 0
         Register C: 0
-
+        
         Program: 0,1,5,4,3,0
+        """
+
+    let sampleData2 = """
+        Register A: 2024
+        Register B: 0
+        Register C: 0
+        
+        Program: 0,3,5,4,3,0
         """
 
     let day = Day17_2024()
@@ -92,4 +101,14 @@ struct Day17_2024Tests {
         let answer = try await #require(day.run(part: 1) as? String)
         #expect(answer == "4,1,5,3,1,5,3,5,7")
     }
+
+//    @Test func testPartTwoWithSampleData() async throws {
+//        let output = try await #require(day.partTwo(input: sampleData2) as? Int)
+//        #expect(output == 117440)
+//    }
+//
+//    @Test func testPartTwo() async throws {
+//        let answer = try await #require(day.run(part: 2) as? Int)
+//        #expect(answer == 100)
+//    }
 }
