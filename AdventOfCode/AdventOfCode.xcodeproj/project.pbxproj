@@ -33,6 +33,11 @@
 		760638FE2D13EDD600C3B16A /* Chronoputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638FD2D13EDD600C3B16A /* Chronoputer.swift */; };
 		760638FF2D13EDD600C3B16A /* Chronoputer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760638FD2D13EDD600C3B16A /* Chronoputer.swift */; };
 		760639012D13EFA400C3B16A /* Day17_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760639002D13EFA400C3B16A /* Day17_2024Tests.swift */; };
+		7606390A2D14E08500C3B16A /* Day19_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760639092D14E08500C3B16A /* Day19_2024.swift */; };
+		7606390B2D14E08500C3B16A /* Day19_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 760639092D14E08500C3B16A /* Day19_2024.swift */; };
+		7606390D2D152AC000C3B16A /* Day19_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7606390C2D152AC000C3B16A /* Day19_2024Tests.swift */; };
+		7606390F2D15B7DE00C3B16A /* OnsenDesigns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7606390E2D15B7DE00C3B16A /* OnsenDesigns.swift */; };
+		760639102D15B7DE00C3B16A /* OnsenDesigns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7606390E2D15B7DE00C3B16A /* OnsenDesigns.swift */; };
 		760D4235294918CD00ED2842 /* Collections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4234294918CD00ED2842 /* Collections */; };
 		760D4237294918CD00ED2842 /* DequeModule in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4236294918CD00ED2842 /* DequeModule */; };
 		760D4239294918CD00ED2842 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = 760D4238294918CD00ED2842 /* OrderedCollections */; };
@@ -526,6 +531,10 @@
 		760638FD2D13EDD600C3B16A /* Chronoputer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chronoputer.swift; sourceTree = "<group>"; };
 		760639002D13EFA400C3B16A /* Day17_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day17_2024Tests.swift; sourceTree = "<group>"; };
 		760639022D14DBD100C3B16A /* Thoughts.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Thoughts.md; sourceTree = "<group>"; };
+		760639062D14E07A00C3B16A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		760639092D14E08500C3B16A /* Day19_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day19_2024.swift; sourceTree = "<group>"; };
+		7606390C2D152AC000C3B16A /* Day19_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day19_2024Tests.swift; sourceTree = "<group>"; };
+		7606390E2D15B7DE00C3B16A /* OnsenDesigns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnsenDesigns.swift; sourceTree = "<group>"; };
 		760D423B2949878000ED2842 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		760D423C2949878900ED2842 /* DayThirteen2022.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayThirteen2022.swift; sourceTree = "<group>"; };
 		760D423F2949A34400ED2842 /* DistressSignal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DistressSignal.swift; sourceTree = "<group>"; };
@@ -957,6 +966,16 @@
 			path = Day17;
 			sourceTree = "<group>";
 		};
+		760639052D14E06D00C3B16A /* Day19 */ = {
+			isa = PBXGroup;
+			children = (
+				760639062D14E07A00C3B16A /* README.md */,
+				760639092D14E08500C3B16A /* Day19_2024.swift */,
+				7606390E2D15B7DE00C3B16A /* OnsenDesigns.swift */,
+			);
+			path = Day19;
+			sourceTree = "<group>";
+		};
 		760D423A2949877800ED2842 /* Day13 */ = {
 			isa = PBXGroup;
 			children = (
@@ -1036,6 +1055,7 @@
 				760638D52D0FC81D00C3B16A /* Day15 */,
 				760638E12D11128900C3B16A /* Day16 */,
 				760638F62D13E8BE00C3B16A /* Day17 */,
+				760639052D14E06D00C3B16A /* Day19 */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -1060,6 +1080,7 @@
 				760638DF2D10DFBA00C3B16A /* Day15_2024Tests.swift */,
 				760638EB2D114C2000C3B16A /* Day16_2024Tests.swift */,
 				760639002D13EFA400C3B16A /* Day17_2024Tests.swift */,
+				7606390C2D152AC000C3B16A /* Day19_2024Tests.swift */,
 			);
 			path = 2024;
 			sourceTree = "<group>";
@@ -2427,6 +2448,7 @@
 				C516C87A275959C60038AB8A /* Groceries.swift in Sources */,
 				76C14174293F543200795D93 /* DaySix2022.swift in Sources */,
 				760638F22D11B7E800C3B16A /* Vector.swift in Sources */,
+				760639102D15B7DE00C3B16A /* OnsenDesigns.swift in Sources */,
 				C516C84B2759587B0038AB8A /* ConwayCube.swift in Sources */,
 				76C1416A293E1F1100795D93 /* DayFive2022.swift in Sources */,
 				C516C8D0276137600038AB8A /* SegmentedDisplay.swift in Sources */,
@@ -2464,6 +2486,7 @@
 				C55F085827719C4700EEEFA2 /* DayTwenty2021.swift in Sources */,
 				76C141A62946298500795D93 /* MonkeySim.swift in Sources */,
 				76C141B32947E01B00795D93 /* HillClimbingAlgo.swift in Sources */,
+				7606390A2D14E08500C3B16A /* Day19_2024.swift in Sources */,
 				C516C8472759587B0038AB8A /* ExperimentalPowerSource.swift in Sources */,
 				76C141802940E6E500795D93 /* ElfConsole.swift in Sources */,
 				C55F08672776C91500EEEFA2 /* DiceGame.swift in Sources */,
@@ -2595,6 +2618,7 @@
 				769B25712B2582AE008689CA /* Day10_2023.swift in Sources */,
 				C516C89D275BC7A30038AB8A /* BingoBoard.swift in Sources */,
 				C55F08542770FF1A00EEEFA2 /* DayNineteen2021.swift in Sources */,
+				7606390B2D14E08500C3B16A /* Day19_2024.swift in Sources */,
 				C57773D72766EABD006E5ADA /* DayTwelve2021Tests.swift in Sources */,
 				769340CE2B32BD030007B0CC /* Day17_2023Tests.swift in Sources */,
 				769B25582B21FD1F008689CA /* Day7_2023Tests.swift in Sources */,
@@ -2673,6 +2697,7 @@
 				C516C852275958C70038AB8A /* DayEighteen2020.swift in Sources */,
 				769B25962B2BCA98008689CA /* MirrorPattern.swift in Sources */,
 				763029112B2EAD34006E5307 /* LensHashMap.swift in Sources */,
+				7606390D2D152AC000C3B16A /* Day19_2024Tests.swift in Sources */,
 				76BA9CE32B1A20CF00D12FA3 /* Day1_2023.swift in Sources */,
 				C516C8442759587B0038AB8A /* DaySeventeen2020.swift in Sources */,
 				76C1414B2939671D00795D93 /* DayOne2022.swift in Sources */,
@@ -2789,6 +2814,7 @@
 				C516C7AB27594B7C0038AB8A /* Passport.swift in Sources */,
 				7675FA7D2D02808800ED1F41 /* Day5_2024Tests.swift in Sources */,
 				76C141A72946298500795D93 /* MonkeySim.swift in Sources */,
+				7606390F2D15B7DE00C3B16A /* OnsenDesigns.swift in Sources */,
 				76C1417C294064B400795D93 /* DaySeven2022.swift in Sources */,
 				C516C80B275956790038AB8A /* DayThirteen2020.swift in Sources */,
 				C55F0845276D83B600EEEFA2 /* DaySeventeen2021Tests.swift in Sources */,
