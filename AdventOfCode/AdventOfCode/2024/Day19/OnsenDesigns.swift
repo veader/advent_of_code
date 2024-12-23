@@ -137,9 +137,9 @@ class OnsenDesigns {
     }
 
     func printPatterns() {
-        let sorted = arrangedPatterns
-        for size in arrangedPatterns.keys.sorted() {
-            guard let sizedPatterns = arrangedPatterns[size] else { continue }
+        let pats = arrangedPatterns
+        for size in pats.keys.sorted() {
+            guard let sizedPatterns = pats[size] else { continue }
             print(sizedPatterns.sorted().joined(separator: "\n"))
         }
     }

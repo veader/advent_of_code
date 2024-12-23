@@ -18,6 +18,11 @@ class GridMap<Element> {
         self.yBounds = 0..<items.count
     }
 
+    convenience init(width: Int, height: Int, initialValue: Element) {
+        let initialItems = Array(repeating: Array(repeating: initialValue, count: width), count: height)
+        self.init(items: initialItems)
+    }
+
 
     // MARK: -
 

@@ -58,9 +58,9 @@ struct Day5_2024: AdventDay {
                     idx += 1 // move to next index
                 } else {
                     // TODO: What if this is more than one? Find the futherest point forward?
-                    if intersection.count > 1 {
-                        print("Found multiple swappablepages: \(intersection)")
-                    }
+//                    if intersection.count > 1 {
+//                        print("Found multiple swappablepages: \(intersection)")
+//                    }
 
                     if let missing = intersection.first, let missingIdx = copy.firstIndex(of: missing) {
                         // swap the pages

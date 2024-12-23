@@ -13,16 +13,19 @@ class ReindeerMaze {
         case start = "S"
         case end = "E"
         case space = "."
+        case occupied = "O"
     }
 
     let maze: GridMap<MazeItem>
     let start: Coordinate
     let end: Coordinate
 
+    let turnCost: Int
+
     var position: Coordinate = .origin
     var orientation: RelativeDirection = .east
 
-    init?(input: String) {
+    init?(input: String, turnCost: Int = 1000) {
         let mazeData: [[MazeItem]] = input.lines().map { line in
             line.charSplit().compactMap { MazeItem(rawValue: $0) }
         }
@@ -35,11 +38,12 @@ class ReindeerMaze {
 
         self.start = theStart
         self.end = theEnd
+        self.turnCost = turnCost
     }
 
     func crawlMaze() -> MazeScore? {
         let startingVector = Vector(location: start, direction: .east)
-        let startingScore: MazeScore = .init(turns: 0, path: [startingVector])
+        let startingScore = MazeScore(turns: 0, path: [startingVector], turnCost: turnCost)
 
         var spotsToCheck: [MazeScore] = [startingScore]
         var visited: [Coordinate: MazeScore] = [:]
@@ -114,8 +118,11 @@ class ReindeerMaze {
         /// The number of steps made to reach this score
         let path: [Vector]
 
+        /// The cost of taking a turn when scoring
+        let turnCost: Int
+
         /// The score based on turns and path
-        var score: Int { turns * 1000 + (path.count - 1) } // remove start or end (depending on how you view the world)
+        var score: Int { (turns * turnCost) + (path.count - 1) } // remove start or end (depending on how you view the world)
 
         /// The direction should be based on the last element of the path. (Defaults to East)
         var direction: RelativeDirection { path.last?.direction ?? .east }
@@ -128,7 +135,7 @@ class ReindeerMaze {
         func turningClockwise() -> MazeScore {
             let vector = path.last!
             let newVector = Vector(location: vector.location, direction: vector.direction.rotated90)
-            return MazeScore(turns: turns + 1, path: path.dropLast() + [newVector])
+            return MazeScore(turns: turns + 1, path: path.dropLast() + [newVector], turnCost: turnCost)
         }
 
         /// Return a new maze score by turning 90º counter-clockwise
@@ -136,7 +143,7 @@ class ReindeerMaze {
         func turningCounterClockwise() -> MazeScore {
             let vector = path.last!
             let newVector = Vector(location: vector.location, direction: vector.direction.ccwRotation90)
-            return MazeScore(turns: turns + 1, path: path.dropLast() + [newVector])
+            return MazeScore(turns: turns + 1, path: path.dropLast() + [newVector], turnCost: turnCost)
         }
 
         /// Returns a new maze score by adding a new step along the path.
@@ -146,7 +153,7 @@ class ReindeerMaze {
         func moving(to location: Coordinate) -> MazeScore {
             let vector = path.last!
             let newVector = Vector(location: location, direction: vector.direction)
-            return MazeScore(turns: turns, path: path + [newVector])
+            return MazeScore(turns: turns, path: path + [newVector], turnCost: turnCost)
         }
     }
 }

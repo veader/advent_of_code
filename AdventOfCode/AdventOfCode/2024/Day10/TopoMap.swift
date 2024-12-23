@@ -71,7 +71,7 @@ class TopoMap {
     ///
     /// - Returns: Complete paths (if any) from current position to end.
     func hikePaths(from current: Coordinate, path: [Coordinate] = []) async -> [[Coordinate]] {
-        var updatedPath = path + [current]
+        let updatedPath = path + [current]
 
         guard let currentItem = grid.item(at: current), let currentNum = Int(currentItem), currentNum != 9 else {
             // we've reached the end...

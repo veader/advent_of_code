@@ -23,7 +23,7 @@ struct Day16_2024: AdventDay {
     }
 
     func partTwo(input: String?) async -> Any {
-        guard let maze = parse(input) else { return -1 }
+//        guard let maze = parse(input) else { return -1 }
         return 0
     }
 }

@@ -24,7 +24,7 @@ struct Day15_2024: AdventDay {
     }
 
     func partTwo(input: String?) async -> Any {
-        let warehouse = parse(input)
+//        let warehouse = parse(input)
         return 0
     }
 }
