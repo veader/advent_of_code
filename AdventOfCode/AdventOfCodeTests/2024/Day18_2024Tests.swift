@@ -65,11 +65,11 @@ struct Day18_2024Tests {
         let maze = try #require(ReindeerMaze(input: mazeString, turnCost: 0))
         let solution = try #require(maze.crawlMaze())
 
-//        print(solution)
-//        for point in solution.path {
-//            maze.maze.update(at: point.location, with: .occupied)
-//        }
-//        maze.printMaze()
+        //        print(solution)
+        //        for point in solution.path {
+        //            maze.maze.update(at: point.location, with: .occupied)
+        //        }
+        //        maze.printMaze()
 
         #expect(solution.path.count == 23) // 23 - 1 (skip origin/start) == 22
     }
@@ -78,4 +78,31 @@ struct Day18_2024Tests {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 310)
     }
+
+    @Test func testFindingBlockingPoint() async throws {
+        let coords = day.parse(sampleData)
+        let mazeString = try #require(day.createMaze(coordinates: coords, count: 12, size: 7))
+        let maze = try #require(ReindeerMaze(input: mazeString, turnCost: 0))
+
+        var idx = 12
+        while idx < coords.count {
+            //            print("\(idx) \(coords[idx])")
+            maze.maze.update(at: coords[idx], with: .wall)
+            if let _ = maze.crawlMaze() {
+                idx += 1
+                continue // still solvable, grab another point
+            } else {
+                break // no solution
+            }
+        }
+
+        #expect(idx == 20)
+        #expect(coords[idx] == Coordinate(x: 6, y: 1))
+    }
+
+    // takes about 104 seconds...
+    //    @Test func testPartTwo() async throws {
+    //        let answer = try await #require(day.run(part: 2) as? String)
+    //        #expect(answer == "16,46")
+    //    }
 }

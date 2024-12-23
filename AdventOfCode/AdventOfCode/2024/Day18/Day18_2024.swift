@@ -11,7 +11,7 @@ struct Day18_2024: AdventDay {
     var year = 2024
     var dayNumber = 18
     var dayTitle = "RAM Run"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> [Coordinate] {
         (input ?? "").lines().compactMap { Coordinate.parse($0) }
@@ -40,7 +40,6 @@ struct Day18_2024: AdventDay {
     func partOne(input: String?) async-> Any {
         let coordinates = parse(input) // 3450
         guard let mazeString = createMaze(coordinates: coordinates, count: 1024) else { return 0 }
-        print(mazeString)
         if let maze = ReindeerMaze(input: mazeString, turnCost: 0) {
             guard let solution = maze.crawlMaze() else { return 0 }
             return solution.path.count - 1 // skip origin
@@ -49,8 +48,21 @@ struct Day18_2024: AdventDay {
     }
 
     func partTwo(input: String?) async -> Any {
-//        let coordinates = parse(input)
-//        let mazeString = createMaze(coordinates: coordinates)
-        return 0
+        let coordinates = parse(input) // 3450
+        guard let mazeString = createMaze(coordinates: coordinates, count: 1024) else { return 0 }
+        if let maze = ReindeerMaze(input: mazeString, turnCost: 0) {
+            var idx = 1024 // continue after initial set (which we know are good from part 1)
+            while idx < coordinates.count {
+                // drop in another byte of memory
+                let byte = coordinates[idx]
+                maze.maze.update(at: byte, with: .wall)
+
+                // determine if the maze is still solvable
+                guard let _ = maze.crawlMaze() else { return "\(byte.x),\(byte.y)" }
+
+                idx += 1 // move to next byte
+            }
+        }
+        return ""
     }
 }
