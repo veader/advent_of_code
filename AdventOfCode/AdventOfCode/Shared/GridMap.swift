@@ -229,12 +229,13 @@ class GridMap<Element> {
         return output.joined(separator: "\n")
     }
 
-    func gridAsString(transform: (Element?) -> String) -> String {
+    func gridAsString(transform: (Coordinate, Element?) -> String) -> String {
         var output = [String]()
         yBounds.forEach { y in
             var row = [String]()
             xBounds.forEach { x in
-                row.append(transform(itemAt(x: x, y: y)))
+                let c = Coordinate(x: x, y: y)
+                row.append(transform(c, item(at: c)))
             }
             output.append(row.joined())
         }

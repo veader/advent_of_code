@@ -126,6 +126,12 @@ class OnsenDesigns {
     }
 
 
+    // MARK: - Next Attempt
+
+    // Consider trying this...
+    // https://en.wikipedia.org/wiki/Trie
+
+
     // MARK: - Printing
 
     var arrangedPatterns: [Int: [String]] {

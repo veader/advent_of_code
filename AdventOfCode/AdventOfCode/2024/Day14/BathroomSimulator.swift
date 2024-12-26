@@ -104,7 +104,7 @@ class BathroomSimulator {
 
     @discardableResult
     func printBathroom(map bathroomMap: GridMap<Int>) -> String {
-        let output = bathroomMap.gridAsString(transform: { item in
+        let output = bathroomMap.gridAsString(transform: { position, item in
             guard let item, item > 0 else { return "." }
             return "\(item)"
         })

@@ -50,14 +50,14 @@ struct Day16_2024Tests {
 
     @Test func testMazeParsing() async throws {
         let maze1 = try #require(day.parse(sampleData1))
-        #expect(maze1.maze.width == 15)
-        #expect(maze1.maze.height == 15)
+        #expect(maze1.width == 15)
+        #expect(maze1.height == 15)
         #expect(maze1.start == Coordinate(x: 1, y: 13))
         #expect(maze1.end == Coordinate(x: 13, y: 1))
 
         let maze2 = try #require(day.parse(sampleData2))
-        #expect(maze2.maze.width == 17)
-        #expect(maze2.maze.height == 17)
+        #expect(maze2.width == 17)
+        #expect(maze2.height == 17)
         #expect(maze2.start == Coordinate(x: 1, y: 15))
         #expect(maze2.end == Coordinate(x: 15, y: 1))
     }

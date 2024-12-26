@@ -40,7 +40,7 @@ struct Day18_2024: AdventDay {
     func partOne(input: String?) async-> Any {
         let coordinates = parse(input) // 3450
         guard let mazeString = createMaze(coordinates: coordinates, count: 1024) else { return 0 }
-        if let maze = ReindeerMaze(input: mazeString, turnCost: 0) {
+        if let maze = Maze(input: mazeString, turnCost: 0) {
             guard let solution = maze.crawlMaze() else { return 0 }
             return solution.path.count - 1 // skip origin
         }
@@ -50,12 +50,12 @@ struct Day18_2024: AdventDay {
     func partTwo(input: String?) async -> Any {
         let coordinates = parse(input) // 3450
         guard let mazeString = createMaze(coordinates: coordinates, count: 1024) else { return 0 }
-        if let maze = ReindeerMaze(input: mazeString, turnCost: 0) {
+        if let maze = Maze(input: mazeString, turnCost: 0) {
             var idx = 1024 // continue after initial set (which we know are good from part 1)
             while idx < coordinates.count {
                 // drop in another byte of memory
                 let byte = coordinates[idx]
-                maze.maze.update(at: byte, with: .wall)
+                maze.grid.update(at: byte, with: .wall)
 
                 // determine if the maze is still solvable
                 guard let _ = maze.crawlMaze() else { return "\(byte.x),\(byte.y)" }

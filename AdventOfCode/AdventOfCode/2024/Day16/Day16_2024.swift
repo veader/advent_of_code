@@ -13,8 +13,8 @@ struct Day16_2024: AdventDay {
     var dayTitle = "Reindeer Maze"
     var stars = 1
 
-    func parse(_ input: String?) -> ReindeerMaze? {
-        ReindeerMaze(input: input ?? "")
+    func parse(_ input: String?) -> Maze? {
+        Maze(input: input ?? "")
     }
 
     func partOne(input: String?) async-> Any {

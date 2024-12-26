@@ -62,7 +62,7 @@ struct Day18_2024Tests {
     @Test func solvingMaze() async throws {
         let coords = day.parse(sampleData)
         let mazeString = try #require(day.createMaze(coordinates: coords, count: 12, size: 7))
-        let maze = try #require(ReindeerMaze(input: mazeString, turnCost: 0))
+        let maze = try #require(Maze(input: mazeString, turnCost: 0))
         let solution = try #require(maze.crawlMaze())
 
         //        print(solution)
@@ -82,12 +82,12 @@ struct Day18_2024Tests {
     @Test func testFindingBlockingPoint() async throws {
         let coords = day.parse(sampleData)
         let mazeString = try #require(day.createMaze(coordinates: coords, count: 12, size: 7))
-        let maze = try #require(ReindeerMaze(input: mazeString, turnCost: 0))
+        let maze = try #require(Maze(input: mazeString, turnCost: 0))
 
         var idx = 12
         while idx < coords.count {
             //            print("\(idx) \(coords[idx])")
-            maze.maze.update(at: coords[idx], with: .wall)
+            maze.grid.update(at: coords[idx], with: .wall)
             if let _ = maze.crawlMaze() {
                 idx += 1
                 continue // still solvable, grab another point

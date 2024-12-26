@@ -131,6 +131,7 @@ enum AdventYear: String, CaseIterable, Identifiable {
                 Day17_2024(),
                 Day18_2024(),
                 Day19_2024(),
+                Day20_2024(),
             ]
 //        default:
 //            return []

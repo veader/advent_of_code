@@ -74,7 +74,7 @@ class WarehouseSimulator {
     }
 
     func printMap() {
-        print(map.gridAsString(transform: { $0?.rawValue ?? " " }))
+        print(map.gridAsString(transform: { $1?.rawValue ?? " " }))
     }
 
     func boxCoordinates() -> [Coordinate] {
