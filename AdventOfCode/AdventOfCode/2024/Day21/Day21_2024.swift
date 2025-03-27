@@ -18,7 +18,22 @@ struct Day21_2024: AdventDay {
     }
 
     func partOne(input: String?) async-> Any {
-        return 0
+        let dPad = DPad()
+        let lines = parse(input)
+
+        var total = 0
+        for line in lines {
+            let moves = dPad.translate(line)
+            let num = Int(line.dropLast())
+            print(line)
+            print(moves.map(\.rawValue).joined(separator: ""))
+            print(moves.count)
+            print("\(num)\n\n")
+
+            total += moves.count * (num ?? 0)
+        }
+
+        return total
     }
 
     func partTwo(input: String?) async -> Any {
