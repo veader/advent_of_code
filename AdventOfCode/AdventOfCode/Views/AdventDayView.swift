@@ -38,6 +38,7 @@ struct AdventDayView: View {
             Spacer()
         }
         .padding()
+        .frame(minWidth: 400)
         .toolbar {
             ToolbarItem {
                 if running {

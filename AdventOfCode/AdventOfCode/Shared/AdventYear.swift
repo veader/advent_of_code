@@ -14,6 +14,7 @@ enum AdventYear: String, CaseIterable, Identifiable {
     case year2022 = "2022"
     case year2023 = "2023"
     case year2024 = "2024"
+    case year2025 = "2025"
 
     var id: AdventYear { self }
 
@@ -134,8 +135,10 @@ enum AdventYear: String, CaseIterable, Identifiable {
                 Day20_2024(),
                 Day21_2024(),
             ]
-//        default:
-//            return []
+        case .year2025:
+            return [
+                Day1_2025(),
+            ]
         }
     }
 }

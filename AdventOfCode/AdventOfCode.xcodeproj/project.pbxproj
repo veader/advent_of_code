@@ -192,6 +192,11 @@
 		769B25982B2BCACE008689CA /* ReflectorDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25972B2BCACE008689CA /* ReflectorDish.swift */; };
 		769B25992B2BCACE008689CA /* ReflectorDish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B25972B2BCACE008689CA /* ReflectorDish.swift */; };
 		769B259B2B2BF53C008689CA /* Day14_2023Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769B259A2B2BF53C008689CA /* Day14_2023Tests.swift */; };
+		76AEDBCD2EDF79120034902A /* Day1_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEDBCC2EDF79120034902A /* Day1_2025.swift */; };
+		76AEDBCE2EDF79120034902A /* Day1_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEDBCC2EDF79120034902A /* Day1_2025.swift */; };
+		76AEDBD02EDFC4BF0034902A /* CombinationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEDBCF2EDFC4BF0034902A /* CombinationStep.swift */; };
+		76AEDBD12EDFC4BF0034902A /* CombinationStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEDBCF2EDFC4BF0034902A /* CombinationStep.swift */; };
+		76AEDBD42EDFC6B30034902A /* DayOne2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76AEDBD32EDFC6B30034902A /* DayOne2025.swift */; };
 		76B8BC0A2B33583500E769C0 /* CityBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B8BC092B33583500E769C0 /* CityBlock.swift */; };
 		76B8BC0B2B33583500E769C0 /* CityBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B8BC092B33583500E769C0 /* CityBlock.swift */; };
 		76BA9CE22B1A20CF00D12FA3 /* Day1_2023.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */; };
@@ -674,6 +679,10 @@
 		769B25942B2BCA98008689CA /* MirrorPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MirrorPattern.swift; sourceTree = "<group>"; };
 		769B25972B2BCACE008689CA /* ReflectorDish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReflectorDish.swift; sourceTree = "<group>"; };
 		769B259A2B2BF53C008689CA /* Day14_2023Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day14_2023Tests.swift; sourceTree = "<group>"; };
+		76AEDBC92EDF78FD0034902A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = README.md; sourceTree = "<group>"; };
+		76AEDBCC2EDF79120034902A /* Day1_2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1_2025.swift; sourceTree = "<group>"; };
+		76AEDBCF2EDFC4BF0034902A /* CombinationStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombinationStep.swift; sourceTree = "<group>"; };
+		76AEDBD32EDFC6B30034902A /* DayOne2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayOne2025.swift; sourceTree = "<group>"; };
 		76B8BC092B33583500E769C0 /* CityBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityBlock.swift; sourceTree = "<group>"; };
 		76BA9CE02B1A20BA00D12FA3 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76BA9CE12B1A20CF00D12FA3 /* Day1_2023.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day1_2023.swift; sourceTree = "<group>"; };
@@ -1392,6 +1401,32 @@
 			path = Day14;
 			sourceTree = "<group>";
 		};
+		76AEDBC72EDF78EB0034902A /* 2025 */ = {
+			isa = PBXGroup;
+			children = (
+				76AEDBC82EDF78F40034902A /* Day01 */,
+			);
+			path = 2025;
+			sourceTree = "<group>";
+		};
+		76AEDBC82EDF78F40034902A /* Day01 */ = {
+			isa = PBXGroup;
+			children = (
+				76AEDBC92EDF78FD0034902A /* README.md */,
+				76AEDBCC2EDF79120034902A /* Day1_2025.swift */,
+				76AEDBCF2EDFC4BF0034902A /* CombinationStep.swift */,
+			);
+			path = Day01;
+			sourceTree = "<group>";
+		};
+		76AEDBD22EDFC6740034902A /* 2025 */ = {
+			isa = PBXGroup;
+			children = (
+				76AEDBD32EDFC6B30034902A /* DayOne2025.swift */,
+			);
+			path = 2025;
+			sourceTree = "<group>";
+		};
 		76BA9CDD2B192C6900D12FA3 /* 2023 */ = {
 			isa = PBXGroup;
 			children = (
@@ -2037,6 +2072,7 @@
 				76C14146293966EE00795D93 /* 2022 */,
 				76BA9CDD2B192C6900D12FA3 /* 2023 */,
 				7675FA522CFE3CED00ED1F41 /* 2024 */,
+				76AEDBC72EDF78EB0034902A /* 2025 */,
 				C556EF672757B454009B3078 /* AdventOfCodeApp.swift */,
 				C556EFA72757C9D1009B3078 /* Views */,
 				C556EF6B2757B455009B3078 /* Assets.xcassets */,
@@ -2063,6 +2099,7 @@
 				76C1414C29396A5400795D93 /* 2022 */,
 				76BA9CDF2B192C8800D12FA3 /* 2023 */,
 				7675FA572CFE436700ED1F41 /* 2024 */,
+				76AEDBD22EDFC6740034902A /* 2025 */,
 				C556EF792757B455009B3078 /* AdventOfCodeTests.swift */,
 			);
 			path = AdventOfCodeTests;
@@ -2378,7 +2415,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1310;
-				LastUpgradeCheck = 1600;
+				LastUpgradeCheck = 2610;
 				TargetAttributes = {
 					C556EF632757B454009B3078 = {
 						CreatedOnToolsVersion = 13.1;
@@ -2466,6 +2503,7 @@
 				760638D12D0F708200C3B16A /* BathroomSimulator.swift in Sources */,
 				C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */,
 				769B257F2B28356E008689CA /* SolarSystem.swift in Sources */,
+				76AEDBCD2EDF79120034902A /* Day1_2025.swift in Sources */,
 				C55F0835276C444C00EEEFA2 /* DaySixteen2021.swift in Sources */,
 				C55F0842276CC56D00EEEFA2 /* TrickShot.swift in Sources */,
 				C516C7CC27594E0B0038AB8A /* DaySeven2020.swift in Sources */,
@@ -2488,6 +2526,7 @@
 				C516C89C275BC7A30038AB8A /* BingoBoard.swift in Sources */,
 				769340C82B316B6C0007B0CC /* Day17_2023.swift in Sources */,
 				C516C8412759587B0038AB8A /* ThreeDCoordinate.swift in Sources */,
+				76AEDBD12EDFC4BF0034902A /* CombinationStep.swift in Sources */,
 				765381882D19B3540015CD14 /* Day20_2024.swift in Sources */,
 				760638DE2D0FD12F00C3B16A /* WarehouseSimulator.swift in Sources */,
 				7675FAC52D0A308400ED1F41 /* Pebbles.swift in Sources */,
@@ -2813,6 +2852,7 @@
 				76C141B62947E1A200795D93 /* DayTwelve2022Tests.swift in Sources */,
 				76C1416D293E20C100795D93 /* DayFive2022Tests.swift in Sources */,
 				C57773C82763976B006E5ADA /* DayTen2021Tests.swift in Sources */,
+				76AEDBCE2EDF79120034902A /* Day1_2025.swift in Sources */,
 				760638E02D10DFBA00C3B16A /* Day15_2024Tests.swift in Sources */,
 				C516C82F275958390038AB8A /* ClosedRangeWithGap.swift in Sources */,
 				76C14177293F64C900795D93 /* DaySix2022Tests.swift in Sources */,
@@ -2841,6 +2881,7 @@
 				C516C8482759587B0038AB8A /* ExperimentalPowerSource.swift in Sources */,
 				C516C7B327594C040038AB8A /* BoardingPass.swift in Sources */,
 				7675FAAC2D078AB700ED1F41 /* SimpleDisk.swift in Sources */,
+				76AEDBD42EDFC6B30034902A /* DayOne2025.swift in Sources */,
 				760638E72D11129F00C3B16A /* Day16_2024.swift in Sources */,
 				C57773BE27630405006E5ADA /* GridMap.swift in Sources */,
 				7675FA592CFE437900ED1F41 /* Day1_2024Tests.swift in Sources */,
@@ -2860,6 +2901,7 @@
 				760D42412949A34700ED2842 /* DistressSignal.swift in Sources */,
 				7675FA722D00196D00ED1F41 /* Day4_2024.swift in Sources */,
 				C516C8632759592F0038AB8A /* DayNineteen2020.swift in Sources */,
+				76AEDBD02EDFC4BF0034902A /* CombinationStep.swift in Sources */,
 				C516C88E2759F1490038AB8A /* DayThree2021Tests.swift in Sources */,
 				7653818B2D1B46500015CD14 /* MazeTests.swift in Sources */,
 				7630290E2B2D5C70006E5307 /* Day15_2023.swift in Sources */,
@@ -3007,6 +3049,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = U47EA53RZE;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -3029,6 +3072,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -3070,6 +3114,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEAD_CODE_STRIPPING = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = U47EA53RZE;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -3085,6 +3130,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
@@ -3102,9 +3148,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AdventOfCode/Preview Content\"";
-				DEVELOPMENT_TEAM = U47EA53RZE;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3132,9 +3179,10 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"AdventOfCode/Preview Content\"";
-				DEVELOPMENT_TEAM = U47EA53RZE;
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -3158,7 +3206,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = U47EA53RZE;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3183,7 +3230,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = U47EA53RZE;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3207,7 +3253,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = U47EA53RZE;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3230,7 +3275,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = YES;
-				DEVELOPMENT_TEAM = U47EA53RZE;
 				GENERATE_INFOPLIST_FILE = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3293,7 +3337,7 @@
 			repositoryURL = "https://github.com/apple/swift-collections.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.3.0;
 			};
 		};
 		76DF234B2D0D1DEC00C7C017 /* XCRemoteSwiftPackageReference "swift-algorithms" */ = {
@@ -3301,7 +3345,7 @@
 			repositoryURL = "https://github.com/apple/swift-algorithms.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
+				minimumVersion = 1.2.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
