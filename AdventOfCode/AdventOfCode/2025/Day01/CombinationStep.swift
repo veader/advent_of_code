@@ -12,6 +12,15 @@ enum CombinationStep {
     case left(Int)
     case right(Int)
 
+    var amount: Int {
+        switch self {
+        case .left(let i):
+            return i
+        case .right(let i):
+            return i
+        }
+    }
+
     func result(from input: Int) -> Int {
         switch self {
         case .left(let amount):
