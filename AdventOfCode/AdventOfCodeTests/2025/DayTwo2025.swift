@@ -36,4 +36,24 @@ struct DayTwo2025 {
         #expect(answer == 24747430309)
     }
 
+    @Test func testSubSequenceFinding() async throws {
+        #expect(day.isInvalidSubSequence(565656) == true)
+        #expect(day.isInvalidSubSequence(566566) == true)
+        #expect(day.isInvalidSubSequence(5656) == true)
+        #expect(day.isInvalidSubSequence(123123123) == true)
+
+        #expect(day.isInvalidSubSequence(56) == false)
+        #expect(day.isInvalidSubSequence(1188511880) == false)
+        #expect(day.isInvalidSubSequence(2121212118) == false)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try #require(day.partTwo(input: sampleInput) as? Int)
+        #expect(answer == 4174379265)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 30962646823)
+    }
 }
