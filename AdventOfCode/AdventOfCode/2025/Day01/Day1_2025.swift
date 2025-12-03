@@ -11,7 +11,7 @@ struct Day1_2025: AdventDay {
     var year = 2025
     var dayNumber = 1
     var dayTitle = "Secret Entrance"
-    var stars = 1
+    var stars = 2
 
     enum Day1Error: Error {
         case invalidInput
@@ -41,50 +41,44 @@ struct Day1_2025: AdventDay {
         var value = 50 // starting value
 
         for step in steps {
-            let startValue = value
-            value = step.result(from: value)
+            let amount = step.amount % 100
 
-            // before counting one of the zeros we "pass", see if we were already sitting there...
-
-            // adjust for going around the dial
-            if value < 0 {
-                let delta = abs(100 + value)
-                value = delta % 100
-
-                // count how many times we passed 0 while spinning
-                var passCount = Int(step.amount / 100) + 1
-                if value == 0 || startValue == 0 { passCount -= 1 }
-                zeroPassCount += passCount
-
-//                var passCount = Int(delta / 100) + 1
-//                if startValue == 0 { passCount -= 1 }
-//                if value == 0 { passCount -= 1 }
-//                zeroPassCount += passCount
-
-                print("\(delta) \(passCount) \(value) - under")
-            } else if value > 99 {
-                let delta = abs(value - 100)
-                value = delta % 100
-
-                // count how many times we passed 0 while spinning
-                var passCount = Int(step.amount / 100) + 1
-                if value == 0 || startValue == 0 { passCount -= 1 }
-                zeroPassCount += passCount
-
-//                var passCount = Int(step.amount / 100) + 1
-//                if startValue == 0 { passCount -= 1 }
-//                if value == 0 { passCount -= 1 }
-//                zeroPassCount += passCount
-
-                print("\(delta) \(passCount) \(value) - over")
+            var newValue = 0
+            switch step {
+            case .left(_):
+                newValue = value - amount
+            case .right(_):
+                newValue = value + amount
             }
 
-            print("After \(step) -> \(value)")
+            if newValue < 0 {
+                if value != 0 { // starting at 0
+                    zeroPassCount += 1 // passed the boundary at least once
+                }
+
+                value = 100 + newValue
+            } else if newValue > 99 {
+                value = newValue - 100
+
+                if value != 0 { // ending at 0
+                    zeroPassCount += 1 // passed the boundary at least once
+                }
+            } else {
+                value = newValue
+            }
+
+            // Other passes may have occured if the step amount exceeded the 0-99 range
+            zeroPassCount += Int(step.amount / 100)
+
+            // did we end on zero?
             if value == 0 {
                 zeroCount += 1
             }
+
+//            print("After \(step) -> \(value) | \(zeroCount) \(zeroPassCount)")
         }
 
         return (zeroCount, zeroPassCount)
     }
 }
+

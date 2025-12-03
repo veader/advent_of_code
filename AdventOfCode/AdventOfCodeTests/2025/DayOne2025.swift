@@ -60,21 +60,6 @@ struct DayOne2025 {
 
     @Test func testPartTwo() async throws {
         let answer = try await #require(day.run(part: 2) as? Int)
-        #expect(answer == 5728) // too low
-        // 5728 - too low
-        // 5734 - nope
-        // 6501 - too high
+        #expect(answer == 6099)
     }
-
-    /*
-     After R33 -> 74
-     After L74 -> 0
-     662 6 62
-     After R762 -> 62
-     -588 -4 -88
-     After L750 -> -88
-     After R90 -> 2
-     -700 -7 0
-     After L802 -> 0
-     */
 }
