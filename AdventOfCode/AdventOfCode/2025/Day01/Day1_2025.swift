@@ -13,10 +13,6 @@ struct Day1_2025: AdventDay {
     var dayTitle = "Secret Entrance"
     var stars = 2
 
-    enum Day1Error: Error {
-        case invalidInput
-    }
-
     func parse(_ input: String?) -> [CombinationStep] {
         (input ?? "").lines().compactMap { line in
             CombinationStep.parse(line)

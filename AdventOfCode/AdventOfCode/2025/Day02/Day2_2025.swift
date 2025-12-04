@@ -13,10 +13,6 @@ struct Day2_2025: AdventDay {
     var dayTitle = "Gift Shop"
     var stars = 2
 
-    enum Day2Error: Error {
-        case invalidInput
-    }
-
     func parse(_ input: String?) -> [ClosedRange<Int>] {
         (input ?? "").split(separator: ",").compactMap { rangeStr in
             let numbers = rangeStr.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: "-").map(String.init).compactMap(Int.init)
