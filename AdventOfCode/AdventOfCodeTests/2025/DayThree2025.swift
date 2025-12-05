@@ -9,14 +9,13 @@ import Testing
 
 struct DayThree2025 {
 
+    let day = Day3_2025()
     let sampleInput = """
         987654321111111
         811111111111119
         234234234234278
         818181911112111
         """
-
-    let day = Day3_2025()
 
     @Test("Finding max battery pairs", arguments: [("987654321111111", 98), ("811111111111119", 89), ("234234234234278", 78), ("818181911112111", 92)])
     func testFindingMaxBatteryPair(input: (String, Int)) async throws {

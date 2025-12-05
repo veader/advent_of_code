@@ -9,6 +9,7 @@ import Testing
 
 struct DayOne2025 {
 
+    let day = Day1_2025()
     let sampleInput = """
         L68
         L30
@@ -21,8 +22,6 @@ struct DayOne2025 {
         R14
         L82
         """
-
-    let day = Day1_2025()
 
     @Test func parsingCombinationSteps() async throws {
         var step: CombinationStep?
