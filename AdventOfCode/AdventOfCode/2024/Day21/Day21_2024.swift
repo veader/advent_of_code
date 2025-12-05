@@ -28,7 +28,7 @@ struct Day21_2024: AdventDay {
             print(line)
             print(moves.map(\.rawValue).joined(separator: ""))
             print(moves.count)
-            print("\(num)\n\n")
+            print("\(num ?? 0)\n\n")
 
             total += moves.count * (num ?? 0)
         }

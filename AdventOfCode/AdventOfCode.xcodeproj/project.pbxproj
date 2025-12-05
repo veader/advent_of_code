@@ -275,6 +275,9 @@
 		76C185052EE22C5600393AF1 /* Day4_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C185042EE22C5600393AF1 /* Day4_2025.swift */; };
 		76C185062EE22C5600393AF1 /* Day4_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C185042EE22C5600393AF1 /* Day4_2025.swift */; };
 		76C185082EE258CD00393AF1 /* DayFour2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C185072EE258CD00393AF1 /* DayFour2025.swift */; };
+		76C185112EE3136C00393AF1 /* Day5_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C185102EE3136C00393AF1 /* Day5_2025.swift */; };
+		76C185122EE3136C00393AF1 /* Day5_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C185102EE3136C00393AF1 /* Day5_2025.swift */; };
+		76C185142EE3168600393AF1 /* DayFive2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C185132EE3168600393AF1 /* DayFive2025.swift */; };
 		76DF233D2D0BE0BF00C7C017 /* Day12_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF233C2D0BE0BF00C7C017 /* Day12_2024.swift */; };
 		76DF233E2D0BE0BF00C7C017 /* Day12_2024.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF233C2D0BE0BF00C7C017 /* Day12_2024.swift */; };
 		76DF23402D0BE49900C7C017 /* Day12_2024Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DF233F2D0BE49900C7C017 /* Day12_2024Tests.swift */; };
@@ -759,6 +762,9 @@
 		76C185012EE22C5100393AF1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76C185042EE22C5600393AF1 /* Day4_2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day4_2025.swift; sourceTree = "<group>"; };
 		76C185072EE258CD00393AF1 /* DayFour2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFour2025.swift; sourceTree = "<group>"; };
+		76C1850D2EE3136800393AF1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76C185102EE3136C00393AF1 /* Day5_2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day5_2025.swift; sourceTree = "<group>"; };
+		76C185132EE3168600393AF1 /* DayFive2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayFive2025.swift; sourceTree = "<group>"; };
 		76DF23392D0BE0B200C7C017 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		76DF233C2D0BE0BF00C7C017 /* Day12_2024.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day12_2024.swift; sourceTree = "<group>"; };
 		76DF233F2D0BE49900C7C017 /* Day12_2024Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day12_2024Tests.swift; sourceTree = "<group>"; };
@@ -1428,6 +1434,7 @@
 				76AEDBD52EDFFC4C0034902A /* Day02 */,
 				76AEDBDE2EE0EF460034902A /* Day03 */,
 				76C185002EE22C4400393AF1 /* Day04 */,
+				76C1850C2EE3135E00393AF1 /* Day05 */,
 			);
 			path = 2025;
 			sourceTree = "<group>";
@@ -1449,6 +1456,7 @@
 				76AEDBDC2EE066E90034902A /* DayTwo2025.swift */,
 				76AEDBE52EE139D70034902A /* DayThree2025.swift */,
 				76C185072EE258CD00393AF1 /* DayFour2025.swift */,
+				76C185132EE3168600393AF1 /* DayFive2025.swift */,
 			);
 			path = 2025;
 			sourceTree = "<group>";
@@ -1718,6 +1726,15 @@
 				76C185042EE22C5600393AF1 /* Day4_2025.swift */,
 			);
 			path = Day04;
+			sourceTree = "<group>";
+		};
+		76C1850C2EE3135E00393AF1 /* Day05 */ = {
+			isa = PBXGroup;
+			children = (
+				76C1850D2EE3136800393AF1 /* README.md */,
+				76C185102EE3136C00393AF1 /* Day5_2025.swift */,
+			);
+			path = Day05;
 			sourceTree = "<group>";
 		};
 		76DF23382D0BE0A700C7C017 /* Day12 */ = {
@@ -2550,6 +2567,7 @@
 				769B25702B2582AE008689CA /* Day10_2023.swift in Sources */,
 				76C141B02947DE5200795D93 /* DayTwelve2022.swift in Sources */,
 				760638CE2D0E73D500C3B16A /* Day14_2024.swift in Sources */,
+				76C185122EE3136C00393AF1 /* Day5_2025.swift in Sources */,
 				76DF23522D0D241F00C7C017 /* ClawMachine.swift in Sources */,
 				76C1416F293E98A600795D93 /* SupplyCrateMap.swift in Sources */,
 				C516C8C1275F2BFB0038AB8A /* DaySeven2021.swift in Sources */,
@@ -2981,6 +2999,7 @@
 				C516C7BB27594D2B0038AB8A /* CustomsForm.swift in Sources */,
 				C55F0872277AE24100EEEFA2 /* DayTwentyTwo2021Tests.swift in Sources */,
 				C556EF7A2757B455009B3078 /* AdventOfCodeTests.swift in Sources */,
+				76C185112EE3136C00393AF1 /* Day5_2025.swift in Sources */,
 				C516C7AB27594B7C0038AB8A /* Passport.swift in Sources */,
 				7675FA7D2D02808800ED1F41 /* Day5_2024Tests.swift in Sources */,
 				76AEDBE42EE0EF580034902A /* Day3_2025.swift in Sources */,
@@ -2991,6 +3010,7 @@
 				C55F0845276D83B600EEEFA2 /* DaySeventeen2021Tests.swift in Sources */,
 				C57773DF2768353F006E5ADA /* DayThirteen2021.swift in Sources */,
 				7675FA862D032AB400ED1F41 /* Day6_2024Tests.swift in Sources */,
+				76C185142EE3168600393AF1 /* DayFive2025.swift in Sources */,
 				7675FA532CFE3CED00ED1F41 /* Day1_2024.swift in Sources */,
 				C57773E42768D21A006E5ADA /* DayThirteen2021Tests.swift in Sources */,
 				769B25472B203864008689CA /* ClosedRangeTests.swift in Sources */,
