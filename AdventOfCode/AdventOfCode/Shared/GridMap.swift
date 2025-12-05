@@ -36,6 +36,12 @@ class GridMap<Element> {
         yBounds.count
     }
 
+    /// Just a short-hand, convenince method to the rows of the grid.
+    /// This is how the data is stored.
+    var rows: [[Element]] {
+        items
+    }
+
 
     // MARK: -
 

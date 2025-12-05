@@ -29,7 +29,7 @@ struct Day3_2025: AdventDay {
         }
     }
 
-    func partTwo(input: String?) async -> Any {
+    func partTwo(input: String?) -> Any {
         // withTaskGroup <- porcess each battery at the same time
         let batteryBanks = parse(input)
 
