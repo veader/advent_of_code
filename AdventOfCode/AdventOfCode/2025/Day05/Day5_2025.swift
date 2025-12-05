@@ -11,7 +11,7 @@ struct Day5_2025: AdventDay {
     var year = 2025
     var dayNumber = 5
     var dayTitle = "Cafeteria"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> ([ClosedRange<Int>], [Int]) {
         var ranges = [ClosedRange<Int>]()
@@ -40,7 +40,29 @@ struct Day5_2025: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        let (ranges, available) = parse(input)
-        return 0
+        let (ranges, _) = parse(input)
+        let sortedRanges = ranges.sorted(by: { $0.lowerBound < $1.lowerBound })
+
+        var mergedRanges = [ClosedRange<Int>]()
+        var range = sortedRanges.first!
+        for r in sortedRanges {
+            if range.contains(r) {
+                // r is unnecessary
+                continue
+            } else if range.overlaps(r) {
+                // merge them into one
+                let mergedRange = range.merging(with: r)
+                range = mergedRange ?? range
+            } else {
+                // we have a gap, save the other range and try to merge with this new one
+                mergedRanges.append(range)
+                range = r
+            }
+        }
+        mergedRanges.append(range)
+
+        return mergedRanges.reduce(0) { result, range in
+            return result + range.count
+        }
     }
 }

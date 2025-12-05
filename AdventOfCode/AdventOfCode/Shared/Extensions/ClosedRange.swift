@@ -71,4 +71,24 @@ extension ClosedRange where Bound == Int  {
 
         return nil
     }
+
+    /// Merge two overlapping ranges.
+    ///
+    /// If the ranges to not overlap, nil is returned.
+    func merging(with range: ClosedRange<Bound>) -> ClosedRange<Bound>? {
+        guard self.overlaps(range) else { return nil }
+
+        let start = [self.lowerBound, range.lowerBound].min() ?? 0
+        let end = [self.upperBound, range.upperBound].max() ?? 0
+
+        return (start...end)
+
+//        let selfSet = Set<Bound>(self)
+//        let rangeSet = Set<Bound>(range)
+//
+//        let intersection = selfSet.intersection(rangeSet)
+//        guard !intersection.isEmpty else { return nil } // ranges do not intersect, can't merge
+//
+//        return selfSet.union(rangeSet).closedRange
+    }
 }
