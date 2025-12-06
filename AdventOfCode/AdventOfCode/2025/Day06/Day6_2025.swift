@@ -11,7 +11,7 @@ struct Day6_2025: AdventDay {
     var year = 2025
     var dayNumber = 6
     var dayTitle = "Trash Compactor"
-    var stars = 1
+    var stars = 2
 
     func parse(_ input: String?) -> MathHomework? {
         MathHomework.parse(input ?? "")
@@ -23,7 +23,7 @@ struct Day6_2025: AdventDay {
     }
 
     func partTwo(input: String?) -> Any {
-        let homework = parse(input)
-        return 0
+        guard let homework = MathHomework.parseDifferently(input ?? "") else { return 0 }
+        return homework.grandTotal()
     }
 }

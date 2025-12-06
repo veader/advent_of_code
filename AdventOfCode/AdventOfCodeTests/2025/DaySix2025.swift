@@ -49,4 +49,28 @@ struct DaySix2025 {
         #expect(answer == 6757749566978)
     }
 
+    @Test func testParsingDifferently() async throws {
+        let homework = try #require(MathHomework.parseDifferently(sampleInput))
+        #expect(homework.problems.count == 4)
+
+        let problem1 = homework.problems[0]
+        #expect(problem1.values.count == 3)
+        #expect(problem1.operation == .add)
+        #expect(problem1.solve() == 1058)
+
+        let problem2 = homework.problems[1]
+        #expect(problem2.values.count == 3)
+        #expect(problem2.operation == .multiply)
+        #expect(problem2.solve() == 3253600)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try #require(day.partTwo(input: sampleInput) as? Int)
+        #expect(answer == 3263827)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 10603075273949)
+    }
 }

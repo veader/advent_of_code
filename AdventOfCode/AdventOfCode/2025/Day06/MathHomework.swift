@@ -78,6 +78,49 @@ struct MathHomework {
         return MathHomework(problems: problems, numbers: nums, operations: ops)
     }
 
+    static func parseDifferently(_ input: String?) -> MathHomework? {
+        guard let input else { return nil }
+
+        // turn the input into a 2D array of strings
+        let data: [[String]] = input.lines().map({ $0.charSplit().reversed() })
+
+        var values: [Int] = []
+        var op: HomeworkOp = .add
+        var problems: [HomeworkProblem] = []
+
+        // fold these into numbers (and operators)
+        let height = data.first?.count ?? 0
+        for idx in (0..<height) {
+            let col = data.map { $0[idx] }
+            let nums = col.filter { ![" ", "+", "*"].contains($0) }
+
+            if nums.isEmpty {
+                // this must be a divider between problems, create one.
+                problems.append(HomeworkProblem(values: values, operation: op))
+
+                // reset
+                values = []
+                op = .add
+            } else {
+                // create value
+                let value = Int(nums.joined()) ?? 0
+                values.append(value)
+
+                // check for operator
+                if col.contains("+") {
+                    op = .add
+                } else if col.contains("*") {
+                    op = .multiply
+                }
+            }
+        }
+
+        // add the last one
+        problems.append(HomeworkProblem(values: values, operation: op))
+
+        return MathHomework(problems: problems, numbers: [], operations: [])
+    }
+
     func grandTotal() -> Int {
         problems.map({ $0.solve() }).reduce(0, +)
     }
