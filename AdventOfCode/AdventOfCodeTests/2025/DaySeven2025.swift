@@ -81,4 +81,14 @@ struct DaySeven2025 {
         #expect(answer == 1600)
     }
 
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try await #require(day.partTwo(input: sampleInput) as? Int)
+        #expect(answer == 40)
+    }
+
+//    @Test func testPartTwo() async throws {
+//        let answer = try await #require(day.run(part: 2) as? Int)
+//        #expect(answer == 1600)
+//    }
+
 }

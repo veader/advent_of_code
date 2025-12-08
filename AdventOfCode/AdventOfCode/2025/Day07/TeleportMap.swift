@@ -39,20 +39,15 @@ class TeleportMap {
         return TeleportMap(map: map, start: start)
     }
 
+    /// Trace the tachyon particles through the space, splitting when a splitter is encountered, etc.
+    /// - Returns: Total number of splits done during the tracing.
     @discardableResult
     func traceTachyons() -> Int {
         var beams: [Coordinate] = [startLocation]
         var splits: Set<Coordinate> = []
         var newBeams: Set<Coordinate> = []
-//        var iteration = 0
 
         while !beams.isEmpty {
-            let y = beams.map { $0.y }.unique().map(String.init)
-//            print("----------\nIteration: \(iteration)")
-//            print("Row: \(y.joined())")
-//            print("Beams: \(beams.count)")
-//            print("New beams: \(newBeams.count)")
-
             for beam in beams {
                 // check what is under the current beam
                 let down = beam.moving(direction: .south, originTopLeft: true)
@@ -86,10 +81,62 @@ class TeleportMap {
 
             beams = Array(newBeams)
             newBeams = [] // clear it out
-//            iteration += 1
-//            map.printGrid()
         }
 
         return splits.count
+    }
+
+    // IDEA: trace routes, then count beams from leaf to start (which rows to look at?)
+
+    /// Search for the total number of paths possible from the starting location to the edge of the map.
+    func findPathCount() async -> Int {
+        await countPaths(from: startLocation)
+    }
+
+    /// Check "down" from the given coordinate and count the number of paths exposed.
+    /// - Returns: Number of paths found "down" from this coordinate.
+    private func countPaths(from coordinate: Coordinate) async -> Int {
+        // check what is under the current beam
+        let down = coordinate.moving(direction: .south, originTopLeft: true)
+
+        // have we reached the end? if so, count this "route"
+        guard map.valid(coordinate: down) else { return 1 }
+
+        switch map.item(at: down) {
+        case .empty:
+            // going down straight
+            return await countPaths(from: down)
+        case .splitter:
+            // split the beam to each side of the splitter
+            let left = down.moving(direction: .west)
+            let right = down.moving(direction: .east)
+
+            if map.valid(coordinate: left) && map.valid(coordinate: right) {
+                let answers = await withTaskGroup(of: Int.self, returning: [Int].self) { group in
+                    group.addTask {
+                        await self.countPaths(from: left)
+                    }
+                    group.addTask {
+                        await self.countPaths(from: right)
+                    }
+
+                    var counts = [Int]()
+                    for await result in group {
+                        counts.append(result)
+                    }
+                    return counts
+                }
+                return answers.reduce(0, +)
+//                let leftCount = await countPaths(from: left)
+//                let rightCount = await countPaths(from: right)
+//                return leftCount + rightCount
+            } else {
+                print("Error: Unable to split at \(down)")
+                return 0
+            }
+        default:
+            print("Why are we here? \(map.item(at: down)?.rawValue ?? "X")")
+            return 0
+        }
     }
 }

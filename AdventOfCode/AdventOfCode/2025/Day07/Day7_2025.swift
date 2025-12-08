@@ -18,8 +18,8 @@ struct Day7_2025: AdventDay {
         return map.traceTachyons()
     }
 
-    func partTwo(input: String?) -> Any {
-        guard let homework = MathHomework.parseDifferently(input ?? "") else { return 0 }
-        return homework.grandTotal()
+    func partTwo(input: String?) async -> Any {
+        guard let map = TeleportMap.parse(input: input) else { return 0 }
+        return await map.findPathCount()
     }
 }

@@ -32,7 +32,7 @@ struct Day5_2025: AdventDay {
     func partOne(input: String?) -> Any {
         let (ranges, available) = parse(input)
         let fresh = available.filter { id in
-            guard let range = ranges.first(where: { $0.contains(id) }) else { return false }
+            guard let _ = ranges.first(where: { $0.contains(id) }) else { return false }
             return true
         }
 
