@@ -308,6 +308,9 @@
 		76F722B82EE906BA008BA120 /* ThreeDVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B62EE906BA008BA120 /* ThreeDVector.swift */; };
 		76F722BA2EE906CC008BA120 /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B92EE906CC008BA120 /* Circuit.swift */; };
 		76F722BB2EE906CC008BA120 /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B92EE906CC008BA120 /* Circuit.swift */; };
+		76F722C12EE91519008BA120 /* Day9_20025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722C02EE91519008BA120 /* Day9_20025.swift */; };
+		76F722C32EE9190A008BA120 /* DayNine2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722C22EE9190A008BA120 /* DayNine2025.swift */; };
+		76F722C42EE9194B008BA120 /* Day9_20025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722C02EE91519008BA120 /* Day9_20025.swift */; };
 		C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7752757CFE20038AB8A /* AdventCommands.swift */; };
 		C516C7782757D0EA0038AB8A /* AdventDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7772757D0EA0038AB8A /* AdventDayView.swift */; };
 		C516C7792757E98C0038AB8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -806,6 +809,9 @@
 		76F722B02EE716DA008BA120 /* ThreeDSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDSpace.swift; sourceTree = "<group>"; };
 		76F722B62EE906BA008BA120 /* ThreeDVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDVector.swift; sourceTree = "<group>"; };
 		76F722B92EE906CC008BA120 /* Circuit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circuit.swift; sourceTree = "<group>"; };
+		76F722BD2EE91506008BA120 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76F722C02EE91519008BA120 /* Day9_20025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day9_20025.swift; sourceTree = "<group>"; };
+		76F722C22EE9190A008BA120 /* DayNine2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayNine2025.swift; sourceTree = "<group>"; };
 		C516C7752757CFE20038AB8A /* AdventCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventCommands.swift; sourceTree = "<group>"; };
 		C516C7772757D0EA0038AB8A /* AdventDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDayView.swift; sourceTree = "<group>"; };
 		C516C77B275814F10038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1471,6 +1477,7 @@
 				76F7228F2EE3E23F008BA120 /* Day06 */,
 				76F7229B2EE59F28008BA120 /* Day07 */,
 				76F722A72EE6FF93008BA120 /* Day08 */,
+				76F722BC2EE91500008BA120 /* Day09 */,
 			);
 			path = 2025;
 			sourceTree = "<group>";
@@ -1496,6 +1503,7 @@
 				76F722962EE3E2A4008BA120 /* DaySix2025.swift */,
 				76F722A32EE5CD93008BA120 /* DaySeven2025.swift */,
 				76F722AE2EE71190008BA120 /* DayEight2025.swift */,
+				76F722C22EE9190A008BA120 /* DayNine2025.swift */,
 			);
 			path = 2025;
 			sourceTree = "<group>";
@@ -1833,6 +1841,15 @@
 				76F722B92EE906CC008BA120 /* Circuit.swift */,
 			);
 			path = Day08;
+			sourceTree = "<group>";
+		};
+		76F722BC2EE91500008BA120 /* Day09 */ = {
+			isa = PBXGroup;
+			children = (
+				76F722BD2EE91506008BA120 /* README.md */,
+				76F722C02EE91519008BA120 /* Day9_20025.swift */,
+			);
+			path = Day09;
 			sourceTree = "<group>";
 		};
 		C516C77A275814DE0038AB8A /* Day02 */ = {
@@ -2644,6 +2661,7 @@
 				76C1416F293E98A600795D93 /* SupplyCrateMap.swift in Sources */,
 				C516C8C1275F2BFB0038AB8A /* DaySeven2021.swift in Sources */,
 				7679C12B2D27B5FC005B2E2A /* DPad.swift in Sources */,
+				76F722C12EE91519008BA120 /* Day9_20025.swift in Sources */,
 				C571C3BB276A2B1E000BEF76 /* CaveNode.swift in Sources */,
 				760638D12D0F708200C3B16A /* BathroomSimulator.swift in Sources */,
 				C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */,
@@ -3131,6 +3149,7 @@
 				769B25652B23726C008689CA /* Day8_2023Tests.swift in Sources */,
 				765381802D17DF310015CD14 /* Day18_2024.swift in Sources */,
 				C57773D5276665A2006E5ADA /* DayTwelve2021.swift in Sources */,
+				76F722C42EE9194B008BA120 /* Day9_20025.swift in Sources */,
 				C571C3BE276A3E7A000BEF76 /* DayFifteen2021Tests.swift in Sources */,
 				760638F52D11B87B00C3B16A /* RelativeDirection.swift in Sources */,
 				C57773CD276532CB006E5ADA /* DayEleven2021.swift in Sources */,
@@ -3142,6 +3161,7 @@
 				76C185082EE258CD00393AF1 /* DayFour2025.swift in Sources */,
 				C516C78A275948A30038AB8A /* DayOne2020.swift in Sources */,
 				C57773BB276243B1006E5ADA /* DayNine2021Tests.swift in Sources */,
+				76F722C32EE9190A008BA120 /* DayNine2025.swift in Sources */,
 				769B25802B28356E008689CA /* SolarSystem.swift in Sources */,
 				76DF234A2D0C779F00C7C017 /* Day13_2024.swift in Sources */,
 				76C1419A2944BA5C00795D93 /* DayTen2022.swift in Sources */,
@@ -3386,7 +3406,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3410,7 +3430,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 13.5;
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCodeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3433,6 +3453,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCodeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3455,6 +3476,7 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 15.6;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.v8logic.AdventOfCodeUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";

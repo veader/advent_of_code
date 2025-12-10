@@ -29,6 +29,17 @@ public struct Coordinate: CoordinateLike, Hashable {
         self.name = name
     }
 
+    init?(_ input: String?) {
+        guard let input, !input.isEmpty else { return nil }
+
+        let nums = input.trimmingCharacters(in: .whitespacesAndNewlines).split(separator: ",").map(String.init).compactMap(Int.init)
+        guard nums.count == 2, let x = nums.first, let y = nums.last else { return nil }
+
+        self.x = x
+        self.y = y
+        self.name = nil
+    }
+
     /// Return a `Coordinate` at the origin (ie: 0,0)
     static var origin: Coordinate {
         Coordinate(x: 0, y: 0)
