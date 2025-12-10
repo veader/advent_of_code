@@ -304,8 +304,10 @@
 		76F722AF2EE71190008BA120 /* DayEight2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722AE2EE71190008BA120 /* DayEight2025.swift */; };
 		76F722B12EE716DA008BA120 /* ThreeDSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B02EE716DA008BA120 /* ThreeDSpace.swift */; };
 		76F722B22EE716DA008BA120 /* ThreeDSpace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B02EE716DA008BA120 /* ThreeDSpace.swift */; };
-		76F722B42EE8F6E0008BA120 /* DisjointedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B32EE8F6E0008BA120 /* DisjointedSet.swift */; };
-		76F722B52EE8F6E0008BA120 /* DisjointedSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B32EE8F6E0008BA120 /* DisjointedSet.swift */; };
+		76F722B72EE906BA008BA120 /* ThreeDVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B62EE906BA008BA120 /* ThreeDVector.swift */; };
+		76F722B82EE906BA008BA120 /* ThreeDVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B62EE906BA008BA120 /* ThreeDVector.swift */; };
+		76F722BA2EE906CC008BA120 /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B92EE906CC008BA120 /* Circuit.swift */; };
+		76F722BB2EE906CC008BA120 /* Circuit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722B92EE906CC008BA120 /* Circuit.swift */; };
 		C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7752757CFE20038AB8A /* AdventCommands.swift */; };
 		C516C7782757D0EA0038AB8A /* AdventDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7772757D0EA0038AB8A /* AdventDayView.swift */; };
 		C516C7792757E98C0038AB8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -802,7 +804,8 @@
 		76F722AB2EE6FFA9008BA120 /* Day8_2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day8_2025.swift; sourceTree = "<group>"; };
 		76F722AE2EE71190008BA120 /* DayEight2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEight2025.swift; sourceTree = "<group>"; };
 		76F722B02EE716DA008BA120 /* ThreeDSpace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDSpace.swift; sourceTree = "<group>"; };
-		76F722B32EE8F6E0008BA120 /* DisjointedSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisjointedSet.swift; sourceTree = "<group>"; };
+		76F722B62EE906BA008BA120 /* ThreeDVector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeDVector.swift; sourceTree = "<group>"; };
+		76F722B92EE906CC008BA120 /* Circuit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Circuit.swift; sourceTree = "<group>"; };
 		C516C7752757CFE20038AB8A /* AdventCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventCommands.swift; sourceTree = "<group>"; };
 		C516C7772757D0EA0038AB8A /* AdventDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDayView.swift; sourceTree = "<group>"; };
 		C516C77B275814F10038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1826,7 +1829,8 @@
 				76F722A82EE6FF99008BA120 /* README.md */,
 				76F722AB2EE6FFA9008BA120 /* Day8_2025.swift */,
 				76F722B02EE716DA008BA120 /* ThreeDSpace.swift */,
-				76F722B32EE8F6E0008BA120 /* DisjointedSet.swift */,
+				76F722B62EE906BA008BA120 /* ThreeDVector.swift */,
+				76F722B92EE906CC008BA120 /* Circuit.swift */,
 			);
 			path = Day08;
 			sourceTree = "<group>";
@@ -2645,6 +2649,7 @@
 				C516C77D275815080038AB8A /* DayTwo2021.swift in Sources */,
 				76F722992EE45BF7008BA120 /* MathHomework.swift in Sources */,
 				769B257F2B28356E008689CA /* SolarSystem.swift in Sources */,
+				76F722B82EE906BA008BA120 /* ThreeDVector.swift in Sources */,
 				76AEDBCD2EDF79120034902A /* Day1_2025.swift in Sources */,
 				C55F0835276C444C00EEEFA2 /* DaySixteen2021.swift in Sources */,
 				C55F0842276CC56D00EEEFA2 /* TrickShot.swift in Sources */,
@@ -2666,7 +2671,6 @@
 				C516C7BE27594D2B0038AB8A /* DaySix2020.swift in Sources */,
 				769B25982B2BCACE008689CA /* ReflectorDish.swift in Sources */,
 				C516C89C275BC7A30038AB8A /* BingoBoard.swift in Sources */,
-				76F722B52EE8F6E0008BA120 /* DisjointedSet.swift in Sources */,
 				769340C82B316B6C0007B0CC /* Day17_2023.swift in Sources */,
 				C516C8412759587B0038AB8A /* ThreeDCoordinate.swift in Sources */,
 				76AEDBD12EDFC4BF0034902A /* CombinationStep.swift in Sources */,
@@ -2840,6 +2844,7 @@
 				C516C804275956140038AB8A /* Ferry.swift in Sources */,
 				C516C7E127594F1E0038AB8A /* XMASCypher.swift in Sources */,
 				C516C7FA2759553E0038AB8A /* SeatMapModeler.swift in Sources */,
+				76F722BB2EE906CC008BA120 /* Circuit.swift in Sources */,
 				7630290B2B2C2211006E5307 /* Day15_2023.swift in Sources */,
 				76C14157293A3D8900795D93 /* RoshamboRound.swift in Sources */,
 				76BA9CE22B1A20CF00D12FA3 /* Day1_2023.swift in Sources */,
@@ -2976,7 +2981,6 @@
 				C516C84C2759587B0038AB8A /* ConwayCube.swift in Sources */,
 				76F722A62EE5CDCE008BA120 /* TeleportMap.swift in Sources */,
 				760638DD2D0FD12F00C3B16A /* WarehouseSimulator.swift in Sources */,
-				76F722B42EE8F6E0008BA120 /* DisjointedSet.swift in Sources */,
 				76DF23432D0BE4A600C7C017 /* GardenPlots.swift in Sources */,
 				769B25632B236E5B008689CA /* WastelandMap.swift in Sources */,
 				769B254A2B203FE4008689CA /* Set.swift in Sources */,
@@ -3068,6 +3072,7 @@
 				C516C7F52759553E0038AB8A /* SeatMap.swift in Sources */,
 				769B253F2B1EF675008689CA /* Day5_2023.swift in Sources */,
 				76DF233E2D0BE0BF00C7C017 /* Day12_2024.swift in Sources */,
+				76F722BA2EE906CC008BA120 /* Circuit.swift in Sources */,
 				C516C7EC2759542C0038AB8A /* DayTen2020.swift in Sources */,
 				76F722972EE3E2A4008BA120 /* DaySix2025.swift in Sources */,
 				C516C896275BC3AE0038AB8A /* DayFour2021.swift in Sources */,
@@ -3096,6 +3101,7 @@
 				7675FA532CFE3CED00ED1F41 /* Day1_2024.swift in Sources */,
 				C57773E42768D21A006E5ADA /* DayThirteen2021Tests.swift in Sources */,
 				769B25472B203864008689CA /* ClosedRangeTests.swift in Sources */,
+				76F722B72EE906BA008BA120 /* ThreeDVector.swift in Sources */,
 				769B25992B2BCACE008689CA /* ReflectorDish.swift in Sources */,
 				760638D22D0F708200C3B16A /* BathroomSimulator.swift in Sources */,
 				C571C3B22769808B000BEF76 /* Polymer.swift in Sources */,

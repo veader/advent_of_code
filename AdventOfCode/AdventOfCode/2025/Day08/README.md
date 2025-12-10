@@ -74,3 +74,6 @@ After making the ten shortest connections, there are 11 circuits: one circuit wh
 
 Your list contains many junction boxes; connect together the 1000 pairs of junction boxes which are closest together. Afterward, what do you get if you multiply together the sizes of the three largest circuits?
 
+Your puzzle answer was `121770`.
+
+---

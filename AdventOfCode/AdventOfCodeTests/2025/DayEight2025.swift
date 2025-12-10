@@ -47,51 +47,32 @@ struct DayEight2025 {
         #expect(space.distanceMap.count == 190)
     }
 
-//    @Test func testBuildingCurcuitsLimited() async throws {
-//        let coordinates = day.parse(sampleInput)
-//        let space = ThreeDSpace(coordinates: coordinates)
-//
-//        space.buildConnections(10)
-//        #expect(space.circuits.count == 5) // should be 4
-//
-////        let unused = space.unusedCoordinates()
-////        #expect(unused.count == 7) // we show 6
-//    }
-//
-//    @Test func testBuildingCurcuits() async throws {
-//        let coordinates = day.parse(sampleInput)
-//        let space = ThreeDSpace(coordinates: coordinates)
-//
-//        space.buildConnections()
-//        #expect(space.circuits.count == 6)
-//
-////        let unused = space.unusedCoordinates()
-////        #expect(unused.count == 0)
-//    }
-//
-//    @Test func testScoringTopThreeCircuits() async throws {
-//        let coordinates = day.parse(sampleInput)
-//        let space = ThreeDSpace(coordinates: coordinates)
-//        space.buildConnections(10)
-//
-//        let score = space.topThreeScore()
-//        #expect(score == 40)
-//    }
-
-    @Test func testBuildingMST() async throws {
+    @Test func testBuildingCurcuitsLimited() async throws {
         let coordinates = day.parse(sampleInput)
         let space = ThreeDSpace(coordinates: coordinates)
 
-        let mst = space.buildMST(10)
-        
+        let circuits = space.buildConnections(10)
+        #expect(circuits.count == 4) // should be 4
+    }
+
+    @Test func testBuildingCurcuits() async throws {
+        let coordinates = day.parse(sampleInput)
+        let space = ThreeDSpace(coordinates: coordinates)
+
+        let circuits = space.buildConnections()
+        #expect(circuits.count == 1) // there can be only one!
+    }
+
+    @Test func testScoringTopThreeCircuits() async throws {
+        let coordinates = day.parse(sampleInput)
+        let space = ThreeDSpace(coordinates: coordinates)
+        let circuits = space.buildConnections(10)
+        let score = space.topThreeScore(circuits: circuits)
+        #expect(score == 40)
     }
 
     @Test func testPartOne() async throws {
         let answer = try await #require(day.run(part: 1) as? Int)
-        #expect(answer == 10500)
-        // 57750000 too high
-        // 10500 not right?
-        // 8228 too low
-        // 2340 too low
+        #expect(answer == 121770)
     }
 }

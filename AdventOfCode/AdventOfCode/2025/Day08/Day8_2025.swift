@@ -24,13 +24,10 @@ struct Day8_2025: AdventDay {
         let space = ThreeDSpace(coordinates: coordinates)
         print("Found \(space.distanceMap.count) vectors.")
 
-        space.buildConnections(count)
-        print("Found \(space.circuits.count) circuits after \(count) connections.")
+        let circuits = space.buildConnections(count)
+        print("Found \(circuits.count) circuits after \(count) connections.")
 
-//        let unused = space.unusedCoordinates()
-//        print("Found \(unused.count) unused coordinates.")
-
-        let score = space.topThreeScore()
+        let score = space.topThreeScore(circuits: circuits)
         return score ?? 0
     }
 
