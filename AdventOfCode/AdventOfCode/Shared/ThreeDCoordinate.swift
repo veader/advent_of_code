@@ -23,6 +23,29 @@ struct ThreeDCoordinate: Equatable, Hashable {
             }
         }
     }
+
+    init(x: Int, y: Int, z: Int) {
+        self.x = x
+        self.y = y
+        self.z = z
+    }
+
+    init?(_ input: String) {
+        let numbers = input.split(separator: ",").map(String.init).compactMap(Int.init)
+        guard numbers.count == 3 else { return nil }
+
+        x = numbers[0]
+        y = numbers[1]
+        z = numbers[2]
+    }
+
+    func distance(to coordinate: ThreeDCoordinate) -> Float {
+        sqrt(
+            pow(Float(x - coordinate.x), 2.0) +
+            pow(Float(y - coordinate.y), 2.0) +
+            pow(Float(z - coordinate.z), 2.0)
+        )
+    }
 }
 
 extension ThreeDCoordinate: CustomStringConvertible, CustomDebugStringConvertible {
@@ -34,3 +57,11 @@ extension ThreeDCoordinate: CustomStringConvertible, CustomDebugStringConvertibl
         description
     }
 }
+
+//import Playgrounds
+//#Playground {
+//    let first = ThreeDCoordinate("1,2,3")!
+//    let second = ThreeDCoordinate("4,6,8")!
+//
+//    let distance = first.distance(to: second)
+//}
