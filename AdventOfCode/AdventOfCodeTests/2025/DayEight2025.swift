@@ -51,7 +51,7 @@ struct DayEight2025 {
         let coordinates = day.parse(sampleInput)
         let space = ThreeDSpace(coordinates: coordinates)
 
-        let circuits = space.buildConnections(10)
+        let (circuits, _) = space.buildConnections(10)
         #expect(circuits.count == 4) // should be 4
     }
 
@@ -59,14 +59,15 @@ struct DayEight2025 {
         let coordinates = day.parse(sampleInput)
         let space = ThreeDSpace(coordinates: coordinates)
 
-        let circuits = space.buildConnections()
+        let (circuits, vector) = space.buildConnections()
         #expect(circuits.count == 1) // there can be only one!
+        #expect(vector != nil)
     }
 
     @Test func testScoringTopThreeCircuits() async throws {
         let coordinates = day.parse(sampleInput)
         let space = ThreeDSpace(coordinates: coordinates)
-        let circuits = space.buildConnections(10)
+        let (circuits, _) = space.buildConnections(10)
         let score = space.topThreeScore(circuits: circuits)
         #expect(score == 40)
     }
@@ -74,5 +75,15 @@ struct DayEight2025 {
     @Test func testPartOne() async throws {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 121770)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try await #require(day.partTwo(input: sampleInput) as? Int)
+        #expect(answer == 25272)
+    }
+
+    @Test func testPartTwo() async throws {
+        let answer = try await #require(day.run(part: 2) as? Int)
+        #expect(answer == 7893123992)
     }
 }

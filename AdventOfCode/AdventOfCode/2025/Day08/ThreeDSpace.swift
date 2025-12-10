@@ -34,17 +34,16 @@ class ThreeDSpace {
     }
 
     // Attempt to build connections between the vectors.
-    func buildConnections(_ limit: Int = Int.max) -> [Circuit] {
+    func buildConnections(_ limit: Int = Int.max) -> ([Circuit], ThreeDVector?) {
         var circuits = [Circuit]()
 
         var loopCount = 0
-        var connectionsMade = 0
         let sortedVectors = distanceMap.sorted()
+        var finalVector: ThreeDVector?
 
         // look for the next shortest distance
         for vector in sortedVectors {
             defer { loopCount += 1 }
-            // guard connectionsMade < limit else { break }
             guard loopCount < limit else { break }
 
             // TODO: When there is a single circuit with N-1 edges?
@@ -62,15 +61,12 @@ class ThreeDSpace {
             if let startCircuit, endCircuit == nil {
                 // start in an existing circuit, add end to it
                 startCircuit.insert(vector.end)
-                connectionsMade += 1
             } else if let endCircuit, startCircuit == nil {
                 // end in an existing circuit, add start to it
                 endCircuit.insert(vector.start)
-                connectionsMade += 1
             } else if let startCircuit, let endCircuit {
                 // both sides (start and end) belong to different circuits, join these circuits
                 startCircuit.insert(points: endCircuit.points)
-                connectionsMade += 1
 
                 // remove the end circuit now that it's part of the start circuit
                 if let endIndex = circuits.firstIndex(of: endCircuit) {
@@ -82,11 +78,16 @@ class ThreeDSpace {
                 // neither side exists in a circuit, create one
                 let newCircuit = Circuit(points: [vector.start, vector.end])
                 circuits.append(newCircuit)
-                connectionsMade += 1
+            }
+
+            if circuits.count == 1, let circuit = circuits.first, circuit.points.count == coordinates.count {
+                // we've reached the end
+                finalVector = vector
+                break
             }
         }
 
-        return circuits
+        return (circuits, finalVector)
     }
 
     /// Calculate the "score" based on the size of the top three circuits
