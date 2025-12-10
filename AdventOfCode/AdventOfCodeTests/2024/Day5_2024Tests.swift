@@ -66,11 +66,11 @@ struct Day5_2024Tests {
         let instructions = day.parse(sampleData)
         let batch1 = try #require(instructions.printBatches.first)
         #expect(instructions.isBatchCorrect(batch1))
-        let batch2 = try #require(instructions.printBatches[1])
+        let batch2 = instructions.printBatches[1]
         #expect(instructions.isBatchCorrect(batch2))
-        let batch3 = try #require(instructions.printBatches[2])
+        let batch3 = instructions.printBatches[2]
         #expect(instructions.isBatchCorrect(batch3))
-        let batch4 = try #require(instructions.printBatches[3])
+        let batch4 = instructions.printBatches[3]
         #expect(!instructions.isBatchCorrect(batch4))
     }
 
@@ -91,11 +91,11 @@ struct Day5_2024Tests {
         let correct1 = instructions.fix(batch: batch1)
         #expect(correct1 == [97,75,47,29,13])
 
-        let batch2 = try #require(instructions.printBatches[3])
+        let batch2 = instructions.printBatches[3]
         let correct2 = instructions.fix(batch: batch2)
         #expect(correct2 == [97,75,47,61,53])
 
-        let batch3 = try #require(instructions.printBatches[4])
+        let batch3 = instructions.printBatches[4]
         let correct3 = instructions.fix(batch: batch3)
         #expect(correct3 == [61,29,13])
     }

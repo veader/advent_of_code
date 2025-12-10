@@ -84,19 +84,19 @@ struct Day14_2024Tests {
         let quads = bathroom.quadrants()
         #expect(quads.count == 4)
 
-        let topLeft = try #require(quads[0])
+        let topLeft = quads[0]
         #expect(topLeft.width == 0..<5)
         #expect(topLeft.height == 0..<3)
 
-        let topRight = try #require(quads[1])
+        let topRight = quads[1]
         #expect(topRight.width == 6..<11)
         #expect(topRight.height == 0..<3)
 
-        let bottomLeft = try #require(quads[2])
+        let bottomLeft = quads[2]
         #expect(bottomLeft.width == 0..<5)
         #expect(bottomLeft.height == 4..<7)
 
-        let bottomRight = try #require(quads[3])
+        let bottomRight = quads[3]
         #expect(bottomRight.width == 6..<11)
         #expect(bottomRight.height == 4..<7)
     }

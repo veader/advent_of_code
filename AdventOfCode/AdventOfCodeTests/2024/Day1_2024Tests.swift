@@ -21,7 +21,7 @@ struct Day1_2024Tests {
     let day = Day1_2024()
 
     @Test func testParsingSampleData() async throws {
-        let columns = try #require(try day.parse(sampleInput))
+        let columns = try day.parse(sampleInput)
         #expect(columns.left == [1,2,3,3,3,4])
         #expect(columns.right == [3,3,3,4,5,9])
     }

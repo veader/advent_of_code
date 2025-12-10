@@ -38,7 +38,7 @@ struct Day13_2024Tests {
         let machines = day.parse(sampleData)
         #expect(machines.count == 4)
 
-        let m1 = try #require(machines[0])
+        let m1 = machines[0]
         #expect(m1.buttonA.x == 94)
         #expect(m1.buttonA.y == 34)
         #expect(m1.buttonB.x == 22)
