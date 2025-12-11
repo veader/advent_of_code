@@ -43,4 +43,14 @@ struct DayNine2025 {
         #expect(answer == 4755064176)
     }
 
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try await #require(day.partTwo(input: sampleInput) as? Int)
+        #expect(answer == 0) // TODO: incorrect
+    }
+
+//    @Test func testPartTwo() async throws {
+//        let answer = try await #require(day.run(part: 2) as? Int)
+//        #expect(answer == 0)
+//    }
+
 }

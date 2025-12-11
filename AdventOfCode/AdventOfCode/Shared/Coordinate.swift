@@ -229,7 +229,14 @@ extension Coordinate: Equatable {
 // MARK: - Comparable
 extension Coordinate: Comparable {
     public static func < (lhs: Coordinate, rhs: Coordinate) -> Bool {
-        lhs.x < rhs.x && lhs.y < rhs.y
+        if lhs.x < rhs.x {
+            return true
+        } else if lhs.x == rhs.x {
+            return lhs.y < rhs.y
+        } else { // if lhs.x > rhs.x
+            return false
+        }
+        // lhs.x < rhs.x && lhs.y < rhs.y
     }
 }
 

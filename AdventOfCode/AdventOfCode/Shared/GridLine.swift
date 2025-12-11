@@ -15,6 +15,35 @@ struct GridLine: Equatable {
         [start, end]
     }
 
+    var pointsAlongTheLine: [Coordinate] {
+        let sorted = [start, end].sorted()
+        let lineStart = sorted[0]
+        let lineEnd = sorted[1]
+
+        var linePoints: [Coordinate] = [lineStart]
+        var point = lineStart
+
+        if start.x == end.x {
+            // vertical - x stays the same
+            while point != lineEnd {
+                point = point.moving(xOffset: 0, yOffset: 1)
+                linePoints.append(point)
+            }
+        } else if start.y == end.y {
+            // horizontal - y stays the same
+            while point != lineEnd {
+                point = point.moving(xOffset: 1, yOffset: 0)
+                linePoints.append(point)
+            }
+        } else {
+            // diagnoal
+            // TODO: make this work
+            linePoints.append(lineEnd)
+        }
+
+        return linePoints
+    }
+
     init(start: Coordinate, end: Coordinate) {
         let coords = [start, end].sorted()
         self.start = coords[0]

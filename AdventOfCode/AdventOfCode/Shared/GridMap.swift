@@ -208,6 +208,13 @@ class GridMap<Element> {
         print("Grid: \(xBounds.upperBound)x\(yBounds.upperBound)")
     }
 
+    func printGridByRow() {
+        for row in items {
+            let line = row.map { "\($0)" }.joined()
+            print(line)
+        }
+    }
+
     /// Simple print of current grid.
     ///
     /// - Note: Careful on very large grid sizes...
