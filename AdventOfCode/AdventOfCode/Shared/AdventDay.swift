@@ -49,7 +49,7 @@ extension AdventDay {
 
     @discardableResult func run(part: Int? = 1, _ input: String? = nil) async -> Any {
         guard let input = input ?? defaultInput else {
-            print("Day \(dayNumber): NO INPUT")
+            print("Day \(dayNumber): NO INPUT ")
             exit(10)
         }
 

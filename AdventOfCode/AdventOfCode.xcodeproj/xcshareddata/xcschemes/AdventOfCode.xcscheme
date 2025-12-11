@@ -41,6 +41,9 @@
                <Test
                   Identifier = "Day9_2024Tests/testPartTwo()">
                </Test>
+               <Test
+                  Identifier = "DayTenTests/testPartOne()">
+               </Test>
             </SkippedTests>
          </TestableReference>
          <TestableReference
