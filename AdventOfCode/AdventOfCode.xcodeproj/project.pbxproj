@@ -317,6 +317,9 @@
 		76F722CF2EEA77F9008BA120 /* JoltageMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722CE2EEA77F9008BA120 /* JoltageMachine.swift */; };
 		76F722D02EEA77F9008BA120 /* JoltageMachine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722CE2EEA77F9008BA120 /* JoltageMachine.swift */; };
 		76F722D22EEA7D22008BA120 /* DayTenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722D12EEA7D22008BA120 /* DayTenTests.swift */; };
+		76F722D82EEC4AB7008BA120 /* Day11_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722D72EEC4AB7008BA120 /* Day11_2025.swift */; };
+		76F722D92EEC4AB7008BA120 /* Day11_2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722D72EEC4AB7008BA120 /* Day11_2025.swift */; };
+		76F722DB2EEC504E008BA120 /* DayEleven2025.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F722DA2EEC504E008BA120 /* DayEleven2025.swift */; };
 		C516C7762757CFE20038AB8A /* AdventCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7752757CFE20038AB8A /* AdventCommands.swift */; };
 		C516C7782757D0EA0038AB8A /* AdventDayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C516C7772757D0EA0038AB8A /* AdventDayView.swift */; };
 		C516C7792757E98C0038AB8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C556EF6B2757B455009B3078 /* Assets.xcassets */; };
@@ -823,6 +826,9 @@
 		76F722CB2EEA7387008BA120 /* Day10_2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day10_2025.swift; sourceTree = "<group>"; };
 		76F722CE2EEA77F9008BA120 /* JoltageMachine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoltageMachine.swift; sourceTree = "<group>"; };
 		76F722D12EEA7D22008BA120 /* DayTenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTenTests.swift; sourceTree = "<group>"; };
+		76F722D42EEC4AA8008BA120 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		76F722D72EEC4AB7008BA120 /* Day11_2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day11_2025.swift; sourceTree = "<group>"; };
+		76F722DA2EEC504E008BA120 /* DayEleven2025.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayEleven2025.swift; sourceTree = "<group>"; };
 		C516C7752757CFE20038AB8A /* AdventCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventCommands.swift; sourceTree = "<group>"; };
 		C516C7772757D0EA0038AB8A /* AdventDayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdventDayView.swift; sourceTree = "<group>"; };
 		C516C77B275814F10038AB8A /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -1491,6 +1497,7 @@
 				76F722A72EE6FF93008BA120 /* Day08 */,
 				76F722BC2EE91500008BA120 /* Day09 */,
 				76F722C72EEA7282008BA120 /* Day10 */,
+				76F722D32EEC4AA1008BA120 /* Day11 */,
 			);
 			path = 2025;
 			sourceTree = "<group>";
@@ -1518,6 +1525,7 @@
 				76F722AE2EE71190008BA120 /* DayEight2025.swift */,
 				76F722C22EE9190A008BA120 /* DayNine2025.swift */,
 				76F722D12EEA7D22008BA120 /* DayTenTests.swift */,
+				76F722DA2EEC504E008BA120 /* DayEleven2025.swift */,
 			);
 			path = 2025;
 			sourceTree = "<group>";
@@ -1874,6 +1882,15 @@
 				76F722CE2EEA77F9008BA120 /* JoltageMachine.swift */,
 			);
 			path = Day10;
+			sourceTree = "<group>";
+		};
+		76F722D32EEC4AA1008BA120 /* Day11 */ = {
+			isa = PBXGroup;
+			children = (
+				76F722D42EEC4AA8008BA120 /* README.md */,
+				76F722D72EEC4AB7008BA120 /* Day11_2025.swift */,
+			);
+			path = Day11;
 			sourceTree = "<group>";
 		};
 		C516C77A275814DE0038AB8A /* Day02 */ = {
@@ -2753,6 +2770,7 @@
 				C55F086F277ADE7500EEEFA2 /* CuboidInstruction.swift in Sources */,
 				C516C7DF27594F1E0038AB8A /* DayNine2020.swift in Sources */,
 				C516C8492759587B0038AB8A /* FourDCoordinate.swift in Sources */,
+				76F722D82EEC4AB7008BA120 /* Day11_2025.swift in Sources */,
 				76AEDBDA2EDFFC5E0034902A /* Day2_2025.swift in Sources */,
 				C516C7C827594E0B0038AB8A /* LuggageRuleSet.swift in Sources */,
 				C516C87C275959C60038AB8A /* DayTwentyOne2020.swift in Sources */,
@@ -3094,6 +3112,7 @@
 				76F722AD2EE6FFAF008BA120 /* Day8_2025.swift in Sources */,
 				C57773BE27630405006E5ADA /* GridMap.swift in Sources */,
 				7675FA592CFE437900ED1F41 /* Day1_2024Tests.swift in Sources */,
+				76F722DB2EEC504E008BA120 /* DayEleven2025.swift in Sources */,
 				76B8BC0B2B33583500E769C0 /* CityBlock.swift in Sources */,
 				C516C7E227594F1E0038AB8A /* XMASCypher.swift in Sources */,
 				769B25782B27EA83008689CA /* Day11_2023.swift in Sources */,
@@ -3157,6 +3176,7 @@
 				C516C870275959770038AB8A /* DayTwenty2020.swift in Sources */,
 				C571C3B9276A2106000BEF76 /* DayFifteen2021.swift in Sources */,
 				C516C84A2759587B0038AB8A /* FourDCoordinate.swift in Sources */,
+				76F722D92EEC4AB7008BA120 /* Day11_2025.swift in Sources */,
 				7653818D2D1B50D10015CD14 /* Day20_2024Tests.swift in Sources */,
 				C55F084A276F805D00EEEFA2 /* DayEighteen2021.swift in Sources */,
 				765381822D199BA80015CD14 /* Day18_2024Tests.swift in Sources */,
