@@ -28,7 +28,7 @@ struct Day8_2025: AdventDay {
         return score ?? 0
     }
 
-    func partTwo(input: String?) async -> Any {
+    func partTwo(input: String?) -> Any {
         let coordinates = parse(input)
         let space = ThreeDSpace(coordinates: coordinates)
         let (_, lastVector) = space.buildConnections()

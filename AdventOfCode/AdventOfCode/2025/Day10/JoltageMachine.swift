@@ -13,6 +13,8 @@ class JoltageMachine {
     struct Light {
         var state: Bool
         let startState: Bool
+
+        var joltageLevel: Int
         let joltageReq: Int
 
         /// A light is "correct" if it is in the correct state to start the machine
@@ -20,8 +22,20 @@ class JoltageMachine {
             state == startState
         }
 
+        /// A light is "correct" for joltage, if it matches the required level
+        var joltageCorrect: Bool {
+            joltageLevel == joltageReq
+        }
+
+        /// A light is overcharged if its current level is more than the requirement
+        var overCharged: Bool {
+            joltageLevel > joltageReq
+        }
+
+        /// Toggles the state of the light and increments the joltage level
         mutating func toggle() {
             state = !state
+            joltageLevel += 1
         }
     }
 
@@ -46,6 +60,14 @@ class JoltageMachine {
     /// The machine is startable if all lights are in the correct state.
     var startable: Bool {
         lights.map(\.correct).unique() == [true]
+    }
+
+    var joltageCorrect: Bool {
+        lights.map(\.joltageCorrect).unique() == [true]
+    }
+
+    var joltageExceeded: Bool {
+        lights.map(\.overCharged).contains(true)
     }
 
     init(lights: [Light], buttons: [LightButton], presses: [Int]) {
@@ -80,7 +102,7 @@ class JoltageMachine {
 
         let lightCount = startState.count // "width" of the machine
 
-        self.lights = (0..<lightCount).map { Light(state: false, startState: startState[$0], joltageReq: joltageReqs[$0]) }
+        self.lights = (0..<lightCount).map { Light(state: false, startState: startState[$0], joltageLevel: 0, joltageReq: joltageReqs[$0]) }
         self.buttons = buttons.map { LightButton(lightIndices: $0) }
     }
 
@@ -123,10 +145,10 @@ class JoltageMachine {
             // no winner keep digging
 
             // for each machine, create a copy that presses one of each button (except the last one pressed)
-            var newMachines: [JoltageMachine] = machines.flatMap { machine in
+            let newMachines: [JoltageMachine] = machines.flatMap { machine in
                 let lastPressedButton = machine.presses.last // don't try and press the same button twice (infinite loop)
 
-                return machine.buttons.enumerated().compactMap { (idx, b) -> JoltageMachine? in
+                return machine.buttons.indices.compactMap { idx -> JoltageMachine? in
                     guard idx != lastPressedButton else { return nil }
 
                     // let copy = machine // not a struct
@@ -143,6 +165,40 @@ class JoltageMachine {
         }
     }
 
+    func findJoltageShortestPath() -> (count: Int, presses: [Int]) {
+        guard let winner = joltageSearch(machines: [self]) else { return (-1, []) }
+
+        let presses = winner.presses
+        return (presses.count, presses)
+    }
+
+    private func joltageSearch(machines: [JoltageMachine]) -> JoltageMachine? {
+        let winners = machines.filter { $0.joltageCorrect }
+        if winners.isEmpty {
+            // no winners, keep digging
+
+            let invalidMachines = machines.filter { $0.joltageExceeded }
+            assert(invalidMachines.isEmpty) // we should never see this, right?
+
+            // for each machine, create a copy that presses one of each button
+            let newMachines: [JoltageMachine] = machines.flatMap { machine in
+                machine.buttons.indices.compactMap { idx -> JoltageMachine? in
+                    let copy = machine.copy()
+                    copy.pressButton(idx)
+
+                    // exclude any branch that has exceeded the limits
+                    guard !copy.joltageExceeded else { return nil }
+
+                    return copy
+                }
+            }
+
+            return joltageSearch(machines: newMachines)
+        } else {
+            // we have a winner
+            return winners.sorted { $0.presses.count < $1.presses.count }.first
+        }
+    }
 
     // MARK: - Static
 

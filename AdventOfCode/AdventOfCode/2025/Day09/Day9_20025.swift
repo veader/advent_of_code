@@ -54,7 +54,7 @@ struct Day9_2025: AdventDay {
         return sortedPairs.first?.area ?? -1
     }
 
-    func partTwo(input: String?) async -> Any {
+    func partTwo(input: String?) -> Any {
         let coordinates = parse(input)
 
         enum FloorTile: String, CustomStringConvertible {

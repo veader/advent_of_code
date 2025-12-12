@@ -75,7 +75,22 @@ struct DayTenTests {
 
     @Test func testPartOne() async throws {
         let answer = try await #require(day.run(part: 1) as? Int)
-        #expect(answer == 452) // takes ~42 seconds
+        #expect(answer == 452) // takes ~45 seconds
     }
+
+    @Test func testShortestJoltagePath() async throws {
+        let machine = try #require(JoltageMachine(singleMachine))
+        #expect(machine.joltageCorrect == false)
+        #expect(machine.joltageExceeded == false)
+
+        let (count, _) = machine.findJoltageShortestPath()
+        #expect(count == 10)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try #require(day.partTwo(input: sampleInput) as? Int)
+        #expect(answer == 33)
+    }
+
 
 }

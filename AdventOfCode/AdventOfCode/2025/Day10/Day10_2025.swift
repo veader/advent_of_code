@@ -27,8 +27,12 @@ struct Day10_2025: AdventDay {
         }
     }
 
-    func partTwo(input: String?) async -> Any {
+    func partTwo(input: String?) -> Any {
         let machines = parse(input)
-        return 0
+
+        return machines.reduce(0) { result, machine in
+            let (count, _) = machine.findJoltageShortestPath()
+            return result + count
+        }
     }
 }
