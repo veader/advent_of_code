@@ -22,6 +22,22 @@ struct DayEleven2025 {
         iii: out
         """
 
+    let sampleInput2 = """
+        svr: aaa bbb
+        aaa: fft
+        fft: ccc
+        bbb: tty
+        tty: ccc
+        ccc: ddd eee
+        ddd: hub
+        hub: fff
+        eee: dac
+        dac: fff
+        fff: ggg hhh
+        ggg: out
+        hhh: out
+        """
+
     @Test func testParsingGraph() async throws {
         let graph = day.parse(sampleInput)
         #expect(graph.keys.count == 10)
@@ -46,5 +62,23 @@ struct DayEleven2025 {
         let answer = try await #require(day.run(part: 1) as? Int)
         #expect(answer == 791)
     }
+
+    @Test func testGraphSearchPartTwo() async throws {
+        let graph = day.parse(sampleInput2)
+        // where we'll store our answers
+        var allPaths = Set<[String]>()
+        day.searchForAllPaths(graph: graph, node: "svr", path: [], allPaths: &allPaths, part2: true)
+        #expect(allPaths.count == 2)
+    }
+
+    @Test func testPartTwoWithSampleData() async throws {
+        let answer = try #require(day.partTwo(input: sampleInput2) as? Int)
+        #expect(answer == 2)
+    }
+
+//    @Test func testPartTwo() async throws {
+//        let answer = try await #require(day.run(part: 2) as? Int)
+//        #expect(answer == 791)
+//    }
 
 }
