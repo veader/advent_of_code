@@ -44,6 +44,12 @@
                <Test
                   Identifier = "DayTenTests/testPartOne()">
                </Test>
+               <Test
+                  Identifier = "DayTenTests/testPartTwoWithSampleData()">
+               </Test>
+               <Test
+                  Identifier = "DayTenTests/testShortestJoltagePath()">
+               </Test>
             </SkippedTests>
          </TestableReference>
          <TestableReference

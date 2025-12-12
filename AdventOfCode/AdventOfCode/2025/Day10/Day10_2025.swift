@@ -31,8 +31,8 @@ struct Day10_2025: AdventDay {
         let machines = parse(input)
 
         return machines.reduce(0) { result, machine in
-            let (count, _) = machine.findJoltageShortestPath()
-            return result + count
+            let answer = machine.findJoltageShortestPath()
+            return result + answer
         }
     }
 }

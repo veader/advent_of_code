@@ -50,6 +50,8 @@ class JoltageMachine {
     /// Which buttons have been pressed to be in our current state?
     var presses: [Int] = []
 
+    let joltageAnswer: [Int]
+
     /// Create simple visual of the current state of the lights
     ///
     /// This should mirror the original input. ie: `.##.`
@@ -74,6 +76,7 @@ class JoltageMachine {
         self.lights = lights
         self.buttons = buttons
         self.presses = presses
+        self.joltageAnswer = lights.map(\.joltageReq)
     }
 
     /// Parses a given line of input for a joltage machine.
@@ -104,6 +107,8 @@ class JoltageMachine {
 
         self.lights = (0..<lightCount).map { Light(state: false, startState: startState[$0], joltageLevel: 0, joltageReq: joltageReqs[$0]) }
         self.buttons = buttons.map { LightButton(lightIndices: $0) }
+
+        self.joltageAnswer = lights.map(\.joltageReq)
     }
 
     /// Press the button, toggling all connected lights
@@ -165,39 +170,54 @@ class JoltageMachine {
         }
     }
 
-    func findJoltageShortestPath() -> (count: Int, presses: [Int]) {
-        guard let winner = joltageSearch(machines: [self]) else { return (-1, []) }
+    typealias JoltageSearch = ([Int], Int)
 
-        let presses = winner.presses
-        return (presses.count, presses)
+    func findJoltageShortestPath() -> Int {
+        let currentLights = lights.map(\.joltageLevel) // or Array(repeating: 0, count: lights.count)
+        guard let winner = joltageSearch([JoltageSearch(currentLights, 0)]) else { return -1 }
+        return winner.1
     }
 
-    private func joltageSearch(machines: [JoltageMachine]) -> JoltageMachine? {
-        let winners = machines.filter { $0.joltageCorrect }
+    private func joltageSearch(_ instances: [JoltageSearch]) -> JoltageSearch? {
+        let winners = instances.filter { $0.0 == joltageAnswer }
         if winners.isEmpty {
             // no winners, keep digging
 
-            let invalidMachines = machines.filter { $0.joltageExceeded }
-            assert(invalidMachines.isEmpty) // we should never see this, right?
+            let invalidInstance = instances.filter { exceededLimits($0.0) }
+            assert(invalidInstance.isEmpty) // we should never see this, right?
 
             // for each machine, create a copy that presses one of each button
-            let newMachines: [JoltageMachine] = machines.flatMap { machine in
-                machine.buttons.indices.compactMap { idx -> JoltageMachine? in
-                    let copy = machine.copy()
-                    copy.pressButton(idx)
-
-                    // exclude any branch that has exceeded the limits
-                    guard !copy.joltageExceeded else { return nil }
-
-                    return copy
+            let newInstances: [JoltageSearch] = instances.flatMap { instance in
+                buttons.indices.compactMap { idx in
+                    let updated = press(button: idx, on: instance)
+                    guard !exceededLimits(updated.0) else { return nil }
+                    return updated
                 }
             }
 
-            return joltageSearch(machines: newMachines)
+            return joltageSearch(newInstances) // TODO: should we .unique() them?
         } else {
             // we have a winner
-            return winners.sorted { $0.presses.count < $1.presses.count }.first
+            return winners.first // should all be at the same number of presses
         }
+    }
+
+    /// Simulate pressing the button given on the instance, updating joltage levels
+    private func press(button: Int, on instance: JoltageSearch) -> JoltageSearch {
+        var copy = instance.0
+        for idx in buttons[button].lightIndices {
+            copy[idx] += 1
+        }
+        return JoltageSearch(copy, instance.1 + 1)
+    }
+
+    /// Have any of the lights exceeded their requirements
+    private func exceededLimits(_ instance: [Int]) -> Bool {
+        let over = instance.enumerated().filter { (idx, i) in
+            i > joltageAnswer[idx]
+        }
+        // if we have anything in this collection, we've got something over the limit
+        return !over.isEmpty
     }
 
     // MARK: - Static

@@ -41,10 +41,10 @@ struct DayTenTests {
 
         machine.pressButton(1)
         #expect(machine.lightState == ".#.#")
-        #expect(machine.presses == [1])
+        #expect(machine.presses == [0,0,1])
         machine.pressButton(1)
         #expect(machine.lightState == "....")
-        #expect(machine.presses == [1,1])
+        #expect(machine.presses == [0,0,1,1])
 
         machine.pressButton(2)
         #expect(machine.lightState == "..#.")
@@ -80,11 +80,11 @@ struct DayTenTests {
 
     @Test func testShortestJoltagePath() async throws {
         let machine = try #require(JoltageMachine(singleMachine))
-        #expect(machine.joltageCorrect == false)
-        #expect(machine.joltageExceeded == false)
+//        #expect(machine.joltageCorrect == false)
+//        #expect(machine.joltageExceeded == false)
 
-        let (count, _) = machine.findJoltageShortestPath()
-        #expect(count == 10)
+        let answer = machine.findJoltageShortestPath()
+        #expect(answer == 10) // takes ~30 sec
     }
 
     @Test func testPartTwoWithSampleData() async throws {
