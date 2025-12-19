@@ -148,6 +148,7 @@ enum AdventYear: String, CaseIterable, Identifiable {
                 Day9_2025(),
                 Day10_2025(),
                 Day11_2025(),
+                Day12_2025(),
             ]
         }
     }
